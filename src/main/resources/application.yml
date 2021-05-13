@@ -1,0 +1,14 @@
+#person:
+#  lastName: 张三
+#  age: 20
+#  boss: true
+#  birth: 2021/12/12
+#  maps: {k1: 香蕉,k2: 青菜}
+#  lists:
+#    - lisi
+#    - zhangsan
+#  dog:
+#    name: 小狗
+#    age: 3
+
+
