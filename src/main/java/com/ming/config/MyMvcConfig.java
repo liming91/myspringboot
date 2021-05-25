@@ -2,6 +2,8 @@ package com.ming.config;
 
 import com.ming.component.LoginHandlerInterceptor;
 import com.ming.component.MyLocaleResolver;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -10,10 +12,10 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * 使用WebMvcConfigurerAdapter可以来扩展springmvc的功能
+ * 使用WebMvcConfigurerAdapter可以来扩展SpringMvc的功能
  */
 @Configuration
-//@EnableWebMvc 不要接管springmvc
+//@EnableWebMvc 不要接管SpringMvc
 public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
     //视图映射
@@ -36,12 +38,12 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
             }
 
             //注册拦截器
-            @Override
+/*            @Override
             public void addInterceptors(InterceptorRegistry registry) {
                 //静态资源 css *.js,spingboot已经做好了资源映射了，不用处理静态资源
                 registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
                 .excludePathPatterns("/index.html","/","/user/login");
-            }
+            }*/
 
         };
         return adapter;

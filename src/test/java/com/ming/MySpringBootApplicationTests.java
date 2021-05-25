@@ -1,6 +1,7 @@
 package com.ming;
 
 import com.ming.bean.Person;
+import com.ming.springboot.HelloService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -9,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,6 +27,9 @@ public class MySpringBootApplicationTests {
 
     @Autowired
     ApplicationContext ioc;
+
+    @Autowired
+    DataSource dataSource;
 
     @Test
     public void contextLoads(){
@@ -45,4 +53,21 @@ public class MySpringBootApplicationTests {
         logger.error("这是error日志...");
     }
 
+    @Test
+    public void jdbcTest() throws SQLException {
+        //class org.apache.tomcat.jdbc.pool.DataSource
+        System.out.println("===========================dataSource:"+dataSource.getClass());
+        Connection connection = dataSource.getConnection();
+        System.out.println("connection==:"+connection);
+        connection.close();
+    }
+
+    @Autowired
+    HelloService helloService;
+
+    @Test
+    public void starterTest(){
+        String sayHello = helloService.sayHello("自定义starter");
+        System.out.println(sayHello);
+    }
 }
