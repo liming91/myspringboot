@@ -69,10 +69,9 @@ public class PageInfoUtil<T> implements Serializable {
         //this.totalPages = (int) Math.ceil(1.0 * total / pageSize);
         //1/3 2/3 3/3 3页11条数据
         // 11%5+1===》2+1=3
-        if(this.total /this.pageSize!=0){
-            this.totalPages = (this.total /this.pageSize)+1;
-        }else{
-            this.totalPages =this.total /this.pageSize;
+        this.totalPages = this.total / this.pageSize;
+        if (this.total / this.pageSize != 0) {
+            this.totalPages = totalPages + 1;
         }
     }
 
