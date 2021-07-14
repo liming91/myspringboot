@@ -7,16 +7,12 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Serializable
- *
- * @Author liming
- * @Date: 2021-06-25 11:43
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PageInfoUtil<T> implements Serializable {
+
+    private static final long serialVersionUID = -1816491154760233872L;
 
     private Integer pageSize = 1; // 每页显示多少条记录
     private Integer currentPage; //当前第几页数据
@@ -31,6 +27,9 @@ public class PageInfoUtil<T> implements Serializable {
         if (list == null) {
             return;
         }
+        pageNum = pageNum == null || pageNum == 0 ? 1 : pageNum;
+
+        pageSize = pageSize == null || pageSize == 0 ? 10 : pageSize;
         //总记录条数
         this.total = list.size();
         //每页显示多少条记录

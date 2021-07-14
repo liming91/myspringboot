@@ -23,10 +23,10 @@ public class HelloController {
      * 首页 模板引擎
      * @return
      */
-//    @RequestMapping({"/","/index.html"})
-//    public String index(){
-//        return "index";
-//    }
+    @RequestMapping({"/","/index.html"})
+    public String index(){
+        return "index";
+    }
 
     @ResponseBody
     @RequestMapping("/hello")

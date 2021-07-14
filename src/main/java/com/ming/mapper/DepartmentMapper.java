@@ -2,6 +2,7 @@ package com.ming.mapper;
 
 import com.ming.bean.Department;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 //指定这是一个操作数据库的mapper
 @Mapper
