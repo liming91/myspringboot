@@ -1,7 +1,7 @@
 package com.ming;
 
 import com.ming.bean.Person;
-import com.ming.springboot.HelloService;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -62,12 +63,9 @@ public class MySpringBootApplicationTests {
         connection.close();
     }
 
-    @Autowired
-    HelloService helloService;
 
-    @Test
-    public void starterTest(){
-        String sayHello = helloService.sayHello("自定义starter");
-        System.out.println(sayHello);
-    }
+
+
+
+
 }
