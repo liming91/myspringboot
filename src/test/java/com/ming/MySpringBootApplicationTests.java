@@ -50,6 +50,7 @@ public class MySpringBootApplicationTests {
         logger.debug("这是debug调试信息日志...");
         //springboot默认使用info级别的,root级别,可以调整logging.level.com.ming=trace
         logger.info("这是info自己定义的输出日志..");
+
         logger.warn("这是警告日志..");
         logger.error("这是error日志...");
     }
