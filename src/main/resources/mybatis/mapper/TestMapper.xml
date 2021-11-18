@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.TestMapper">
+
+    <insert id="addTest" parameterType="com.ming.bean.Test">
+        <foreach collection="list" item="te" separator=";">
+            insert into test(id,name)
+            values(#{te.id},#{te.name})
+        </foreach>
+
+    </insert>
+    <select id="select" resultType="com.ming.bean.Test">
+        SELECT  * from test
+    </select>
+</mapper>
