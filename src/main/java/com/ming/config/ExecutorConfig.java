@@ -12,7 +12,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @Configuration
-@EnableAsync
 public class ExecutorConfig {
 
     Logger logger = LoggerFactory.getLogger(getClass());
@@ -31,12 +30,17 @@ public class ExecutorConfig {
         //在这里修改
         //ThreadPoolTaskExecutor executor = new VisiableThreadPoolTaskExecutor();
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        int processNum = Runtime.getRuntime().availableProcessors(); // 返回可用处理器的Java虚拟机的数量
+        int corePoolSize = (int) (processNum / (1 - 0.2));
+        logger.info("核心线程数:"+corePoolSize);
+        int maxPoolSize = (int) (processNum / (1 - 0.5));
+        logger.info("最大线程数:"+maxPoolSize);
         //配置核心线程数
-        executor.setCorePoolSize(5);
+        executor.setCorePoolSize(corePoolSize);
         //配置最大线程数
-        executor.setMaxPoolSize(10);
+        executor.setMaxPoolSize(maxPoolSize);
         //配置队列大小
-        executor.setQueueCapacity(400   );
+        executor.setQueueCapacity(maxPoolSize * 1000);
         //配置线程池中的线程的名称前缀
         executor.setThreadNamePrefix("async-");
         // rejection-policy：当pool已经达到max size的时候，如何处理新任务
