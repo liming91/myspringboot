@@ -20,7 +20,7 @@ public class TestController {
     @GetMapping("/test")
     public String test() {
         List<Test> list = new ArrayList<>();
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 200000; i++) {
             Test test = new Test();
             test.setId(String.valueOf(i));
             test.setName("name"+i);
