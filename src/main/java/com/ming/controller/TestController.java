@@ -79,4 +79,18 @@ public class TestController {
         iAsyncService.test2(list);
         return "ok";
     }
+
+
+    @GetMapping("/test3")
+    public String test3() {
+        List<Test> list = new ArrayList<>();
+        for (int i = 0; i < 200000; i++) {
+            Test test = new Test();
+            test.setId(String.valueOf(i));
+            test.setName("name" + i);
+            list.add(test);
+        }
+        iAsyncService.test3(list);
+        return "ok";
+    }
 }

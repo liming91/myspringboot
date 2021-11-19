@@ -13,6 +13,7 @@ import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -75,9 +76,14 @@ public class AsyncServiceImpl implements IAsyncService {
         return list.size();
     }
 
-
+    /**
+     * 目前没有测试出 耗时 控制台的耗时，异步任务一直执行
+     * @param testList
+     * @return
+     */
     @Override
     public int test2(List<Test> testList) {
+        //TODO 耗时不准确
         long startTime = System.currentTimeMillis();
         executor.execute(()->{
             testMapper.addTest(testList);
@@ -86,5 +92,17 @@ public class AsyncServiceImpl implements IAsyncService {
         long time = endTime - startTime;
         logger.info("耗时：" + time);
         return testList.size();
+    }
+
+    @Override
+    public int test3(List<Test> testList) {
+        long startTime = System.currentTimeMillis();
+        CompletableFuture.runAsync(()->{
+            testMapper.addTest(testList);
+        },executor);
+        long endTime = System.currentTimeMillis();
+        long time = endTime - startTime;
+        logger.info("耗时：" + time);
+        return 0;
     }
 }

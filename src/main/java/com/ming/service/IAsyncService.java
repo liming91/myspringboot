@@ -12,4 +12,6 @@ public interface IAsyncService {
     int testMultiThread();
 
     int test2(List<Test> testList);
+
+    int test3(List<Test> testList);
 }
