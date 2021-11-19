@@ -14,6 +14,8 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @Service
 public class AsyncServiceImpl implements IAsyncService {
@@ -21,17 +23,16 @@ public class AsyncServiceImpl implements IAsyncService {
     @Autowired
     private TestMapper testMapper;
 
+    @Autowired
+    private Executor executor;
+
     @Override
     @Async("asyncServiceExecutor")
     public void executeAsync(List<Test> testList, TestMapper testMapper, CountDownLatch countDownLatch) {
         try {
-            long startTime = System.currentTimeMillis();
             logger.warn("start executeAsync");
             testMapper.addTest(testList);
             logger.warn("end executeAsync");
-            long endTime = System.currentTimeMillis();
-            long time = endTime - startTime;
-            logger.info("耗时：" + time);
         } catch (Exception e) {
             e.printStackTrace();
             logger.error("耗时异常：{}", e.getMessage());
@@ -42,6 +43,8 @@ public class AsyncServiceImpl implements IAsyncService {
 
     @Override
     public int testMultiThread() {
+        long startTime = System.currentTimeMillis();
+
         List<Test> list = new ArrayList<>();
         for (int i = 0; i < 100000; i++) {
             Test test = new Test();
@@ -66,6 +69,22 @@ public class AsyncServiceImpl implements IAsyncService {
         } catch (Exception e) {
             logger.error("阻塞异常:" + e.getMessage());
         }
+        long endTime = System.currentTimeMillis();
+        long time = endTime - startTime;
+        logger.info("耗时：" + time);
         return list.size();
+    }
+
+
+    @Override
+    public int test2(List<Test> testList) {
+        long startTime = System.currentTimeMillis();
+        executor.execute(()->{
+            testMapper.addTest(testList);
+        });
+        long endTime = System.currentTimeMillis();
+        long time = endTime - startTime;
+        logger.info("耗时：" + time);
+        return testList.size();
     }
 }

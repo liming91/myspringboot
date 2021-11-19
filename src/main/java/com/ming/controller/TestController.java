@@ -22,6 +22,9 @@ public class TestController {
     private Executor threadPoolTaskExecutor; // 注入线程池
     @Autowired
     private TestMapper testMapper;
+    @Autowired
+    private IAsyncService iAsyncService;
+
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @GetMapping("/test")
@@ -60,6 +63,20 @@ public class TestController {
         long endTime = System.currentTimeMillis();
         long time = endTime - startTime;
         logger.info("耗时：" + time);
+        return "ok";
+    }
+
+
+    @GetMapping("/test2")
+    public String test2() {
+        List<Test> list = new ArrayList<>();
+        for (int i = 0; i < 200000; i++) {
+            Test test = new Test();
+            test.setId(String.valueOf(i));
+            test.setName("name" + i);
+            list.add(test);
+        }
+        iAsyncService.test2(list);
         return "ok";
     }
 }
