@@ -24,13 +24,14 @@ public class ExecutorConfig {
 //    @Value("${async.executor.thread.name.prefix}")
 //    private String namePrefix;
 
-    @Bean(name = "asyncServiceExecutor")
+    @Bean
     public Executor asyncServiceExecutor() {
         logger.warn("start asyncServiceExecutor");
         //在这里修改
         //ThreadPoolTaskExecutor executor = new VisiableThreadPoolTaskExecutor();
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         int processNum = Runtime.getRuntime().availableProcessors(); // 返回可用处理器的Java虚拟机的数量
+        logger.info("cpu数:"+processNum);
         int corePoolSize = (int) (processNum / (1 - 0.2));
         logger.info("核心线程数:"+corePoolSize);
         int maxPoolSize = (int) (processNum / (1 - 0.5));

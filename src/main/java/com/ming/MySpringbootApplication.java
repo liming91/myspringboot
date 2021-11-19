@@ -13,7 +13,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 //使用MapperScan扫描所有的mapper接口
 @MapperScan(value = "com.ming.mapper")
-@EnableAsync
 public class MySpringbootApplication {
 
     public static void main(String[] args) {

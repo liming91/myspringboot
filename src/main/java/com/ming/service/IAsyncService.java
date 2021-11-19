@@ -8,5 +8,6 @@ import java.util.concurrent.CountDownLatch;
 
 public interface IAsyncService {
 
-    public void executeAsync(List<Test> testList);
+    public void executeAsync(List<Test> testList,TestMapper testMapper,CountDownLatch countDownLatch);
+    int testMultiThread();
 }

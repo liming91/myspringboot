@@ -73,14 +73,7 @@ public class MySpringBootApplicationTests {
 
     @Test
     public void addTest() throws SQLException {
-        List<com.ming.bean.Test> list = new ArrayList<>();
-        for (int i = 0; i < 10000; i++) {
-            com.ming.bean.Test test = new com.ming.bean.Test();
-            test.setId(String.valueOf(i));
-            test.setName("name"+i);
-            list.add(test);
-        }
-        iAsyncService.executeAsync(list);
+
     }
 
 
