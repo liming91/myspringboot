@@ -2,7 +2,7 @@ package com.ming;
 
 import com.ming.bean.Person;
 import com.ming.service.IAsyncService;
-import org.apache.tomcat.util.codec.binary.Base64;
+import com.ming.util.QuarterUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -12,13 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.crypto.spec.SecretKeySpec;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
+import java.util.Date;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -72,10 +69,34 @@ public class MySpringBootApplicationTests {
 
 
     @Test
-    public void addTest() throws SQLException {
+    public void timeTest() throws SQLException {
+        String strDate = "2021-11-22";
 
+        Date date = QuarterUtils.parseDate(strDate);
+
+
+//        System.out.println(strDate + " 所在季度第一天日期？"
+//                + QuarterUtils.formatDate(QuarterUtils.getFirstDateOfSeason(date)));
+//        System.out.println(strDate + " 所在季度最后一天日期？"
+//                + QuarterUtils.formatDate(QuarterUtils.getLastDateOfSeason(date)));
+//        System.out.println(strDate + " 所在季度天数？" +QuarterUtils. getDayOfSeason(date));
+//        System.out.println(strDate + " 所在季度已过多少天？" + QuarterUtils.getPassDayOfSeason(date));
+//        System.out
+//                .println(strDate + " 所在季度剩余多少天？" + QuarterUtils.getRemainDayOfSeason(date));
+//        System.out.println(strDate + " 是第几季度？" + QuarterUtils.getSeason(date));
+        System.out.println(strDate + " 所在季度月份？"
+                + QuarterUtils.formatDate(QuarterUtils.getSeasonDate(date)[0], "yyyy-MM") + "/"
+                + QuarterUtils.formatDate(QuarterUtils.getSeasonDate(date)[1], "yyyy年MM月") + "/"
+                + QuarterUtils.formatDate(QuarterUtils.getSeasonDate(date)[2], "yyyy年MM月"));
     }
 
 
+
+    @Test
+    public void dateTest(){
+        String strDate = "2021-11-19 12:00:00";
+        System.out.println(strDate.substring(11,13));
+        System.out.println(strDate.substring(0,11));
+    }
 
 }
