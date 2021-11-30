@@ -11,11 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,17 +40,17 @@ public class MySpringBootApplicationTests {
     private IAsyncService iAsyncService;
 
     @Test
-    public void contextLoads(){
+    public void contextLoads() {
         System.out.println(person);
     }
 
     @Test
-    public void helloService(){
+    public void helloService() {
         System.out.println(ioc.containsBean("helloService"));
     }
 
     @Test
-    public void logTest(){
+    public void logTest() {
         //日志的级别由低到高trace<debug<info<warn<error
         //可以调整输出的日志的级别，日志只会在这个级别以后的高级别生效
         logger.trace("这是trace日志，跟踪框架轨迹...");
@@ -61,9 +65,9 @@ public class MySpringBootApplicationTests {
     @Test
     public void jdbcTest() throws SQLException {
         //class org.apache.tomcat.jdbc.pool.DataSource
-        System.out.println("===========================dataSource:"+dataSource.getClass());
+        System.out.println("===========================dataSource:" + dataSource.getClass());
         Connection connection = dataSource.getConnection();
-        System.out.println("connection==:"+connection);
+        System.out.println("connection==:" + connection);
         connection.close();
     }
 
@@ -90,13 +94,48 @@ public class MySpringBootApplicationTests {
                 + QuarterUtils.formatDate(QuarterUtils.getSeasonDate(date)[2], "yyyy年MM月"));
     }
 
+    private static final long nd = 1000 * 24 * 60 * 60;
+    private static final long nh = 1000 * 60 * 60;
+    private static final long nm = 1000 * 60;
 
+    /**
+     * 计算两个时间段时间差，精确到秒
+     *
+     * @param startTime 2019-04-10 17:16:11
+     * @param endTime   2019-04-10 17:28:17
+     * @return
+     */
+    public static String computationTime(Date startTime, Date endTime) {
+        return null;
+    }
 
     @Test
-    public void dateTest(){
-        String strDate = "2021-11-19 12:00:00";
-        System.out.println(strDate.substring(11,13));
-        System.out.println(strDate.substring(0,11));
+    public void dateTest() throws ParseException {
+        String startTime = "2021-11-15 12:30:00";
+        String endTime = "2021-11-16 13:36:00";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date endDate = sdf.parse(endTime);
+        Date strDate = sdf.parse(startTime);
+
+        try {
+            long diff = endDate.getTime() - strDate.getTime();
+            long day = diff / nd;
+            long hour = diff % nd / nh;
+            long min = diff % nd % nh / nm;
+            long sec = diff % nd % nh % nm / 1000;//秒
+            String str = null;
+            if (day == 0) {
+                str = hour + "小时" + min + "分钟";
+            } else if (hour == 0) {
+                str = min + "分钟";
+            } else {
+                str = day + "天" + hour + "小时" + min + "分钟";
+            }
+            System.out.println(str);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
