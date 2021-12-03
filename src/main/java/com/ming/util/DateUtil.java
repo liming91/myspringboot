@@ -2,13 +2,17 @@ package com.ming.util;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil {
-
+    private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    private static final long nd = 1000 * 24 * 60 * 60;
+    private static final long nh = 1000 * 60 * 60;
+    private static final long nm = 1000 * 60;
     public static String DEFAULT_FORMAT = "yyyy-MM-dd";
     /**
      * 获取某季度的开始日期 季度一年四季， 第一季度：2月-4月， 第二季度：5月-7月， 第三季度：8月-10月， 第四季度：11月-1月
@@ -90,8 +94,89 @@ public class DateUtil {
     }
 
 
+    /**
+     * 计算两个时间段时间差，精确到秒
+     *
+     * @param startTime 2019-04-10 17:16:11
+     * @param endTime   2019-04-10 17:28:17
+     * @return
+     */
+    public static String computationTime(String startTime, String endTime) {
+        String str = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date endDate = sdf.parse(endTime);
+            Date strDate = sdf.parse(startTime);
+            long diff = endDate.getTime() - strDate.getTime();
+            long day = diff / nd;
+            long hour = diff % nd / nh;
+            long min = diff % nd % nh / nm;
+            long sec = diff % nd % nh % nm / 1000;//秒
+            if (day == 0) {
+                str = hour + "小时" + min + "分钟";
+            } else if (hour == 0) {
+                str = min + "分钟";
+            } else {
+                str = day + "天" + hour + "小时" + min + "分钟";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+
+    /**
+     * 获取系统日期
+     *
+     * @param format
+     * @return
+     */
+    public static String getNowDate(String format) {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter df = DateTimeFormatter.ofPattern(format);
+        String nowStr = now.format(df);
+        return nowStr;
+    }
 
 
+    /**
+     * 获取当前月第一天
+     *
+     * @return
+     */
+    public static String getCurrMonthFistDay() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.MONTH, 0);
+        c.set(Calendar.DAY_OF_MONTH, 1);//设置为1号,当前日期既为本月第一天
+        String first = format.format(c.getTime());
+        return first;
+    }
 
+    /**
+     * 获取当前月最后一天
+     *
+     * @return
+     */
+    public static String getCurrMonthLastDay() {
+        Calendar ca = Calendar.getInstance();
+        ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+        String last = format.format(ca.getTime());
+        return last;
+    }
+
+    /**
+     * 返回时间格式如：2020-02-17 00:00:00
+     * @param time
+     * @return
+     */
+    public static String getStartOfDay(Date time) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(time);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calendar.getTime());
+    }
 
 }

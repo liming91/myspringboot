@@ -1,22 +1,14 @@
 package com.ming.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+
+@Data
 public class Test {
     private String id;
     private String name;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private String time;
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

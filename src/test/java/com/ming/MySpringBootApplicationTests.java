@@ -2,6 +2,7 @@ package com.ming;
 
 import com.ming.bean.Person;
 import com.ming.service.IAsyncService;
+import com.ming.util.DateUtil;
 import com.ming.util.QuarterUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -131,10 +132,19 @@ public class MySpringBootApplicationTests {
             } else {
                 str = day + "天" + hour + "小时" + min + "分钟";
             }
-            System.out.println(str);
+            System.out.println(hour);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    @Test
+    public void date(){
+        String s = "2021-12-02 14:29:50";
+        System.out.println(s.substring(0,7));
+
+
 
     }
 

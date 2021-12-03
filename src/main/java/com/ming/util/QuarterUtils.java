@@ -408,7 +408,10 @@ public class QuarterUtils {
     }
 
     public static void main(String[] args) {
-
-
+        Date date = QuarterUtils.parseDate("2021-11-30");
+        String oneQuarter = QuarterUtils.formatDate(QuarterUtils.getSeasonDate(date)[0], "yyyy-MM");
+        String twoQuarter = QuarterUtils.formatDate(QuarterUtils.getSeasonDate(date)[1], "yyyy-MM");
+        String threeQuarter = QuarterUtils.formatDate(QuarterUtils.getSeasonDate(date)[2], "yyyy-MM");
+        System.out.println(oneQuarter);
     }
 }

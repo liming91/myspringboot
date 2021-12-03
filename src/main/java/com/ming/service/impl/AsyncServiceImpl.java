@@ -97,9 +97,9 @@ public class AsyncServiceImpl implements IAsyncService {
     @Override
     public int test3(List<Test> testList) {
         long startTime = System.currentTimeMillis();
-        CompletableFuture.runAsync(()->{
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             testMapper.addTest(testList);
-        },executor);
+        }, executor);
         long endTime = System.currentTimeMillis();
         long time = endTime - startTime;
         logger.info("耗时：" + time);
