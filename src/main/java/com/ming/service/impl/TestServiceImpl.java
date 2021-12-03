@@ -34,7 +34,7 @@ public class TestServiceImpl implements ITestService {
         //日期类型 0:日 1:月 2:年 3:季
         list.stream().forEach(x -> {
             DataTrendVO dataTrendVO = new DataTrendVO();
-           String time = "2021-12-02 15:04:59";
+            String time = "2021-12-02 15:04:59";
             String subTime = null;
             if (dateType == 0) {
                 subTime = time.substring(11, 13);
@@ -47,7 +47,7 @@ public class TestServiceImpl implements ITestService {
 
             }
             if (dateType == 2) {
-                subTime =time.substring(0, 7);
+                subTime = time.substring(0, 7);
                 log.info("subTime:2:{}", subTime);
             }
             dataTrendVO.setDateTime(subTime);
