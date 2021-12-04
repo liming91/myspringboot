@@ -54,7 +54,7 @@ public class TestServiceImpl implements ITestService {
             dataList.add(dataTrendVO);
         });
         //日期类型 0：日 1:月  2:年
-        //dateType前端传参 日期类型 0：日 1:月  2:年 3:季
+        // dateType前端传参 日期类型 0：日 1:月  2:年 3:季
         if (dateType == 0) {
             startTime = startTime + " 00:00:00";
             endTime = endTime + " 23:59:59";
