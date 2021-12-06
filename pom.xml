@@ -15,11 +15,11 @@
     <description>Demo project for Spring Boot</description>
     <dependencies>
         <!--引入自定义的starter-->
-<!--        <dependency>-->
-<!--            <groupId>com.ming.springboot</groupId>-->
-<!--            <artifactId>ming-spring-boot-starter</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.ming.springboot</groupId>-->
+        <!--            <artifactId>ming-spring-boot-starter</artifactId>-->
+        <!--            <version>1.0-SNAPSHOT</version>-->
+        <!--        </dependency>-->
         <!--引入web模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -54,15 +54,15 @@
         </dependency>
 
         <!--引入其他servlet容器-->
-<!--        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-        </dependency>
-        &lt;!&ndash;引入其他的Servlet容器&ndash;&gt;
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-jetty</artifactId>
+                </dependency>
+                &lt;!&ndash;引入其他的Servlet容器&ndash;&gt;
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-undertow</artifactId>
+                </dependency>-->
         <!--引入jquery的webjar-->
         <dependency>
             <groupId>org.webjars</groupId>
@@ -130,13 +130,26 @@
             <version>1.18.12</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.7.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.62</version>
+        </dependency>
+
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <thymeleaf.version>3.0.9.RELEASE </thymeleaf.version>
+        <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
         <!--布局功能的支持程序 thymeleaf3主程序 layout2以上版本-->
         <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
     </properties>

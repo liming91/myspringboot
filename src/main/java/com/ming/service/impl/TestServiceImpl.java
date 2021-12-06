@@ -1,5 +1,8 @@
 package com.ming.service.impl;
 
+import cn.hutool.http.HttpException;
+import cn.hutool.http.HttpRequest;
+import com.alibaba.fastjson.JSON;
 import com.ming.bean.Test;
 import com.ming.entities.DataTrendVO;
 import com.ming.mapper.TestMapper;
@@ -11,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
@@ -90,6 +94,7 @@ public class TestServiceImpl implements ITestService {
         if (dateType == 3) {
             //数据源
             List<DataTrendVO> proList = new ArrayList<>();
+
             //构造的日期
             List<String> dateList = new ArrayList<>();
             dateList.add(oneQuarter);
@@ -120,4 +125,6 @@ public class TestServiceImpl implements ITestService {
         }
         return resMap;
     }
+
+
 }
