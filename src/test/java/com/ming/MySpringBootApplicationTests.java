@@ -1,5 +1,6 @@
 package com.ming;
 
+import cn.hutool.core.convert.Convert;
 import com.ming.bean.Person;
 import com.ming.service.IAsyncService;
 import com.ming.util.DateUtil;
@@ -19,6 +20,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -141,11 +144,28 @@ public class MySpringBootApplicationTests {
 
     @Test
     public void date(){
-        String s = "2021-12-02 14:29:50";
-        System.out.println(s.substring(0,7));
-
-
+        String hour = getLocalDateTimeHour(0);
+        System.out.println(hour);
+        Date date = Convert.toDate(hour + ":00");
 
     }
+
+
+    /**
+     * 实时时间格式化到分钟
+     *
+     * @return
+     */
+    public static String getLocalDateTimeHour(Integer num) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        // 当天日期
+        LocalDateTime localDateTime = LocalDateTime.now().plusHours(num);
+        // 格式化时间
+        String localDateTimeStr = formatter.format(localDateTime);
+        return localDateTimeStr;
+    }
+
+
+
 
 }
