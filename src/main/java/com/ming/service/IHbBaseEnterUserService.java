@@ -7,10 +7,6 @@ import java.util.List;
 
 public interface IHbBaseEnterUserService {
 
-    /**
-     * 企业授权
-     * @param hbBaseEnterUser
-     * @return
-     */
+
     int addGrantEnter(List<HbBaseEnterUser> hbBaseEnterUser);
 }

@@ -1,19 +1,17 @@
 package com.ming.service.impl;
 
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.google.common.collect.Lists;
 
-import com.ming.config.ExecutorConfig;
 import com.ming.entities.GrantUser;
 import com.ming.entities.HbBaseEnterUser;
 import com.ming.mapper.BatchInsertUserMapper;
 import com.ming.service.IHbBaseEnterUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +54,7 @@ public class HbBaseEnterUserServiceImpl implements IHbBaseEnterUserService {
                 ExecutorCompletionService<Integer> completionService = new ExecutorCompletionService<Integer>(
                         threadPoolTaskExecutor);
                 List<List<HbBaseEnterUser>> lists = Lists.partition(enterUserList, 500);
-                if (StringUtils.isBlank(id)) {
+                if (StringUtils.isEmpty(id)) {
                     //删除
                     lists.forEach(x -> {
                         completionService.submit(new Callable() {

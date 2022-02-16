@@ -1,8 +1,5 @@
 package com.ming.entities;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,28 +7,32 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 目前引入mp jar报错 原因实体类映射表报错没有表，不做mp jar引入
+ * 注释mp
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("HB_BASEENTERUSER")
+//@TableName("HB_BASEENTERUSER")
 public class HbBaseEnterUser implements Serializable {
     private static final long serialVersionUID = -2395447908171308231L;
 
-    @TableId("ID")
+    //@TableId("ID")
     private String id;
 
-    @TableField("ENTERID")
+    //@TableField("ENTERID")
     private String enterId;
 
-    @TableField("USERID")
+    //@TableField("USERID")
     private String userId;
 
-    @TableField("ADDTIME")
+    //@TableField("ADDTIME")
     private Date addTime;
 
-    @TableField("ADDER")
+    //@TableField("ADDER")
     private String adder;
 
-    @TableField(exist = false)
+    //@TableField(exist = false)
     private List<GrantUser> grantUsers;
 
 }

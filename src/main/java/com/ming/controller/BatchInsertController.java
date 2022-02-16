@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -29,10 +30,7 @@ import java.util.concurrent.*;
  */
 @RestController
 public class BatchInsertController {
-    @Autowired
-    private Executor threadPoolTaskExecutor; // 注入线程池
-    @Autowired
-    private TestMapper testMapper;
+
     @Autowired
     private IAsyncService iAsyncService;
     @Autowired
@@ -40,44 +38,7 @@ public class BatchInsertController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    @GetMapping("/test")
-    public String test() {
-        long startTime = System.currentTimeMillis();
 
-        List<Test> list = new ArrayList<>();
-        for (int i = 0; i < 100000; i++) {
-            Test test = new Test();
-            test.setId(String.valueOf(i));
-            test.setName("name" + i);
-            list.add(test);
-        }
-        // 注入线程池
-        ExecutorCompletionService<Integer> completionService = new ExecutorCompletionService<Integer>(
-                threadPoolTaskExecutor);
-        List<List<Test>> lists = Lists.partition(list, 5000);
-        lists.forEach(item -> {
-            // 这里做的事情就是 根据lists大小确认要多少个线程 给每个线程分配任务
-            completionService.submit(new Callable() {
-                @Override
-                public Object call() throws Exception {
-                    // insertList()方法 就是批量insert语句
-                    return testMapper.addTest(item);
-                }
-            });
-        });
-        // 这里是让多线程开始执行
-        lists.forEach(item -> {
-            try {
-                completionService.take().get();
-            } catch (InterruptedException | ExecutionException e) {
-                System.out.println(e);
-            }
-        });
-        long endTime = System.currentTimeMillis();
-        long time = endTime - startTime;
-        logger.info("耗时：" + time);
-        return "ok";
-    }
 
     //数据分隔
     private static final Integer splitSize = 1000;
@@ -132,7 +93,7 @@ public class BatchInsertController {
     }
 
     /**
-     * 批量插入
+     * 批量插入百万数据测试
      *
      * @param
      * @return

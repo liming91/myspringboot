@@ -29,7 +29,7 @@
     </insert>
 
 
-    <update id="batchUpdateEnterUser" parameterType="">
+    <update id="batchUpdateEnterUser" parameterType="com.ming.entities.HbBaseEnterUser">
         BEGIN
         <foreach collection="list" item="enter"  >
             UPDATE HB_BASEENTERUSER
@@ -40,7 +40,7 @@
         END;
     </update>
 
-    <delete id="batchDeleteEnterUser" parameterType="com.yb.hb.entity.HbBaseEnterUser">
+    <delete id="batchDeleteEnterUser" parameterType="com.ming.entities.HbBaseEnterUser">
         DELETE FROM HB_BASEENTERUSER  where ENTERID IN
         <foreach collection="list" index="index" item="enter" open="(" close=")" separator=",">
             #{enter.enterId}
