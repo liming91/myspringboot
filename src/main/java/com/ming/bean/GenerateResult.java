@@ -1,6 +1,11 @@
 package com.ming.bean;
 
 public class GenerateResult {
+    /**
+     * 返回成功数据带data
+     * @param data
+     * @return
+     */
     public static Result genDataSuccessResult(Object data){
     return Result.createDataResult(MessageEnum.E00.getIndex(),MessageEnum.E00.getValue(),data);
     }

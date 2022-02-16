@@ -78,6 +78,7 @@ public class BatchInsertController {
         logger.info("耗时：" + time);
         return "ok";
     }
+
     //数据分隔
     private static final Integer splitSize = 1000;
 
@@ -102,6 +103,7 @@ public class BatchInsertController {
         lists.add(list.subList(number * splitSize, size));
         return lists;
     }
+
     @GetMapping("/test2")
     public String test2() {
         List<Test> list = new ArrayList<>();
@@ -131,6 +133,7 @@ public class BatchInsertController {
 
     /**
      * 批量插入
+     *
      * @param
      * @return
      */
@@ -144,5 +147,12 @@ public class BatchInsertController {
             return GenerateResult.genSuccessResult(MessageEnum.E00);
         }
         return GenerateResult.genSuccessResult(MessageEnum.E01);
+    }
+
+
+    @GetMapping("/getTest")
+    public Result<?> getTest() {
+        List<Test> list = iAsyncService.getTest();
+        return GenerateResult.genDataSuccessResult(list);
     }
 }

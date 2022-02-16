@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
-import java.util.concurrent.ThreadPoolExecutor;
 
 @Service
 public class AsyncServiceImpl implements IAsyncService {
@@ -104,5 +103,11 @@ public class AsyncServiceImpl implements IAsyncService {
         long time = endTime - startTime;
         logger.info("耗时：" + time);
         return 0;
+    }
+
+
+    @Override
+    public List<Test> getTest() {
+        return testMapper.select();
     }
 }

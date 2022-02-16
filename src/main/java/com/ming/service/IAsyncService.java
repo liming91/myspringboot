@@ -14,4 +14,6 @@ public interface IAsyncService {
     int test2(List<Test> testList);
 
     int test3(List<Test> testList);
+
+    List<Test> getTest();
 }
