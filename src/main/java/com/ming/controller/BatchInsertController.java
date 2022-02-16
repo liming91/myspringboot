@@ -1,14 +1,22 @@
 package com.ming.controller;
 
 import com.google.common.collect.Lists;
+import com.ming.bean.GenerateResult;
+import com.ming.bean.MessageEnum;
+import com.ming.bean.Result;
 import com.ming.bean.Test;
+import com.ming.entities.HbBaseEnterUser;
 import com.ming.mapper.TestMapper;
 import com.ming.service.IAsyncService;
+import com.ming.service.IHbBaseEnterUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -16,14 +24,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.*;
 
+/**
+ * 批量插入百万数据
+ */
 @RestController
-public class TestController {
+public class BatchInsertController {
     @Autowired
     private Executor threadPoolTaskExecutor; // 注入线程池
     @Autowired
     private TestMapper testMapper;
     @Autowired
     private IAsyncService iAsyncService;
+    @Autowired
+    private IHbBaseEnterUserService iHbBaseEnterUserService;
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -114,5 +127,22 @@ public class TestController {
         }
         iAsyncService.test3(list);
         return "ok";
+    }
+
+    /**
+     * 批量插入
+     * @param
+     * @return
+     */
+    @PostMapping("/batchUser")
+    public Result<?> addGrantEnter(@RequestBody List<HbBaseEnterUser> hbBaseEnterUser) {
+        if (StringUtils.isEmpty(hbBaseEnterUser)) {
+            return GenerateResult.genSuccessResult(MessageEnum.E01);
+        }
+        int flag = iHbBaseEnterUserService.addGrantEnter(hbBaseEnterUser);
+        if (flag != 0) {
+            return GenerateResult.genSuccessResult(MessageEnum.E00);
+        }
+        return GenerateResult.genSuccessResult(MessageEnum.E01);
     }
 }

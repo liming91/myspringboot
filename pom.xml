@@ -113,6 +113,14 @@
             </exclusions>
         </dependency>
 
+        <!-- mybatis-plus-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+
+
         <!--rabbitmq-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -154,6 +162,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.10</version>
+        </dependency>
 
     </dependencies>
     <properties>
@@ -165,6 +178,7 @@
         <!--布局功能的支持程序 thymeleaf3主程序 layout2以上版本-->
         <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
         <websocket.version>2.1.6.RELEASE</websocket.version>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
 

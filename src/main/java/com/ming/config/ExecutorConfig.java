@@ -25,7 +25,7 @@ public class ExecutorConfig {
 //    private String namePrefix;
 
     @Bean
-    public Executor asyncServiceExecutor() {
+    public ThreadPoolTaskExecutor asyncServiceExecutor() {
         logger.warn("start asyncServiceExecutor");
         //在这里修改
         //ThreadPoolTaskExecutor executor = new VisiableThreadPoolTaskExecutor();

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.BatchInsertUserMapper">
+
+
+    <insert id="batchInsertEnterUser">
+        BEGIN
+        <foreach collection="list" item="enter">
+            INSERT INTO HB_BASEENTERUSER
+            (
+             ID
+            ,ENTERID
+            ,USERID
+            ,ADDTIME
+            ,ADDER
+            )
+            VALUES
+            (
+             <!--FUN_CODE('HB_BASEENTERUSER','ID','ID')-->
+             sys_guid()
+            ,#{enter.enterId,jdbcType=NVARCHAR}
+            ,#{enter.userId,jdbcType=NVARCHAR}
+            ,sysdate
+            ,#{enter.adder,jdbcType=NVARCHAR}
+            );
+        </foreach>
+        COMMIT;
+        END;
+    </insert>
+
+
+    <update id="batchUpdateEnterUser" parameterType="">
+        BEGIN
+        <foreach collection="list" item="enter"  >
+            UPDATE HB_BASEENTERUSER
+            SET  ENTERID = #{enter.enterId},USERID = #{enter.userId},ADDER = #{enter.adder}
+            WHERE ID = #{enter.id};
+        </foreach>
+        COMMIT;
+        END;
+    </update>
+
+    <delete id="batchDeleteEnterUser" parameterType="com.yb.hb.entity.HbBaseEnterUser">
+        DELETE FROM HB_BASEENTERUSER  where ENTERID IN
+        <foreach collection="list" index="index" item="enter" open="(" close=")" separator=",">
+            #{enter.enterId}
+        </foreach>
+    </delete>
+
+</mapper>
