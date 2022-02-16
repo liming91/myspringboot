@@ -143,6 +143,18 @@
             <version>1.2.62</version>
         </dependency>
 
+        <!--websocket依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>${websocket.version}</version>
+        </dependency>
+        <!-- Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
@@ -152,6 +164,7 @@
         <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
         <!--布局功能的支持程序 thymeleaf3主程序 layout2以上版本-->
         <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
+        <websocket.version>2.1.6.RELEASE</websocket.version>
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
 

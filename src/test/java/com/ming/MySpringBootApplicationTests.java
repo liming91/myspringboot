@@ -166,6 +166,10 @@ public class MySpringBootApplicationTests {
     }
 
 
+    @Test
+    public void test2(){
+
+    }
 
 
 }
