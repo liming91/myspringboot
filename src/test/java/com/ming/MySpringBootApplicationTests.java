@@ -1,10 +1,14 @@
 package com.ming;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.http.HttpRequest;
+import com.alibaba.fastjson.*;
 import com.ming.bean.Person;
 import com.ming.service.IAsyncService;
 import com.ming.util.DateUtil;
+import com.ming.util.JavaUtil;
 import com.ming.util.QuarterUtils;
+import com.ming.util.RSAUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,7 +18,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.StringUtils;
+import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -42,6 +48,9 @@ public class MySpringBootApplicationTests {
     DataSource dataSource;
     @Autowired
     private IAsyncService iAsyncService;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Test
     public void contextLoads() {
@@ -143,7 +152,7 @@ public class MySpringBootApplicationTests {
     }
 
     @Test
-    public void date(){
+    public void date() {
         String hour = getLocalDateTimeHour(0);
         System.out.println(hour);
         Date date = Convert.toDate(hour + ":00");
@@ -167,7 +176,35 @@ public class MySpringBootApplicationTests {
 
 
     @Test
-    public void test2(){
+    public void getSing() throws Exception {
+        TreeMap<String, String> requestMap = new TreeMap<>();
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("shopIds", "1");
+        requestMap.put("method", "api.base.shop.getcommentbyshop");
+        requestMap.put("supplierCode", "100381");
+        requestMap.put("requestId", String.valueOf(UUID.randomUUID()));
+        requestMap.put("version", "1.0");
+        requestMap.put("timestamp", System.currentTimeMillis() + "");
+        requestMap.put("data", JSON.toJSONString(dataMap));
+        String content = JSON.toJSONString(requestMap);
+        String privateKey = "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDAOybRldgmT6rGj2kjatp6dvFBtS4MwIJp1PVTeJegUxjZD/rJF8tXazo/eoPV/mrF7J0ihz/XJxOUH9IRj4iv2Br0HN6uLX5wA932OPgZvSXdHYdssjmIUmKsTFutBZryoImKBRvzR6H/vxQSw34eb413/lHsR+RczHJUFR4inUWKsYEKk5P9VF13dLgn+PHZMGcLTIUNdRnvoUtgO33+hImd3xFEFlG9EMxf/XDrmB8WCzTg011yzwk8VQu8iLBkEaYr6MKQdrvEXbLHcpH6g5SipvUG//YSCcGqX6UoOWRCRR6mVEaPSvkPZk45AcpJyjmF0JD9Maxj4ZBPDxpHAgMBAAECggEACszH94p1pGFhdNply8mbELpR/6EQP0MpkIyYY+IokqdYhAlzy4x8riKmGR7m/UTX9tq+UUxL9+iIHxBSmw33XfnEOebNU/fWXLC67bRxq/CGig+4phC1TsViKc/4bpYcCHmggJKc6WQi4912YT9+fHND/XPaYm3/lH8gBT1SfhtC+WizB6hhWYfn/MLvr+frZgtpumISIkn4+385oq/UzV1EbwCzZzYQ95bEAT1CFy4g4FnU1lbFhqA2G//e66/enmu6yjRy8Dmw3PXI6R0EAoFP0zd5mU+WoGkKRGLGWdw35Ht8zVthCOCjig2LKv3vaVto7a9JKVZLFUXeJuemsQKBgQDf9GPgjeI5d1fgK+kXyk+X5UqvK2hZGV5PFo4MjgVTTV8xQ9Lyb9UppTV1F7uXTS8R6DJVDKUGuJHCLRFlE5dAcN47SgqHtQOM1w9hDNqS2D0UJe/dKSzVkhkFRFJe0m4DntPUbBVhVCDRfc/5W3Z3qg650cZNUYAaDKMpUcglbQKBgQDbvLR/OmeVoLyOxQPgsJDJeir7v13PCjD8P9KBktbzID7x/RRvfK/U9lz34+kt/p8ANrKNN+kZTqERXqp81c2KNg/f1P0o30y6fify+FbXQiqHZzXaxEuNhNSZiSkI1CfdvTX2mMpXGWWkHR9+Z9O+BgUJ/JyhWbBuE+AGJ0kSAwKBgAMx8mbWv16AhGFvXvD28vHA1LLxFJkI0p6gPMCTGiJZHT2PsSfCTrE8aSnVf9ilwkEoJeeuuYACDBpQGEpv4B2MPq9r3ACZpYZR3ydMTqX/rcdmzyhBmSEm53J6yg4ORIGKt4z1SczMrXcvq1LsaiFE7Nbb1k9uFTzJ514Ei611AoGASRNpp4Ih3rX03zoP/xJZJFf3oX9T0D3gapNDC4ps57AKnul+eVErHJTN+DaYXo52DFkkaih04dCvahpkcl2cHGG8R8EKbCRO3RqFaJ1ELBQ6Fouxck6jna3WEjV2KxR7KZf6MUdAy1SL49c3mQ8ocOKJnHehE1vDe+gqMYGxIEcCgYAGv/Hg0qONaRUTLw9X9NqcQ4vLFZ/apx5v5dkUEDviGbsRPWaXfIqWkMuVBzFAlaLjALm+I8xeZ9aLO7/JlEEtzF/VuUDp2xy+w4v2rDGUdNwNV/XtdYZxG4e+5+JFIE84ehcXqsD/kNlfKn4v5+sHlb5kmD8y/38O4XxFhvCACQ==";
+        String sign = RSAUtil.sign(content, privateKey);
+        logger.info("sign=====:" + sign);
+        requestMap.put("sign", sign);
+//        String entity = restTemplate.postForObject("https://mkb2test21.mankebao.cn/open/api", JavaUtil.getFormEntity(sign),String.class);
+//        entity.replaceAll("\\\\","");
+//        JSONObject jsonObject = JSONObject.parseObject(entity);
+//        String data1 = jsonObject.getString("data");
+        String str = JSON.toJSONString(requestMap);
+
+        String result = HttpRequest.post("https://mkb2test21.mankebao.cn/open/api")
+                .header("Content-Type", "application/json;charset=utf-8")
+                .timeout(20000)
+                .body(str)
+                .execute()
+                .charset("UTF-8")
+                .body();
+        logger.info("返回回数据：" + result);
 
     }
 
