@@ -19,6 +19,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
+import redis.clients.jedis.Jedis;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -49,8 +50,8 @@ public class MySpringBootApplicationTests {
     @Autowired
     private IAsyncService iAsyncService;
 
-    @Autowired
-    private RestTemplate restTemplate;
+//    @Autowired
+//    private RestTemplate restTemplate;
 
     @Test
     public void contextLoads() {
@@ -208,5 +209,17 @@ public class MySpringBootApplicationTests {
 
     }
 
+    /**
+     * redis测试
+     */
+    @Test
+    public void getJedisConn(){
+        final String hots = "10.10.15.250";
+        final int port = 56379;
+        Jedis jedis = new Jedis(hots,port);
+        jedis.set("java","test");
+        String java = jedis.get("java");
+        System.out.println(java);
+    }
 
 }

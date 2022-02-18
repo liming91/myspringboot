@@ -1,5 +1,6 @@
 package com.ming.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.ming.bean.GenerateResult;
 import com.ming.bean.MessageEnum;
@@ -9,6 +10,7 @@ import com.ming.entities.HbBaseEnterUser;
 import com.ming.mapper.TestMapper;
 import com.ming.service.IAsyncService;
 import com.ming.service.IHbBaseEnterUserService;
+import com.ming.util.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -35,6 +38,15 @@ public class BatchInsertController {
     private IAsyncService iAsyncService;
     @Autowired
     private IHbBaseEnterUserService iHbBaseEnterUserService;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    public static final int START = 1;
+    //定义范围开始数字
+    public static final int END = 100;
+    //定义范围结束数字
+    SecureRandom random = new SecureRandom();
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -113,7 +125,16 @@ public class BatchInsertController {
 
     @GetMapping("/getTest")
     public Result<?> getTest() {
-        List<Test> list = iAsyncService.getTest();
-        return GenerateResult.genDataSuccessResult(list);
+        Object obj = redisUtil.get("test");
+        if(obj == null){
+            List<Test> list = iAsyncService.getTest();
+            String jsonString = JSON.toJSONString(list);
+            // 为防止缓存雪崩 缓存时间1200 + 随机数
+            // 1200 + random.nextInt(END - START + 1) + START
+            redisUtil.set("test",jsonString,60);
+            return GenerateResult.genDataSuccessResult(list);
+        }
+        return GenerateResult.genDataSuccessResult(null);
+
     }
 }
