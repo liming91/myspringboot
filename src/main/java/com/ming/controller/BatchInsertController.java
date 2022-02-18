@@ -51,7 +51,6 @@ public class BatchInsertController {
     Logger logger = LoggerFactory.getLogger(getClass());
 
 
-
     //数据分隔
     private static final Integer splitSize = 1000;
 
@@ -126,15 +125,19 @@ public class BatchInsertController {
     @GetMapping("/getTest")
     public Result<?> getTest() {
         Object obj = redisUtil.get("test");
-        if(obj == null){
-            List<Test> list = iAsyncService.getTest();
+        List<Test> list;
+        if (obj == null) {
+            list = iAsyncService.getTest();
             String jsonString = JSON.toJSONString(list);
             // 为防止缓存雪崩 缓存时间1200 + 随机数
             // 1200 + random.nextInt(END - START + 1) + START
-            redisUtil.set("test",jsonString,60);
+            redisUtil.set("test", jsonString, 60);
             return GenerateResult.genDataSuccessResult(list);
+        } else {
+            list = JSON.parseArray((String) obj, Test.class);
+            logger.info("从缓存取==Test：{}", list);
         }
-        return GenerateResult.genDataSuccessResult(null);
+        return GenerateResult.genDataSuccessResult(list);
 
     }
 }
