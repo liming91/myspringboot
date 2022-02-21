@@ -33,7 +33,7 @@ public class MyWebSocket {
 
 
     /**
-     * 连接建立成功调用的方法*/
+     * 客户端连接建立成功调用的方法*/
     @OnOpen
     public void onOpen(Session session,@PathParam("userId") String userId) {
         this.session = session;
