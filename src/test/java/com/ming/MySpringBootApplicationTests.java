@@ -33,7 +33,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MySpringBootApplicationTests {
 
     //记录器
