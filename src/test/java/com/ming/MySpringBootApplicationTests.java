@@ -2,6 +2,7 @@ package com.ming;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.http.HttpRequest;
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.*;
 import com.ming.bean.Person;
 import com.ming.service.IAsyncService;
@@ -9,6 +10,12 @@ import com.ming.util.DateUtil;
 import com.ming.util.JavaUtil;
 import com.ming.util.QuarterUtils;
 import com.ming.util.RSAUtil;
+import com.ming.util.http.RequestTools;
+import org.apache.http.HeaderElementIterator;
+import org.apache.http.HttpResponse;
+import org.apache.http.conn.ConnectionKeepAliveStrategy;
+import org.apache.http.message.BasicHeaderElementIterator;
+import org.apache.http.protocol.HttpContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -23,6 +30,7 @@ import redis.clients.jedis.Jedis;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -213,16 +221,28 @@ public class MySpringBootApplicationTests {
      * redis测试
      */
     @Test
-    public void getJedisConn(){
+    public void getJedisConn() {
         final String hots = "10.10.15.250";
         final int port = 56379;
-        Jedis jedis = new Jedis(hots,port);
-        jedis.set("java","test");
+        Jedis jedis = new Jedis(hots, port);
+        jedis.set("java", "test");
         String java = jedis.get("java");
         System.out.println(java);
     }
 
 
-    
+    @Test
+    public void clz() throws IOException {
+//        String url = "http://111.21.122.246:9006/monitor/devices/real/03145851/all/2022-01-10%2011:40:19/2022-01-10%2011:41:20";
+//        String request = RequestTools.processHttpRequest(url, "get", new HashMap());
+//        logger.info("get:{}", request);
+
+        String url ="http://47.103.51.48:8090/dnjk/a/interViewTC/sendWarnHandleGroup?username=admin&password=admin";
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("wids", "1");
+        String post = RequestTools.processPostJson(url, jsonObject);
+        logger.info("get:{}", post);
+    }
+
 
 }
