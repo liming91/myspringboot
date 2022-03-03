@@ -230,7 +230,10 @@ public class MySpringBootApplicationTests {
         System.out.println(java);
     }
 
-
+    /**
+     * get post
+     * @throws IOException
+     */
     @Test
     public void clz() throws IOException {
 //        String url = "http://111.21.122.246:9006/monitor/devices/real/03145851/all/2022-01-10%2011:40:19/2022-01-10%2011:41:20";
