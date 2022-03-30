@@ -96,19 +96,21 @@ public class ExcelUtil {
         defaultExport(list, pojoClass, fileName, response, exportParams);
 
     }
-    public static void exportExcel(List<?> list, String title, String sheetName, Class<?> pojoClass,String fileName, HttpServletResponse response){
-        defaultExport(list, pojoClass, fileName, response, new ExportParams(title, sheetName));
+    public static Workbook exportExcel(List<?> list, String title, String sheetName, Class<?> pojoClass,String fileName, HttpServletResponse response){
+        Workbook workbook = defaultExport(list, pojoClass, fileName, response, new ExportParams(title, sheetName));
+        return workbook;
     }
+
     public static void exportExcel(List<Map<String, Object>> list, String fileName, HttpServletResponse response){
         defaultExport(list, fileName, response);
     }
 
-    private static void defaultExport(List<?> list, Class<?> pojoClass, String fileName, HttpServletResponse response, ExportParams exportParams) {
+    private static Workbook defaultExport(List<?> list, Class<?> pojoClass, String fileName, HttpServletResponse response, ExportParams exportParams) {
         Workbook workbook = ExcelExportUtil.exportExcel(exportParams,pojoClass,list);
         if (workbook != null){
             downLoadExcel(fileName, response, workbook);
         }
-
+       return workbook;
     }
 
     public static void downLoadExcel(String fileName, HttpServletResponse response, Workbook workbook) {

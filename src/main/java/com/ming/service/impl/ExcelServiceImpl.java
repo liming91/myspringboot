@@ -51,8 +51,8 @@ public class ExcelServiceImpl implements ExcelService {
         // 模拟从数据库获取需要导出的数据
         List<Test> personList = testMapper.select();
         //导出操作
-        ExcelUtil.exportExcel(personList, "用户列表", "用户", Test.class, "用户信息" + System.currentTimeMillis() + ".xls", response);
-
+        Workbook workbook = ExcelUtil.exportExcel(personList, "用户列表", "用户", Test.class, "用户信息" + System.currentTimeMillis() + ".xls", response);
+        makeExcel(workbook);
     }
 
 
