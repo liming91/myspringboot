@@ -138,6 +138,21 @@ public class DateUtil {
         return nowStr;
     }
 
+    /**
+     * 获取昨天的日期
+     * @param format
+     * @return
+     */
+    public static String getYesterday(String format){
+        Calendar cal=Calendar.getInstance();
+        cal.add(Calendar.DATE,-1);
+        Date d=cal.getTime();
+        SimpleDateFormat sp=new SimpleDateFormat(format);
+        String yesterday=sp.format(d);
+        return yesterday;
+    }
+
+
 
     /**
      * 获取当前月第一天

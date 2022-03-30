@@ -39,6 +39,13 @@ spring:
       shutdown-timeout: 100ms
     #password: ""
     port: 56379
+  #环境
+  application:
+    name: cur
+  profiles:
+    active: dev
+
+
 mybatis:
   #全局配置文件
   config-location: classpath:mybatis/mybatis-config.xml
@@ -55,4 +62,16 @@ mybatis:
 #      #控制台显示sql
 #      show-sql: true
 
+minio:
+  url: http://192.168.1.253:9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  minio_name: minioadmin
+  minio_pass: minioadmin
+  bucketName: tcyy
+  #邮箱
+mail:
+  flag: true
+  url: http://192.168.1.253:7758/mail/sendTemplateMail
+  to: 522724933@qq.com
 

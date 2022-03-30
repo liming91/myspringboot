@@ -23,4 +23,10 @@ public class ExcelController {
         excelService.export(response);
     }
 
+
+    @GetMapping("/exportSheet")
+    public void exportSheet(HttpServletResponse response) {
+        excelService.exportSheet(response);
+    }
+
 }

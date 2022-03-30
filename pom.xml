@@ -114,11 +114,11 @@
         </dependency>
 
         <!-- mybatis-plus-->
-<!--        <dependency>-->
-<!--            <groupId>com.baomidou</groupId>-->
-<!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
-<!--            <version>${mybatis-plus.version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.baomidou</groupId>-->
+        <!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
+        <!--            <version>${mybatis-plus.version}</version>-->
+        <!--        </dependency>-->
 
 
         <!--rabbitmq-->
@@ -183,11 +183,24 @@
         <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-web</artifactId>
-            <version>3.0.3</version> </dependency>
+            <version>3.0.3</version>
+        </dependency>
         <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-annotation</artifactId>
             <version>3.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>${minio.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
 
     </dependencies>
@@ -201,6 +214,8 @@
         <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
         <websocket.version>2.1.6.RELEASE</websocket.version>
         <!--<mybatis-plus.version>3.4.1</mybatis-plus.version>-->
+        <minio.version>8.2.1</minio.version>
+        <hutool.version>5.5.7</hutool.version>
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
 
