@@ -1,6 +1,7 @@
 package com.ming;
 
 import com.ming.entities.*;
+import lombok.Builder;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,29 +53,12 @@ public class MyTest {
 
     }
 
-
     @Test
-    public void lineTest22() throws ExecutionException, InterruptedException {
-//        A a1 = new A();
-//        A a2 = new A();
-//        a1.start();
-//        a2.start();
-//        B b1 = new B();
-//        B b2 = new B();
-//        Thread t = new Thread(b1);
-//        //t.setName("线程B1");
-//        t.start();
-//        Thread t2 = new Thread(b1);
-//        //t.setName("线程B1");
-//        t2.start();
-//         C c = new C();
-//        FutureTask task = new FutureTask(c);
-//        Thread t = new Thread(task);
-//        Object o = task.get();
-//        System.out.println("总和："+o);
-//        t.start();
-        String name = EnergyType.electricity.name();
-        System.out.println("sss=:"+name);
+    @Builder
+    public void dishTest1() {
+        AA aa = new AA();
+        AA.Bb bb = aa.new Bb();
+
     }
 
 

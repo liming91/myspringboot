@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ming</groupId>
     <artifactId>myspringboot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>myspringboot</name>
     <description>Demo project for Spring Boot</description>
     <dependencies>
@@ -216,6 +216,7 @@
         <!--<mybatis-plus.version>3.4.1</mybatis-plus.version>-->
         <minio.version>8.2.1</minio.version>
         <hutool.version>5.5.7</hutool.version>
+        <docker.image.prefix>yb</docker.image.prefix>
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
 
@@ -224,6 +225,24 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- docker插件 -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <dockerHost>http://47.111.159.195:2375</dockerHost>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
