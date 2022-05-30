@@ -44,6 +44,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+            <version>8.0.11</version>
         </dependency>
         <!--druid数据源-->
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
@@ -197,12 +198,6 @@
             <version>${minio.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
-        </dependency>
-
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
@@ -217,6 +212,9 @@
         <minio.version>8.2.1</minio.version>
         <hutool.version>5.5.7</hutool.version>
         <docker.image.prefix>yb</docker.image.prefix>
+        <!--阿里镜像仓库-->
+        <docker.serverId>docker-aliyun</docker.serverId>
+        <docker.registry>registry.cn-hangzhou.aliyuncs.com/lm_repo</docker.registry>
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
 
@@ -226,15 +224,43 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+
             <!-- docker插件 -->
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
+<!--                <configuration>-->
+<!--                    <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>-->
+<!--                    <dockerDirectory>src/main/docker</dockerDirectory>-->
+<!--                    <dockerHost>http://47.111.159.195:2375</dockerHost>-->
+<!--                    <resources>-->
+<!--                        <resource>-->
+<!--                            <targetPath>/</targetPath>-->
+<!--                            <directory>${project.build.directory}</directory>-->
+<!--                            <include>${project.build.finalName}.jar</include>-->
+<!--                        </resource>-->
+<!--                    </resources>-->
+<!--                </configuration>-->
+
                 <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
+                    <!-- 覆盖相同标签镜像 -->
+                    <forceTags>true</forceTags>
+                    <!-- install阶段上传镜像 -->
+                    <pushImage>true</pushImage>
+                    <serverId>${docker.serverId}</serverId>
+                    <!-- 远程仓库地址 -->
+                    <registryUrl>${docker.registry}</registryUrl>
                     <dockerDirectory>src/main/docker</dockerDirectory>
-                    <dockerHost>http://47.111.159.195:2375</dockerHost>
+                    <imageName>${docker.registry}/${project.artifactId}:${project.version}</imageName>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>

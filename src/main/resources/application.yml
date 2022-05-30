@@ -3,9 +3,9 @@
 spring:
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/db?useSSL=false&allowMultiQueries=true
-    driver-class-name: com.mysql.jdbc.Driver
+    password: lm123456
+    url: jdbc:mysql://47.111.159.195:3306/db?useSSL=false&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
     #数据源用druid
     type: com.alibaba.druid.pool.DruidDataSource
     #数据源其他配置
