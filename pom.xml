@@ -243,7 +243,7 @@
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <!--CA证书地址-->
                     <dockerCertPath>D:\ca</dockerCertPath>
-                    <dockerHost>https://47.111.159.195:2375</dockerHost>
+                    <dockerHost>https://120.48.75.156:2375</dockerHost>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>

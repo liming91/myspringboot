@@ -3,8 +3,8 @@
 spring:
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://47.111.159.195:3306/db?useSSL=false&allowMultiQueries=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    password: 724933
+    url: jdbc:mysql://120.48.75.156:3306/db?useSSL=false&allowMultiQueries=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     #数据源用druid
     type: com.alibaba.druid.pool.DruidDataSource
@@ -29,7 +29,7 @@ spring:
   redis:
     database: 2
     iddatabase: 2
-    host: 47.111.159.195
+    host: 120.48.75.156
     lettuce:
       pool:
         max-active: 8 #最大连接数据库连接数,设 0 为没有限制
@@ -37,7 +37,7 @@ spring:
         max-wait: -1ms #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
         min-idle: 0 #最小等待连接中的数量,设 0 为没有限制
       shutdown-timeout: 100ms
-    password: "123456."
+    password: "724933"
     port: 6379
   #环境
   application:
