@@ -21,4 +21,11 @@ public class DateController {
         Map<String, Object> map = iTestService.getList(dateType);
         return GenerateResult.genDataSuccessResult(map);
     }
+
+
+    @GetMapping("/list")
+    public Result<?> list(int dateType) {
+        Map<String, Object> map = iTestService.list(dateType);
+        return GenerateResult.genDataSuccessResult(map);
+    }
 }

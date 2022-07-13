@@ -8,4 +8,6 @@ import java.util.Map;
 public interface ITestService {
 
     Map<String, Object> getList(int dateType);
+
+    Map<String, Object> list(int dateType);
 }

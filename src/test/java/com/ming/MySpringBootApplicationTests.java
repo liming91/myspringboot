@@ -1,21 +1,9 @@
 package com.ming;
 
 import cn.hutool.core.convert.Convert;
-import cn.hutool.http.HttpRequest;
-import cn.hutool.json.JSONUtil;
-import com.alibaba.fastjson.*;
 import com.ming.bean.Person;
 import com.ming.service.IAsyncService;
-import com.ming.util.DateUtil;
-import com.ming.util.JavaUtil;
 import com.ming.util.QuarterUtils;
-import com.ming.util.RSAUtil;
-import com.ming.util.http.RequestTools;
-import org.apache.http.HeaderElementIterator;
-import org.apache.http.HttpResponse;
-import org.apache.http.conn.ConnectionKeepAliveStrategy;
-import org.apache.http.message.BasicHeaderElementIterator;
-import org.apache.http.protocol.HttpContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -24,11 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.StringUtils;
-import org.springframework.web.client.RestTemplate;
-import redis.clients.jedis.Jedis;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
@@ -38,7 +22,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -247,6 +230,10 @@ public class MySpringBootApplicationTests {
 //        jsonObject.put("wids", "1");
 //        String post = RequestTools.processPostJson(url, jsonObject);
 //        logger.info("get:{}", post);
+
+        Calendar calendar = Calendar.getInstance();
+        String year = String.valueOf(calendar.get(Calendar.YEAR));
+        System.out.println(year);
     }
 
 

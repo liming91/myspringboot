@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateUtil {
+public class DateUtils {
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     private static final long nd = 1000 * 24 * 60 * 60;
     private static final long nh = 1000 * 60 * 60;

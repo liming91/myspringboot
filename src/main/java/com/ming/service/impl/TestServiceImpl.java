@@ -1,21 +1,19 @@
 package com.ming.service.impl;
 
-import cn.hutool.http.HttpException;
-import cn.hutool.http.HttpRequest;
-import com.alibaba.fastjson.JSON;
+import cn.hutool.core.date.DateUtil;
 import com.ming.bean.Test;
+import com.ming.entities.CalendarUtil;
 import com.ming.entities.DataTrendVO;
+import com.ming.enums.DateTypeEnum;
 import com.ming.mapper.TestMapper;
 import com.ming.service.ITestService;
-import com.ming.util.DateUtil;
+import com.ming.util.DateUtils;
 import com.ming.util.FullDateHandle;
 import com.ming.util.QuarterUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.client.RestTemplate;
 
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
@@ -34,8 +32,8 @@ public class TestServiceImpl implements ITestService {
     @Override
     public Map<String, Object> getList(int dateType) {
         Map<String, Object> resMap = new HashMap<>();
-        String startTime = DateUtil.getNowDate("yyyy-MM-dd");
-        String endTime = DateUtil.getNowDate("yyyy-MM-dd");
+        String startTime = DateUtils.getNowDate("yyyy-MM-dd");
+        String endTime = DateUtils.getNowDate("yyyy-MM-dd");
         List<Test> list = testMapper.select();
         List<DataTrendVO> dataList = new ArrayList<>();
         //日期类型 0:日 1:月 2:年 3:季
@@ -67,8 +65,8 @@ public class TestServiceImpl implements ITestService {
             endTime = endTime + " 23:59:59";
         }
         if (dateType == 1) {
-            startTime = DateUtil.getCurrMonthFistDay();
-            endTime = DateUtil.getCurrMonthLastDay();
+            startTime = DateUtils.getCurrMonthFistDay();
+            endTime = DateUtils.getCurrMonthLastDay();
         }
         if (dateType == 2) {
             DateTimeFormatter dailyFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -129,5 +127,30 @@ public class TestServiceImpl implements ITestService {
         return resMap;
     }
 
-
+    @Override
+    public Map<String, Object> list(int dateType) {
+        Map<String,Object> resMap = new Hashtable<>();
+        List<Test> list = testMapper.getList(DateTypeEnum.getQueryDateFormatterEnum(dateType),DateTypeEnum.getResDateFormatterEnum(dateType),DateTypeEnum.getDateByType(dateType));
+        //查询两个日期之间的时间
+        List<String> timeList = CalendarUtil.getTimeList(DateUtil.formatDateTime(DateUtil.beginOfMonth(new Date())), DateUtil.formatDateTime(DateUtil.endOfMonth(new Date())), dateType);
+        if (dateType == 2) {
+            timeList = CalendarUtil.getTimeList(DateUtil.formatDateTime(DateUtil.beginOfYear(new Date())), DateUtil.formatDateTime(DateUtil.endOfYear(new Date())), dateType);
+        }
+        //已存在的时间
+        List<String> times = list.stream().map(m -> m.getTime()).collect(Collectors.toList());
+        List<String> finalTimeList = new ArrayList<>(timeList);
+        timeList.removeAll(times);
+        //时间补全
+        timeList.forEach(hour -> {
+            Test vo = new Test();
+            vo.setTime(hour);
+            vo.setMoney(0.0);
+            list.add(vo);
+        });
+        List<Test> collect1 = list.stream().filter(f -> !finalTimeList.contains(f.getTime())).collect(Collectors.toList());
+        list.removeAll(collect1);
+        list.sort(Comparator.comparing(m ->  m.getTime()));
+        resMap.put("data",list);
+        return resMap;
+    }
 }

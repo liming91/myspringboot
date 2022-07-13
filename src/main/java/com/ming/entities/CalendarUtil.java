@@ -1,6 +1,8 @@
 package com.ming.entities;
 
 
+import cn.hutool.core.date.DateUtil;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -323,6 +325,45 @@ public class CalendarUtil {
         return times;
 
     }
+
+    public static List<String> getTimeList(String startTime, String endTime, Integer timeType) {
+        List<String> dates = new ArrayList<>();
+        try {
+            if (timeType == 0) {
+//                for (int i = 0; i < 24; i++) {
+//                    if (i < 10) {
+//                        dates.add("0" + i + ":00");
+//                        dates.add("0" + i + ":30");
+//                    } else {
+//                        dates.add(i + ":00");
+//                        dates.add(i + ":30");
+//                    }
+//                }
+
+                for (int i = 0; i < 24; i++) {
+                    if (i < 10) {
+                        dates.add("0" + i);
+                    } else {
+                        dates.add(String.valueOf(i));
+                    }
+                }
+            } else if (timeType == 1) {
+                List<String> strings = queryDataDayString(startTime, endTime);
+                for(String string : strings) {
+                    dates.add(string.substring(5,string.length()));
+                }
+            } else if (timeType == 2) {
+                List<String> strings = queryDataMonth(DateUtil.parse(startTime), DateUtil.parse(endTime));
+                for(String string : strings) {
+                    dates.add(string.substring(0, 7));
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dates;
+    }
+
 
     public static void main(String[] args) {
         formatDay("2020-07-07", "2020-07-14", 2);

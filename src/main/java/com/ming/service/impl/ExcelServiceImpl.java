@@ -9,7 +9,7 @@ import com.ming.bean.Test;
 import com.ming.entities.MailDTO;
 import com.ming.mapper.TestMapper;
 import com.ming.service.ExcelService;
-import com.ming.util.DateUtil;
+import com.ming.util.DateUtils;
 import com.ming.util.ExcelUtil;
 import com.ming.util.MinIoUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -58,8 +58,8 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void exportSheet(HttpServletResponse response) {
-        String startTime = DateUtil.getNowDate("yyyy-MM-dd");
-        String endTime = DateUtil.getYesterday("yyyy-MM-dd");
+        String startTime = DateUtils.getNowDate("yyyy-MM-dd");
+        String endTime = DateUtils.getYesterday("yyyy-MM-dd");
         if (!"prod".equals(activeEnv)) {
             startTime = "2021-06-01";
             endTime = "2021-06-02";

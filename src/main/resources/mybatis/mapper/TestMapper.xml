@@ -14,4 +14,18 @@
     <select id="select" resultType="com.ming.bean.Test">
         SELECT  * from test
     </select>
+
+    <select id="getList" resultType="com.ming.bean.Test">
+        SELECT
+        SUM( t.money ) AS money,
+        DATE_FORMAT( t.time, '${resDate}' ) AS time
+        FROM
+        test t
+        WHERE
+        DATE_FORMAT( t.time, '${queryDate}' ) = #{localDate}
+        GROUP BY
+        DATE_FORMAT( t.time, '${resDate}' )
+        ORDER BY
+        DATE_FORMAT( t.time, '${resDate}' ) ASC;
+    </select>
 </mapper>
