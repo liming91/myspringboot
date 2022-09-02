@@ -1,10 +1,16 @@
 package com.ming.controller;
 
 import com.alibaba.druid.stat.DruidStatManagerFacade;
+import com.ming.annotation.ResultAnnotation;
 import com.ming.bean.GenerateResult;
 import com.ming.bean.MessageEnum;
 import com.ming.bean.Result;
+import com.ming.bean.Test;
+import com.ming.enums.ResultCode;
 import com.ming.exception.UserNotExistException;
+import com.ming.service.IAsyncService;
+import com.ming.util.http.ResponseResult;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +29,13 @@ import java.util.Map;
 import java.util.Objects;
 
 @Controller
+@RequiredArgsConstructor
 public class HelloController {
     private static Logger log = LoggerFactory.getLogger(HelloController.class);
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+
+    private final IAsyncService iAsyncService;
 
     /**
      * 首页 模板引擎
@@ -46,7 +54,7 @@ public class HelloController {
         }
         Map<String, Object> map = new HashMap<>();
         String staticPath = this.getClass().getClassLoader().getResource("image").getFile();
-        log.info("staticPath:{}",staticPath);
+        log.info("staticPath:{}", staticPath);
         File file = new File("src/main/resources/image/log.jpg");
         String canonicalPath = file.getCanonicalPath();
         map.put("hello", canonicalPath);
@@ -68,9 +76,11 @@ public class HelloController {
 
     @ResponseBody
     @GetMapping("/query")
-    public Map<String, Object> findEmp() {
-        List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from department ");
-        return list.get(0);
+    @ResultAnnotation
+    public List<Test> findEmp() {
+        //List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from test ");
+        List<Test> list = iAsyncService.getTest();
+        return list;
     }
 
 
