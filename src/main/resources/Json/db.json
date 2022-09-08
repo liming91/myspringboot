@@ -1,0 +1,2756 @@
+[
+  {
+    "equCode": "yx762",
+    "equName": "1EP2FRTU084",
+    "alarm": true,
+    "loopName": "B段地下室B-D1SF2、 B-D1PY2",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx761",
+    "equName": "1EP2FRTU084",
+    "alarm": true,
+    "loopName": "B段地下室B-D1SF2、 B-D1PY2",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx817",
+    "equName": "1EP3FRTU085",
+    "alarm": true,
+    "loopName": "A段机房UPS室WL-KT",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx818",
+    "equName": "1EP3FRTU085",
+    "alarm": true,
+    "loopName": "A段机房UPS室WL-KT",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx119",
+    "equName": "1P5FRTU081",
+    "alarm": true,
+    "loopName": "A段照明A-1M~6M",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx120",
+    "equName": "1P5FRTU081",
+    "alarm": true,
+    "loopName": "A段照明A-1M~6M",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1985",
+    "equName": "YEP6FRTU086",
+    "alarm": true,
+    "loopName": "放射科空调FSK-PD1",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx181",
+    "equName": "1P6FRTU063",
+    "alarm": true,
+    "loopName": "C段照明C-1M2~7M2",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx182",
+    "equName": "1P6FRTU063",
+    "alarm": true,
+    "loopName": "C段照明C-1M2~7M2",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1309",
+    "equName": "2P11FRTU085",
+    "alarm": true,
+    "loopName": "供应部电梯C-1PDT~ C-2PDT  ",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx256",
+    "equName": "1P7FRTU088",
+    "alarm": true,
+    "loopName": "备用",
+    "variableName": "回路8断路器(回路8断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx255",
+    "equName": "1P7FRTU088",
+    "alarm": true,
+    "loopName": "备用",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx176",
+    "equName": "1P6FRTU062",
+    "alarm": true,
+    "loopName": "C段照明C-8M1~14M1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx175",
+    "equName": "1P6FRTU062",
+    "alarm": true,
+    "loopName": "C段照明C-8M1~14M1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1849",
+    "equName": "YEP4FRTU082",
+    "alarm": true,
+    "loopName": "CT室CT-PD2",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1830",
+    "equName": "YEP3FRTU088",
+    "alarm": true,
+    "loopName": "动力中心设备机房压缩空气",
+    "variableName": "回路8断路器(回路8断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1829",
+    "equName": "YEP3FRTU088",
+    "alarm": true,
+    "loopName": "动力中心设备机房压缩空气",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1941",
+    "equName": "YEP5FRTU088",
+    "alarm": true,
+    "loopName": "C段十层神经内科",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx455",
+    "equName": "1P11FRTU086",
+    "alarm": true,
+    "loopName": "C段十层神经内科",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx456",
+    "equName": "1P11FRTU086",
+    "alarm": true,
+    "loopName": "C段十层神经内科",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1942",
+    "equName": "YEP5FRTU088",
+    "alarm": true,
+    "loopName": "C段十层神经内科",
+    "variableName": "回路8断路器(回路8断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx187",
+    "equName": "1P6FRTU064",
+    "alarm": true,
+    "loopName": "C段照明C-8M2~14M2",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx188",
+    "equName": "1P6FRTU064",
+    "alarm": true,
+    "loopName": "C段照明C-8M2~14M2",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1109",
+    "equName": "2P7FRTU086",
+    "alarm": true,
+    "loopName": "产科空调CK-KT1",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1008",
+    "equName": "2P5FRTU085",
+    "alarm": true,
+    "loopName": "透析中心XT-PD1 ",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1009",
+    "equName": "2P5FRTU085",
+    "alarm": true,
+    "loopName": "透析中心XT-PD1 ",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1015",
+    "equName": "2P5FRTU086",
+    "alarm": true,
+    "loopName": "口腔科A-XPD1",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1014",
+    "equName": "2P5FRTU086",
+    "alarm": true,
+    "loopName": "口腔科A-XPD1",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx393",
+    "equName": "1P10FRTU085",
+    "alarm": true,
+    "loopName": "室外景观AL1",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx394",
+    "equName": "1P10FRTU085",
+    "alarm": true,
+    "loopName": "室外景观AL1",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx237",
+    "equName": "1P7FRTU085",
+    "alarm": true,
+    "loopName": "C段应急C-8EM1~14EM1",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx238",
+    "equName": "1P7FRTU085",
+    "alarm": true,
+    "loopName": "C段应急C-8EM1~14EM1",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx399",
+    "equName": "1P10FRTU086",
+    "alarm": true,
+    "loopName": "室外景观AL2",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx400",
+    "equName": "1P10FRTU086",
+    "alarm": true,
+    "loopName": "室外景观AL2",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1899",
+    "equName": "YEP5FRTU081",
+    "alarm": true,
+    "loopName": "手术部电力SS-PDB",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1209",
+    "equName": "2P9FRTU085",
+    "alarm": true,
+    "loopName": "手术部电力SS-PDA",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx482",
+    "equName": "1P12FRTU081",
+    "alarm": true,
+    "loopName": "A段屋面A-WPDT",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx481",
+    "equName": "1P12FRTU081",
+    "alarm": true,
+    "loopName": "A段屋面A-WPDT",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1861",
+    "equName": "YEP4FRTU084",
+    "alarm": true,
+    "loopName": "DR室DR-PD1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1911",
+    "equName": "YEP5FRTU083",
+    "alarm": true,
+    "loopName": "压缩空气YS-PD1",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1912",
+    "equName": "YEP5FRTU083",
+    "alarm": true,
+    "loopName": "压缩空气YS-PD1",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2029",
+    "equName": "YEP7FRTU085",
+    "alarm": true,
+    "loopName": "医用电梯B-WPDT1",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2030",
+    "equName": "YEP7FRTU085",
+    "alarm": true,
+    "loopName": "医用电梯B-WPDT1",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx693",
+    "equName": "1EP1FRTU081",
+    "alarm": true,
+    "loopName": "A段地下室A-QWX",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx694",
+    "equName": "1EP1FRTU081",
+    "alarm": true,
+    "loopName": "A段地下室A-QWX",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2036",
+    "equName": "YEP7FRTU086",
+    "alarm": true,
+    "loopName": "医用电梯B-WPDT2",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2035",
+    "equName": "YEP7FRTU086",
+    "alarm": true,
+    "loopName": "医用电梯B-WPDT2",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx637",
+    "equName": "1P15FRTU081",
+    "alarm": true,
+    "loopName": "A段LED屏A-LM1",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx638",
+    "equName": "1P15FRTU081",
+    "alarm": true,
+    "loopName": "A段LED屏A-LM1",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx567",
+    "equName": "1P13FRTU086",
+    "alarm": true,
+    "loopName": "机械停车TC-PD1",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx568",
+    "equName": "1P13FRTU086",
+    "alarm": true,
+    "loopName": "机械停车TC-PD1",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx226",
+    "equName": "1P7FRTU083",
+    "alarm": true,
+    "loopName": "B段应急B-1EM2~3EM2",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx225",
+    "equName": "1P7FRTU083",
+    "alarm": true,
+    "loopName": "B段应急B-1EM2~3EM2",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1855",
+    "equName": "YEP4FRTU083",
+    "alarm": true,
+    "loopName": "CR室CR-PD1",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx600",
+    "equName": "1P14FRTU062",
+    "alarm": true,
+    "loopName": "N ICU照明NICU",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx599",
+    "equName": "1P14FRTU062",
+    "alarm": true,
+    "loopName": "N ICU照明NICU",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx326",
+    "equName": "1P9FRTU083",
+    "alarm": true,
+    "loopName": "B段新风机组B-ZPD2",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx325",
+    "equName": "1P9FRTU083",
+    "alarm": true,
+    "loopName": "B段新风机组B-ZPD2",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx320",
+    "equName": "1P9FRTU082",
+    "alarm": true,
+    "loopName": "B段新风机组B-ZPD1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx319",
+    "equName": "1P9FRTU082",
+    "alarm": true,
+    "loopName": "B段新风机组B-ZPD1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1265",
+    "equName": "2P10FRTU086",
+    "alarm": true,
+    "loopName": "切片QP-PD",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1929",
+    "equName": "YEP5FRTU086",
+    "alarm": true,
+    "loopName": "切片QP-PD",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1259",
+    "equName": "2P10FRTU085",
+    "alarm": true,
+    "loopName": "血库CX-PD ",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1923",
+    "equName": "YEP5FRTU085",
+    "alarm": true,
+    "loopName": "血库CX-PD ",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx443",
+    "equName": "1P11FRTU084",
+    "alarm": true,
+    "loopName": "C段屋面C-WPF2  3 ",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx444",
+    "equName": "1P11FRTU084",
+    "alarm": true,
+    "loopName": "C段屋面C-WPF2  3 ",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx144",
+    "equName": "1P5FRTU085",
+    "alarm": true,
+    "loopName": "C段地下室照明C-D1M1",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx143",
+    "equName": "1P5FRTU085",
+    "alarm": true,
+    "loopName": "C段地下室照明C-D1M1",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx959",
+    "equName": "2P4FRTU085",
+    "alarm": true,
+    "loopName": "X光室X-PD1",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx958",
+    "equName": "2P4FRTU085",
+    "alarm": true,
+    "loopName": "X光室X-PD1",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx150",
+    "equName": "1P5FRTU086",
+    "alarm": true,
+    "loopName": "C段地下室照明C-D1M2",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx149",
+    "equName": "1P5FRTU086",
+    "alarm": true,
+    "loopName": "C段地下室照明C-D1M2",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx537",
+    "equName": "1P13FRTU081",
+    "alarm": true,
+    "loopName": "B段一层B-PD1",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx538",
+    "equName": "1P13FRTU081",
+    "alarm": true,
+    "loopName": "B段一层B-PD1",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx249",
+    "equName": "1P7FRTU087",
+    "alarm": true,
+    "loopName": "C段应急C-8EM2~14EM2",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx250",
+    "equName": "1P7FRTU087",
+    "alarm": true,
+    "loopName": "C段应急C-8EM2~14EM2",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx387",
+    "equName": "1P10FRTU084",
+    "alarm": true,
+    "loopName": "A段三层A-3PY1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx388",
+    "equName": "1P10FRTU084",
+    "alarm": true,
+    "loopName": "A段三层A-3PY1",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx799",
+    "equName": "1EP3FRTU082",
+    "alarm": true,
+    "loopName": "C段地下室C-D1PY1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx800",
+    "equName": "1EP3FRTU082",
+    "alarm": true,
+    "loopName": "C段地下室C-D1PY1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1509",
+    "equName": "2P15FRTU082",
+    "alarm": true,
+    "loopName": "C段地下室C-D1PY1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx411",
+    "equName": "1P10FRTU088",
+    "alarm": true,
+    "loopName": "C段屋面(绿建废气处理设备）",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx412",
+    "equName": "1P10FRTU088",
+    "alarm": true,
+    "loopName": "C段屋面(绿建废气处理设备）",
+    "variableName": "回路8断路器(回路8断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx511",
+    "equName": "1P12FRTU086",
+    "alarm": true,
+    "loopName": "C段六层PICU",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx512",
+    "equName": "1P12FRTU086",
+    "alarm": true,
+    "loopName": "C段六层PICU",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2047",
+    "equName": "YEP7FRTU088",
+    "alarm": true,
+    "loopName": "C段六层PICU",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2048",
+    "equName": "YEP7FRTU088",
+    "alarm": true,
+    "loopName": "C段六层PICU",
+    "variableName": "回路8断路器(回路8断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx730",
+    "equName": "1EP1FRTU087",
+    "alarm": true,
+    "loopName": "C段走廊排烟C-1PY1  C-5PY1",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx729",
+    "equName": "1EP1FRTU087",
+    "alarm": true,
+    "loopName": "C段走廊排烟C-1PY1  C-5PY1",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx661",
+    "equName": "1P15FRTU085",
+    "alarm": true,
+    "loopName": "A段屋面亮化1AL",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx662",
+    "equName": "1P15FRTU085",
+    "alarm": true,
+    "loopName": "A段屋面亮化1AL",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1079",
+    "equName": "2P7FRTU081",
+    "alarm": true,
+    "loopName": "直线加速器ZX-PD1",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1779",
+    "equName": "YEP2FRTU081",
+    "alarm": true,
+    "loopName": "直线加速器ZX-PD1",
+    "variableName": "TX(设备通信状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2024",
+    "equName": "YEP7FRTU084",
+    "alarm": true,
+    "loopName": "A-1M~A-3M ",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2023",
+    "equName": "YEP7FRTU084",
+    "alarm": true,
+    "loopName": "A-1M~A-3M ",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx934",
+    "equName": "2P4FRTU081",
+    "alarm": true,
+    "loopName": "ICU病房ICU-PD1",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx935",
+    "equName": "2P4FRTU081",
+    "alarm": true,
+    "loopName": "ICU病房ICU-PD1",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1879",
+    "equName": "YEP4FRTU087",
+    "alarm": true,
+    "loopName": "ICU病房ICU-PD1",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1880",
+    "equName": "YEP4FRTU087",
+    "alarm": true,
+    "loopName": "ICU病房ICU-PD1",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx755",
+    "equName": "1EP2FRTU083",
+    "alarm": true,
+    "loopName": "B段地下室B-D1SF1、 B-D1PY1",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx756",
+    "equName": "1EP2FRTU083",
+    "alarm": true,
+    "loopName": "B段地下室B-D1SF1、 B-D1PY1",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx667",
+    "equName": "1P15FRTU086",
+    "alarm": true,
+    "loopName": "B段屋面亮化2AL",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx668",
+    "equName": "1P15FRTU086",
+    "alarm": true,
+    "loopName": "B段屋面亮化2AL",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx824",
+    "equName": "1EP3FRTU086",
+    "alarm": true,
+    "loopName": "消防中心XF-PM",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx823",
+    "equName": "1EP3FRTU086",
+    "alarm": true,
+    "loopName": "消防中心XF-PM",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1533",
+    "equName": "2P15FRTU086",
+    "alarm": true,
+    "loopName": "消防中心XF-PM",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx768",
+    "equName": "1EP2FRTU085",
+    "alarm": true,
+    "loopName": "B段地下室人防B-ZRF",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx767",
+    "equName": "1EP2FRTU085",
+    "alarm": true,
+    "loopName": "B段地下室人防B-ZRF",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx991",
+    "equName": "2P5FRTU082",
+    "alarm": true,
+    "loopName": "口腔科KQ-PD1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx990",
+    "equName": "2P5FRTU082",
+    "alarm": true,
+    "loopName": "口腔科KQ-PD1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1503",
+    "equName": "2P15FRTU081",
+    "alarm": true,
+    "loopName": "C段地下室C-D1ZY1  2",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx369",
+    "equName": "1P10FRTU081",
+    "alarm": true,
+    "loopName": "C段新风机组C-1~14XF1",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx370",
+    "equName": "1P10FRTU081",
+    "alarm": true,
+    "loopName": "C段新风机组C-1~14XF1",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2041",
+    "equName": "YEP7FRTU087",
+    "alarm": true,
+    "loopName": "内窥镜NJ-PD2",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2042",
+    "equName": "YEP7FRTU087",
+    "alarm": true,
+    "loopName": "内窥镜NJ-PD2",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2017",
+    "equName": "YEP7FRTU083",
+    "alarm": true,
+    "loopName": "内窥镜NJ-PD1",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2018",
+    "equName": "YEP7FRTU083",
+    "alarm": true,
+    "loopName": "内窥镜NJ-PD1",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx656",
+    "equName": "1P15FRTU084",
+    "alarm": true,
+    "loopName": "B段LED屏Bh-1MX",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx655",
+    "equName": "1P15FRTU084",
+    "alarm": true,
+    "loopName": "B段LED屏Bh-1MX",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx381",
+    "equName": "1P10FRTU083",
+    "alarm": true,
+    "loopName": "A段屋面A-WPD",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx382",
+    "equName": "1P10FRTU083",
+    "alarm": true,
+    "loopName": "A段屋面A-WPD",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx337",
+    "equName": "1P9FRTU085",
+    "alarm": true,
+    "loopName": "C段地下室新风C-D1XF3 4",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx338",
+    "equName": "1P9FRTU085",
+    "alarm": true,
+    "loopName": "C段地下室新风C-D1XF3 4",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx674",
+    "equName": "1P15FRTU087",
+    "alarm": true,
+    "loopName": "C段屋面亮化3AL",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx673",
+    "equName": "1P15FRTU087",
+    "alarm": true,
+    "loopName": "C段屋面亮化3AL",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx812",
+    "equName": "1EP3FRTU084",
+    "alarm": true,
+    "loopName": "A段机房UPS室（A段负一层）WL-PD",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx811",
+    "equName": "1EP3FRTU084",
+    "alarm": true,
+    "loopName": "A段机房UPS室（A段负一层）WL-PD",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1793",
+    "equName": "YEP3FRTU082",
+    "alarm": true,
+    "loopName": "产科CK-PD1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx985",
+    "equName": "2P5FRTU081",
+    "alarm": true,
+    "loopName": "肠胃机CW-PD1",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx984",
+    "equName": "2P5FRTU081",
+    "alarm": true,
+    "loopName": "肠胃机CW-PD1",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx243",
+    "equName": "1P7FRTU086",
+    "alarm": true,
+    "loopName": "C段应急C-1EM2~7EM2",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx244",
+    "equName": "1P7FRTU086",
+    "alarm": true,
+    "loopName": "C段应急C-1EM2~7EM2",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx314",
+    "equName": "1P9FRTU081",
+    "alarm": true,
+    "loopName": "A段新风机组A-ZPD",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx313",
+    "equName": "1P9FRTU081",
+    "alarm": true,
+    "loopName": "A段新风机组A-ZPD",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx438",
+    "equName": "1P11FRTU083",
+    "alarm": true,
+    "loopName": "C段屋面C-WPF1  4",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx437",
+    "equName": "1P11FRTU083",
+    "alarm": true,
+    "loopName": "C段屋面C-WPF1  4",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1817",
+    "equName": "YEP3FRTU086",
+    "alarm": true,
+    "loopName": "供应部电梯C-1PDT~ C-2PDT",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1818",
+    "equName": "YEP3FRTU086",
+    "alarm": true,
+    "loopName": "供应部电梯C-1PDT~ C-2PDT",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx846",
+    "equName": "2P1IRTU",
+    "alarm": true,
+    "loopName": "2号低压进线柜",
+    "variableName": "总断路器(总断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx849",
+    "equName": "2P1IRTU",
+    "alarm": true,
+    "loopName": "2号低压进线柜",
+    "variableName": "欠压线圈(欠压线圈)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx847",
+    "equName": "2P1IRTU",
+    "alarm": true,
+    "loopName": "2号低压进线柜",
+    "variableName": "总断路器位置(总断路器位置)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx848",
+    "equName": "2P1IRTU",
+    "alarm": true,
+    "loopName": "2号低压进线柜",
+    "variableName": "储能(储能)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1723",
+    "equName": "YEP1ARTU021",
+    "alarm": true,
+    "loopName": "市电",
+    "variableName": "TX(TX)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1967",
+    "equName": "YEP6FRTU083",
+    "alarm": true,
+    "loopName": "血透中心XT-KT1",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx425",
+    "equName": "1P11FRTU081",
+    "alarm": true,
+    "loopName": "室外导医  AL3",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx426",
+    "equName": "1P11FRTU081",
+    "alarm": true,
+    "loopName": "室外导医  AL3",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx555",
+    "equName": "1P13FRTU084",
+    "alarm": true,
+    "loopName": "C段屋面C-WPY2  3",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx556",
+    "equName": "1P13FRTU084",
+    "alarm": true,
+    "loopName": "C段屋面C-WPY2  3",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx375",
+    "equName": "1P10FRTU082",
+    "alarm": true,
+    "loopName": "C段新风机组C-1~14XF2",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx376",
+    "equName": "1P10FRTU082",
+    "alarm": true,
+    "loopName": "C段新风机组C-1~14XF2",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1353",
+    "equName": "2P12FRTU084",
+    "alarm": true,
+    "loopName": "产科照明NICUM ",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1221",
+    "equName": "2P9FRTU087",
+    "alarm": true,
+    "loopName": "B段二层人流手术室RL-PD1",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1873",
+    "equName": "YEP4FRTU086",
+    "alarm": true,
+    "loopName": "B段二层人流手术室RL-PD1",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1973",
+    "equName": "YEP6FRTU084",
+    "alarm": true,
+    "loopName": "ICU病房ICU-KT1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx947",
+    "equName": "2P4FRTU083",
+    "alarm": true,
+    "loopName": "供应室GY-PD2",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx946",
+    "equName": "2P4FRTU083",
+    "alarm": true,
+    "loopName": "供应室GY-PD2",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx550",
+    "equName": "1P13FRTU083",
+    "alarm": true,
+    "loopName": "C段屋面C-WPY1  4",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx549",
+    "equName": "1P13FRTU083",
+    "alarm": true,
+    "loopName": "C段屋面C-WPY1  4",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx941",
+    "equName": "2P4FRTU082",
+    "alarm": true,
+    "loopName": "供应室GY-PD1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx940",
+    "equName": "2P4FRTU082",
+    "alarm": true,
+    "loopName": "供应室GY-PD1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx126",
+    "equName": "1P5FRTU082",
+    "alarm": true,
+    "loopName": "B段照明 B-ZM1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx125",
+    "equName": "1P5FRTU082",
+    "alarm": true,
+    "loopName": "B段照明 B-ZM1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx169",
+    "equName": "1P6FRTU061",
+    "alarm": true,
+    "loopName": "C段照明C-1M1~7M1",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx170",
+    "equName": "1P6FRTU061",
+    "alarm": true,
+    "loopName": "C段照明C-1M1~7M1",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx132",
+    "equName": "1P5FRTU083",
+    "alarm": true,
+    "loopName": "B段照明 B-ZM2",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx131",
+    "equName": "1P5FRTU083",
+    "alarm": true,
+    "loopName": "B段照明 B-ZM2",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1291",
+    "equName": "2P11FRTU082",
+    "alarm": true,
+    "loopName": "手术净化空调JH-KT（3AT-9）  ",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx794",
+    "equName": "1EP3FRTU081",
+    "alarm": true,
+    "loopName": "C段地下室 C-D1ZY1  2",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx793",
+    "equName": "1EP3FRTU081",
+    "alarm": true,
+    "loopName": "C段地下室 C-D1ZY1  2",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx493",
+    "equName": "1P12FRTU083",
+    "alarm": true,
+    "loopName": "C段屋面C-WPDT2",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx494",
+    "equName": "1P12FRTU083",
+    "alarm": true,
+    "loopName": "C段屋面C-WPDT2",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx499",
+    "equName": "1P12FRTU084",
+    "alarm": true,
+    "loopName": "C段屋面C-WPDT3",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx500",
+    "equName": "1P12FRTU084",
+    "alarm": true,
+    "loopName": "C段屋面C-WPDT3",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx605",
+    "equName": "1P14FRTU063",
+    "alarm": true,
+    "loopName": "ICU照明ICUM ",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1347",
+    "equName": "2P12FRTU083",
+    "alarm": true,
+    "loopName": "ICU照明ICUM ",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx487",
+    "equName": "1P12FRTU082",
+    "alarm": true,
+    "loopName": "C段屋面C-WPDT1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx488",
+    "equName": "1P12FRTU082",
+    "alarm": true,
+    "loopName": "C段屋面C-WPDT1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx543",
+    "equName": "1P13FRTU082",
+    "alarm": true,
+    "loopName": "B段屋面B-PD2",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx544",
+    "equName": "1P13FRTU082",
+    "alarm": true,
+    "loopName": "B段屋面B-PD2",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx432",
+    "equName": "1P11FRTU082",
+    "alarm": true,
+    "loopName": "B段屋面B-WPF2  3",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx431",
+    "equName": "1P11FRTU082",
+    "alarm": true,
+    "loopName": "B段屋面B-WPF2  3",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx743",
+    "equName": "1EP2FRTU081",
+    "alarm": true,
+    "loopName": "A段地下室A-D1SF1  A-1PY",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx744",
+    "equName": "1EP2FRTU081",
+    "alarm": true,
+    "loopName": "A段地下室A-D1SF1  A-1PY",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx644",
+    "equName": "1P15FRTU082",
+    "alarm": true,
+    "loopName": "B段LED屏B-LM1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx643",
+    "equName": "1P15FRTU082",
+    "alarm": true,
+    "loopName": "B段LED屏B-LM1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx505",
+    "equName": "1P12FRTU085",
+    "alarm": true,
+    "loopName": "C段屋面C-WPDT4",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx506",
+    "equName": "1P12FRTU085",
+    "alarm": true,
+    "loopName": "C段屋面C-WPDT4",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1961",
+    "equName": "YEP6FRTU082",
+    "alarm": true,
+    "loopName": "手术净化空调JH-KT（3AT-9）",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1962",
+    "equName": "YEP6FRTU082",
+    "alarm": true,
+    "loopName": "手术净化空调JH-KT（3AT-9）",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx723",
+    "equName": "1EP1FRTU086",
+    "alarm": true,
+    "loopName": "变电所照明BD-PM",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx724",
+    "equName": "1EP1FRTU086",
+    "alarm": true,
+    "loopName": "变电所照明BD-PM",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1359",
+    "equName": "2P12FRTU085",
+    "alarm": true,
+    "loopName": "变电所照明BD-PM",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx231",
+    "equName": "1P7FRTU084",
+    "alarm": true,
+    "loopName": "C段应急C-1EM1~7EM1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx232",
+    "equName": "1P7FRTU084",
+    "alarm": true,
+    "loopName": "C段应急C-1EM1~7EM1",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx706",
+    "equName": "1EP1FRTU083",
+    "alarm": true,
+    "loopName": "B段地下室B-QWX3  4",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx705",
+    "equName": "1EP1FRTU083",
+    "alarm": true,
+    "loopName": "B段地下室B-QWX3  4",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1800",
+    "equName": "YEP3FRTU083",
+    "alarm": true,
+    "loopName": "高压氧舱YC-PD1",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1799",
+    "equName": "YEP3FRTU083",
+    "alarm": true,
+    "loopName": "高压氧舱YC-PD1",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1002",
+    "equName": "2P5FRTU084",
+    "alarm": true,
+    "loopName": "横断面扫描HD-PD1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1003",
+    "equName": "2P5FRTU084",
+    "alarm": true,
+    "loopName": "横断面扫描HD-PD1",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1824",
+    "equName": "YEP3FRTU087",
+    "alarm": true,
+    "loopName": "横断面扫描HD-PD1",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1823",
+    "equName": "YEP3FRTU087",
+    "alarm": true,
+    "loopName": "横断面扫描HD-PD1",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx829",
+    "equName": "1EP3FRTU087",
+    "alarm": true,
+    "loopName": "C段灾备机房C-WLG1",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx830",
+    "equName": "1EP3FRTU087",
+    "alarm": true,
+    "loopName": "C段灾备机房C-WLG1",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1905",
+    "equName": "YEP5FRTU082",
+    "alarm": true,
+    "loopName": "物流配电YL-PD1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1936",
+    "equName": "YEP5FRTU087",
+    "alarm": true,
+    "loopName": "手术部机器人SS-JQR",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1935",
+    "equName": "YEP5FRTU087",
+    "alarm": true,
+    "loopName": "手术部机器人SS-JQR",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx17",
+    "equName": "1P1IRTU",
+    "alarm": true,
+    "loopName": "1号低压进线柜",
+    "variableName": "TX(设备状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx806",
+    "equName": "1EP3FRTU083",
+    "alarm": true,
+    "loopName": "C段地下室C-D1ZY3",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx805",
+    "equName": "1EP3FRTU083",
+    "alarm": true,
+    "loopName": "C段地下室C-D1ZY3",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1515",
+    "equName": "2P15FRTU083",
+    "alarm": true,
+    "loopName": "C段地下室C-D1ZY3",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx137",
+    "equName": "1P5FRTU084",
+    "alarm": true,
+    "loopName": "A段地下室照明A-D1M1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx138",
+    "equName": "1P5FRTU084",
+    "alarm": true,
+    "loopName": "A段地下室照明A-D1M1",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1335",
+    "equName": "2P12FRTU081",
+    "alarm": true,
+    "loopName": "手术部照明SS-PM",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1991",
+    "equName": "YEP6FRTU087",
+    "alarm": true,
+    "loopName": "手术部照明SS-PM",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx953",
+    "equName": "2P4FRTU084",
+    "alarm": true,
+    "loopName": "供应室GY-KT1",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx952",
+    "equName": "2P4FRTU084",
+    "alarm": true,
+    "loopName": "供应室GY-KT1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx561",
+    "equName": "1P13FRTU085",
+    "alarm": true,
+    "loopName": "B段卷帘B-EJL1~3",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx562",
+    "equName": "1P13FRTU085",
+    "alarm": true,
+    "loopName": "B段卷帘B-EJL1~3",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1297",
+    "equName": "2P11FRTU083",
+    "alarm": true,
+    "loopName": "血透中心XT-KT1 ",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx213",
+    "equName": "1P7FRTU081",
+    "alarm": true,
+    "loopName": "A段应急A-1EM~6EM",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx214",
+    "equName": "1P7FRTU081",
+    "alarm": true,
+    "loopName": "A段应急A-1EM~6EM",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx270",
+    "equName": "1P8FRTU061",
+    "alarm": true,
+    "loopName": "C段开水器KSQ1",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx288",
+    "equName": "1P8FRTU064",
+    "alarm": true,
+    "loopName": "C段开水器KSQ1",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx282",
+    "equName": "1P8FRTU063",
+    "alarm": true,
+    "loopName": "C段开水器KSQ1",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx287",
+    "equName": "1P8FRTU064",
+    "alarm": true,
+    "loopName": "C段开水器KSQ1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx275",
+    "equName": "1P8FRTU062",
+    "alarm": true,
+    "loopName": "C段开水器KSQ1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx281",
+    "equName": "1P8FRTU063",
+    "alarm": true,
+    "loopName": "C段开水器KSQ1",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx269",
+    "equName": "1P8FRTU061",
+    "alarm": true,
+    "loopName": "C段开水器KSQ1",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx276",
+    "equName": "1P8FRTU062",
+    "alarm": true,
+    "loopName": "C段开水器KSQ1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx193",
+    "equName": "1P6FRTU065",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx194",
+    "equName": "1P6FRTU065",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx300",
+    "equName": "1P8FRTU066",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx517",
+    "equName": "1P12FRTU087",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx200",
+    "equName": "1P6FRTU066",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx294",
+    "equName": "1P8FRTU065",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx199",
+    "equName": "1P6FRTU066",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx299",
+    "equName": "1P8FRTU066",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx623",
+    "equName": "1P14FRTU066",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx350",
+    "equName": "1P9FRTU087",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx679",
+    "equName": "1P15FRTU088",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx779",
+    "equName": "1EP2FRTU087",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx518",
+    "equName": "1P12FRTU087",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx579",
+    "equName": "1P13FRTU088",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx617",
+    "equName": "1P14FRTU065",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx467",
+    "equName": "1P11FRTU088",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx964",
+    "equName": "2P4FRTU086",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx965",
+    "equName": "2P4FRTU086",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx574",
+    "equName": "1P13FRTU087",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx293",
+    "equName": "1P8FRTU065",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx773",
+    "equName": "1EP2FRTU086",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx461",
+    "equName": "1P11FRTU087",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx523",
+    "equName": "1P12FRTU088",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx573",
+    "equName": "1P13FRTU087",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx349",
+    "equName": "1P9FRTU087",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1377",
+    "equName": "2P12FRTU088",
+    "alarm": true,
+    "loopName": "备  用",
+    "variableName": "回路8断路器(回路8断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx344",
+    "equName": "1P9FRTU086",
+    "alarm": true,
+    "loopName": "产科空调 ",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx343",
+    "equName": "1P9FRTU086",
+    "alarm": true,
+    "loopName": "产科空调 ",
+    "variableName": "回路6状态(回路6状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx996",
+    "equName": "2P5FRTU083",
+    "alarm": true,
+    "loopName": "C段屋面酸碱设备C-SJG1",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx997",
+    "equName": "2P5FRTU083",
+    "alarm": true,
+    "loopName": "C段屋面酸碱设备C-SJG1",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx611",
+    "equName": "1P14FRTU064",
+    "alarm": true,
+    "loopName": "血透中心照明XTM ",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1341",
+    "equName": "2P12FRTU082",
+    "alarm": true,
+    "loopName": "血透中心照明XTM ",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx405",
+    "equName": "1P10FRTU087",
+    "alarm": true,
+    "loopName": "设备用房APO",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx406",
+    "equName": "1P10FRTU087",
+    "alarm": true,
+    "loopName": "设备用房APO",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx749",
+    "equName": "1EP2FRTU082",
+    "alarm": true,
+    "loopName": "A段地下室A-D1PY1  2",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx750",
+    "equName": "1EP2FRTU082",
+    "alarm": true,
+    "loopName": "A段地下室A-D1PY1  2",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1020",
+    "equName": "2P5FRTU087",
+    "alarm": true,
+    "loopName": "检验科JY-PD1",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1021",
+    "equName": "2P5FRTU087",
+    "alarm": true,
+    "loopName": "检验科JY-PD1",
+    "variableName": "回路7断路器(回路7断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx970",
+    "equName": "2P4FRTU087",
+    "alarm": true,
+    "loopName": "有源电力滤波装置2APF（壁挂）",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1811",
+    "equName": "YEP3FRTU085",
+    "alarm": true,
+    "loopName": "急诊手术JZ-PD1 ",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx155",
+    "equName": "1P5FRTU087",
+    "alarm": true,
+    "loopName": "有源电力滤波装置 1APF（壁挂）",
+    "variableName": "回路7状态(回路7状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx650",
+    "equName": "1P15FRTU083",
+    "alarm": true,
+    "loopName": "C段LED屏C-LM1",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx649",
+    "equName": "1P15FRTU083",
+    "alarm": true,
+    "loopName": "C段LED屏C-LM1",
+    "variableName": "回路3状态(回路3状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx717",
+    "equName": "1EP1FRTU085",
+    "alarm": true,
+    "loopName": "C段地下室C-QWX2",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx718",
+    "equName": "1EP1FRTU085",
+    "alarm": true,
+    "loopName": "C段地下室C-QWX2",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx356",
+    "equName": "1P9FRTU088",
+    "alarm": true,
+    "loopName": "A段急诊手术室",
+    "variableName": "回路8断路器(回路8断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx355",
+    "equName": "1P9FRTU088",
+    "alarm": true,
+    "loopName": "A段急诊手术室",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1885",
+    "equName": "YEP4FRTU088",
+    "alarm": true,
+    "loopName": "A段急诊手术室",
+    "variableName": "回路8状态(回路8状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx711",
+    "equName": "1EP1FRTU084",
+    "alarm": true,
+    "loopName": "C段地下室C-QWX1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx712",
+    "equName": "1EP1FRTU084",
+    "alarm": true,
+    "loopName": "C段地下室C-QWX1",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1085",
+    "equName": "2P7FRTU082",
+    "alarm": true,
+    "loopName": "核磁共振HC-PD1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1091",
+    "equName": "2P7FRTU083",
+    "alarm": true,
+    "loopName": "核磁共振HC-PD2",
+    "variableName": "回路3断路器(回路3断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1955",
+    "equName": "YEP6FRTU081",
+    "alarm": true,
+    "loopName": "产科空调NICU-KT1",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx220",
+    "equName": "1P7FRTU082",
+    "alarm": true,
+    "loopName": "B段应急B-1EM1~3EM1",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx219",
+    "equName": "1P7FRTU082",
+    "alarm": true,
+    "loopName": "B段应急B-1EM1~3EM1",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1917",
+    "equName": "YEP5FRTU084",
+    "alarm": true,
+    "loopName": "真空吸氧XY-PD1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx449",
+    "equName": "1P11FRTU085",
+    "alarm": true,
+    "loopName": "B段扶梯B-FT1  2",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx450",
+    "equName": "1P11FRTU085",
+    "alarm": true,
+    "loopName": "B段扶梯B-FT1  2",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1843",
+    "equName": "YEP4FRTU081",
+    "alarm": true,
+    "loopName": "螺旋CT室CT-PD1",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx332",
+    "equName": "1P9FRTU084",
+    "alarm": true,
+    "loopName": "C段地下室新风C-D1XF1 2",
+    "variableName": "回路4断路器(回路4断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx331",
+    "equName": "1P9FRTU084",
+    "alarm": true,
+    "loopName": "C段地下室新风C-D1XF1 2",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2011",
+    "equName": "YEP7FRTU082",
+    "alarm": true,
+    "loopName": "手术净化空调3AT-8",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2012",
+    "equName": "YEP7FRTU082",
+    "alarm": true,
+    "loopName": "手术净化空调3AT-8",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2006",
+    "equName": "YEP7FRTU081",
+    "alarm": true,
+    "loopName": "手术净化空调3AT-7",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx2005",
+    "equName": "YEP7FRTU081",
+    "alarm": true,
+    "loopName": "手术净化空调3AT-7",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1805",
+    "equName": "YEP3FRTU084",
+    "alarm": true,
+    "loopName": "急诊监护JH-PD1",
+    "variableName": "回路4状态(回路4状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1756",
+    "equName": "YEP2FRTU085",
+    "alarm": true,
+    "loopName": "重症抢救观察QJ-10PD",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1315",
+    "equName": "2P11FRTU086",
+    "alarm": true,
+    "loopName": "影像科空调YXK-PD1",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1980",
+    "equName": "YEP6FRTU085",
+    "alarm": true,
+    "loopName": "影像科空调YXK-PD1",
+    "variableName": "回路5断路器(回路5断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1979",
+    "equName": "YEP6FRTU085",
+    "alarm": true,
+    "loopName": "影像科空调YXK-PD1",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx594",
+    "equName": "1P14FRTU061",
+    "alarm": true,
+    "loopName": "医用电力应急配电柜Y-EP1",
+    "variableName": "回路1断路器(回路1断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx593",
+    "equName": "1P14FRTU061",
+    "alarm": true,
+    "loopName": "医用电力应急配电柜Y-EP1",
+    "variableName": "回路1状态(回路1状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx699",
+    "equName": "1EP1FRTU082",
+    "alarm": true,
+    "loopName": "B段地下室B-QWX1  2",
+    "variableName": "回路2状态(回路2状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx700",
+    "equName": "1EP1FRTU082",
+    "alarm": true,
+    "loopName": "B段地下室B-QWX1  2",
+    "variableName": "回路2断路器(回路2断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1215",
+    "equName": "2P9FRTU086",
+    "alarm": true,
+    "loopName": "B段三层眼科手术YK-PD1",
+    "variableName": "回路6断路器(回路6断路器)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  },
+  {
+    "equCode": "yx1867",
+    "equName": "YEP4FRTU085",
+    "alarm": true,
+    "loopName": "B段三层眼科手术YK-PD1",
+    "variableName": "回路5状态(回路5状态)",
+    "imgPath": "",
+    "gdAndHkPoint": ""
+  }
+]

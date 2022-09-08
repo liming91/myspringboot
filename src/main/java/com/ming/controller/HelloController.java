@@ -42,10 +42,12 @@ public class HelloController {
      *
      * @return
      */
-//    @RequestMapping({"/","/index.html"})
-//    public String index(){
-//        return "index";
-//    }
+    @RequestMapping({"/","/index.html"})
+    public String index(){
+        return "index";
+    }
+
+
     @ResponseBody
     @RequestMapping("/hello")
     public Result<?> hello(@RequestParam("user") String user) throws IOException {

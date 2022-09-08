@@ -25,6 +25,14 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+mybatis:
+#  #全局配置文件
+  config-location: classpath:mybatis/mybatis-config.xml
+  #mapper配置文件
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.ming.bean
+
+
   # redis 配置
   redis:
     database: 2
@@ -62,6 +70,13 @@ mybatis:
 #      #控制台显示sql
 #      show-sql: true
 
+
+#  jpa:
+#    hibernate:
+#      #更新或者创建数据库表结构
+#      ddl-auto: update
+#      #控制台显示sql
+#      show-sql: true
 minio:
   url: http://192.168.1.253:9000
   accessKey: minioadmin
