@@ -1,27 +1,11 @@
-#person:
-#  lastName: 张三
-#  age: 20
-#  boss: true
-#  birth: 2021/12/12
-#  maps: {k1: 香蕉,k2: 青菜}
-#  lists:
-#    - lisi
-#    - zhangsan
-#  dog:
-#    name: 小狗
-#    age: 3
-
 
 #连接数据库
 spring:
   datasource:
-#    username: root
-#    password: 123456
-    username: liming
-    password: liming
-    #url: jdbc:mysql://192.168.1.4:3306/mybatis?useSSL=false
-    url: jdbc:mysql://localhost:3307/mp?useSSL=false
-    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 724933
+    url: jdbc:mysql://120.48.75.156:3306/db?useSSL=false&allowMultiQueries=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
     #数据源用druid
     type: com.alibaba.druid.pool.DruidDataSource
     #数据源其他配置
@@ -48,10 +32,43 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.ming.bean
 
+
+  # redis 配置
+  redis:
+    database: 2
+    iddatabase: 2
+    host: 120.48.75.156
+    lettuce:
+      pool:
+        max-active: 8 #最大连接数据库连接数,设 0 为没有限制
+        max-idle: 8 #最大等待连接中的数量,设 0 为没有限制
+        max-wait: -1ms #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+        min-idle: 0 #最小等待连接中的数量,设 0 为没有限制
+      shutdown-timeout: 100ms
+    password: "724933"
+    port: 6379
+  #环境
+  application:
+    name: cur
+  profiles:
+    active: dev
+
+
+mybatis:
+  #全局配置文件
+  config-location: classpath:mybatis/mybatis-config.xml
+  #mapper配置文件
+  mapper-locations: classpath:mybatis/mapper/*.xml
 # 项目启动时自动创建表
 #    schema:
 #      - classpath:/sql/department.sql
 #      - classpath:/sql/employee.sql
+#  jpa:
+#    hibernate:
+#      #更新或者创建数据库表结构
+#      ddl-auto: update
+#      #控制台显示sql
+#      show-sql: true
 
 
 #  jpa:
@@ -60,4 +77,16 @@ mybatis:
 #      ddl-auto: update
 #      #控制台显示sql
 #      show-sql: true
+minio:
+  url: http://192.168.1.253:9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  minio_name: minioadmin
+  minio_pass: minioadmin
+  bucketName: tcyy
+  #邮箱
+mail:
+  flag: true
+  url: http://192.168.1.253:7758/mail/sendTemplateMail
+  to: 522724933@qq.com
 

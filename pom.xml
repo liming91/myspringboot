@@ -10,16 +10,16 @@
     </parent>
     <groupId>com.ming</groupId>
     <artifactId>myspringboot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>myspringboot</name>
     <description>Demo project for Spring Boot</description>
     <dependencies>
         <!--引入自定义的starter-->
-        <dependency>
-            <groupId>com.ming.springboot</groupId>
-            <artifactId>ming-spring-boot-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.ming.springboot</groupId>-->
+        <!--            <artifactId>ming-spring-boot-starter</artifactId>-->
+        <!--            <version>1.0-SNAPSHOT</version>-->
+        <!--        </dependency>-->
         <!--引入web模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,6 +69,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+            <version>8.0.11</version>
         </dependency>
         <!--druid数据源-->
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
@@ -79,15 +80,15 @@
         </dependency>
 
         <!--引入其他servlet容器-->
-<!--        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-        </dependency>
-        &lt;!&ndash;引入其他的Servlet容器&ndash;&gt;
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-jetty</artifactId>
+                </dependency>
+                &lt;!&ndash;引入其他的Servlet容器&ndash;&gt;
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-undertow</artifactId>
+                </dependency>-->
         <!--引入jquery的webjar-->
         <dependency>
             <groupId>org.webjars</groupId>
@@ -139,6 +140,107 @@
             </exclusions>
         </dependency>
 
+        <!-- mybatis-plus-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.baomidou</groupId>-->
+        <!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
+        <!--            <version>${mybatis-plus.version}</version>-->
+        <!--        </dependency>-->
+
+
+        <!--rabbitmq-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.7.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.62</version>
+        </dependency>
+
+        <!--websocket依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>${websocket.version}</version>
+        </dependency>
+        <!-- Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <!--EasyPoi导入导出-->
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-base</artifactId>
+            <version>3.0.3</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-web</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-annotation</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>${minio.version}</version>
+        </dependency>
+
+        <!--swagger页面配置-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
 
 
     </dependencies>
@@ -147,9 +249,17 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <thymeleaf.version>3.0.9.RELEASE </thymeleaf.version>
+        <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
         <!--布局功能的支持程序 thymeleaf3主程序 layout2以上版本-->
         <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
+        <websocket.version>2.1.6.RELEASE</websocket.version>
+        <!--<mybatis-plus.version>3.4.1</mybatis-plus.version>-->
+        <minio.version>8.2.1</minio.version>
+        <hutool.version>5.5.7</hutool.version>
+        <docker.image.prefix>yb</docker.image.prefix>
+        <!--阿里镜像仓库-->
+        <docker.serverId>docker-aliyun</docker.serverId>
+        <docker.registry>registry.cn-hangzhou.aliyuncs.com/lm_repo</docker.registry>
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
 
@@ -158,6 +268,54 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+
+            <!-- docker插件 -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <!--CA证书地址-->
+                    <dockerCertPath>D:\ca</dockerCertPath>
+                    <dockerHost>https://120.48.75.156:2375</dockerHost>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; 覆盖相同标签镜像 &ndash;&gt;-->
+<!--                    <forceTags>true</forceTags>-->
+<!--                    &lt;!&ndash; install阶段上传镜像 &ndash;&gt;-->
+<!--                    <pushImage>true</pushImage>-->
+<!--                    <serverId>${docker.serverId}</serverId>-->
+<!--                    &lt;!&ndash; 远程仓库地址 &ndash;&gt;-->
+<!--                    <registryUrl>${docker.registry}</registryUrl>-->
+<!--                    <dockerDirectory>src/main/docker</dockerDirectory>-->
+<!--                    <imageName>${docker.registry}/${project.artifactId}:${project.version}</imageName>-->
+<!--                    <resources>-->
+<!--                        <resource>-->
+<!--                            <targetPath>/</targetPath>-->
+<!--                            <directory>${project.build.directory}</directory>-->
+<!--                            <include>${project.build.finalName}.jar</include>-->
+<!--                        </resource>-->
+<!--                    </resources>-->
+<!--                </configuration>-->
             </plugin>
         </plugins>
     </build>

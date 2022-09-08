@@ -1,7 +1,5 @@
 package com.ming.filter;
 
-import org.apache.catalina.servlet4preview.http.HttpFilter;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 
 import javax.servlet.*;
 import java.io.IOException;

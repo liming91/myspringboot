@@ -24,6 +24,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
         //super.addViewControllers(registry);
         //浏览器发送http://localhost:8082/ming请求来到success页面
         registry.addViewController("/ming").setViewName("success");
+
     }
 
     //所有的WebMvcConfigurerAdapter组件都会一起起作用
@@ -35,6 +36,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
                 registry.addViewController("/").setViewName("login");
                 registry.addViewController("/index.html").setViewName("login");
                 registry.addViewController("/main.html").setViewName("dashboard");
+
             }
 
             //注册拦截器
