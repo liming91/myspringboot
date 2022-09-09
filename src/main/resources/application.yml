@@ -25,12 +25,21 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-mybatis:
-#  #全局配置文件
-  config-location: classpath:mybatis/mybatis-config.xml
-  #mapper配置文件
-  mapper-locations: classpath:mybatis/mapper/*.xml
-  type-aliases-package: com.ming.bean
+  #mybatis:
+   #全局配置文件
+   #config-location: classpath:mybatis/mybatis-config.xml
+   #mapper配置文件
+   #mapper-locations: classpath:mybatis/mapper/*.xml
+  # 项目启动时自动创建表
+  #    schema:
+  #      - classpath:/sql/department.sql
+  #      - classpath:/sql/employee.sql
+  #  jpa:
+  #    hibernate:
+  #      #更新或者创建数据库表结构
+  #      ddl-auto: update
+  #      #控制台显示sql
+  #      show-sql: true
 
 
   # redis 配置
