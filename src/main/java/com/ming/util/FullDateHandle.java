@@ -2,8 +2,8 @@ package com.ming.util;
 
 
 import com.ming.entities.CalendarUtil;
-import com.ming.entities.DataTrendVO;
-import com.ming.entities.TypeVO;
+import com.ming.entities.VO.DataTrendVO;
+import com.ming.entities.VO.TypeVO;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

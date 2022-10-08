@@ -6,7 +6,7 @@ import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONUtil;
 import com.ming.bean.Test;
-import com.ming.entities.MailDTO;
+import com.ming.entities.DTO.MailDTO;
 import com.ming.mapper.TestMapper;
 import com.ming.service.ExcelService;
 import com.ming.util.DateUtils;

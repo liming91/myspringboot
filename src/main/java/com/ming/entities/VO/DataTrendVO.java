@@ -1,4 +1,4 @@
-package com.ming.entities;
+package com.ming.entities.VO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

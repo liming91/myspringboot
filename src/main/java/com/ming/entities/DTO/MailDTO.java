@@ -1,4 +1,4 @@
-package com.ming.entities;
+package com.ming.entities.DTO;
 
 import lombok.Data;
 

@@ -3,7 +3,7 @@ package com.ming.service.impl;
 import cn.hutool.core.date.DateUtil;
 import com.ming.bean.Test;
 import com.ming.entities.CalendarUtil;
-import com.ming.entities.DataTrendVO;
+import com.ming.entities.VO.DataTrendVO;
 import com.ming.enums.DateTypeEnum;
 import com.ming.mapper.TestMapper;
 import com.ming.service.ITestService;

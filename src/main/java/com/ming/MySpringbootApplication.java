@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 //开启事务管理
 @EnableTransactionManagement
 @SpringBootApplication
+@EnableScheduling
 public class MySpringbootApplication {
 
     public static void main(String[] args) {

@@ -3,6 +3,7 @@ package com.ming;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.text.StrPool;
 import com.ming.entities.*;
 import lombok.Builder;
 import org.joda.time.format.DateTimeFormat;
@@ -23,36 +24,6 @@ public class MyTest {
 
     @Test
     public void commonExtendsTest() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        int sum = list.stream()
-                .reduce(0, (x, y) -> x + y);
-        System.out.println(sum);
-
-        List<FA> employeeList = Arrays.asList(
-                new FA("1", "A", 1, 8000.88),
-                new FA("2", "B", 2, 7000.88),
-                new FA("3", "C", 3, 9000.88),
-                new FA("4", "D", 4, 0D),
-                new FA("5", "E", 5, 0D)
-        );
-
-        Integer integer = employeeList.stream().map(FA::getAge).reduce(Integer::sum).get();
-        System.out.println(integer);
-        FA fa = new FA();
-        Comparator<FA> consumer = (x, y) -> Integer.compare(x.getAge(), y.getAge());
-        Comparator<FA> comparator = new Comparator<FA>() {
-
-            @Override
-            public int compare(FA o1, FA o2) {
-                return 0;
-            }
-        };
-        employeeList.sort(consumer);
-
-        Arrays.sort(new List[]{employeeList});
-
-        
-
 
     }
 
@@ -79,6 +50,8 @@ public class MyTest {
 
     public static void main(String[] args) {
 
+        String today= DateUtil.today();
+        System.out.println(today);
     }
 
 
