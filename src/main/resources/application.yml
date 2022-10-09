@@ -1,4 +1,5 @@
-
+server:
+  port: 8085
 #连接数据库
 spring:
   datasource:
@@ -25,22 +26,6 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-  #mybatis:
-   #全局配置文件
-   #config-location: classpath:mybatis/mybatis-config.xml
-   #mapper配置文件
-   #mapper-locations: classpath:mybatis/mapper/*.xml
-  # 项目启动时自动创建表
-  #    schema:
-  #      - classpath:/sql/department.sql
-  #      - classpath:/sql/employee.sql
-  #  jpa:
-  #    hibernate:
-  #      #更新或者创建数据库表结构
-  #      ddl-auto: update
-  #      #控制台显示sql
-  #      show-sql: true
-
 
   # redis 配置
   redis:
@@ -63,11 +48,21 @@ spring:
     active: dev
 
 
-mybatis:
-  #全局配置文件
-  config-location: classpath:mybatis/mybatis-config.xml
-  #mapper配置文件
-  mapper-locations: classpath:mybatis/mapper/*.xml
+#mybatis:
+#  #全局配置文件
+#  config-location: classpath:mybatis/mybatis-config.xml
+#  #mapper配置文件
+#  mapper-locations: classpath:mybatis/mapper/*.xml
+
+mybatis-plus:
+  configuration:
+    call-setters-on-nulls: true
+    map-underscore-to-camel-case: true
+    jdbc-type-for-null: null
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mybatis/mapper/*.xml,classpath*:mapper/*.xml,classpath*:mapper/**/*.xml
+
 # 项目启动时自动创建表
 #    schema:
 #      - classpath:/sql/department.sql
@@ -80,12 +75,7 @@ mybatis:
 #      show-sql: true
 
 
-#  jpa:
-#    hibernate:
-#      #更新或者创建数据库表结构
-#      ddl-auto: update
-#      #控制台显示sql
-#      show-sql: true
+
 minio:
   url: http://192.168.1.253:9000
   accessKey: minioadmin

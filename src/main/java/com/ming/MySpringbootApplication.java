@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
  */
 //@ImportResource(locations = "{classpath:bean.xml}")
 //使用MapperScan扫描所有的mapper接口
-@MapperScan(value = "com.ming.mapper")
+//@MapperScan(value = "com.ming.mapper")
 //开启事务管理
 @EnableTransactionManagement
 @SpringBootApplication
