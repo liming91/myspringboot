@@ -4,6 +4,8 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrPool;
+import cn.hutool.core.util.NumberUtil;
+import com.alibaba.fastjson.JSON;
 import com.ming.entities.*;
 import lombok.Builder;
 import org.joda.time.format.DateTimeFormat;
@@ -44,17 +46,79 @@ public class MyTest {
 //        System.out.println(format);
 
 
-
     }
 
+    /**
+     * 按名字统计今天昨天出现的次数
+     */
+    @Test
+    public void nameCount() {
+        String today = DateUtil.today();
+        List<Map<String, Object>> dataList = new ArrayList<>();
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("name", "刘敏");
+        dataMap.put("time", "2022-10-13");
+        Map<String, Object> dataMap1 = new HashMap<>();
+        dataMap1.put("name", "谷满");
+        dataMap1.put("time", "2022-10-13");
+        Map<String, Object> dataMap2 = new HashMap<>();
+        dataMap2.put("name", "吴淅波");
+        dataMap2.put("time", "2022-10-13");
+        Map<String, Object> dataMap3 = new HashMap<>();
+        dataMap3.put("name", "谷满");
+        dataMap3.put("time", "2022-10-14");
+        Map<String, Object> dataMap4 = new HashMap<>();
+        dataMap4.put("name", "鲁甲豪");
+        dataMap4.put("time", "2022-10-14");
+        dataList.add(dataMap);
+        dataList.add(dataMap2);
+        dataList.add(dataMap1);
+        dataList.add(dataMap3);
+        dataList.add(dataMap4);
+        System.out.println(JSON.toJSONString(dataList));
+        System.out.println("===================================");
+        Map<String, List<Map<String, Object>>> timeMap = dataList.stream().collect(Collectors.groupingBy(d -> String.valueOf(d.get("time"))));
+        Set<String> nameSet = dataList.stream().map(m -> String.valueOf(m.get("name"))).collect(Collectors.toSet());
+        List<HashMap<String, Object>> collect = nameSet.stream().map(m -> {
+            HashMap<String, Object> objectObjectHashMap = new HashMap<>();
+            objectObjectHashMap.put("name", m);
+            objectObjectHashMap.put("todayCount", 0);
+            objectObjectHashMap.put("lastCount", 0);
+            return objectObjectHashMap;
+        }).collect(Collectors.toList());
+        for (Map.Entry<String, List<Map<String, Object>>> timeList : timeMap.entrySet()) {
+            String key1 = timeList.getKey();
+            List<Map<String, Object>> timeListValue = timeList.getValue();
+            Map<String, List<Map<String, Object>>> map = timeListValue.stream().collect(Collectors.groupingBy(d -> String.valueOf(d.get("name"))));
+            for (Map.Entry<String, List<Map<String, Object>>> nameList : map.entrySet()) {
+                String name = nameList.getKey();
+                int size = nameList.getValue().size();
+                if (key1.equals(today)) {
+                    collect.forEach(n -> {
+                        if (name.equals(String.valueOf(n.get("name")))) {
+                            n.put("todayCount", size);
+                        }
+                    });
+                } else {
+                    collect.forEach(n -> {
+                        if (name.equals(String.valueOf(n.get("name")))) {
+                            n.put("lastCount", size);
+                        }
+                    });
+                }
+            }
+
+        }
+
+        System.out.println("返回结果==：" + JSON.toJSONString(collect));
+    }
 
     public static void main(String[] args) {
 
-        String today= DateUtil.today();
-        System.out.println(today);
     }
 
 
-
-
 }
+
+
+
