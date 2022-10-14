@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-jdk-alpine
 MAINTAINER Ranger wilton.icp@gmail.com
 
 #RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
