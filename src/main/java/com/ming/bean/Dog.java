@@ -1,8 +1,18 @@
 package com.ming.bean;
 
-public class Dog {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Dog  {
+    private String id;
     private String name;
     private  Integer age;
+
+    public Dog(String id, String name, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
 
     public String getName() {
         return name;
@@ -23,8 +33,24 @@ public class Dog {
     @Override
     public String toString() {
         return "Dog{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Dog)) return false;
+        Dog dog = (Dog) o;
+        return Objects.equals(id, dog.id) &&
+                Objects.equals(getName(), dog.getName()) &&
+                Objects.equals(getAge(), dog.getAge());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, getName(), getAge());
     }
 }

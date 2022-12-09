@@ -9,13 +9,14 @@ import com.alibaba.fastjson.JSON;
 import com.ming.entities.*;
 import lombok.Builder;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -114,10 +115,29 @@ public class MyTest {
     }
 
     public static void main(String[] args) {
+        String localDateTimeHour = MyTest.getLocalDateTimeHour(0) + ":00:00";
+        System.out.println(localDateTimeHour);
+        DateTime newDate3 = DateUtil.offsetHour(DateUtil.parse(localDateTimeHour), -1);
+        String endTime = cn.hutool.core.date.DateUtil.format(newDate3, DatePattern.NORM_DATETIME_PATTERN);
+
+        System.out.println(endTime);
 
     }
 
-
+    /**
+     * 实时时间格式化到小时
+     *
+     * @param num
+     * @return
+     */
+    public static String getLocalDateTimeHour(Integer num) {
+        java.time.format.DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+        // 当天日期
+        LocalDateTime localDateTime = LocalDateTime.now().plusHours(num);
+        // 格式化时间
+        String localDateTimeStr = formatter.format(localDateTime);
+        return localDateTimeStr;
+    }
 }
 
 
