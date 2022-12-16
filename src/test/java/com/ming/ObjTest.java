@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -56,11 +59,13 @@ public class ObjTest {
 
 
     @Test
-    public void obj3() {
-        String dateTime = DateUtil.formatDateTime(DateUtil.beginOfYear(new Date()));
-        System.out.println(dateTime);
-        String formatDateTime = DateUtil.formatDateTime(DateUtil.endOfYear(new Date()));
-        System.out.println(formatDateTime);
+    public void obj3() throws ParseException {
+        NumberFormat nf = NumberFormat.getInstance();
+        String format = nf.format(1333.333333333333333333333333333333333333);
+        String value = String.valueOf(new DecimalFormat().parse(format).doubleValue());
+        System.out.println(value);
+
+
 
     }
 }
