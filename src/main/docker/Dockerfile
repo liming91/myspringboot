@@ -1,4 +1,5 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-jdk-alpine
+COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas
 MAINTAINER Ranger wilton.icp@gmail.com
 
 #RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
