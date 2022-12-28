@@ -1,5 +1,7 @@
 package com.ming;
 
+import com.ming.bean.Person;
+import com.ming.bean.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.units.qual.min;
 import org.junit.Test;
@@ -73,6 +75,32 @@ public class Demo {
 
 
     @Test
+    public void arraysFen() {
+        //二分法查找叫折半查找
+        int a = -7;
+        int array[] = {23, 33, 12, 3, -7, 55, 89, 0, 13, 11};
+        boolean flag = true;
+        int head = 0;//头部索引
+        int end = array.length - 1;//尾部索引
+        int mid = (head + end) / 2;//中间索引
+        while (head < end) {
+            if (a == array[mid]) {
+                System.out.println("找到了指定元素，位置为：" + mid);
+                flag = false;
+                break;
+            } else if (array[mid] > a) {
+                end = mid - 1;
+            } else {//array[mid]<a
+                head = mid + 1;
+            }
+        }
+
+        if (flag) {
+            System.out.println("没有找到");
+        }
+    }
+
+    @Test
     public void copyArrays() {
         String[] array1 = {"a", "b"};
         //复制操作就是在堆内存中在创建一个数组、数组长度为复制的数组的length
@@ -83,20 +111,44 @@ public class Demo {
     }
 
     @Test
-    public void arrays3() {
-        int[] array = new int[6];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = (int) ((Math.random() * 30) + 1);
-            for (int j = 0; j < i; j++) {
-                if (array[i] == array[j]) {
-                    i--;
-                    break;
+    public void maopao() {
+        int array[] = {44, 33, 12, 3, -7, 55, 89, 0, 13, 11};
+        //array.length-1 外层长度减一 最后一个元素不需要比较 也可以比较不用减一
+        for (int i = 0; i < array.length - 1; i++) {
+            //array.length-1-i
+            // 内层长度：就是数组长度相邻比较后的次数就是长度减一
+            // 减i:就是每比一次少个元素进行减i
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+
                 }
+
             }
         }
-        //遍历
+
         for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
+            System.out.print(array[i] + "\t");
+        }
+    }
+
+
+    @Test
+    public void quickSort() {
+
+
+
+        Student[] students = new Student[20];
+        for (int i = 0; i < students.length; i++) {
+            Student student = new Student();
+            student.setNumber((int) Math.round(Math.random()*20));
+            student.setScore((int) Math.round(Math.random()*20));
+            student.setState((int) Math.round(Math.random()*20));
+            if (student.getState() == 3) {
+                System.out.println(student);
+            }
         }
     }
 
