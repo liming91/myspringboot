@@ -34,7 +34,7 @@ public class StrategyController {
 
     @ApiOperation("支付结果")
     @GetMapping("/getPayResult")
-    public ResponseResult<?> getPayResult(@RequestParam("amount") int amount,
+    public ResponseResult<?> getPayResult(@RequestParam("amount") double amount,
                                           @RequestParam("paymentType") String paymentType) {
         Order order = new Order();
         order.setAmount(amount);
@@ -52,7 +52,7 @@ public class StrategyController {
 
     @ApiOperation("支付结果")
     @GetMapping("/getPayResult2")
-    public ResponseResult<?> getPayResult2(@RequestParam("amount") int amount,
+    public ResponseResult<?> getPayResult2(@RequestParam("amount") double amount,
                                           @RequestParam("paymentType") String paymentType) {
         Order order = new Order();
         order.setAmount(amount);

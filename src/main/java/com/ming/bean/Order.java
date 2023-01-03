@@ -12,7 +12,7 @@ public class Order {
     /**
      * 金额
      */
-    private int amount;
+    private Double amount;
 
     /**
      * 支付类型

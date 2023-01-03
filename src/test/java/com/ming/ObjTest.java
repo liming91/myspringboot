@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.Month;
 import com.alibaba.fastjson.JSON;
 import com.ming.bean.Dog;
+import com.ming.bean.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -60,12 +61,32 @@ public class ObjTest {
 
     @Test
     public void obj3() throws ParseException {
-        NumberFormat nf = NumberFormat.getInstance();
-        String format = nf.format(1333.333333333333333333333333333333333333);
-        String value = String.valueOf(new DecimalFormat().parse(format).doubleValue());
-        System.out.println(value);
+
+        List<Order> list  = new ArrayList<>();
+        Order order = new Order();
+        order.setAmount(0.0);
+        Order order2 = new Order();
+        order2.setAmount(0.0);
+        list.add(order);
+        list.add(order2);
+        Double reduce = list.stream().map(Order::getAmount).reduce(0.0, (a, b) -> a + b);
+        System.out.println(reduce);
+
+    }
 
 
+    @Test
+    public void obj4() throws ParseException {
+
+        List<Order> list  = new ArrayList<>();
+        Order order = new Order();
+        order.setAmount(0.0);
+        Order order2 = new Order();
+        order2.setAmount(0.0);
+        list.add(order);
+        list.add(order2);
+        Double reduce = list.stream().map(Order::getAmount).reduce(0.0, (a, b) -> a + b);
+        System.out.println(reduce);
 
     }
 }
