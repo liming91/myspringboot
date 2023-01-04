@@ -1,12 +1,12 @@
 package com.ming;
 
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.date.Month;
+import cn.hutool.core.date.*;
 import com.alibaba.fastjson.JSON;
 import com.ming.bean.Dog;
 import com.ming.bean.Order;
+import com.ming.util.MathUtils;
+import com.ming.util.PercentUtil;
+import com.ming.util.WeekToDayUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -78,15 +78,33 @@ public class ObjTest {
     @Test
     public void obj4() throws ParseException {
 
-        List<Order> list  = new ArrayList<>();
-        Order order = new Order();
-        order.setAmount(0.0);
-        Order order2 = new Order();
-        order2.setAmount(0.0);
-        list.add(order);
-        list.add(order2);
-        Double reduce = list.stream().map(Order::getAmount).reduce(0.0, (a, b) -> a + b);
-        System.out.println(reduce);
 
+
+    }
+
+    public static void main(String[] args) {
+
+        String fileTime ="2023-01";
+        //周
+        String[] split = fileTime.split("\\-");
+        int year = Integer.parseInt(split[0]);
+        int week = Integer.parseInt(split[1]);
+
+        //当前周的开始时间
+        String startTime = WeekToDayUtil.weekToDayFisrtFormate(year, week);
+
+
+        //获取上周的开始时间
+        String lastStartTime = DateUtil.format(DateUtil.beginOfDay(DateUtil.offset(DateUtil.parse(startTime), DateField.WEEK_OF_YEAR, -1)), "yyyy-MM-dd");
+        int weekCount = DateUtil.weekOfYear(DateUtil.parse(lastStartTime));
+
+
+        System.out.println(startTime);
+        System.out.println(lastStartTime);
+        System.out.println(weekCount);
+
+//        DateTime dateTime = DateUtil.lastWeek();
+//        String format = DateUtil.format(dateTime, "yyyy-iw");
+//        System.out.println(format);
     }
 }
