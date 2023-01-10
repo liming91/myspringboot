@@ -18,7 +18,6 @@ public class T1 extends Thread{
         t1.start();
         for (int i = 0; i <3 ; i++) {
             System.out.println("主线程在执行");
-
         }
     }
 }
