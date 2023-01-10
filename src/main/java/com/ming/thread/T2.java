@@ -8,6 +8,7 @@ public class T2 extends Thread{
     public static Object obj2  = new Object();
     @Override
     public void run() {
+        //死锁测试
         System.out.println("T2 run()" + Thread.currentThread().getName());
         synchronized (obj2){
             System.out.println("获取obj2");

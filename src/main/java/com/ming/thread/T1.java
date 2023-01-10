@@ -9,6 +9,7 @@ public class T1 extends Thread{
 
     @Override
     public void run() {
+        //死锁测试
         System.out.println("T1 run()" + Thread.currentThread().getName());
         synchronized (obj1){
 
