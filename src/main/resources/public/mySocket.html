@@ -8,6 +8,7 @@
 <script>
     var socket;
     function openSocket() {
+	 console.log("您的浏览器不支持WebSocket");
         if(typeof(WebSocket) == "undefined") {
             console.log("您的浏览器不支持WebSocket");
         }else{
@@ -59,8 +60,8 @@
 <p>【userId】：<div><input id="userId" name="userId" type="text" value="10"></div>
 <p>【toUserId】：<div><input id="toUserId" name="toUserId" type="text" value="20"></div>
 <p>【toUserId】：<div><input id="contentText" name="contentText" type="text" value="hello websocket"></div>
-<p>【操作】：<div><button onclick="openSocket()">开启socket</button></div>
-<p>【操作】：<div><button onclick="sendMessage()">发送消息</button></div>
+<p>【操作】：<div><a onclick="openSocket()">开启socket</a></div>
+<p>【操作】：<div><a onclick="sendMessage()">发送消息</a></div>
 
 </body>
 
