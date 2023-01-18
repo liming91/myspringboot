@@ -113,14 +113,24 @@ public class MyTest {
 
         System.out.println("返回结果==：" + JSON.toJSONString(collect));
     }
+    //求1-100的和
+    public static int getSum(int n) {
+        if (n == 1) {
+            return 1;
+        } else {
+            int t = getSum(n-1);
+            System.out.println("n==:"+n);
+            System.out.println("t==:"+t);
+            return n + t;
+        }
+    }
+
+
 
     public static void main(String[] args) {
-        String localDateTimeHour = MyTest.getLocalDateTimeHour(0) + ":00:00";
-        System.out.println(localDateTimeHour);
-        DateTime newDate3 = DateUtil.offsetHour(DateUtil.parse(localDateTimeHour), -1);
-        String endTime = cn.hutool.core.date.DateUtil.format(newDate3, DatePattern.NORM_DATETIME_PATTERN);
+        String month = DateUtil.format(new Date(), "yyyy-MM");
+        System.out.println(month);
 
-        System.out.println(endTime);
 
     }
 
