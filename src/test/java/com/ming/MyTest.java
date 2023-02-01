@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrPool;
 import cn.hutool.core.util.NumberUtil;
 import com.alibaba.fastjson.JSON;
+import com.ming.bean.User;
 import com.ming.entities.*;
 import lombok.Builder;
 import org.joda.time.format.DateTimeFormat;
@@ -128,8 +129,6 @@ public class MyTest {
 
 
     public static void main(String[] args) {
-        String month = DateUtil.format(new Date(), "yyyy-MM");
-        System.out.println(month);
 
 
     }
@@ -146,6 +145,7 @@ public class MyTest {
         LocalDateTime localDateTime = LocalDateTime.now().plusHours(num);
         // 格式化时间
         String localDateTimeStr = formatter.format(localDateTime);
+
         return localDateTimeStr;
     }
 }
