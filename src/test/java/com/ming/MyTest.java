@@ -13,7 +13,6 @@ import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
@@ -140,7 +139,6 @@ public class MyTest {
      * @param num
      * @return
      */
-
     public static String getLocalDateTimeHour(Integer num) {
         java.time.format.DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
         // 当天日期

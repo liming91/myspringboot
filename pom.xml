@@ -34,6 +34,8 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+
+
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -245,6 +247,12 @@
             <version>0.9</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.belerweb</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>${pinyin4j.version}</version>
+        </dependency>
+
 
     </dependencies>
     <properties>
@@ -263,6 +271,7 @@
         <!--阿里镜像仓库-->
         <docker.serverId>docker-aliyun</docker.serverId>
         <docker.registry>registry.cn-hangzhou.aliyuncs.com/lm_repo</docker.registry>
+        <pinyin4j.version>2.5.0</pinyin4j.version>
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
 
