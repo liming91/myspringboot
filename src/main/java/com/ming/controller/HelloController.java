@@ -7,6 +7,7 @@ import com.ming.bean.MessageEnum;
 import com.ming.bean.Result;
 import com.ming.bean.Test;
 import com.ming.enums.ResultCode;
+import com.ming.exception.Asserts;
 import com.ming.exception.UserNotExistException;
 import com.ming.service.IAsyncService;
 import com.ming.util.http.ResponseResult;
@@ -52,7 +53,7 @@ public class HelloController {
     @RequestMapping("/hello")
     public Result<?> hello(@RequestParam("user") String user) throws IOException {
         if (user.equals("aaa")) {
-            throw new UserNotExistException();
+            Asserts.fail("错误账户");
         }
         Map<String, Object> map = new HashMap<>();
         String staticPath = this.getClass().getClassLoader().getResource("image").getFile();
