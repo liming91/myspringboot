@@ -47,4 +47,12 @@ public class DateTest {
         DateTime dateTime = DateUtil.offsetMonth(DateUtil.parse(time), -12);
         return DateUtil.format(dateTime, "yyyy");
     }
+
+    public static void main(String[] args) {
+        DateTime newDate2 = DateUtil.offsetMonth(new Date(),-3);
+        String formatDateTime = DateUtil.formatDateTime(newDate2);
+        System.out.println(formatDateTime);
+
+
+    }
 }
