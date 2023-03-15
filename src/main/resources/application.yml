@@ -22,12 +22,14 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+  #MQ配置信息
   rabbitmq:
-    host: 120.48.75.156
+    host: 192.168.1.253
     port: 5672
-    username: guest
-    password: guest
-    #virtual-host: JCcccHost
+    username: ybadmin
+    password: ybadmin123
+    virtual-host: /
+    publisher-returns: true
 
   # redis 配置
   redis:

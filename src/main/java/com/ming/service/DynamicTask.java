@@ -17,6 +17,7 @@ import java.util.concurrent.ScheduledFuture;
 
 /**
  * 任务执行器
+ *
  * @Author liming
  * @Date 2022/10/8 17:11
  */
@@ -38,6 +39,7 @@ public class DynamicTask {
 
     /**
      * 查看已开启但还未执行的动态任务
+     *
      * @return
      */
     public List<InfoTask> getTaskList() {
@@ -46,19 +48,21 @@ public class DynamicTask {
 
     /**
      * 运行任务
+     *
      * @param task
      * @return
      */
     public Runnable getRunnable(InfoTask task) {
         return () -> {
-            log.info("测试任务消息推送开始");
-            System.out.println("此时时间==>" + LocalDateTime.now());
-            log.info("测试任务消息推送完成:{}", JSON.toJSONString(task));
+            //log.info("测试任务消息推送开始");
+            //System.out.println("此时时间==>" + LocalDateTime.now());
+            //log.info("测试任务消息推送完成:{}", JSON.toJSONString(task));
         };
     }
 
     /**
      * 添加一个动态任务
+     *
      * @param task
      * @return
      */
@@ -84,6 +88,7 @@ public class DynamicTask {
 
     /**
      * 停止/删除任务
+     *
      * @param id
      * @return
      */
