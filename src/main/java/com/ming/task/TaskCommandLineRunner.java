@@ -45,7 +45,7 @@ public class TaskCommandLineRunner implements CommandLineRunner {
                         .taskInfo(x).build();
                 dynamicTask.add(build);
             });
-            log.info("测试任务消息推送初始化成功，共计 {} 条",info.size());
+            //log.info("测试任务消息推送初始化成功，共计 {} 条",info.size());
         }
     }
 }
