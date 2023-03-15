@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class JsonConfig {
 
-    public static List<Map<String,Object>> getJsonConfig(String filePath) throws FileNotFoundException {
+    public static List<Map<String, Object>> getJsonConfig(String filePath) throws FileNotFoundException {
         File jsonFile = ResourceUtils.getFile(filePath);
         //String json = FileUtils.readFileToString(jsonFile);
-        return  null;
+        return null;
     }
 
 
@@ -46,17 +46,15 @@ public class JsonConfig {
         Map<String, Object> resMap = new LinkedHashMap<>();
         System.out.println(json);
         if (json.getString("code").equals("0")) {
-            JSONObject data = json.getJSONObject("data");
-            List<Map<String, Object>> list = (List<Map<String, Object>>) data.get("rows");
+           JSONObject data = json.getJSONObject("data");
+            List<Map<String, Object>> list = (List<Map<String, Object>>) data.get("list");
             if (CollectionUtils.isNotEmpty(list)) {
-                List<Map<String, Object>> online1 = list.stream().filter(x -> x.get("online") == null).collect(Collectors.toList());
-                System.out.println(online1);
                 //在线
                 long online = list.stream().filter(x -> x.get("online") != null && (int) x.get("online") == 1).count();
                 //离线
                 long offline = list.stream().filter(x -> x.get("online") != null && (int) x.get("online") == 0).count();
                 //故障 部件状态3异常状态、和离线状态
-                long fault = list.stream().filter(x -> x.get("online") == null&&  (int) x.get("unitStatus") == 0).count();
+                long fault = list.stream().filter(x -> x.get("online") == null && (int) x.get("unitStatus") == 0).count();
                 resMap.put("online", online);
                 resMap.put("offline", offline);
                 resMap.put("fault", fault);
@@ -67,6 +65,6 @@ public class JsonConfig {
             }
             resMap.put("count", list.size());
         }
-        log.info("map:{}",resMap);
+        log.info("map:{}", resMap);
     }
 }

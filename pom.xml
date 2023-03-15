@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.10.RELEASE</version>
+        <version>2.1.16.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ming</groupId>
@@ -29,6 +29,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -151,6 +152,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -186,6 +188,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>2.1.16.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
@@ -253,14 +256,26 @@
             <version>${pinyin4j.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>${redisson.version}</version>
 
+        </dependency>
+
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-data-21</artifactId>
+            <version>${redisson.version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+        <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
+        <thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
         <!--布局功能的支持程序 thymeleaf3主程序 layout2以上版本-->
         <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
         <websocket.version>2.1.6.RELEASE</websocket.version>
@@ -272,6 +287,7 @@
         <docker.serverId>docker-aliyun</docker.serverId>
         <docker.registry>registry.cn-hangzhou.aliyuncs.com/lm_repo</docker.registry>
         <pinyin4j.version>2.5.0</pinyin4j.version>
+        <redisson.version>3.14.0</redisson.version>
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
 

@@ -3,7 +3,6 @@ package com.ming.service.impl;
 import com.ming.bean.Test;
 import com.ming.mapper.TestMapper;
 import com.ming.service.IAsyncService;
-import groovy.util.logging.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

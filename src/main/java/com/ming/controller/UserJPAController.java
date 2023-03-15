@@ -15,7 +15,7 @@ public class UserJPAController {
 
     @GetMapping("/userjpa/{id}")
     public User getUser(@PathVariable(value = "id") Integer id){
-        User user = userRepository.findOne(id);
+        User user = userRepository.findById(id).get();
         return  user;
     }
 
