@@ -1,6 +1,7 @@
 package com.ming.util;
 
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisStringCommands;
 import org.springframework.data.redis.connection.ReturnType;
 import org.springframework.data.redis.core.RedisCallback;
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisLockUtil {
 
-    @Resource
+    @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
     private static final byte[] SCRIPT_RELEASE_LOCK = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end".getBytes();

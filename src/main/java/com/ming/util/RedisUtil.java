@@ -1,5 +1,6 @@
 package com.ming.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -18,8 +19,10 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisUtil {
 
-	@Resource
+	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
+
+
 
 	/**
 	 * 指定缓存失效时间

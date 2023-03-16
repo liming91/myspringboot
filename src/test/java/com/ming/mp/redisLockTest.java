@@ -1,6 +1,8 @@
 package com.ming.mp;
 
+
 import com.ming.util.RedisLockUtil;
+import com.ming.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,8 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @Date 2023/3/15 10:41
  */
 @Slf4j
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = redisLockTest.class)
 public class redisLockTest {
     @Autowired
     private RedisLockUtil redisLockUtil;
@@ -22,7 +24,7 @@ public class redisLockTest {
 
     @Test
     public void Test() {
-        if (!redisLockUtil.tryLock(KEY, 100)) {
+        if (redisLockUtil.tryLock(KEY, 100)) {
             log.info("测试：加锁成功！");
             redisLockUtil.unLock(KEY);
             log.info("测试：释放锁成功");

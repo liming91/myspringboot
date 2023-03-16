@@ -81,8 +81,6 @@ public class MySpringBootApplicationTests {
     //记录器
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    Person person;
 
     @Autowired
     ApplicationContext ioc;
@@ -92,13 +90,7 @@ public class MySpringBootApplicationTests {
     @Autowired
     private IAsyncService iAsyncService;
 
-//    @Autowired
-//    private RestTemplate restTemplate;
 
-    @Test
-    public void contextLoads() {
-        System.out.println(person);
-    }
 
     @Test
     public void helloService() {
