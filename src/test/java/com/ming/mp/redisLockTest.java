@@ -2,7 +2,6 @@ package com.ming.mp;
 
 import com.ming.util.RedisLockUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.jcp.xml.dsig.internal.SignerOutputStream;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
