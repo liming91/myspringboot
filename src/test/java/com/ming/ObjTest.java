@@ -9,8 +9,13 @@ import com.ming.util.PercentUtil;
 import com.ming.util.WeekToDayUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.filter.TypeExcludeFilters;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestComponent;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -33,6 +38,9 @@ import java.util.stream.Collectors;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class ObjTest {
+
+    @MockBean
+    ServerEndpointExporter serverEndpointExporter;
 
     @Test
     public void obj1() throws IOException {

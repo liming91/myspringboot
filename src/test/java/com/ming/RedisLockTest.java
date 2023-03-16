@@ -1,23 +1,28 @@
-package com.ming.mp;
+package com.ming;
 
 
 import com.ming.util.RedisLockUtil;
-import com.ming.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
  * @Author liming
  * @Date 2023/3/15 10:41
  */
 @Slf4j
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 @RunWith(SpringRunner.class)
-public class redisLockTest {
+public class RedisLockTest {
+
+    @MockBean
+    ServerEndpointExporter serverEndpointExporter;
+
     @Autowired
     private RedisLockUtil redisLockUtil;
     private final static String KEY = "topic:"+System.currentTimeMillis();
