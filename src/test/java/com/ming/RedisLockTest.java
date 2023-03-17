@@ -25,13 +25,13 @@ public class RedisLockTest {
 
     @Autowired
     private RedisLockUtil redisLockUtil;
-    private final static String KEY = "key1:";
+    private final static String KEY = "key1:"+System.currentTimeMillis();
 
     @Test
     public void Test() {
-        if (redisLockUtil.tryLock(KEY, 1000)) {
+        if (!redisLockUtil.tryLock(KEY, 100)) {
             log.info("测试：加锁成功！");
-            //redisLockUtil.unLock(KEY);
+            redisLockUtil.unLock(KEY);
             log.info("测试：释放锁成功！");
         } else {
             System.out.println("测试：加锁失败！");

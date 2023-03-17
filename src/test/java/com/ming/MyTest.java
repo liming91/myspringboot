@@ -128,10 +128,7 @@ public class MyTest {
 
 
 
-    public static void main(String[] args) {
 
-
-    }
 
     /**
      * 实时时间格式化到小时
@@ -147,6 +144,18 @@ public class MyTest {
         String localDateTimeStr = formatter.format(localDateTime);
 
         return localDateTimeStr;
+    }
+
+
+    public static void main(String[] args) {
+        String createTime="2023-03-16 23:38:53";
+        String notificationMaxTime="2023-03-15 23:38:53";
+        if(DateUtil.parse(createTime,DatePattern.NORM_DATETIME_PATTERN).isAfter(DateUtil.parse(notificationMaxTime,DatePattern.NORM_DATETIME_PATTERN))){
+            //发送预警消息
+            System.out.println("发送");
+        }else{
+            System.out.println("不发送");
+        }
     }
 }
 
