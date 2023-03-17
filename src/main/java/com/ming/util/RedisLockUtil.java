@@ -29,7 +29,7 @@ public class RedisLockUtil {
      *
      * @param key        分布式锁key
      * @param expireTime 持有锁的最长时间 (redis过期时间) 秒为单位
-     * @return 返回获取锁状态 成功失败
+     * @return 返回获取锁状态 成功失败 false 加锁成功获取到锁
      */
     public boolean tryLock(String key, int expireTime) {
         final JSONObject lock = new JSONObject();
