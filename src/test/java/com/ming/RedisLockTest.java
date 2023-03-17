@@ -29,7 +29,7 @@ public class RedisLockTest {
 
     @Test
     public void Test() {
-        if (!redisLockUtil.tryLock(KEY, 100)) {
+        if (redisLockUtil.tryLock(KEY, 100)) {
             log.info("测试：加锁成功！");
             redisLockUtil.unLock(KEY);
             log.info("测试：释放锁成功！");

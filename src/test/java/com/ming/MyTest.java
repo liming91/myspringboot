@@ -148,7 +148,7 @@ public class MyTest {
 
 
     public static void main(String[] args) {
-        String createTime="2023-03-16 23:38:53";
+        String createTime="2023-03-13 23:38:53";
         String notificationMaxTime="2023-03-15 23:38:53";
         if(DateUtil.parse(createTime,DatePattern.NORM_DATETIME_PATTERN).isAfter(DateUtil.parse(notificationMaxTime,DatePattern.NORM_DATETIME_PATTERN))){
             //发送预警消息
