@@ -98,6 +98,16 @@ public class ExcelServiceImpl implements ExcelService {
         makeExcel(workbook);
     }
 
+
+    @Override
+    public String importTemplate(HttpServletResponse response) {
+        List<Test> personList = new ArrayList<>();
+        //导出操作
+        Workbook workbook = ExcelUtil.exportExcel(personList, "用户列表", "用户", Test.class, "用户信息" + System.currentTimeMillis() + ".xls", response);
+        String url = makeExcel(workbook);
+        return url;
+    }
+
     /**
      * 生成excel
      *

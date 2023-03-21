@@ -114,20 +114,31 @@ public class MyTest {
 
         System.out.println("返回结果==：" + JSON.toJSONString(collect));
     }
+
     //求1-100的和
     public static int getSum(int n) {
         if (n == 1) {
             return 1;
         } else {
-            int t = getSum(n-1);
-            System.out.println("n==:"+n);
-            System.out.println("t==:"+t);
+            int t = getSum(n - 1);
+            System.out.println("n==:" + n);
+            System.out.println("t==:" + t);
             return n + t;
         }
     }
 
 
-
+    @Test
+    public void beforeDate() {
+        String createTime = "2023-03-13 23:38:53";
+        String notificationMaxTime = "2023-03-15 23:38:53";
+        if (DateUtil.parse(createTime, DatePattern.NORM_DATETIME_PATTERN).isAfter(DateUtil.parse(notificationMaxTime, DatePattern.NORM_DATETIME_PATTERN))) {
+            //发送预警消息
+            System.out.println("发送");
+        } else {
+            System.out.println("不发送");
+        }
+    }
 
 
     /**
@@ -148,14 +159,17 @@ public class MyTest {
 
 
     public static void main(String[] args) {
-        String createTime="2023-03-13 23:38:53";
-        String notificationMaxTime="2023-03-15 23:38:53";
-        if(DateUtil.parse(createTime,DatePattern.NORM_DATETIME_PATTERN).isAfter(DateUtil.parse(notificationMaxTime,DatePattern.NORM_DATETIME_PATTERN))){
-            //发送预警消息
-            System.out.println("发送");
-        }else{
-            System.out.println("不发送");
-        }
+        List<String> list1 = new ArrayList<>();
+        list1.add("1");
+        List<String> list2 = new ArrayList<>();
+        list2.add("1");
+        list1.add("2");
+
+        //差集
+        List<String> checkWorkPointList = list1.stream().filter(item -> !list2.stream().map(e -> String.valueOf(e)).collect(
+                Collectors.toList()).contains(String.valueOf(item))).collect(Collectors.toList());
+        System.out.println(checkWorkPointList);
+
     }
 }
 
