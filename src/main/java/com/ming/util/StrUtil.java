@@ -7,9 +7,14 @@ package com.ming.util;
 public class StrUtil {
 
     public static String subStr(String str) {
-        String s = "002_A";
+        String s = str;
         System.out.println(s.substring(0, s.indexOf("_")));
         System.out.println(s.substring(s.lastIndexOf("_") + 1, s.length()));
         return s;
+    }
+
+    public static void main(String[] args) {
+        String subStr = subStr("002_A");
+        System.out.println(subStr);
     }
 }

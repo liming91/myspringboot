@@ -8,6 +8,7 @@ import com.ming.mapper.BatchInsertUserMapper;
 import com.ming.service.IHbBaseEnterUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorCompletionService;
 
 @Service
@@ -27,9 +29,9 @@ public class HbBaseEnterUserServiceImpl implements IHbBaseEnterUserService {
     @Autowired
     private BatchInsertUserMapper hbBaseEnterUserMapper;
 
+    @Qualifier("threadPoolTaskScheduler")
     @Autowired
-    private ThreadPoolTaskExecutor  threadPoolTaskExecutor; // 注入线程池
-
+    private Executor threadPoolTaskExecutor;
 
 
     @Override

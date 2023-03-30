@@ -3,7 +3,10 @@ package com.ming.service;
 import cn.hutool.core.convert.ConverterRegistry;
 import com.alibaba.fastjson.JSON;
 import com.ming.entities.InfoTask;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Component;
 
@@ -30,8 +33,8 @@ public class DynamicTask {
     public Map<String, ScheduledFuture<?>> taskMap = new ConcurrentHashMap<>();
     public List<InfoTask> taskList = new CopyOnWriteArrayList<InfoTask>();
 
-
-    private final ThreadPoolTaskScheduler syncScheduler;
+    @Autowired
+    private ThreadPoolTaskScheduler syncScheduler;
 
     public DynamicTask(ThreadPoolTaskScheduler syncScheduler) {
         this.syncScheduler = syncScheduler;

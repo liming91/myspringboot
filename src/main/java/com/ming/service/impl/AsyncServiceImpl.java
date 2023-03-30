@@ -23,7 +23,7 @@ public class AsyncServiceImpl implements IAsyncService {
     @Autowired
     private TestMapper testMapper;
 
-    @Qualifier("asyncServiceExecutor")
+    @Qualifier("threadPoolTaskScheduler")
     @Autowired
     private Executor executor;
 
