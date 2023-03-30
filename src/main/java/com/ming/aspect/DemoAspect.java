@@ -27,7 +27,7 @@ public class DemoAspect {
      * 返回通知（After returning advice）- 在目标方法执行成功后，调用通知
      * 异常通知（After throwing advice）- 在目标方法抛出异常后，执行通知
      * 环绕通知（Around advice）- 在目标方法调用前后均可执行自定义逻辑
-     *
+     * <p>
      * 这里定义了一个总的匹配规则，以后拦截的时候直接拦截point()方法即可，无须去重复写execution表达式
      */
     @Pointcut("@annotation(com.ming.annotation.TestAnnotation)")
@@ -57,11 +57,21 @@ public class DemoAspect {
     @Around("point()&&@annotation(testAnnotation)")
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint, TestAnnotation testAnnotation) throws Throwable {
         System.out.println("环绕通知：");
-        System.out.println(testAnnotation.module());
-        System.out.println(testAnnotation.desc());
-        Object result = null;
-        result = proceedingJoinPoint.proceed();
-        return result;
+
+        try {
+            log.info("环绕通知的前置通知执行了...");
+            Object result = proceedingJoinPoint.proceed();
+            log.info("环绕通知的后置通知执行了...");
+            System.out.println(testAnnotation.module());
+            System.out.println(testAnnotation.desc());
+            return result;
+        } catch (Throwable throwable) {
+            log.info("环绕通知的异常通知执行了...");
+            throw new RuntimeException(throwable);
+        } finally {
+            log.info("环绕通知的最终通知执行了...");
+        }
+
     }
 
     @After("point()&&@annotation(testAnnotation)")
