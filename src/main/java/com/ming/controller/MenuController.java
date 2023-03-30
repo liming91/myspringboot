@@ -3,6 +3,7 @@ package com.ming.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.ming.annotation.Log;
+import com.ming.annotation.TestAnnotation;
 import com.ming.entities.SysMenu;
 import com.ming.enums.BusinessType;
 import com.ming.service.SysMenuService;
@@ -22,9 +23,9 @@ import java.util.List;
 public class MenuController {
     private final SysMenuService sysMenuService;
 
-    @Log(title = "菜单管理", businessType = BusinessType.OTHER)
+    @TestAnnotation(module = "菜单管理", desc = "测试菜单")
     @GetMapping("/getMenuTree")
-    public ResponseResult<?> getMenuTree() {
+    public ResponseResult<?> getMenuTree(String name) {
         List<SysMenu> list = sysMenuService.getMenuTree();
         return ResponseResult.success(list);
     }

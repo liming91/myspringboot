@@ -4,6 +4,7 @@ import cn.hutool.core.date.*;
 import com.alibaba.fastjson.JSON;
 import com.ming.bean.Dog;
 import com.ming.bean.Order;
+import com.ming.bean.User;
 import com.ming.util.MathUtils;
 import com.ming.util.PercentUtil;
 import com.ming.util.WeekToDayUtil;
@@ -86,8 +87,11 @@ public class ObjTest {
     @Test
     public void obj4() throws ParseException {
 
-
-
+        System.out.println("测试");
+            User user = new User();
+            if(user instanceof User){
+                System.out.println(1111);
+            }
     }
 
     public static void main(String[] args) {
