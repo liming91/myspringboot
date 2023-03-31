@@ -4,6 +4,8 @@ package com.ming.entities;
 import com.ming.annotation.Desensitized;
 import com.ming.enums.SensitiveTypeEnum;
 import lombok.Data;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +13,7 @@ import java.util.Date;
  * 
  */
 @Data
-public class SysUser {
+public class SysUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 用户ID */
@@ -23,10 +25,9 @@ public class SysUser {
     /** 用户账号 */
     private String userName;
 
-    /** 用户昵称 */
-    private String nickName;
 
     /** 用户邮箱 */
+    @Desensitized(type = SensitiveTypeEnum.EMAIL)
     private String email;
 
     /** 手机号码 */
@@ -54,13 +55,6 @@ public class SysUser {
     /** 最后登录时间 */
     private Date loginDate;
 
-    /** 角色组 */
-    private Long[] roleIds;
 
-    /** 岗位组 */
-    private Long[] postIds;
-
-    /** 角色ID */
-    private Long roleId;
 
 }

@@ -21,12 +21,17 @@ public class UserController {
     private final SysUserService sysUserService;
 
 
-
-
     @ApiOperation("用户列表")
     @GetMapping("/userPage")
     public Result<?> userPage(@RequestParam(defaultValue = "1") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize) {
         IPage<SysUser> list = sysUserService.userPage(pageNo, pageSize);
+        return GenerateResult.genDataSuccessResult(list);
+    }
+
+    @ApiOperation("用户列表")
+    @GetMapping("/userPage2")
+    public Result<?> userPage2(@RequestParam(defaultValue = "1") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize) {
+        IPage<SysUser> list = sysUserService.userPage2(pageNo, pageSize);
         return GenerateResult.genDataSuccessResult(list);
     }
 }

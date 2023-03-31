@@ -26,21 +26,5 @@ public class MySpringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(MySpringbootApplication.class, args);
     }
-//
-//    /**
-//     * @Description: 手动注入RestTemplate
-//     * <p>启动报错：找不到RestTemplate
-//     * @auther: jieyuxing
-//     */
-//    @Bean
-//    RestTemplate restTemplate(){
-//        return new RestTemplate();
-//    }
-//
-//    @Bean
-//    CloseableHttpClient httpclient(){
-//        return HttpClients.createDefault();
-//    }
-
 
 }
