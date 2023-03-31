@@ -1,6 +1,12 @@
 package com.ming.component;
 
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -17,6 +23,7 @@ import java.util.List;
  * @Author liming
  * @Date 2022/9/2 15:42
  */
+@Slf4j
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
@@ -28,89 +35,34 @@ public class WebConfig implements WebMvcConfigurer {
         interceptorRegistry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**");
     }
 
-    @Override
-    public void configurePathMatch(PathMatchConfigurer pathMatchConfigurer) {
 
-    }
-
-    @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer contentNegotiationConfigurer) {
-
-    }
-
-    @Override
-    public void configureAsyncSupport(AsyncSupportConfigurer asyncSupportConfigurer) {
-
-    }
-
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer defaultServletHandlerConfigurer) {
-
-    }
 
     @Override
     public void addFormatters(FormatterRegistry formatterRegistry) {
+        log.info("启用自定义注解！！！");
+    }
 
+    /**
+     * 配置fastjson为默认JSON转换
+     *
+     * @return
+     */
+    @Bean
+    public HttpMessageConverters fastJsonHttpMessageConverters() {
+        // 1.定义一个converters转换消息的对象
+        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+        // 2.添加fastjson的配置信息，比如: 是否需要格式化返回的json数据
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        //fastJsonConfig.setSerializeFilters(new ValueDesensitizeFilter());//添加自己写的拦截器
+        // 3.在converter中添加配置信息
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+        // 4.将converter赋值给HttpMessageConverter
+        HttpMessageConverter<?> converter = fastConverter;
+        // 5.返回HttpMessageConverters对象
+        return new HttpMessageConverters(converter);
     }
 
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry resourceHandlerRegistry) {
 
-    }
-
-    @Override
-    public void addCorsMappings(CorsRegistry corsRegistry) {
-
-    }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry viewControllerRegistry) {
-
-    }
-
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry viewResolverRegistry) {
-
-    }
-
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> list) {
-
-    }
-
-    @Override
-    public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> list) {
-
-    }
-
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> list) {
-
-    }
-
-    @Override
-    public void extendMessageConverters(List<HttpMessageConverter<?>> list) {
-
-    }
-
-    @Override
-    public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> list) {
-
-    }
-
-    @Override
-    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> list) {
-
-    }
-
-    @Override
-    public Validator getValidator() {
-        return null;
-    }
-
-    @Override
-    public MessageCodesResolver getMessageCodesResolver() {
-        return null;
-    }
 }
