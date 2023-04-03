@@ -34,6 +34,7 @@ public class SysUser implements Serializable {
     @Desensitized(type = SensitiveTypeEnum.MOBILE_PHONE)
     private String phonenumber;
 
+
     /** 用户性别 */
     private String sex;
 

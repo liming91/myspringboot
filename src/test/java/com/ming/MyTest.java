@@ -159,17 +159,8 @@ public class MyTest {
 
 
     public static void main(String[] args) {
-        List<String> list1 = new ArrayList<>();
-        list1.add("1");
-        List<String> list2 = new ArrayList<>();
-        list2.add("1");
-        list1.add("2");
-
-        //差集
-        List<String> checkWorkPointList = list1.stream().filter(item -> !list2.stream().map(e -> String.valueOf(e)).collect(
-                Collectors.toList()).contains(String.valueOf(item))).collect(Collectors.toList());
-        System.out.println(checkWorkPointList);
-
+        String s = "abc";
+        System.out.println(s.substring(0,1));
     }
 }
 

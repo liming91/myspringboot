@@ -55,12 +55,16 @@ public class DemoAspect {
 
 
     @Around("point()&&@annotation(testAnnotation)")
-    public Object doAround(ProceedingJoinPoint proceedingJoinPoint, TestAnnotation testAnnotation) throws Throwable {
+    public Object doAround(ProceedingJoinPoint pjp, TestAnnotation testAnnotation) throws Throwable {
         System.out.println("环绕通知：");
 
         try {
             log.info("环绕通知的前置通知执行了...");
-            Object result = proceedingJoinPoint.proceed();
+            Object[] args = pjp.getArgs();
+            Object paramData = args[0];
+            Class<?> paramDataClass = paramData.getClass();
+            Object result = pjp.proceed();
+            String phone =  String.valueOf(paramDataClass.getMethod("getPhonenumber").invoke(paramData));
             log.info("环绕通知的后置通知执行了...");
             System.out.println(testAnnotation.module());
             System.out.println(testAnnotation.desc());
