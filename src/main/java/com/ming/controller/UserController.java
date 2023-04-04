@@ -7,10 +7,7 @@ import com.ming.entities.SysUser;
 import com.ming.service.SysUserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -33,5 +30,16 @@ public class UserController {
     public Result<?> userPage2(@RequestParam(defaultValue = "1") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize) {
         IPage<SysUser> list = sysUserService.userPage2(pageNo, pageSize);
         return GenerateResult.genDataSuccessResult(list);
+    }
+
+    @ApiOperation("用户列表")
+    @PostMapping("/save")
+    public void  save(@RequestBody SysUser sysUser){
+        for (int i = 1; i <= 100000; i++) {
+            sysUser.setUserName(i+"");
+            sysUser.setPhonenumber(i+"");
+            sysUserService.save(sysUser);
+        }
+
     }
 }

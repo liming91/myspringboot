@@ -5,7 +5,12 @@
 <mapper namespace="com.ming.mapper.SysUserMapper">
 
     <select id="userPage" resultType="com.ming.entities.SysUser">
-        select  * FROM sys_user
+        SELECT user_id,dept_id,user_name,login_name,email,phonenumber,sex,avatar,password,status,del_flag,login_ip,login_date
+        FROM sys_user  where status='0'
+        <if test="keywords != null and keywords != '' ">
+            AND instr(user_name,#{keywords}) > 0
+            OR instr(phonenumber,#{keywords}) > 0
+        </if>
     </select>
 
 </mapper>

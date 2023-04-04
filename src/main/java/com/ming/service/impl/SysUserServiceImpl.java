@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ming.constant.Constants;
 import com.ming.entities.SysUser;
 import com.ming.mapper.SysUserMapper;
+import com.ming.service.IUserCache;
 import com.ming.service.SysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,11 +24,13 @@ import java.util.stream.Collectors;
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
     private final SysUserMapper sysUserMapper;
+    private final IUserCache iUserCache;
 
     @Override
     public IPage<SysUser> userPage(Integer pageNo, Integer pageSize) {
         Page<SysUser> page = new Page<>(pageNo, pageSize);
-        return sysUserMapper.userPage(page);
+        //sysUserMapper.userPage(page, null);
+        return iUserCache.getCachePage(Constants.CACHE_USERS, page, null);
     }
 
     @Override

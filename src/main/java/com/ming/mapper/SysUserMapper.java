@@ -15,5 +15,5 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface SysUserMapper extends BaseMapper<SysUser> {
-    IPage<SysUser> userPage(Page<SysUser> page);
+    IPage<SysUser> userPage(Page<SysUser> page,String keywords);
 }

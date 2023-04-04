@@ -24,6 +24,7 @@ public class SysUser implements Serializable {
 
     /** 用户账号 */
     private String userName;
+    private String login_name;
 
 
     /** 用户邮箱 */

@@ -137,4 +137,9 @@ public class Constants {
      */
     public static final String[] JOB_ERROR_STR = { "java.net.URL", "javax.naming.InitialContext", "org.yaml.snakeyaml",
             "org.springframework", "org.apache", "com.ruoyi.common.utils.file", "com.ruoyi.common.config" };
+
+
+    public static final String CACHE_USERS = "USERS:";
+
+    public static final String CACHE_USER_ID = "user_id_";
 }
