@@ -67,9 +67,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     public void login(String username, String password) {
-        if (StringUtils.isNull(username)) {
+        if (StringUtils.isEmpty(username)) {
             log.info("登录用户：{} 不存在.", username);
-            throw new ServiceException("登录用户：" + username + " 不存在");
+            throw new ServiceException(String.format("登录用户：%s不存在", username));
         }
         SysUser sysUser = new SysUser();
         sysUser.setUserName(username);
