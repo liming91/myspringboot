@@ -9,10 +9,10 @@ import com.ming.bean.MessageEnum;
  */
 public class Asserts {
     public static void fail(String message) {
-        throw new UserNotExistException(message);
+        throw new ServiceException(message);
     }
 
     public static void fail(MessageEnum errorCode) {
-        throw new UserNotExistException(errorCode);
+        throw new ServiceException(errorCode);
     }
 }

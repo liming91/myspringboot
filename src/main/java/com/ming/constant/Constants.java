@@ -142,4 +142,10 @@ public class Constants {
     public static final String CACHE_USERS = "USERS:";
 
     public static final String CACHE_USER_ID = "user_id_";
+
+
+    /**
+     * 登录账户密码错误次数 redis key
+     */
+    public static final String PWD_ERR_CNT_KEY = "pwd_err_cnt:";
 }

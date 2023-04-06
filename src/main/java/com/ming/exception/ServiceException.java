@@ -1,13 +1,11 @@
 package com.ming.exception;
 
 import com.ming.bean.MessageEnum;
-import org.slf4j.helpers.MessageFormatter;
-import org.springframework.http.HttpStatus;
 
 /**
  * 自定义异常
  */
-public class UserNotExistException extends RuntimeException  {
+public class ServiceException extends RuntimeException  {
     /**
      * 错误码
      */
@@ -16,22 +14,22 @@ public class UserNotExistException extends RuntimeException  {
      * 错误信息
      */
     protected String errorMsg;
-    public UserNotExistException() {
+    public ServiceException() {
         super("用户不存在");
     }
 
-    public UserNotExistException(String message) {
+    public ServiceException(String message) {
         super(message);
         this.errorMsg = message;
     }
 
-    public UserNotExistException(MessageEnum errorCode) {
+    public ServiceException(MessageEnum errorCode) {
         super(String.valueOf(errorCode.getIndex()));
         this.errorCode = errorCode.getIndex();
         this.errorMsg = errorCode.getValue();
     }
 
-    public UserNotExistException(MessageEnum errorCode,Throwable throwable) {
+    public ServiceException(MessageEnum errorCode, Throwable throwable) {
         super(String.valueOf(errorCode.getIndex()), throwable);
         this.errorCode = errorCode.getIndex();
         this.errorMsg = errorCode.getValue();

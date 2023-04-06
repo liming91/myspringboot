@@ -1,15 +1,20 @@
 package com.ming.controller;
 
+import com.ming.entities.SysUser;
+import com.ming.service.SysUserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
+@RequiredArgsConstructor
 public class LoginController {
+    private final SysUserService sysUserService;
+    private final static String PASSWORD = "724933";
 
     //@RequestMapping(value = "/user/login",method = RequestMethod.POST)
     @PostMapping("/user/login")
@@ -17,10 +22,11 @@ public class LoginController {
                         @RequestParam("password") String password,
                         Map<String, Object> map,
                         HttpSession session) {
-        if (!StringUtils.isEmpty(username) && password.equals("123456")) {
+        sysUserService.login(username,password);
+        if (!StringUtils.isEmpty(username) && password.equals(PASSWORD)) {
             //登陆成功,为了防止表单重复提交，可以重定向到主页
             //配置registry.addViewController("/main.html").setViewName("dashboard");
-            session.setAttribute("loginUser",username);
+            session.setAttribute("loginUser", username);
             return "redirect:/main.html";
         } else {
             //登陆失败,来到登录页面显示错误消息
@@ -29,4 +35,6 @@ public class LoginController {
         }
 
     }
+
+
 }

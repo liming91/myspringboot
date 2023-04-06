@@ -1,20 +1,14 @@
 package com.ming.controller;
 
-import com.alibaba.druid.stat.DruidStatManagerFacade;
 import com.ming.annotation.ResultAnnotation;
 import com.ming.bean.GenerateResult;
-import com.ming.bean.MessageEnum;
 import com.ming.bean.Result;
 import com.ming.bean.Test;
-import com.ming.enums.ResultCode;
 import com.ming.exception.Asserts;
-import com.ming.exception.UserNotExistException;
 import com.ming.service.IAsyncService;
-import com.ming.util.http.ResponseResult;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +21,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -43,9 +36,9 @@ public class HelloController {
      *
      * @return
      */
-    @RequestMapping({"/","/index.html"})
+    @RequestMapping({"/","/login.html"})
     public String index(){
-        return "index";
+        return "login";
     }
 
 

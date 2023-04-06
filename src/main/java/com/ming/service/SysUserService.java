@@ -14,4 +14,6 @@ public interface SysUserService extends IService<SysUser> {
     IPage<SysUser> userPage(Integer pageNo, Integer pageSize);
 
     IPage<SysUser> userPage2(Integer pageNo, Integer pageSize);
+
+    void login(String username, String password);
 }
