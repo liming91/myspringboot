@@ -5,9 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 /**
@@ -60,6 +62,14 @@ public class DemoAspect {
 
         try {
             log.info("环绕通知的前置通知执行了...");
+            //获取方法的签名
+            MethodSignature signature = (MethodSignature) pjp.getSignature();
+            Method method = signature.getMethod();
+            TestAnnotation annotation = method.getAnnotation(TestAnnotation.class);
+            if(annotation != null){
+                System.out.println(annotation.desc());
+            }
+            //获取参数
             Object[] args = pjp.getArgs();
             Object paramData = args[0];
             Class<?> paramDataClass = paramData.getClass();
