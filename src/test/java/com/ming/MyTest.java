@@ -6,6 +6,8 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrPool;
 import cn.hutool.core.util.NumberUtil;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.ming.bean.User;
 import com.ming.entities.*;
 import lombok.Builder;
@@ -158,6 +160,32 @@ public class MyTest {
     }
 
 
+
+    @Test
+    public void hkTest() {
+        String json = "{\"code\":\"0\",\"msg\":\"Operation succeeded\",\"data\":{\"pageNo\":1,\"pageSize\":20,\"totalPage\":1,\"total\":1,\"list\":[{\"deviceType\":null,\"regionIndexCode\":\"d2e902df-dadf-4603-a291-16d194032352\",\"collectTime\":\"2023-04-12T11:48:37.000+08:00\",\"deviceIndexCode\":null,\"ip\":\"172.16.1.184\",\"regionName\":\"本部院区\",\"indexCode\":\"6d6c26b409eb4381a8ed2e8fa4e76252\",\"cn\":\"急诊门口\",\"treatyType\":\"1\",\"manufacturer\":null,\"port\":8000,\"online\":1}]}}";
+        int onlineCamera = getOnlineCamera(json);
+        System.out.println(onlineCamera);
+
+
+    }
+
+    public int getOnlineCamera(String result) {
+        int online = 0;//0:离线 1:在线
+
+        JSONObject jsonObject = JSON.parseObject(result);
+
+        if (jsonObject.getString("code").equals("0")) {
+            JSONObject data = jsonObject.getJSONObject("data");
+            JSONArray onlineArray = data.getJSONArray("list");
+            for (int j = 0; j < onlineArray.size(); j++) {
+                JSONObject object = onlineArray.getJSONObject(j);
+                online = object.getIntValue("online");
+            }
+
+        }
+        return online;
+    }
     public static void main(String[] args) {
         String s = "abc";
         System.out.println(s.substring(0,1));
