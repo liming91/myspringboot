@@ -35,19 +35,19 @@ public class MyExceptionHandler {
      * @param e
      * @return
      */
-    @ExceptionHandler(ServiceException.class)
-    public String handlerException(Exception e, HttpServletRequest request){
-        Map<String,Object> map = new HashMap<>();
-        //传入我们自己的错误状态码 4xx 5xx,否则就不会进入定制的错误页面
-        //Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        request.setAttribute("javax.servlet.error.status_code",500);
-        map.put("code","user.notexist");
-        map.put("message",e.getMessage());
-        //将扩展的数据放在请求域中
-        request.setAttribute("ext",map);
-        //转发到error
-        return  "forward:/error";
-    }
+//    @ExceptionHandler(ServiceException.class)
+//    public String handlerException(Exception e, HttpServletRequest request){
+//        Map<String,Object> map = new HashMap<>();
+//        //传入我们自己的错误状态码 4xx 5xx,否则就不会进入定制的错误页面
+//        //Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
+//        request.setAttribute("javax.servlet.error.status_code",500);
+//        map.put("code","user.notexist");
+//        map.put("message",e.getMessage());
+//        //将扩展的数据放在请求域中
+//        request.setAttribute("ext",map);
+//        //转发到error
+//        return  "forward:/error";
+//    }
 
 
 }
