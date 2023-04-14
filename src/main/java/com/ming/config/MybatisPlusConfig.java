@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.ming.service.*.mapper*")
 public class MybatisPlusConfig {
     // 最新版
     @Bean
