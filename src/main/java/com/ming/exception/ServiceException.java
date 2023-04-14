@@ -30,7 +30,7 @@ public class ServiceException extends RuntimeException  {
     }
 
     public ServiceException(MessageEnum errorCode, Throwable throwable) {
-        super(String.valueOf(errorCode.getIndex()), throwable);
+        //super(String.valueOf(errorCode.getIndex()), throwable);
         this.errorCode = errorCode.getIndex();
         this.errorMsg = errorCode.getValue();
     }

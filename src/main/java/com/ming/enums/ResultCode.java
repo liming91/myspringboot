@@ -17,6 +17,8 @@ public enum ResultCode {
      */
     PARAM_IS_INVALID(1001, "参数无效"),
 
+    REQUEST_FAIL(1111, "请求失败"),
+
     /**
      * 参数错误 1001-1999
      */

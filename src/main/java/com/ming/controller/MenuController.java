@@ -22,7 +22,7 @@ import java.util.List;
 public class MenuController {
     private final SysMenuService sysMenuService;
 
-    @TestAnnotation(module = "菜单管理", desc = "测试菜单")
+    //@TestAnnotation(module = "菜单管理", desc = "测试菜单")
     @RateLimiter(key = "menu", limitType = LimitType.DEFAULT)
     @RequestMapping("/getMenuTree")
     public ResponseResult<?> getMenuTree(@RequestBody SysUser user) {

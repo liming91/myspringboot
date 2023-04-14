@@ -69,12 +69,9 @@ public class RateLimiterAspect
             }
             log.info("限制请求'{}',当前请求'{}',缓存key'{}'", count, number.intValue(), combineKey);
         }
-        catch (ServiceException e)
-        {
-            throw e;
-        }
         catch (Exception e)
         {
+            e.printStackTrace();
             throw new RuntimeException("服务器限流异常，请稍候再试");
         }
     }

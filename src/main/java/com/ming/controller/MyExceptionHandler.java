@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * 自定义异常处理器
  */
-@ControllerAdvice
+
 public class MyExceptionHandler {
 
     /**

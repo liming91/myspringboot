@@ -59,4 +59,12 @@ public class ResponseResult<T> {
         return result;
     }
 
+    public static ResponseResult failure(int code, String message) {
+        ResponseResult result = new ResponseResult();
+        result.setCode(code);
+        result.setMsg(message);
+        return result;
+    }
+
+
 }

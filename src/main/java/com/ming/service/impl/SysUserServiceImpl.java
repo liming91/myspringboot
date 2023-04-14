@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ming.bean.MessageEnum;
 import com.ming.constant.Constants;
 import com.ming.entities.SysUser;
+import com.ming.exception.Asserts;
 import com.ming.exception.ServiceException;
 import com.ming.manager.AsyncManager;
 import com.ming.manager.factory.AsyncFactory;
@@ -70,6 +71,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         if (StringUtils.isEmpty(username)) {
             log.info("登录用户：{} 不存在.", username);
             throw new ServiceException(String.format("登录用户：%s不存在", username));
+
         }
         SysUser sysUser = new SysUser();
         sysUser.setUserName(username);
