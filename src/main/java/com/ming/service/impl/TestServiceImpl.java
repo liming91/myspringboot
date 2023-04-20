@@ -159,7 +159,7 @@ public class TestServiceImpl implements ITestService {
                 dataList.add(dataTrendVO);
             });
             resMap.put("dateList", FullDateHandle.bimDataHandle(dataList, dateType, startTime));
-            resMap.put("queryDate", key);
+            resMap.put("groupTime", key);
             resList.add(resMap);
         }
         return resList;
