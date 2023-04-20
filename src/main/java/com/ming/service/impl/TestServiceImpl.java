@@ -11,6 +11,7 @@ import com.ming.service.ITestService;
 import com.ming.util.DateUtils;
 import com.ming.util.FullDateHandle;
 import com.ming.util.QuarterUtils;
+import org.checkerframework.checker.units.qual.A;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,6 @@ public class TestServiceImpl implements ITestService {
     Logger log = LoggerFactory.getLogger(getClass());
 
 
-
     @Autowired
     private TestMapper testMapper;
 
@@ -35,9 +35,9 @@ public class TestServiceImpl implements ITestService {
         Map<String, Object> resMap = new HashMap<>();
         String startTime = DateUtils.getNowDate("yyyy-MM-dd");
         String endTime = DateUtils.getNowDate("yyyy-MM-dd");
-        List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType),DateTypeEnum.getResDateFormatterEnum(dateType),DateTypeEnum.getDateByType(dateType));
+        List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType), DateTypeEnum.getDateByType(dateType));
         List<DataTrendVO> dataList = new ArrayList<>();
-        list.forEach(x->{
+        list.forEach(x -> {
             DataTrendVO dataTrendVO = new DataTrendVO();
             dataTrendVO.setDateTime(x.getDateTime());
             dataTrendVO.setDataValue(x.getDataValue());
@@ -103,7 +103,7 @@ public class TestServiceImpl implements ITestService {
                     });
                 }
             });
-
+            //如果日期相同对应的值求和处理
             List<DataTrendVO> proCollect = proQuarterList.stream().collect(Collectors.toMap(DataTrendVO::getDateTime, a -> a, (o1, o2) -> {
                 o1.setDataValue(o1.getDataValue() + o2.getDataValue());
                 return o1;
@@ -115,8 +115,8 @@ public class TestServiceImpl implements ITestService {
 
     @Override
     public Map<String, Object> list(int dateType) {
-        Map<String,Object> resMap = new Hashtable<>();
-        List<Test> list = testMapper.getList(DateTypeEnum.getQueryDateFormatterEnum(dateType),DateTypeEnum.getResDateFormatterEnum(dateType),DateTypeEnum.getDateByType(dateType));
+        Map<String, Object> resMap = new Hashtable<>();
+        List<Test> list = testMapper.getList(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType), DateTypeEnum.getDateByType(dateType));
         //查询两个日期之间的时间
         List<String> timeList = CalendarUtil.getTimeList(DateUtil.formatDateTime(DateUtil.beginOfMonth(new Date())), DateUtil.formatDateTime(DateUtil.endOfMonth(new Date())), dateType);
         if (dateType == 2) {
@@ -135,24 +135,22 @@ public class TestServiceImpl implements ITestService {
         });
         List<Test> collect1 = list.stream().filter(f -> !finalTimeList.contains(f.getDateTime())).collect(Collectors.toList());
         list.removeAll(collect1);
-        list.sort(Comparator.comparing(m ->  m.getDateTime()));
-        resMap.put("data",list);
+        list.sort(Comparator.comparing(m -> m.getDateTime()));
+        resMap.put("data", list);
         return resMap;
     }
 
 
     @Override
-    public  List<Map<String, Object>>  listTime(int dateType) {
+    public List<Map<String, Object>> listTime(int dateType) {
         List<Map<String, Object>> resList = new ArrayList<>();
-        Map<String, Object> resMap = new HashMap<>();
-
         String startTime = DateUtils.getNowDate("yyyy-MM-dd");
-        String endTime = DateUtils.getNowDate("yyyy-MM-dd");
-        List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType),DateTypeEnum.getResDateFormatterEnum(dateType),DateTypeEnum.getDateByType(dateType));
-        List<DataTrendVO> dataList = new ArrayList<>();
+        List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType), DateTypeEnum.getDateByType(dateType));
         Map<String, List<Test>> map = list.stream().collect(Collectors.groupingBy(Test::getGroupTime));
         for (Map.Entry<String, List<Test>> entry : map.entrySet()) {
-
+            Map<String, Object> resMap = new HashMap<>();
+            List<DataTrendVO> dataList = new ArrayList<>();
+            String key = entry.getKey();
             List<Test> value = entry.getValue();
             value.forEach(x -> {
                 DataTrendVO dataTrendVO = new DataTrendVO();
@@ -160,31 +158,10 @@ public class TestServiceImpl implements ITestService {
                 dataTrendVO.setDataValue(x.getDataValue());
                 dataList.add(dataTrendVO);
             });
-
-            //日期类型 0：日 1:月  2:年
-            // dateType前端传参 日期类型 0：日 1:月  2:年 3:季
-            if (dateType == 0) {
-                startTime = startTime + " 00:00:00";
-                endTime = endTime + " 23:59:59";
-            }
-            if (dateType == 1) {
-                startTime = DateUtils.getCurrMonthFistDay();
-                endTime = DateUtils.getCurrMonthLastDay();
-            }
-            if (dateType == 2) {
-                DateTimeFormatter dailyFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                Year years = Year.now();
-                String start = years.atDay(1).format(dailyFormatter);
-                String end = years.atMonth(12).atEndOfMonth().format(dailyFormatter);
-                startTime = start;
-                endTime = end;
-            }
-
+            resMap.put("dateList", FullDateHandle.bimDataHandle(dataList, dateType, startTime));
+            resMap.put("queryDate", key);
+            resList.add(resMap);
         }
-        List<DataTrendVO> bimDataHandle = FullDateHandle.bimDataHandle(dataList, dateType, startTime);
-        // 补全查询出来的日期数据
-        resMap.put("dateList", bimDataHandle);
-        resList.add(resMap);
         return resList;
     }
 }

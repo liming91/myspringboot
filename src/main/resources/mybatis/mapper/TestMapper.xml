@@ -19,7 +19,7 @@
         FROM
         test
         WHERE
-        DATE_FORMAT( time, '${queryDate}' ) = #{localDate}
+        DATE_FORMAT( time, '${queryDate}' )<![CDATA[ <= ]]>   #{localDate}
         GROUP BY
         dataValue,
         DATE_FORMAT( time, '${queryDate}'  ),
