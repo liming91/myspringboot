@@ -14,6 +14,8 @@ import java.util.List;
 public interface TestMapper {
     public int addTest(@Param("list") List<Test> testList);
 
+    List<Test> getDateByTime(@Param("queryDate") String queryDate, @Param("resDate") String resDate, @Param("localDate") String localDate);
+
     List<Test> select();
 
     List<Test> getList(@Param("queryDate") String queryDate, @Param("resDate") String resDate, @Param("localDate") String localDate);

@@ -11,22 +11,22 @@
         </foreach>
 
     </insert>
-    <select id="select" resultType="com.ming.bean.Test">
+    <select id="getDateByTime" resultType="com.ming.bean.Test">
         SELECT
-        DATE_FORMAT( time, '%Y-%m-%d' ) AS groupTime,
-        DATE_FORMAT( time, '%H' ) AS dateTime,
+        DATE_FORMAT( time,'${queryDate}'  ) AS groupTime,
+        DATE_FORMAT( time, '${resDate}' ) AS dateTime,
         round(money , 2 ) AS dataValue
         FROM
         test
         WHERE
-        DATE_FORMAT( time, '%Y-%m-%d' ) <![CDATA[ = ]]>  '2023-04-20'
+        DATE_FORMAT( time, '${queryDate}' ) = #{localDate}
         GROUP BY
         dataValue,
-        DATE_FORMAT( time, '%Y-%m-%d' ),
-        DATE_FORMAT( time, '%H' )
+        DATE_FORMAT( time, '${queryDate}'  ),
+        DATE_FORMAT( time, '${resDate}' )
         ORDER BY
-        DATE_FORMAT( time, '%Y-%m-%d' ),
-        DATE_FORMAT( time, '%H' );
+        DATE_FORMAT( time, '${queryDate}'  ),
+        DATE_FORMAT( time, '${resDate}' );
     </select>
 
     <select id="getList" resultType="com.ming.bean.Test">
@@ -41,5 +41,9 @@
         DATE_FORMAT( t.time, '${resDate}' )
         ORDER BY
         DATE_FORMAT( t.time, '${resDate}' ) ASC;
+    </select>
+
+    <select id="select" resultType="com.ming.bean.Test">
+        select  * FROM test
     </select>
 </mapper>
