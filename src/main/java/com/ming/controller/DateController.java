@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
+
 @Api(tags = "日期处理")
 @RestController
 @RequestMapping("/date")
@@ -29,6 +31,12 @@ public class DateController {
     @GetMapping("/list")
     public Result<?> list(int dateType) {
         Map<String, Object> map = iTestService.list(dateType);
+        return GenerateResult.genDataSuccessResult(map);
+    }
+
+    @GetMapping("/listTime")
+    public Result<?> listTime(int dateType) {
+        List<Map<String, Object>> map = iTestService.listTime(dateType);
         return GenerateResult.genDataSuccessResult(map);
     }
 }

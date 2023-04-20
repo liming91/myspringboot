@@ -1,6 +1,8 @@
 package com.ming.mapper;
 
 import com.ming.bean.Test;
+import com.ming.entities.VO.DataTrendListVo;
+import com.ming.entities.VO.DataTrendVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

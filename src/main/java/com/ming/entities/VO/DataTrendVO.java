@@ -12,6 +12,8 @@ public class DataTrendVO {
     // 时间点
     private String dateTime;
 
+
     // 数值
     private Double dataValue;
+
 }

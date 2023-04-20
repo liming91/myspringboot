@@ -22,9 +22,11 @@ public class Test implements Serializable {
     private String name;
 
     @Excel(name = "生日", exportFormat = "yyyy-MM-dd", orderNum = "6",groupName = "其他信息")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private String time;
 
-    private Double money;
+    private String groupTime;
+
+    private String dateTime;
+
+    private Double dataValue;
 
 }

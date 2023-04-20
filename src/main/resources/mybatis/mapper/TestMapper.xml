@@ -12,13 +12,27 @@
 
     </insert>
     <select id="select" resultType="com.ming.bean.Test">
-        SELECT  * from test
+        SELECT
+        DATE_FORMAT( time, '%Y-%m-%d' ) AS groupTime,
+        DATE_FORMAT( time, '%H' ) AS dateTime,
+        round(money , 2 ) AS dataValue
+        FROM
+        test
+        WHERE
+        DATE_FORMAT( time, '%Y-%m-%d' ) <![CDATA[ = ]]>  '2023-04-20'
+        GROUP BY
+        dataValue,
+        DATE_FORMAT( time, '%Y-%m-%d' ),
+        DATE_FORMAT( time, '%H' )
+        ORDER BY
+        DATE_FORMAT( time, '%Y-%m-%d' ),
+        DATE_FORMAT( time, '%H' );
     </select>
 
     <select id="getList" resultType="com.ming.bean.Test">
         SELECT
-        SUM( t.money ) AS money,
-        DATE_FORMAT( t.time, '${resDate}' ) AS time
+        SUM( t.money ) AS dataValue,
+        DATE_FORMAT( t.time, '${resDate}' ) AS dateTime
         FROM
         test t
         WHERE

@@ -1,6 +1,7 @@
 package com.ming.service.impl;
 
 import com.ming.bean.Test;
+import com.ming.entities.VO.DataTrendListVo;
 import com.ming.mapper.TestMapper;
 import com.ming.service.IAsyncService;
 import org.slf4j.Logger;

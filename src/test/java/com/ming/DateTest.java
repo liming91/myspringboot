@@ -49,9 +49,10 @@ public class DateTest {
     }
 
     public static void main(String[] args) {
-        DateTime newDate2 = DateUtil.offsetMonth(new Date(),-3);
+        DateTime newDate2 = DateUtil.offsetDay(new Date(),-6);
         String formatDateTime = DateUtil.formatDateTime(newDate2);
         System.out.println(formatDateTime);
+
 
 
     }

@@ -3,6 +3,7 @@ package com.ming.service.impl;
 import cn.hutool.core.date.DateUtil;
 import com.ming.bean.Test;
 import com.ming.entities.CalendarUtil;
+import com.ming.entities.VO.DataTrendListVo;
 import com.ming.entities.VO.DataTrendVO;
 import com.ming.enums.DateTypeEnum;
 import com.ming.mapper.TestMapper;
@@ -36,28 +37,13 @@ public class TestServiceImpl implements ITestService {
         String endTime = DateUtils.getNowDate("yyyy-MM-dd");
         List<Test> list = testMapper.select();
         List<DataTrendVO> dataList = new ArrayList<>();
-        //日期类型 0:日 1:月 2:年 3:季
-        list.stream().forEach(x -> {
+        list.forEach(x->{
             DataTrendVO dataTrendVO = new DataTrendVO();
-            String time = "2021-12-02 15:04:59";
-            String subTime = null;
-            if (dateType == 0) {
-                subTime = time.substring(11, 13);
-                log.info("subTime:0:{}", subTime);
-
-            }
-            if (dateType == 1) {
-                subTime = time.substring(5, 10);
-                log.info("subTime:1:{}", subTime);
-
-            }
-            if (dateType == 2) {
-                subTime = time.substring(0, 7);
-                log.info("subTime:2:{}", subTime);
-            }
-            dataTrendVO.setDateTime(subTime);
+            dataTrendVO.setDateTime(x.getDateTime());
+            dataTrendVO.setDataValue(x.getDataValue());
             dataList.add(dataTrendVO);
         });
+
         //日期类型 0：日 1:月  2:年
         // dateType前端传参 日期类型 0：日 1:月  2:年 3:季
         if (dateType == 0) {
@@ -137,20 +123,68 @@ public class TestServiceImpl implements ITestService {
             timeList = CalendarUtil.getTimeList(DateUtil.formatDateTime(DateUtil.beginOfYear(new Date())), DateUtil.formatDateTime(DateUtil.endOfYear(new Date())), dateType);
         }
         //已存在的时间
-        List<String> times = list.stream().map(m -> m.getTime()).collect(Collectors.toList());
+        List<String> times = list.stream().map(m -> m.getDateTime()).collect(Collectors.toList());
         List<String> finalTimeList = new ArrayList<>(timeList);
         timeList.removeAll(times);
         //时间补全
         timeList.forEach(hour -> {
             Test vo = new Test();
-            vo.setTime(hour);
-            vo.setMoney(0.0);
+            vo.setDateTime(hour);
+            vo.setDataValue(0.0);
             list.add(vo);
         });
-        List<Test> collect1 = list.stream().filter(f -> !finalTimeList.contains(f.getTime())).collect(Collectors.toList());
+        List<Test> collect1 = list.stream().filter(f -> !finalTimeList.contains(f.getDateTime())).collect(Collectors.toList());
         list.removeAll(collect1);
-        list.sort(Comparator.comparing(m ->  m.getTime()));
+        list.sort(Comparator.comparing(m ->  m.getDateTime()));
         resMap.put("data",list);
         return resMap;
+    }
+
+
+    @Override
+    public  List<Map<String, Object>>  listTime(int dateType) {
+        List<Map<String, Object>> resList = new ArrayList<>();
+        Map<String, Object> resMap = new HashMap<>();
+
+        String startTime = DateUtils.getNowDate("yyyy-MM-dd");
+        String endTime = DateUtils.getNowDate("yyyy-MM-dd");
+        List<Test> list = testMapper.select();
+        List<DataTrendVO> dataList = new ArrayList<>();
+        Map<String, List<Test>> map = list.stream().collect(Collectors.groupingBy(Test::getGroupTime));
+        for (Map.Entry<String, List<Test>> entry : map.entrySet()) {
+
+            List<Test> value = entry.getValue();
+            value.forEach(x -> {
+                DataTrendVO dataTrendVO = new DataTrendVO();
+                dataTrendVO.setDateTime(x.getDateTime());
+                dataTrendVO.setDataValue(x.getDataValue());
+                dataList.add(dataTrendVO);
+            });
+
+            //日期类型 0：日 1:月  2:年
+            // dateType前端传参 日期类型 0：日 1:月  2:年 3:季
+            if (dateType == 0) {
+                startTime = startTime + " 00:00:00";
+                endTime = endTime + " 23:59:59";
+            }
+            if (dateType == 1) {
+                startTime = DateUtils.getCurrMonthFistDay();
+                endTime = DateUtils.getCurrMonthLastDay();
+            }
+            if (dateType == 2) {
+                DateTimeFormatter dailyFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                Year years = Year.now();
+                String start = years.atDay(1).format(dailyFormatter);
+                String end = years.atMonth(12).atEndOfMonth().format(dailyFormatter);
+                startTime = start;
+                endTime = end;
+            }
+
+        }
+        List<DataTrendVO> bimDataHandle = FullDateHandle.bimDataHandle(dataList, dateType, startTime);
+        // 补全查询出来的日期数据
+        resMap.put("dateList", bimDataHandle);
+        resList.add(resMap);
+        return resList;
     }
 }

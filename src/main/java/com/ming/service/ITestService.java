@@ -10,4 +10,6 @@ public interface ITestService {
     Map<String, Object> getList(int dateType);
 
     Map<String, Object> list(int dateType);
+
+    List<Map<String, Object>> listTime(int dateType);
 }
