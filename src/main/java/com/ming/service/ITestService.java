@@ -11,5 +11,7 @@ public interface ITestService {
 
     Map<String, Object> list(int dateType);
 
-    List<Map<String, Object>> listTime(int dateType);
+    List<Map<String, Object>> listTime(int dateType,String startTime, String endTime);
+
+    List<Map<String, Object>> fenTime(int dateType, String startTime, String endTime);
 }

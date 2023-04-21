@@ -32,15 +32,36 @@
     <select id="getList" resultType="com.ming.bean.Test">
         SELECT
         SUM( t.money ) AS dataValue,
-        DATE_FORMAT( t.time, '${resDate}' ) AS dateTime
+        DATE_FORMAT( t.time, '${resDate}' ) AS dateTime,
+        DATE_FORMAT( t.time, '${queryDate}' ) AS groupTime
         FROM
         test t
         WHERE
-        DATE_FORMAT( t.time, '${queryDate}' ) = #{localDate}
+        DATE_FORMAT( t.time, '${queryDate}' ) = '2023-04-20'
         GROUP BY
-        DATE_FORMAT( t.time, '${resDate}' )
+        DATE_FORMAT( t.time, '${resDate}' ),
+        DATE_FORMAT( t.time,'${queryDate}' )
         ORDER BY
-        DATE_FORMAT( t.time, '${resDate}' ) ASC;
+        DATE_FORMAT( t.time, '${resDate}' ),
+        DATE_FORMAT( t.time, '${queryDate}')
+        ASC
+    </select>
+
+    <select id="getFenTime" resultType="com.ming.bean.Test">
+        SELECT
+        SUM( t.money ) AS dataValue,
+        DATE_FORMAT( t.time, '%H:%i' ) AS dateTime,
+        DATE_FORMAT( t.time, '%Y-%m-%d' ) AS groupTime
+        FROM
+        test t
+        WHERE
+        DATE_FORMAT( t.time, '%Y-%m-%d' ) = '2023-04-20'
+        GROUP BY
+        DATE_FORMAT( t.time, '%H:%i' ),
+        DATE_FORMAT( t.time, '%Y-%m-%d' )
+        ORDER BY
+        DATE_FORMAT( t.time, '%H:%i' ),
+        DATE_FORMAT( t.time, '%Y-%m-%d' )
     </select>
 
     <select id="select" resultType="com.ming.bean.Test">

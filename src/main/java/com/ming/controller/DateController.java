@@ -40,8 +40,14 @@ public class DateController {
     }
 
     @GetMapping("/listTime")
-    public Result<?> listTime(int dateType) {
-        List<Map<String, Object>> map = iTestService.listTime(dateType);
+    public Result<?> listTime(int dateType,String startTime, String endTime ) {
+        List<Map<String, Object>> map = iTestService.listTime(dateType,startTime,endTime);
+        return GenerateResult.genDataSuccessResult(map);
+    }
+
+    @GetMapping("/fenTime")
+    public Result<?> fenTime(int dateType, String startTime, String endTime) {
+        List<Map<String, Object>> map = iTestService.fenTime(dateType, startTime, endTime);
         return GenerateResult.genDataSuccessResult(map);
     }
 }

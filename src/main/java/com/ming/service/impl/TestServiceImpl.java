@@ -1,6 +1,10 @@
 package com.ming.service.impl;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.map.MapUtil;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.ming.bean.Test;
 import com.ming.entities.CalendarUtil;
 import com.ming.entities.VO.DataTrendListVo;
@@ -142,26 +146,81 @@ public class TestServiceImpl implements ITestService {
 
 
     @Override
-    public List<Map<String, Object>> listTime(int dateType) {
+    public List<Map<String, Object>> listTime(int dateType, String startTime, String endTime) {
         List<Map<String, Object>> resList = new ArrayList<>();
-        String startTime = DateUtils.getNowDate("yyyy-MM-dd");
-        List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType), DateTypeEnum.getDateByType(dateType));
-        Map<String, List<Test>> map = list.stream().collect(Collectors.groupingBy(Test::getGroupTime));
-        for (Map.Entry<String, List<Test>> entry : map.entrySet()) {
-            Map<String, Object> resMap = new HashMap<>();
-            List<DataTrendVO> dataList = new ArrayList<>();
-            String key = entry.getKey();
-            List<Test> value = entry.getValue();
-            value.forEach(x -> {
-                DataTrendVO dataTrendVO = new DataTrendVO();
-                dataTrendVO.setDateTime(x.getDateTime());
-                dataTrendVO.setDataValue(x.getDataValue());
-                dataList.add(dataTrendVO);
-            });
-            resMap.put("dateList", FullDateHandle.bimDataHandle(dataList, dateType, startTime));
-            resMap.put("groupTime", key);
-            resList.add(resMap);
+        // 日期格式处理
+        List<String> timeList = Lists.newArrayList();
+        try {
+            timeList = CalendarUtil.queryDataDayString(startTime, endTime);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType), DateTypeEnum.getDateByType(dateType));
+        Map<String, List<Test>> dataMap = list.stream().collect(Collectors.groupingBy(Test::getGroupTime));
+        Map<String, List<DataTrendVO>> resMap = Maps.newHashMap();
+        for (Map.Entry<String, List<Test>> entry : dataMap.entrySet()) {
+            List<Test> value = entry.getValue();
+            List<DataTrendVO> dataTrendVOList = new ArrayList<>();
+            value.forEach(v->{
+                DataTrendVO dataTrendVO = new DataTrendVO();
+                dataTrendVO.setDateTime(v.getDateTime());
+                dataTrendVO.setDataValue(v.getDataValue());
+                dataTrendVOList.add(dataTrendVO);
+            });
+            resMap.put(entry.getKey(), FullDateHandle.dataHandle(dataTrendVOList, dateType));
+        }
+        //已存在的时间数据
+        Set<String> collect = list.stream().map(Test::getGroupTime).collect(Collectors.toSet());
+
+        //将不存在的时间补全
+        List<String> noExistTimeList = timeList.stream().filter(t -> !collect.contains(t)).collect(Collectors.toList());
+        noExistTimeList.stream().forEach(s -> {
+            List<DataTrendVO> lists = FullDateHandle.dataHandle(new ArrayList<>(), 0);
+            resMap.put(s, lists);
+        });
+        Map<String, List<DataTrendVO>> resultMap = mapSortByKey(resMap);
+        resultMap.forEach((k, v) -> resList.add(ImmutableMap.of("queryData", k, "resList", v)));
         return resList;
     }
+
+    /**
+     * map根据key排序
+     * @param map
+     * @return
+     */
+    public  static  Map<String, List<DataTrendVO>> mapSortByKey(Map<String, List<DataTrendVO>> map){
+        Map<String, List<DataTrendVO>> result = new LinkedHashMap<>();
+        map.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEachOrdered(x->result.put(x.getKey(),x.getValue()));
+        return  result;
+    }
+
+
+    @Override
+    public List<Map<String, Object>> fenTime(int dateType, String startTime, String endTime) {
+        List<Map<String, Object>> resList = new ArrayList<>();
+        Map<String, Object> resMap = new HashMap<>();
+        List<Test> dataList = testMapper.getList(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType), DateTypeEnum.getDateByType(dateType));
+        List<String> timeList = CalendarUtil.getTimeList(startTime, endTime, dateType);
+        List<String> times = dataList.stream().map(m -> m.getDateTime()).collect(Collectors.toList());
+        List<String> finalTimeList = new ArrayList<>(timeList);
+        timeList.removeAll(times);
+        //时间补全
+        timeList.forEach(hour -> {
+            Test vo = new Test();
+            vo.setDateTime(hour);
+            vo.setDataValue(0.0);
+            dataList.add(vo);
+        });
+        List<Test> collect1 = dataList.stream().filter(f -> !finalTimeList.contains(f.getDateTime())).collect(Collectors.toList());
+        dataList.removeAll(collect1);
+        dataList.sort(Comparator.comparing(m -> m.getDateTime()));
+        resMap.put("data", dataList);
+        resList.add(resMap);
+        return resList;
+    }
+
+
 }

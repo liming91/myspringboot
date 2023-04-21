@@ -19,4 +19,5 @@ public interface TestMapper {
     List<Test> select();
 
     List<Test> getList(@Param("queryDate") String queryDate, @Param("resDate") String resDate, @Param("localDate") String localDate);
+
 }

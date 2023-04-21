@@ -20,7 +20,8 @@ public enum DateTypeEnum {
 //    year(2,  "yyyy-MM", "yyyy","年");
     day(0, "%H", "%Y-%m-%d","日"),
     month(1, "%m-%d", "%Y-%m","月"),
-    year(2,  "%Y-%m", "%Y","年");
+    year(2,  "%Y-%m", "%Y","年"),
+    fen(3,  "%H:%i", "%Y-%m-%d","时分");
 
 
 

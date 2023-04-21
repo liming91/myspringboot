@@ -2,6 +2,7 @@ package com.ming.entities;
 
 
 import cn.hutool.core.date.DateUtil;
+import com.alibaba.fastjson.JSON;
 import com.ming.entities.VO.DataTrendVO;
 
 import java.text.DateFormat;
@@ -38,16 +39,16 @@ public class CalendarUtil {
                 dates.addAll(queryDataHour(startDate, endDate));
             } else if (dateType == 1) {
                 List<String> strings = queryDataDayString(startAt, endAt);
-                for(String string : strings) {
+                for (String string : strings) {
                     dates.add(string.substring(5, 10));
                 }
             } else if (dateType == 2) {
                 startDate = dateFormatMonth.parse(startAt);
                 endDate = dateFormatMonth.parse(endAt);
                 dates.addAll(queryDataMonth(startDate, endDate));
-            }else if (dateType == 4) {
+            } else if (dateType == 4) {
                 List<String> strings = queryDataDayString(startAt, endAt);
-                for(String string : strings) {
+                for (String string : strings) {
                     dates.add(string);
                 }
             }
@@ -331,16 +332,6 @@ public class CalendarUtil {
         List<String> dates = new ArrayList<>();
         try {
             if (timeType == 0) {
-//                for (int i = 0; i < 24; i++) {
-//                    if (i < 10) {
-//                        dates.add("0" + i + ":00");
-//                        dates.add("0" + i + ":30");
-//                    } else {
-//                        dates.add(i + ":00");
-//                        dates.add(i + ":30");
-//                    }
-//                }
-
                 for (int i = 0; i < 24; i++) {
                     if (i < 10) {
                         dates.add("0" + i);
@@ -350,13 +341,27 @@ public class CalendarUtil {
                 }
             } else if (timeType == 1) {
                 List<String> strings = queryDataDayString(startTime, endTime);
-                for(String string : strings) {
-                    dates.add(string.substring(5,string.length()));
+                for (String string : strings) {
+                    dates.add(string.substring(5, string.length()));
                 }
             } else if (timeType == 2) {
                 List<String> strings = queryDataMonth(DateUtil.parse(startTime), DateUtil.parse(endTime));
-                for(String string : strings) {
+                for (String string : strings) {
                     dates.add(string.substring(0, 7));
+                }
+            } else if (timeType == 3) {
+                for (int i = 0; i < 24; i++) {
+                    if (i < 10) {
+                        dates.add("0" + i + ":00");
+                        dates.add("0" + i + ":15");
+                        dates.add("0" + i + ":30");
+                        dates.add("0" + i + ":45");
+                    } else {
+                        dates.add(i + ":00");
+                        dates.add(i + ":15");
+                        dates.add(i + ":30");
+                        dates.add(i + ":45");
+                    }
                 }
             }
         } catch (ParseException e) {
@@ -367,9 +372,9 @@ public class CalendarUtil {
 
 
     public static void main(String[] args) {
-        formatDay("2020-07-07", "2020-07-14", 2);
-        String lastDayOfMonth1 = getLastDayOfMonth1(2021, 00);
-        System.out.println(lastDayOfMonth1);
+        List<String> timeList = getTimeList("2023-01-01 21:00:00", "2023-01-01 21:00:00", 0);
+        System.out.println(timeList.size());
+        System.out.println(JSON.toJSONString(timeList));
     }
 
 }
