@@ -64,7 +64,7 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     jdbc-type-for-null: null
     auto-mapping-behavior: full
-  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath*:mybatis/mapper/*.xml,classpath*:mapper/*.xml,classpath*:mapper/**/*.xml
 
 # 项目启动时自动创建表

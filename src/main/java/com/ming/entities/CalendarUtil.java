@@ -51,6 +51,20 @@ public class CalendarUtil {
                 for (String string : strings) {
                     dates.add(string);
                 }
+            }else  if(dateType==3){
+                for (int i = 0; i < 24; i++) {
+                    if (i < 10) {
+                        dates.add("0" + i + ":00");
+                        dates.add("0" + i + ":15");
+                        dates.add("0" + i + ":30");
+                        dates.add("0" + i + ":45");
+                    } else {
+                        dates.add(i + ":00");
+                        dates.add(i + ":15");
+                        dates.add(i + ":30");
+                        dates.add(i + ":45");
+                    }
+                }
             }
         } catch (ParseException e) {
             e.printStackTrace();

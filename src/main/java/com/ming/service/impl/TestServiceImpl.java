@@ -168,7 +168,7 @@ public class TestServiceImpl implements ITestService {
                 dataTrendVO.setDataValue(v.getDataValue());
                 dataTrendVOList.add(dataTrendVO);
             });
-            resMap.put(entry.getKey(), FullDateHandle.dataHandle(dataTrendVOList, dateType));
+            resMap.put(entry.getKey(), FullDateHandle.dataHandle(dataTrendVOList, 3));
         }
         //已存在的时间数据
         Set<String> collect = list.stream().map(Test::getGroupTime).collect(Collectors.toSet());
@@ -176,7 +176,7 @@ public class TestServiceImpl implements ITestService {
         //将不存在的时间补全
         List<String> noExistTimeList = timeList.stream().filter(t -> !collect.contains(t)).collect(Collectors.toList());
         noExistTimeList.stream().forEach(s -> {
-            List<DataTrendVO> lists = FullDateHandle.dataHandle(new ArrayList<>(), 0);
+            List<DataTrendVO> lists = FullDateHandle.dataHandle(new ArrayList<>(), 3);
             resMap.put(s, lists);
         });
         Map<String, List<DataTrendVO>> resultMap = mapSortByKey(resMap);
