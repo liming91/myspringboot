@@ -1,7 +1,9 @@
 package com.ming.controller;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ming.bean.GenerateResult;
+import com.ming.bean.MessageEnum;
 import com.ming.bean.Result;
 import com.ming.entities.SysUser;
 import com.ming.service.SysUserService;
@@ -34,12 +36,24 @@ public class UserController {
 
     @ApiOperation("用户列表")
     @PostMapping("/save")
-    public void  save(@RequestBody SysUser sysUser){
-        for (int i = 1; i <= 100000; i++) {
-            sysUser.setUserName(i+"");
-            sysUser.setPhonenumber(i+"");
-            sysUserService.save(sysUser);
+    public Result<?>  save(@RequestBody SysUser sysUser){
+        boolean flag = sysUserService.save(sysUser);
+        if(flag){
+            return GenerateResult.genSuccessResult(MessageEnum.E00);
         }
+        return GenerateResult.genSuccessResult(MessageEnum.E01);
+
+    }
+
+    @ApiOperation("用户列表")
+    @PostMapping("/update")
+    public Result<?>  update(@RequestBody SysUser sysUser){
+
+        int rows = sysUserService.updateUserById(sysUser);
+        if(rows>0){
+            return GenerateResult.genSuccessResult(MessageEnum.E00);
+        }
+        return GenerateResult.genSuccessResult(MessageEnum.E01);
 
     }
 }

@@ -57,6 +57,6 @@ public class SysUser implements Serializable {
     /** 最后登录时间 */
     private Date loginDate;
 
-
+    private Long version;
 
 }

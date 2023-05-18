@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ming.mapper.SysUserMapper">
+    <update id="updateUserById">
+        update sys_user set status=#{sysUser.status},version=version+1 where user_id=#{sysUser.userId} and version=#{sysUser.version}
+    </update>
 
     <select id="userPage" resultType="com.ming.entities.SysUser">
         SELECT user_id,dept_id,user_name,login_name,email,phonenumber,sex,avatar,password,status,del_flag,login_ip,login_date

@@ -49,11 +49,12 @@ public class DateTest {
     }
 
     public static void main(String[] args) {
-        DateTime newDate2 = DateUtil.offsetDay(new Date(),-6);
-        String formatDateTime = DateUtil.formatDateTime(newDate2);
-        System.out.println(formatDateTime);
 
-
+        String format = DateUtil.format(new Date(), "yyyy-MM-dd HH")+":00:00";
+        System.out.println(format);
 
     }
+
+
+
 }

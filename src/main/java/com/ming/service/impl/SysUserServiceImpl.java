@@ -118,4 +118,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     {
         return Constants.PWD_ERR_CNT_KEY + username;
     }
+
+
+    @Override
+    public int updateUserById(SysUser sysUser) {
+        return sysUserMapper.updateUserById(sysUser);
+    }
 }

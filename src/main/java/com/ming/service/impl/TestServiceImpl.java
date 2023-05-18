@@ -1,5 +1,6 @@
 package com.ming.service.impl;
 
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.map.MapUtil;
 import com.google.common.collect.ImmutableMap;
@@ -15,6 +16,7 @@ import com.ming.service.ITestService;
 import com.ming.util.DateUtils;
 import com.ming.util.FullDateHandle;
 import com.ming.util.QuarterUtils;
+import com.ming.util.StringUtils;
 import org.checkerframework.checker.units.qual.A;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -162,7 +164,7 @@ public class TestServiceImpl implements ITestService {
         for (Map.Entry<String, List<Test>> entry : dataMap.entrySet()) {
             List<Test> value = entry.getValue();
             List<DataTrendVO> dataTrendVOList = new ArrayList<>();
-            value.forEach(v->{
+            value.forEach(v -> {
                 DataTrendVO dataTrendVO = new DataTrendVO();
                 dataTrendVO.setDateTime(v.getDateTime());
                 dataTrendVO.setDataValue(v.getDataValue());
@@ -186,15 +188,16 @@ public class TestServiceImpl implements ITestService {
 
     /**
      * map根据key排序
+     *
      * @param map
      * @return
      */
-    public  static  Map<String, List<DataTrendVO>> mapSortByKey(Map<String, List<DataTrendVO>> map){
+    public static Map<String, List<DataTrendVO>> mapSortByKey(Map<String, List<DataTrendVO>> map) {
         Map<String, List<DataTrendVO>> result = new LinkedHashMap<>();
         map.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
-                .forEachOrdered(x->result.put(x.getKey(),x.getValue()));
-        return  result;
+                .forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+        return result;
     }
 
 
@@ -220,6 +223,12 @@ public class TestServiceImpl implements ITestService {
         resMap.put("data", dataList);
         resList.add(resMap);
         return resList;
+    }
+
+
+    public static void main(String[] args) {
+        long second = DateUtil.between(DateUtil.yesterday(), new Date(), DateUnit.DAY);
+        System.out.println(second);
     }
 
 
