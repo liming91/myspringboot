@@ -1,9 +1,8 @@
 package com.ming.controller.ws;
 
 import com.alibaba.fastjson.JSON;
-import com.ming.bean.Result;
-import com.ming.entities.AirPuaVo;
 import com.ming.entities.YbWardCallRecordVo;
+import com.ming.util.http.ResponseResult;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,14 +37,14 @@ public class WebSocketController {
 
     @ApiOperation(value = "空调消息推送")
     @PostMapping  (value = "/push")
-    public Result push(@RequestBody YbWardCallRecordVo wardCallRecordVo) throws IOException {
+    public ResponseResult<?> push(@RequestBody YbWardCallRecordVo wardCallRecordVo) throws IOException {
         wardCallRecordVo.setCode(wardCallRecordVo.getCode());
         wardCallRecordVo.setAirPuaVo(wardCallRecordVo.getAirPuaVo());
         System.out.println("信息推送："+JSON.toJSONString(wardCallRecordVo));
         log.info("信息推送："+JSON.toJSONString(wardCallRecordVo));
         myWebSocket.onMessage(JSON.toJSONString(wardCallRecordVo), null);
         System.out.println("信息推送====================================="+ JSON.toJSONString(wardCallRecordVo));
-        return Result.createResult(0,"成功！");
+        return ResponseResult.success();
     }
 
 

@@ -1,6 +1,6 @@
 package com.ming.exception;
 
-import com.ming.bean.MessageEnum;
+import com.ming.enums.ResultCode;
 
 /**
  * 自定义异常
@@ -23,15 +23,15 @@ public class ServiceException extends RuntimeException  {
         this.errorMsg = message;
     }
 
-    public ServiceException(MessageEnum errorCode) {
-        super(String.valueOf(errorCode.getIndex()));
-        this.errorCode = errorCode.getIndex();
-        this.errorMsg = errorCode.getValue();
+    public ServiceException(ResultCode errorCode) {
+        super(String.valueOf(errorCode.getCode()));
+        this.errorCode = errorCode.getCode();
+        this.errorMsg = errorCode.getMessage();
     }
 
-    public ServiceException(MessageEnum errorCode, Throwable throwable) {
-        super(String.valueOf(errorCode.getIndex()), throwable);
-        this.errorCode = errorCode.getIndex();
-        this.errorMsg = errorCode.getValue();
+    public ServiceException(ResultCode errorCode, Throwable throwable) {
+        super(String.valueOf(errorCode.getCode()), throwable);
+        this.errorCode = errorCode.getCode();
+        this.errorMsg = errorCode.getMessage();
     }
 }

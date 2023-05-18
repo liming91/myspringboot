@@ -1,7 +1,7 @@
 package com.ming.exception;
 
 
-import com.ming.bean.MessageEnum;
+import com.ming.enums.ResultCode;
 
 /**
  * 断言处理类，用于抛出各种API异常
@@ -12,7 +12,7 @@ public class Asserts {
         throw new ServiceException(message);
     }
 
-    public static void fail(MessageEnum errorCode) {
+    public static void fail(ResultCode errorCode) {
         throw new ServiceException(errorCode);
     }
 }
