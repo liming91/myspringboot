@@ -50,11 +50,7 @@ public class DateTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-      String s1="2020-01-02 00:00:00";
-        Date startDateYear = DateUtil.parse(s1, DatePattern.NORM_DATETIME_PATTERN);
-        Date endDateYear = new Date(System.currentTimeMillis());
-        long betweenYear = DateUtil.betweenYear(startDateYear, endDateYear, true);
-        System.out.println(betweenYear);
+
 
     }
 
