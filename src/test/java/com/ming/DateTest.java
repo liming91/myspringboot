@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateUtil;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author liming
@@ -48,10 +49,12 @@ public class DateTest {
         return DateUtil.format(dateTime, "yyyy");
     }
 
-    public static void main(String[] args) {
-
-        String format = DateUtil.format(new Date(), "yyyy-MM-dd HH")+":00:00";
-        System.out.println(format);
+    public static void main(String[] args) throws InterruptedException {
+      String s1="2020-01-02 00:00:00";
+        Date startDateYear = DateUtil.parse(s1, DatePattern.NORM_DATETIME_PATTERN);
+        Date endDateYear = new Date(System.currentTimeMillis());
+        long betweenYear = DateUtil.betweenYear(startDateYear, endDateYear, true);
+        System.out.println(betweenYear);
 
     }
 

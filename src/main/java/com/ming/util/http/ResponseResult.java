@@ -24,6 +24,8 @@ public class ResponseResult<T> {
 
     private T data;
 
+    private boolean success;
+
     public ResponseResult(ResultCode resultCode) {
         this.code = resultCode.getCode();
         this.msg = resultCode.getMessage();
@@ -34,6 +36,7 @@ public class ResponseResult<T> {
         this.msg = resultCode.getMessage();
         this.data =data;
     }
+
 
 
     public static ResponseResult success() {
@@ -49,6 +52,14 @@ public class ResponseResult<T> {
         responseResult.setMsg(ResultCode.SUCCESS.getMessage());
         responseResult.setData(data);
         return responseResult;
+    }
+
+    public static ResponseResult success(boolean success,int code, String message) {
+        ResponseResult result = new ResponseResult();
+        result.setSuccess(success);
+        result.setCode(code);
+        result.setMsg(message);
+        return result;
     }
 
 

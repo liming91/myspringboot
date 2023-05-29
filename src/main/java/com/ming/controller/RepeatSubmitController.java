@@ -9,11 +9,7 @@ import com.ming.util.http.ResponseResult;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -35,10 +31,24 @@ public class RepeatSubmitController {
     @ForbidRepeatSubmit(type = SubmitEnum.IP, time = 3 * 60)// IP方式 三分钟内不能重复提交
     public ResponseResult<?> add(@RequestBody SysUser sysUser) {
         boolean flag = sysUserService.save(sysUser);
-        if(flag){
+        if (flag) {
             return ResponseResult.success(ResultCode.E02);
         }
         return ResponseResult.success(ResultCode.E03);
     }
+
+
+    @DeleteMapping
+    @ForbidRepeatSubmit(type = SubmitEnum.TOKEN, time = 3 * 60)// TOKEN方式 三分钟内不能重复提交
+    public ResponseResult<?> remove(@RequestBody Long userId) {
+
+        boolean flag = sysUserService.removeById(userId);
+        if(flag){
+            return ResponseResult.success();
+        }else {
+            return ResponseResult.failure(ResultCode.E03);
+        }
+    }
+
 
 }
