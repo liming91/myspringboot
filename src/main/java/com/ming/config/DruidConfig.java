@@ -10,6 +10,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
@@ -73,7 +75,18 @@ public class DruidConfig {
         bean.setUrlPatterns(Arrays.asList("/*"));//拦截所有的请求
         return  bean;
     }
-
+    /**
+     * 开始事务
+     * @param dataSource
+     * @return
+     */
+    @Bean
+    @DependsOn("druid")
+    public DataSourceTransactionManager transactionManager(DataSource dataSource) {
+        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+        transactionManager.setDataSource(dataSource);
+        return transactionManager;
+    }
     @Bean
     public WallFilter wallFilter() {
         WallFilter wallFilter = new WallFilter();

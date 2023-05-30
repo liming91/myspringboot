@@ -2,6 +2,7 @@ package com.ming.aspect;
 
 import com.ming.annotation.DateVersion;
 import com.ming.annotation.TestAnnotation;
+import com.ming.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -68,11 +69,11 @@ public class DateVersionAop {
             if(StringUtils.isNotEmpty(dataVersion) && StringUtils.isNotEmpty(dataId) && !StringUtils.equals(dataVersion,"null") && !StringUtils.equals(dataId,"null") && !StringUtils.contains(dataId,",")){
                 //更新版本,成功则代表版本号正确
                 String newVersion = Integer.parseInt(dataVersion) + 1 + "";
-                String updateSql = " UPDATE " + tableName + " SET VERSION = '" + newVersion + "'" + " WHERE ID = '" + dataId + "' AND VERSION = " + dataVersion ;
+                String updateSql = " UPDATE " + tableName + " SET VERSION = '" + newVersion + "'" + " WHERE USER_ID = '" + dataId + "' AND VERSION = " + dataVersion ;
                 System.out.println(updateSql);
                 int update = jdbcTemplate.update(updateSql);
                 if (update == 0) {
-                    throw new RuntimeException("数据已发生变更,清刷新页面重试");  //可以改成自己的全局异常
+                    throw new ServiceException("数据已发生变更,清刷新页面重试");  //可以改成自己的全局异常
                 }
             }
             Object proceed = pjp.proceed();
@@ -83,7 +84,7 @@ public class DateVersionAop {
             log.info("环绕通知的异常通知执行了...");
             e.printStackTrace();
             dataSourceTransactionManager.rollback(transactionStatus);//出现异常进行回滚
-            throw new RuntimeException(e);
+            throw new ServiceException(e.getMessage());
 
         } finally {
             log.info("环绕通知的最终通知执行了...");

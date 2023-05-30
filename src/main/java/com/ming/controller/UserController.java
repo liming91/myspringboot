@@ -1,6 +1,7 @@
 package com.ming.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ming.annotation.DateVersion;
 import com.ming.entities.SysUser;
 import com.ming.enums.ResultCode;
 import com.ming.service.SysUserService;
@@ -45,6 +46,7 @@ public class UserController {
 
     @ApiOperation("用户列表")
     @PostMapping("/update")
+    @DateVersion(tableName = "sys_user",idName = "userId")
     public ResponseResult<?> update(@RequestBody SysUser sysUser) {
 
         int rows = sysUserService.updateUserById(sysUser);
