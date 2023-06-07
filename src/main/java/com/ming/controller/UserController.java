@@ -42,29 +42,18 @@ public class UserController {
     @ApiOperation("用户列表")
     @PostMapping("/save")
     public ResponseResult<?> save(@RequestBody SysUser sysUser) {
-        boolean flag = false;
-        if (redisLockUtil.tryLock(KEY, 100)) {
-            log.info("测试：加锁成功！");
-            flag = sysUserService.save(sysUser);
-            redisLockUtil.unLock(KEY);
-            log.info("测试：释放锁成功！");
-        } else {
-            System.out.println("测试：加锁失败！");
-        }
+        boolean flag = sysUserService.save(sysUser);
         if (flag) {
             return ResponseResult.success(ResultCode.E02);
         }
         return ResponseResult.success(ResultCode.E03);
-
     }
-
 
     @ApiOperation("用户列表")
     @PostMapping("/update1")
     @DateVersion(tableName = "sys_user", idName = "userId")
     public ResponseResult<?> update1(@RequestBody SysUser sysUser) {
         int rows = sysUserService.updateUserById(sysUser);
-        redisLockUtil.unLock(KEY);
         if (rows > 0) {
             return ResponseResult.success(ResultCode.E02);
         }
@@ -75,15 +64,7 @@ public class UserController {
     @ApiOperation("用户列表")
     @PostMapping("/update")
     public ResponseResult<?> update(@RequestBody SysUser sysUser) {
-        int flag = 0;
-        if (redisLockUtil.tryLock(KEY, 100)) {
-            log.info("测试：加锁成功！");
-            flag = sysUserService.updateUserById(sysUser);
-            redisLockUtil.unLock(KEY);
-            log.info("测试：释放锁成功！");
-        } else {
-            System.out.println("测试：加锁失败！");
-        }
+        int flag = sysUserService.updateUserById(sysUser);
         if (flag > 0) {
             return ResponseResult.success(ResultCode.E02);
         }
