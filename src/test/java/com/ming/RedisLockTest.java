@@ -51,9 +51,9 @@ public class RedisLockTest {
         } finally {
             boolean releaseLock = redisLockUtil.unLock(redisLockKey);
             if (releaseLock) {
-                log.error("释放redis锁 [" + redisLockKey + "] 成功!");
+                log.info("释放redis锁 [" + redisLockKey + "] 成功!");
             } else {
-                log.error("释放redis锁 [" + redisLockKey + "] 成功!");
+                log.info("释放redis锁 [" + redisLockKey + "] 成功!");
             }
         }
     }
@@ -80,9 +80,9 @@ public class RedisLockTest {
                         } finally {
                             boolean releaseLock = redisLockUtil.unLock(redisLockKey);
                             if (releaseLock) {
-                                log.error("释放redis锁 [" + redisLockKey + "] 成功!");
+                                log.info("释放redis锁 [" + redisLockKey + "] 成功!");
                             } else {
-                                log.error("释放redis锁 [" + redisLockKey + "] 成功!");
+                                log.info("释放redis锁 [" + redisLockKey + "] 成功!");
                             }
                         }
                     }
