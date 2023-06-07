@@ -45,8 +45,8 @@ public class RedisLockUtil {
      * 释放锁
      * @param key
      */
-    public void unLock(String key) {
-        releaseLock(key, "");
+    public boolean unLock(String key) {
+        return  releaseLock(key, "");
     }
 
 
