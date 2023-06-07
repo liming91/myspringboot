@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ming.mapper.SysUserMapper">
     <update id="updateUserById">
-        update sys_user set status=#{sysUser.status},version=version+1 where user_id=#{sysUser.userId} and version=#{sysUser.version}
+        update sys_user set status=#{sysUser.status} where user_id=#{sysUser.userId}
     </update>
 
     <select id="userPage" resultType="com.ming.entities.SysUser">
