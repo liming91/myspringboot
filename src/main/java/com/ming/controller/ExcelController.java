@@ -1,7 +1,7 @@
 package com.ming.controller;
 
 import com.ming.service.ExcelService;
-import com.ming.util.http.ResponseResult;
+import com.ming.util.http.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,8 +32,8 @@ public class ExcelController {
     }
 
     @PostMapping("/importTemplate")
-    public ResponseResult<?> importTemplate(HttpServletResponse response) {
+    public Result<?> importTemplate(HttpServletResponse response) {
         String url = excelService.importTemplate(response);
-        return ResponseResult.success(url);
+        return Result.success(url);
     }
 }

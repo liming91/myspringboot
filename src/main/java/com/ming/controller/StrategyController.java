@@ -6,7 +6,7 @@ import com.ming.strategy.PayContext;
 import com.ming.strategy.IStrategyService;
 import com.ming.strategy.AliPayImpl;
 import com.ming.strategy.WeChatPayImpl;
-import com.ming.util.http.ResponseResult;
+import com.ming.util.http.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class StrategyController {
 
     @ApiOperation("支付结果")
     @GetMapping("/getPayResult")
-    public ResponseResult<?> getPayResult(@RequestParam("amount") double amount,
+    public Result<?> getPayResult(@RequestParam("amount") double amount,
                                           @RequestParam("paymentType") String paymentType) {
         Order order = new Order();
         order.setAmount(amount);
@@ -46,13 +46,13 @@ public class StrategyController {
         //PayResult payResult = payment.pay(order);
         PayContext payContext = new PayContext(payment);
         PayResult payResult = payContext.executeStrategy(order);
-        return ResponseResult.success(payResult);
+        return Result.success(payResult);
     }
 
 
     @ApiOperation("支付结果")
     @GetMapping("/getPayResult2")
-    public ResponseResult<?> getPayResult2(@RequestParam("amount") double amount,
+    public Result<?> getPayResult2(@RequestParam("amount") double amount,
                                           @RequestParam("paymentType") String paymentType) {
         Order order = new Order();
         order.setAmount(amount);
@@ -62,7 +62,7 @@ public class StrategyController {
         IStrategyService iStrategyService2 = new AliPayImpl();
         PayResult pay2 = iStrategyService2.pay(order);
 
-        return ResponseResult.success(pay1);
+        return Result.success(pay1);
     }
 
 }

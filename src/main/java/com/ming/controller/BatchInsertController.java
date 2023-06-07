@@ -7,7 +7,7 @@ import com.ming.enums.ResultCode;
 import com.ming.service.IAsyncService;
 import com.ming.service.IHbBaseEnterUserService;
 import com.ming.util.RedisUtil;
-import com.ming.util.http.ResponseResult;
+import com.ming.util.http.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,20 +102,20 @@ public class BatchInsertController {
      * @return
      */
     @PostMapping("/batchUser")
-    public ResponseResult<?> addGrantEnter(@RequestBody List<HbBaseEnterUser> hbBaseEnterUser) {
+    public Result<?> addGrantEnter(@RequestBody List<HbBaseEnterUser> hbBaseEnterUser) {
         if (StringUtils.isEmpty(hbBaseEnterUser)) {
-            return ResponseResult.failure(ResultCode.PARAM_IS_INVALID);
+            return Result.failure(ResultCode.PARAM_IS_INVALID);
         }
         int rows = iHbBaseEnterUserService.addGrantEnter(hbBaseEnterUser);
         if (rows > 0) {
-            return ResponseResult.success(ResultCode.E02);
+            return Result.success(ResultCode.E02);
         }
-        return ResponseResult.success(ResultCode.E03);
+        return Result.success(ResultCode.E03);
     }
 
 
     @GetMapping("/getTest")
-    public ResponseResult<?> getTest() {
+    public Result<?> getTest() {
         Object obj = redisUtil.get("test");
         List<Test> list;
         if (obj == null) {
@@ -124,12 +124,12 @@ public class BatchInsertController {
             // 为防止缓存雪崩 缓存时间1200 + 随机数
             // 1200 + random.nextInt(END - START + 1) + START
             redisUtil.set("test", jsonString, 60);
-            return ResponseResult.success(list);
+            return Result.success(list);
         } else {
             list = JSON.parseArray((String) obj, Test.class);
             logger.info("从缓存取==Test：{}", list);
         }
-        return ResponseResult.success(list);
+        return Result.success(list);
 
     }
 }

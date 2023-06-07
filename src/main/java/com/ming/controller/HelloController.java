@@ -4,7 +4,7 @@ import com.ming.annotation.ResultAnnotation;
 import com.ming.bean.Test;
 import com.ming.exception.Asserts;
 import com.ming.service.IAsyncService;
-import com.ming.util.http.ResponseResult;
+import com.ming.util.http.Result;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +43,7 @@ public class HelloController {
 
     @ResponseBody
     @RequestMapping("/hello")
-    public ResponseResult<?> hello(@RequestParam("user") String user) throws IOException {
+    public Result<?> hello(@RequestParam("user") String user) throws IOException {
         if (user.equals("aaa")) {
             Asserts.fail("错误账户");
         }
@@ -53,7 +53,7 @@ public class HelloController {
         File file = new File("src/main/resources/image/log.jpg");
         String canonicalPath = file.getCanonicalPath();
         map.put("hello", canonicalPath);
-        return ResponseResult.success(map);
+        return Result.success(map);
     }
 
     /**

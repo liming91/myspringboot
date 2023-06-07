@@ -7,7 +7,7 @@ import com.ming.entities.SysMenu;
 import com.ming.entities.SysUser;
 import com.ming.enums.LimitType;
 import com.ming.service.SysMenuService;
-import com.ming.util.http.ResponseResult;
+import com.ming.util.http.Result;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +25,8 @@ public class MenuController {
     //@TestAnnotation(module = "菜单管理", desc = "测试菜单")
     @RateLimiter(key = "menu", limitType = LimitType.DEFAULT)
     @RequestMapping("/getMenuTree")
-    public ResponseResult<?> getMenuTree(@RequestBody SysUser user) {
+    public Result<?> getMenuTree(@RequestBody SysUser user) {
         List<SysMenu> list = sysMenuService.getMenuTree();
-        return ResponseResult.success(list);
+        return Result.success(list);
     }
 }

@@ -35,7 +35,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 //    }
 
     /**
-     * 拦截请求，是否此请求返回的值需要包装，运行时解析 @ResponseResult 注解
+     * 拦截请求，是否此请求返回的值需要包装，运行时解析 @Result 注解
      * @param request
      * @param response
      * @param handler

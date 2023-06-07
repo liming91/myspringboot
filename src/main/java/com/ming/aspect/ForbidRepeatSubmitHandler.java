@@ -2,7 +2,7 @@ package com.ming.aspect;
 
 import com.ming.annotation.ForbidRepeatSubmit;
 import com.ming.enums.SubmitEnum;
-import com.ming.util.http.ResponseResult;
+import com.ming.util.http.Result;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -40,7 +40,7 @@ public class ForbidRepeatSubmitHandler {
      * @return
      */
     @Around("pointcut()&&@annotation(ForbidRepeatSubmit)")
-    public ResponseResult<?> around(ProceedingJoinPoint joinPoint, ForbidRepeatSubmit ForbidRepeatSubmit) {
+    public Result<?> around(ProceedingJoinPoint joinPoint, ForbidRepeatSubmit ForbidRepeatSubmit) {
         Object obj = null;
         // 操作方法前判定是否提交过
         // 获取request请求
@@ -73,10 +73,10 @@ public class ForbidRepeatSubmitHandler {
                 e.printStackTrace();
             }
         } else {// 重复提交不操作
-            return ResponseResult.success(false, 1111, "请勿重复提交");
+            return Result.success(false, 1111, "请勿重复提交");
         }
 
-         return ResponseResult.success();
+         return Result.success();
 
     }
 }
