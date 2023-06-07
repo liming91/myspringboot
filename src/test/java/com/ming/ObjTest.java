@@ -87,11 +87,14 @@ public class ObjTest {
     @Test
     public void obj4() throws ParseException {
 
-        System.out.println("测试");
-            User user = new User();
-            if(user instanceof User){
-                System.out.println(1111);
-            }
+        String flux = "import \"strings\" \n"
+                + "from(bucket: \" status\")"
+                + "  |> range(start: -5m, stop: now())   \n"
+                + "  |> filter(fn: (r) => r[\"_measurement\"] == \"peidian\")   \n"
+                + "  |> filter(fn: (r) => strings.containsStr(v: r[\"eqd\"], substr: \"Modbus.DB_\")) \n"
+                + "  |> last()\n" + "  |> map(fn: (r) => ({ r with _value: string(v: r[\"_value\"]) }))\n"
+                + "  |> group(columns: [\"eqd\"]) ";
+        System.out.println(flux);
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,8 @@
 package com.ming.entities;
 
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.ming.annotation.Desensitized;
 import com.ming.enums.SensitiveTypeEnum;
 import lombok.Data;
@@ -17,6 +19,7 @@ public class SysUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 用户ID */
+    @TableId(value = "USER_ID")
     private Long userId;
 
     /** 部门ID */

@@ -32,7 +32,7 @@ public class RedisLockTest {
     private RedisLockUtil redisLockUtil;
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
-    private final static String KEY = "key1:"+System.currentTimeMillis();
+    private final static String KEY = "key1:";
 
     @Test
     public void Test() {
@@ -52,6 +52,7 @@ public class RedisLockTest {
         String lockKey = "lockKey";
         String clientId = UUID.randomUUID().toString();
         try {
+            //如果键不存在则新增,存在则不改变已经有的值。存在返回 false，不存在返回 true
             Boolean flag = redisTemplate.opsForValue().setIfAbsent(lockKey, clientId, 30, TimeUnit.SECONDS);
             if (!flag) {
                 log.info("加锁失败");
