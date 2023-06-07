@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
+
 /**
  * 分布式锁
  * Created By Ranger on 2022/7/14.
@@ -43,10 +44,11 @@ public class RedisLockUtil {
 
     /**
      * 释放锁
+     *
      * @param key
      */
     public boolean unLock(String key) {
-        return  releaseLock(key, "");
+        return releaseLock(key, "");
     }
 
 
