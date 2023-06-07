@@ -9,11 +9,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.types.Expiration;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 /**
  * 分布式锁
+ * 主要解决了在多线程环境下、保证同一个代码在同一时间只有一个线程进行访问，互斥共享资源
  * Created By Ranger on 2022/7/14.
  */
 @Component
