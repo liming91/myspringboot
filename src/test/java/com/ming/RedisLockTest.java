@@ -36,14 +36,24 @@ public class RedisLockTest {
 
     @Test
     public void Test() {
-        if (redisLockUtil.tryLock(KEY, 100)) {
-            log.info("测试：加锁成功！");
-            redisLockUtil.unLock(KEY);
-            log.info("测试：释放锁成功！");
-        } else {
-            System.out.println("测试：加锁失败！");
+        String redisLockKey = String.format("%s:docker-image:%s", "LM_", "LOCK_IMAGE");
+        String redisLockValue = UUID.randomUUID().toString();
+        try {
+            if (redisLockUtil.tryLock(redisLockKey, 100)) {
+                log.info("获取redis锁 [" + redisLockKey + "] 成功,执行以下业务逻辑!");
+            } else {
+                log.info("获取redis锁 [" + redisLockKey + "] 失败,锁占用!");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            boolean releaseLock =false;
+            if(releaseLock){
+                log.error("释放redis锁 [" + redisLockKey + "] 成功!");
+            }else {
+                log.error("释放redis锁 [" + redisLockKey + "] 成功!");
+            }
         }
-
     }
 
 
