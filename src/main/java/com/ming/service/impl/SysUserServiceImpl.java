@@ -97,7 +97,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             throw new ServiceException("密码连续输入错误,错误5次以上");
         }
 
-        if(!user.getPassword().equals("724933")){
+        if(!user.getPassword().equals("123456")){
             retryCount = retryCount + 1;
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(user.getUserName(), Constants.LOGIN_FAIL,
                    "密码重试次数", retryCount));

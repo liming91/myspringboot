@@ -16,7 +16,7 @@ import java.util.Map;
 public class LoginController {
     Logger log = LoggerFactory.getLogger(getClass());
     private final SysUserService sysUserService;
-    private final static String PASSWORD = "724933";
+    private final static String PASSWORD = "123456";
 
     //@RequestMapping(value = "/user/login",method = RequestMethod.POST)
     @PostMapping("/user/login")
