@@ -5,6 +5,7 @@ import com.ming.enums.SensitiveTypeEnum;
 import java.lang.annotation.*;
 
 /**
+ * 数据脱敏
  * @Author liming
  * @Date 2023/3/31 10:50
  */
