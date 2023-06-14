@@ -12,6 +12,10 @@ import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+/**
+ * redis配置类,使用RedisTemplate需要注入Bean到Spring容器，类似Jedis
+ */
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 

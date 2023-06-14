@@ -5,7 +5,7 @@ spring:
   datasource:
     username: root
     password: 724933
-    url: jdbc:mysql://120.48.75.156:3306/db?useSSL=false&allowMultiQueries=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://43.142.146.167:3306/db?useSSL=false&allowMultiQueries=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     #数据源用druid
     type: com.alibaba.druid.pool.DruidDataSource
@@ -24,7 +24,7 @@ spring:
     #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
   #MQ配置信息
   rabbitmq:
-    host: 120.48.75.156
+    host: 43.142.146.167
     port: 5672
     username: admin
     password: admin
@@ -35,7 +35,7 @@ spring:
   redis:
     database: 2
     iddatabase: 2
-    host: 120.48.75.156
+    host: 43.142.146.167
     lettuce:
       pool:
         max-active: 8 #最大连接数据库连接数,设 0 为没有限制
