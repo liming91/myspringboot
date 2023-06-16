@@ -1,5 +1,6 @@
 package com.ming.service.impl;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -7,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ming.constant.Constants;
 import com.ming.entities.SysUser;
+import com.ming.entities.query.AppletLoginQuery;
 import com.ming.exception.ServiceException;
 import com.ming.manager.AsyncManager;
 import com.ming.manager.factory.AsyncFactory;
@@ -14,6 +16,7 @@ import com.ming.mapper.SysUserMapper;
 import com.ming.service.IUserCache;
 import com.ming.service.SysUserService;
 import com.ming.util.StringUtils;
+import com.ming.util.http.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -122,4 +125,18 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public int updateUserById(SysUser sysUser) {
         return sysUserMapper.updateUserById(sysUser);
     }
+
+
+    @Override
+    public boolean isItaVillage(AppletLoginQuery appletLoginQuery) {
+        LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, appletLoginQuery.getUserJobNo())
+                .eq(SysUser::getPassword, appletLoginQuery.getPwd());
+        List<SysUser> sysUsers = this.baseMapper.selectList(queryWrapper);
+        if(CollectionUtil.isNotEmpty(sysUsers)){
+            return true;
+        }
+        return false;
+    }
+
+
 }

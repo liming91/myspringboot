@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ming.entities.SysUser;
+import com.ming.entities.query.AppletLoginQuery;
 import com.ming.mapper.SysUserMapper;
+import com.ming.util.http.Result;
 
 /**
  * @Author liming
@@ -18,4 +20,12 @@ public interface SysUserService extends IService<SysUser> {
     void login(String username, String password);
 
     int updateUserById(SysUser sysUser);
+
+    /**
+     * 校验用户
+     * @param appletLoginQuery
+     * @return
+     */
+    boolean isItaVillage(AppletLoginQuery appletLoginQuery);
+
 }

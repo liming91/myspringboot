@@ -24,6 +24,7 @@
 			<div class="checkbox mb-3">
 				<label>
           			<input type="checkbox" value="remember-me"/> [[#{login.remember}]]
+					<button type="primary" bindtap="tapClick">获取code</button>
         		</label>
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn}">Sign in</button>
@@ -34,3 +35,32 @@
 	</body>
 
 </html>
+<script>
+	Page({
+		data: {},
+		onLoad: function (options) {
+			//页面初始化调用本方法 options为页面跳转所带来的参数
+
+		},
+		tapClick: function () {
+			//这个是微信提供的接口，调用成功之后会返回一个临时登录凭证
+			wx.login({
+				success: function (res) {
+					console.log(res.code);
+				}
+			})
+		},
+		Click:function(){
+			//这个是微信提供的接口，调用成功之后会返回一些用户基本的信息
+			wx.getUserProfile({
+				desc: '获取用户信息',
+				success:(res)=>{
+					console.log(res)
+				}
+			})
+		}
+	})
+
+
+
+</script>

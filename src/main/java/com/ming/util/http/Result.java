@@ -37,18 +37,19 @@ public class Result<T> {
 
 
     public static Result success() {
-        Result Result = new Result();
-        Result.setCode(ResultCode.SUCCESS.getCode());
-        Result.setMsg(ResultCode.SUCCESS.getMessage());
-        return Result;
+        Result result = new Result();
+        result.setCode(ResultCode.SUCCESS.getCode());
+        result.setMsg(ResultCode.SUCCESS.getMessage());
+        return result;
     }
 
     public static Result success(Object data) {
-        Result Result = new Result();
-        Result.setCode(ResultCode.SUCCESS.getCode());
-        Result.setMsg(ResultCode.SUCCESS.getMessage());
-        Result.setData(data);
-        return Result;
+        Result result = new Result();
+        result.setSuccess(true);
+        result.setCode(ResultCode.SUCCESS.getCode());
+        result.setMsg(ResultCode.SUCCESS.getMessage());
+        result.setData(data);
+        return result;
     }
 
     public static Result success(boolean success,int code, String message) {
@@ -62,6 +63,7 @@ public class Result<T> {
 
     public static Result failure(ResultCode resultCode) {
         Result result = new Result();
+        result.setSuccess(false);
         result.setCode(resultCode.getCode());
         result.setMsg(resultCode.getMessage());
         return result;
@@ -69,6 +71,7 @@ public class Result<T> {
 
     public static Result failure(int code, String message) {
         Result result = new Result();
+        result.setSuccess(false);
         result.setCode(code);
         result.setMsg(message);
         return result;
