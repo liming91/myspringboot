@@ -36,7 +36,7 @@ public class WechatController {
      * 有效期7200秒
      * @return
      */
-    @ApiOperation("通过微信code获取微信用户信息")
+    @ApiOperation("获取AccessToken")
     @GetMapping(value = "/getToken")
     public Result getToken() {
         String token = iWechatService.getToken();
