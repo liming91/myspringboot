@@ -2,6 +2,7 @@ package com.ming;
 
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrPool;
 import cn.hutool.core.util.NumberUtil;
@@ -160,7 +161,6 @@ public class MyTest {
     }
 
 
-
     @Test
     public void hkTest() {
         String json = "{\"code\":\"0\",\"msg\":\"Operation succeeded\",\"data\":{\"pageNo\":1,\"pageSize\":20,\"totalPage\":1,\"total\":1,\"list\":[{\"deviceType\":null,\"regionIndexCode\":\"d2e902df-dadf-4603-a291-16d194032352\",\"collectTime\":\"2023-04-12T11:48:37.000+08:00\",\"deviceIndexCode\":null,\"ip\":\"172.16.1.184\",\"regionName\":\"本部院区\",\"indexCode\":\"6d6c26b409eb4381a8ed2e8fa4e76252\",\"cn\":\"急诊门口\",\"treatyType\":\"1\",\"manufacturer\":null,\"port\":8000,\"online\":1}]}}";
@@ -186,9 +186,16 @@ public class MyTest {
         }
         return online;
     }
+
     public static void main(String[] args) {
-        String s = "abc";
-        System.out.println(s.substring(0,1));
+        Date date = new Date();
+        int mm = Integer.valueOf(DateUtil.format(date, "mm"));
+        if (mm < 30) {
+            date = DateUtil.parse(DateUtil.format(date, "yyyy-MM-dd HH:00:00"));
+        } else {
+            date = DateUtil.parse(DateUtil.format(date, "yyyy-MM-dd HH:30:00"));
+        }
+        System.out.println(DateUtil.format(date, DatePattern.NORM_DATETIME_PATTERN));
     }
 }
 
