@@ -4,9 +4,13 @@ import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.ming.bean.Order;
 import com.ming.entities.*;
 import com.ming.entities.VO.DataTrendVO;
+import com.ming.entities.VO.EleWaterVO;
 import com.ming.util.PercentUtil;
+import com.ming.util.StringUtils;
 import org.assertj.core.util.Lists;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
@@ -1640,6 +1644,81 @@ public class TestPro {
                 System.out.println(pm25);
 
 
+            }
+        }
+    }
+
+
+    @Test
+    public void dishTest4() {
+        List<EleWaterVO> list = new ArrayList<>();
+        EleWaterVO eleWaterVO1 = new EleWaterVO();
+        eleWaterVO1.setEleComeBackName("能耗报表-电表001");
+        eleWaterVO1.setEleAddress("经开院区,A-3-6#医技楼,1F,中庭2");
+        eleWaterVO1.setEleEnergy(1000.0);
+        eleWaterVO1.setEleCost(500000.0);
+        eleWaterVO1.setWaterComeBackName("报表-水表004");
+        eleWaterVO1.setWaterAddress("经开院区,A-3-6#医技楼,2F,男卫");
+        eleWaterVO1.setWaterEnergy(3000.0);
+        eleWaterVO1.setWaterCost(4500.0);
+        list.add(eleWaterVO1);
+
+        EleWaterVO eleWaterVO2 = new EleWaterVO();
+        eleWaterVO2.setEleComeBackName("能耗报表-电表001");
+        eleWaterVO2.setEleAddress("经开院区,A-3-6#医技楼,1F,中庭2");
+        eleWaterVO2.setEleEnergy(1000.0);
+        eleWaterVO2.setEleCost(500000.0);
+        eleWaterVO2.setWaterComeBackName("报表水-004");
+        eleWaterVO2.setWaterAddress("经开院区,C-2#门诊楼,1F,无性别卫生间");
+        eleWaterVO2.setWaterEnergy(0.0);
+        eleWaterVO2.setWaterCost(0.0);
+        list.add(eleWaterVO2);
+
+
+        EleWaterVO eleWaterVO3 = new EleWaterVO();
+        eleWaterVO3.setEleComeBackName("勿删-测试电表1");
+        eleWaterVO3.setEleAddress("经开院区,A-3-6#医技楼,1F,中庭2");
+        eleWaterVO3.setEleEnergy(0.0);
+        eleWaterVO3.setEleCost(0.0);
+        eleWaterVO3.setWaterComeBackName("报表-水表003");
+        eleWaterVO3.setWaterAddress("经开院区,A-3-6#医技楼,2F,男卫");
+        eleWaterVO3.setWaterEnergy(3000.0);
+        eleWaterVO3.setWaterCost(4500.0);
+        list.add(eleWaterVO3);
+
+
+        EleWaterVO eleWaterVO4 = new EleWaterVO();
+        eleWaterVO4.setEleComeBackName("勿删-测试电表1");
+        eleWaterVO4.setEleAddress("经开院区,A-3-6#医技楼,1F,中庭2");
+        eleWaterVO4.setEleEnergy(0.0);
+        eleWaterVO4.setEleCost(0.0);
+        eleWaterVO4.setWaterComeBackName("报表水-003");
+        eleWaterVO4.setWaterAddress("经开院区,C-2#门诊楼,1F,无性别卫生间");
+        eleWaterVO4.setWaterEnergy(0.0);
+        eleWaterVO4.setWaterCost(0.0);
+        list.add(eleWaterVO4);
+
+
+
+        System.out.println(JSON.toJSON(list));
+
+
+    }
+
+    public void removeDuplicate(List<EleWaterVO> personVoList) {
+        if (CollectionUtils.isEmpty(personVoList)) {
+            return;
+        }
+
+        for (int i = 0; i < personVoList.size(); i++) {
+            EleWaterVO personVo = personVoList.get(i);
+            String a00 = personVo.getWaterComeBackName();
+            for (int j = i + 1; j < personVoList.size(); j++) {
+                EleWaterVO vo = personVoList.get(j);
+                if (StringUtils.endsWithIgnoreCase(a00, vo.getWaterComeBackName())) {
+                    personVoList.remove(j);
+                    j--;
+                }
             }
         }
     }

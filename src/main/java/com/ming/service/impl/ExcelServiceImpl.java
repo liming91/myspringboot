@@ -10,6 +10,7 @@ import com.ming.entities.DTO.MailDTO;
 import com.ming.mapper.TestMapper;
 import com.ming.service.ExcelService;
 import com.ming.util.DateUtils;
+import com.ming.util.ExcelStyleUtil;
 import com.ming.util.ExcelUtil;
 import com.ming.util.MinIoUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -69,6 +70,7 @@ public class ExcelServiceImpl implements ExcelService {
         List<Test> personList2 = testMapper.select();
         // 创建参数对象
         ExportParams exportParams1 = new ExportParams();
+        exportParams1.setStyle(ExcelStyleUtil.class);
         // 设置sheet得名称
         exportParams1.setSheetName("人员信息");
         ExportParams exportParams2 = new ExportParams();

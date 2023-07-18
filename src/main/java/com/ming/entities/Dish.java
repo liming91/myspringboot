@@ -9,4 +9,5 @@ public class Dish {
     private int calories;
     private Type type;
     private int sum;
+    private Double a;
 }
