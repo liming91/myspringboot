@@ -256,6 +256,7 @@
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
+        <pinyin4j.version>2.5.0</pinyin4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -271,7 +272,7 @@
         <!--阿里镜像仓库-->
         <docker.serverId>docker-aliyun</docker.serverId>
         <docker.registry>registry.cn-hangzhou.aliyuncs.com/lm_repo</docker.registry>
-        <pinyin4j.version>2.5.0</pinyin4j.version>
+
 
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
@@ -301,7 +302,7 @@
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <!--CA证书地址-->
                     <dockerCertPath>D:\ca</dockerCertPath>
-                    <dockerHost>https://120.48.75.156:2375</dockerHost>
+                    <dockerHost>https://43.142.146.167:2375</dockerHost>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
@@ -320,6 +321,9 @@
 <!--                    &lt;!&ndash; 远程仓库地址 &ndash;&gt;-->
 <!--                    <registryUrl>${docker.registry}</registryUrl>-->
 <!--                    <dockerDirectory>src/main/docker</dockerDirectory>-->
+<!--                    &lt;!&ndash;CA证书地址&ndash;&gt;-->
+<!--                    &lt;!&ndash;<dockerCertPath>D:\ca</dockerCertPath>&ndash;&gt;-->
+<!--                    <dockerHost>https://43.142.146.167:2375</dockerHost>-->
 <!--                    <imageName>${docker.registry}/${project.artifactId}:${project.version}</imageName>-->
 <!--                    <resources>-->
 <!--                        <resource>-->

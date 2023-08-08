@@ -1699,10 +1699,17 @@ public class TestPro {
         list.add(eleWaterVO4);
 
 
+        List<EleWaterVO> collect = list.stream().map(x -> {
+            EleWaterVO eleWaterVO = new EleWaterVO();
+            eleWaterVO.setEleComeBackName(x.getEleComeBackName());
+            eleWaterVO.setEleAddress(x.getEleAddress());
+            eleWaterVO.setEleEnergy(x.getEleEnergy());
+            eleWaterVO.setEleCost(x.getEleCost());
 
-        System.out.println(JSON.toJSON(list));
+            return eleWaterVO;
+        }).collect(Collectors.toList());
 
-
+        System.out.println(JSON.toJSON(collect));
     }
 
     public void removeDuplicate(List<EleWaterVO> personVoList) {
