@@ -11,12 +11,12 @@ public class WechatConfiguration {
     /**
      * 小程序appId
      */
-    public static final String AppID = "wx740bf30d3a832693";
+    public static final String AppID = "11";
 
     /**
      * 小程序秘钥
      */
-    public static final String AppSecret = "529becaccd235e316cf6f9a4f9272a78";
+    public static final String AppSecret = "111";
 
     /**
      * 获取unionId、openid
