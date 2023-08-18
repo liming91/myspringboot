@@ -26,7 +26,7 @@ public class DateTest {
         System.out.println(format1);
 
 
-        DateTime dateTime = DateUtil.offsetMonth( DateUtil.parse(day), -12);
+        DateTime dateTime = DateUtil.offsetMonth(DateUtil.parse(day), -12);
         String lastYear = DateUtil.format(dateTime, "yyyy");
         String mm = DateUtil.format(DateUtil.parse(day), "MM");
         String lastYearMonth = lastYear + "-" + mm;
@@ -50,10 +50,13 @@ public class DateTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-
-
+        System.out.println("测试111");
+        for (int i = 0; i < 100; i++) {
+            if (i % 2 == 0 && i % 3 == 0) {
+                System.out.println(i);
+            }
+        }
     }
-
 
 
 }
