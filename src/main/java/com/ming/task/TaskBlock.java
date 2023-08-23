@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class TaskBlock {
 
 
-    @Scheduled(cron = "0/1 * * * * ?")
+    //@Scheduled(cron = "0/1 * * * * ?")
     public void test1() {
         // 每1s执行一次
         System.out.println("scheduler1 执行: " + Thread.currentThread() + "-" + DateTime.now());
@@ -32,7 +32,7 @@ public class TaskBlock {
     /**
      * 可以看到，第一个定时任务没执行完时，第二个定时任务也是被阻塞的。而且是同一个线程去执行的这两个定时任务。
      */
-    @Scheduled(cron = "0/2 * * * * ?")
+    //@Scheduled(cron = "0/2 * * * * ?")
     public void test2() {
         // 每2s执行一次
         System.out.println("scheduler2 执行: " + Thread.currentThread() + "-" + DateTime.now());
