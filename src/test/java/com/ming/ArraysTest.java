@@ -1,17 +1,11 @@
 package com.ming;
 
-import com.ming.bean.Person;
 import com.ming.bean.Student;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.min;
 import org.junit.Test;
 
-import java.io.OutputStream;
-import java.sql.SQLOutput;
-import java.util.Arrays;
-
 @Slf4j
-public class Demo {
+public class ArraysTest {
 
     @Test
     public void arrays() {
