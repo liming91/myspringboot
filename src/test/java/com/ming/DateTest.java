@@ -2,9 +2,12 @@ package com.ming;
 
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -49,13 +52,20 @@ public class DateTest {
         return DateUtil.format(dateTime, "yyyy");
     }
 
+
+    @Test
+    public void test2(){
+        String date1 = "2023-09-01 16:10:00";
+        String date2 = "2023-09-01 16:12:00";
+        Date dateStr = DateUtil.parse(date1);
+        Date dateEnd = DateUtil.parse(date2);
+        long between = DateUtil.between(dateStr, dateEnd, DateUnit.MINUTE);
+        System.out.println(between);
+    }
+
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("测试111");
-        for (int i = 0; i < 100; i++) {
-            if (i % 2 == 0 && i % 3 == 0) {
-                System.out.println(i);
-            }
-        }
+        long minute = DateUtil.between(DateUtil.date(System.currentTimeMillis()), DateUtil.date(1693339980), DateUnit.MINUTE);
+        System.out.println(minute);
     }
 
 
