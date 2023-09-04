@@ -13,6 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 
@@ -24,32 +27,49 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 
 public class RedisUtil {
-    //缓存时间ms
-    private static final long expTime = 2 * 60 * 1000;
+    //缓存时间3分钟
+    private static final long expTime = 5 * 60 * 1000;//ms
     @Autowired
     private RedisTemplate redisTemplate;
 
     @Test
     public void test1() {
-        System.out.println("主要是测试jwt token 过期时间");
-        //3分钟后过期时间
+        System.out.println("==========主要是测试jwt token 过期时间===========");
         long now = System.currentTimeMillis();
-        //过期时间
+        Date nowDate = DateUtil.date();
+        //jwt3分钟后过期 本来这个过期时间在jwt里面存在模拟存在redis的value中
         long exp = now + expTime;
+        //redis缓存的过期时间
         long exps = DateUtil.between(DateUtil.date(now), DateUtil.date(exp), DateUnit.SECOND);
+
 
         //缓存的过期时间
         long redisUserExp = 0;
-        if (redisTemplate.hasKey("exp")) {
-            redisUserExp = (long) redisTemplate.opsForValue().get("exp");
+
+
+        if (redisTemplate.hasKey("token")) {
+            redisUserExp = (long) redisTemplate.opsForValue().get("token");
         } else {
-            redisTemplate.opsForValue().set("exp", exp, exps, TimeUnit.SECONDS);
+            redisTemplate.opsForValue().set("token", exp, exps, TimeUnit.SECONDS);
         }
-        //exp过期时间（系统时间+缓存的时间）-减去系统时间
+        //将时间戳转date
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String d = f.format(Long.valueOf(redisUserExp));
+        Date expRdiesDate = DateUtil.parse(d, "yyyy-MM-dd HH:mm:ss");
+
+        //判断token过期 exp过期时间（系统时间+缓存的时间）-减去系统时间
         if (redisUserExp - now <= 0) {
-            System.out.println("缓存的key：exp过期");
+            System.out.println("缓存的key：token过期");
         } else {
-            System.out.println("缓存的key：exp");
+            System.out.println("缓存的key：token未过期");
+        }
+        //判断token过期 或者过期时间在系统时间之后过期
+        boolean after = nowDate.after(expRdiesDate);
+
+        if (after) {
+            System.out.println("缓存的key：token过期");
+        } else {
+            System.out.println("缓存的key：token未过期");
         }
     }
 }

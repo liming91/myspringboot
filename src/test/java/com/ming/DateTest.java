@@ -6,10 +6,7 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @Author liming
@@ -53,8 +50,23 @@ public class DateTest {
     }
 
 
+    /**
+     * 判断format(2023-09-01 10:59:41)是否在系统时间之后
+     *  返回true表示是format在系统时间(2023-09-04 10:59:41)之后
+     *
+     * @param format
+     * @return
+     */
+    public static boolean after(Date format) {
+        Date now = DateUtil.date();
+//        DateTime newDate2 = DateUtil.offsetDay(new Date(), 3);
+//        boolean after = after(DateUtil.parse(DateUtil.format(newDate2,DatePattern.NORM_DATETIME_PATTERN)));
+//        System.out.println(after);
+        return now.after(format);
+    }
+
     @Test
-    public void test2(){
+    public void test2() {
         String date1 = "2023-09-01 16:10:00";
         String date2 = "2023-09-01 16:12:00";
         Date dateStr = DateUtil.parse(date1);
@@ -64,8 +76,10 @@ public class DateTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        long minute = DateUtil.between(DateUtil.date(System.currentTimeMillis()), DateUtil.date(1693339980), DateUnit.MINUTE);
-        System.out.println(minute);
+        DateTime newDate2 = DateUtil.offsetDay(new Date(), -3);
+        System.out.println(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN));
+        boolean after = after(DateUtil.parse(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN)));
+        System.out.println(after);
     }
 
 
