@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 public class RedisUtil {
     //缓存时间3分钟
-    private static final long expTime = 5 * 60 * 1000;//ms
+    private static final long expTime = 3 * 60 * 1000;//ms
     @Autowired
     private RedisTemplate redisTemplate;
 
@@ -56,6 +56,13 @@ public class RedisUtil {
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String d = f.format(Long.valueOf(redisUserExp));
         Date expRdiesDate = DateUtil.parse(d, "yyyy-MM-dd HH:mm:ss");
+
+        //判断token过期 系统时间 -减去 exp过期时间（系统时间+缓存的时间）
+        if (now - redisUserExp >= 0) {
+            System.out.println("缓存的key：token过期");
+        } else {
+            System.out.println("缓存的key：token未过期");
+        }
 
         //判断token过期 exp过期时间（系统时间+缓存的时间）-减去系统时间
         if (redisUserExp - now <= 0) {
