@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 
 public class RedisUtil {
-    //缓存时间
+    //缓存时间ms
     private static final long expTime = 2 * 60 * 1000;
     @Autowired
     private RedisTemplate redisTemplate;
@@ -45,7 +45,7 @@ public class RedisUtil {
         } else {
             redisTemplate.opsForValue().set("exp", exp, exps, TimeUnit.SECONDS);
         }
-        //exp过期时间（系统时间+缓存的时间）
+        //exp过期时间（系统时间+缓存的时间）-减去系统时间
         if (redisUserExp - now <= 0) {
             System.out.println("缓存的key：exp过期");
         } else {
