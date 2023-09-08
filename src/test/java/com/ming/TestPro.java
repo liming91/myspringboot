@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.ming.bean.Order;
+import com.ming.bean.Person;
+import com.ming.bean.User;
 import com.ming.entities.*;
 import com.ming.entities.VO.DataTrendVO;
 import com.ming.entities.VO.EleWaterVO;
@@ -1729,4 +1731,27 @@ public class TestPro {
             }
         }
     }
+
+    public static void main(String[] args) {
+        //obj instance class obj是引用对象 class是类或者接口
+        //obj是class的实例对象
+        //obj是class的直接子类或者间接子类
+        //obj是class接口的实现类
+        User user = new User();
+        if (user instanceof User) {
+            System.out.println(true);
+        }
+        if (user instanceof Object) {
+            System.out.println(true);
+        }
+        Double d = 0.3;
+        if (d instanceof Double) {
+            System.out.println(true);
+        }
+        ArrayList arrayList = new ArrayList();
+        if (arrayList instanceof List) {
+            System.out.println(true);
+        }
+    }
+
 }
