@@ -121,5 +121,8 @@ public class ObjTest {
 //        DateTime dateTime = DateUtil.lastWeek();
 //        String format = DateUtil.format(dateTime, "yyyy-iw");
 //        System.out.println(format);
+
+        //浅拷贝是进原有对象进行拷贝不会对类中的引用类型的对象进行拷贝
+
     }
 }
