@@ -6,7 +6,9 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author liming
@@ -76,10 +78,13 @@ public class DateTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        DateTime newDate2 = DateUtil.offsetDay(new Date(), -3);
-        System.out.println(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN));
-        boolean after = after(DateUtil.parse(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN)));
-        System.out.println(after);
+//        DateTime newDate2 = DateUtil.offsetDay(new Date(), -3);
+//        System.out.println(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN));
+//        boolean after = after(DateUtil.parse(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN)));
+//        System.out.println(after);
+        List<String> list = Arrays.asList("1","2");
+        System.out.println(list.stream().findFirst().get());
+
     }
 
 

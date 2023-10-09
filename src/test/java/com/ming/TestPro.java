@@ -1733,7 +1733,24 @@ public class TestPro {
     }
 
     public static void main(String[] args) {
+        List<EleWaterVO> list = new ArrayList<>();
+        EleWaterVO eleWaterVO1 = new EleWaterVO();
+        eleWaterVO1.setEleComeBackName("能耗报表-电表001");
+        eleWaterVO1.setEleAddress("经开院区,A-3-6#医技楼,1F,中庭2");
+        eleWaterVO1.setEleEnergy(1000.0);
+        eleWaterVO1.setEleCost(500000.0);
+        eleWaterVO1.setWaterComeBackName("报表-水表004");
+        eleWaterVO1.setWaterAddress("经开院区,A-3-6#医技楼,2F,男卫");
+        eleWaterVO1.setWaterEnergy(3000.0);
+        eleWaterVO1.setWaterCost(4500.0);
+        list.add(eleWaterVO1);
 
+        for (int i = 0; i < list.size(); i++) {
+          if(  list.get(i).getEleEnergy()<2000){
+              list.remove(i);
+          }
+        }
+        System.out.println(list);
     }
 
 }
