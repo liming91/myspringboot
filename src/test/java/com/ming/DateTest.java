@@ -77,13 +77,25 @@ public class DateTest {
         System.out.println(between);
     }
 
+    @Test
+    public void test3() {
+        //date1.before(date2) 的返回值为 true，表示 date1 早于 date2。而 date2.after(date1) 的返回值为 true，表示 date2 晚于 date1。
+
+        //因此，before 方法表示日期是否早于另一个日期，after 方法表示日期是否晚于另一个日期。这两个方法的返回值都是布尔值，因此您可以使用它们来编写逻辑判断语句。
+        Date date1 = new Date(System.currentTimeMillis());
+        Date date2 = new Date(System.currentTimeMillis() + 1000000000);
+
+        System.out.println("date1 is before date2: " + date1.before(date2));
+        System.out.println("date2 is after date1: " + date2.after(date1));
+
+    }
+
     public static void main(String[] args) throws InterruptedException {
-//        DateTime newDate2 = DateUtil.offsetDay(new Date(), -3);
-//        System.out.println(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN));
-//        boolean after = after(DateUtil.parse(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN)));
-//        System.out.println(after);
-        List<String> list = Arrays.asList("1","2");
-        System.out.println(list.stream().findFirst().get());
+        DateTime newDate2 = DateUtil.offsetDay(new Date(), -3);
+        System.out.println(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN));
+        boolean after = after(DateUtil.parse(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN)));
+        System.out.println(after);
+
 
     }
 
