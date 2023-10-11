@@ -36,5 +36,5 @@ public class InfoTask {
     /**
      * 任务详情
      */
-    private InFoVO taskInfo;
+    private Info taskInfo;
 }

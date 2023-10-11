@@ -1,18 +1,18 @@
 package com.ming.mapper;
 
-import com.ming.entities.VO.InFoVO;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
+import com.ming.entities.Info;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * @Author liming
- * @Date 2022/10/8 16:36
- */
-@Mapper
-@Repository
-public interface InfoMapper {
+* @author Y
+* @description 针对表【info】的数据库操作Mapper
+* @createDate 2023-10-11 14:04:53
+* @Entity com.ming.entities.Info
+*/
+public interface InfoMapper extends BaseMapper<Info> {
 
-    List<InFoVO> getInfo();
 }
+
+
+
+

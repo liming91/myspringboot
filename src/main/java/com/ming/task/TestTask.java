@@ -4,6 +4,7 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSON;
+import com.ming.entities.Info;
 import com.ming.entities.VO.InFoVO;
 import com.ming.mapper.InfoMapper;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ public class TestTask {
     @Scheduled(cron = "0 0/1 * * * ?")
     public void test1() {
         System.out.println("scheduler1 执行: " + Thread.currentThread() + "-" + DateTime.now());
-        List<InFoVO> info = infoMapper.getInfo();
+        List<Info> info = infoMapper.selectList(null);
         log.info("数据：{}", JSON.toJSONString(info));
         info.forEach(x->{
             //数据库计划时间5分钟前抽发

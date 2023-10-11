@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.text.StrPool;
 import com.ming.bean.Test;
+import com.ming.entities.Info;
 import com.ming.entities.InfoTask;
 import com.ming.entities.VO.InFoVO;
 import com.ming.mapper.InfoMapper;
@@ -34,7 +35,7 @@ public class TaskCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        List<InFoVO> info = infoMapper.getInfo();
+        List<Info> info = infoMapper.selectList(null);
         if(CollectionUtil.isNotEmpty(info)){
             info.forEach(x ->{
                 String infoTime = DateUtil.format(x.getTime(), DatePattern.NORM_DATETIME_PATTERN);
