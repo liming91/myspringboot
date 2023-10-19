@@ -44,7 +44,7 @@ public class Info implements Serializable {
 
     @ApiModelProperty("删除时间")
     @TableField(value = "del_time")
-    private Date del_time;
+    private Long del_time;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
