@@ -84,7 +84,7 @@ public class InfoServiceImpl extends ServiceImpl<InfoMapper, Info>
         } catch (Exception e) {
             flag = false;
             log.error("信息添加异常：{}", e);
-            throw new ServiceException("信息添加异常"+e.getMessage());
+            throw new ServiceException("信息名称重复"+e.getMessage());
         }
         return flag;
     }
