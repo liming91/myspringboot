@@ -39,11 +39,11 @@ public class Info implements Serializable {
     private Date time;
 
 
-    @TableField(value = "del")
-    private Integer del;
+    @TableField(value = "del_fag")
+    private Integer del_fag;
 
     @ApiModelProperty("删除时间")
-    @TableField(value = "del")
+    @TableField(value = "del_time")
     private Date del_time;
 
     @TableField(exist = false)

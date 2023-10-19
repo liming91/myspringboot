@@ -2,6 +2,7 @@ package com.ming.mapper;
 
 import com.ming.entities.Info;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.mapstruct.Mapper;
 
 /**
 * @author Y
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2023-10-11 14:04:53
 * @Entity com.ming.entities.Info
 */
+@Mapper
 public interface InfoMapper extends BaseMapper<Info> {
 
 }
