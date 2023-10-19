@@ -43,6 +43,7 @@ public class InfoServiceImpl extends ServiceImpl<InfoMapper, Info>
      *
      * 解决方法：方案一：给名称不做唯一索引，新增前判断是否有未删除的同一个名称的，前后端同时判断
      * 方案二：名称做编号：名称编号：名称_已删除_N(删除的次数)A_已删除_N 先模糊查询名称_ 获取的总条数加+1的数据同时更新进去
+     * 以上存在并发问题加锁解决保持原子性不然会造成数据错乱
      * @param id
      * @return
      */
