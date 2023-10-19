@@ -21,7 +21,7 @@ import java.util.List;
 public class TestTask {
     private final InfoMapper infoMapper;
 
-    @Scheduled(cron = "0 0/1 * * * ?")
+    //@Scheduled(cron = "0 0/1 * * * ?")
     public void test1() {
         System.out.println("scheduler1 执行: " + Thread.currentThread() + "-" + DateTime.now());
         List<Info> info = infoMapper.selectList(null);
