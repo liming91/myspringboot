@@ -4,17 +4,13 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
-import cn.hutool.core.text.StrPool;
-import com.ming.bean.Test;
 import com.ming.entities.Info;
 import com.ming.entities.InfoTask;
-import com.ming.entities.VO.InFoVO;
 import com.ming.mapper.InfoMapper;
-import com.ming.mapper.TestMapper;
-import com.ming.service.DynamicTask;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -32,9 +28,19 @@ public class TaskCommandLineRunner implements CommandLineRunner {
     private final DynamicTask dynamicTask;
 
     private final InfoMapper infoMapper;
-
+    /**
+     * 每分钟查询加入到队列
+     */
+//    @Scheduled(cron = "0 0/1 * * * ? ")
+//    public void runTask() {
+//        initTask();
+//    }
     @Override
     public void run(String... strings) throws Exception {
+        initTask();
+    }
+
+    public void initTask(){
         List<Info> info = infoMapper.selectList(null);
         if(CollectionUtil.isNotEmpty(info)){
             info.forEach(x ->{
@@ -46,7 +52,7 @@ public class TaskCommandLineRunner implements CommandLineRunner {
                         .taskInfo(x).build();
                 dynamicTask.add(build);
             });
-            //log.info("测试任务消息推送初始化成功，共计 {} 条",info.size());
+            log.info("测试任务消息推送初始化成功，共计 {} 条",info.size());
         }
     }
 }

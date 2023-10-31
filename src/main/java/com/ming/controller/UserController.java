@@ -39,7 +39,7 @@ public class UserController {
         return Result.success(list);
     }
 
-    @ApiOperation("用户列表")
+    @ApiOperation("添加用户")
     @PostMapping("/save")
     public Result<?> save(@RequestBody SysUser sysUser) {
         boolean flag = sysUserService.save(sysUser);
@@ -49,7 +49,7 @@ public class UserController {
         return Result.success(ResultCode.E03);
     }
 
-    @ApiOperation("用户列表")
+    @ApiOperation("修改用户1")
     @PostMapping("/update1")
     @DateVersion(tableName = "sys_user", idName = "userId")
     public Result<?> update1(@RequestBody SysUser sysUser) {
@@ -58,10 +58,9 @@ public class UserController {
             return Result.success(ResultCode.E02);
         }
         return Result.failure(ResultCode.E03);
-
     }
 
-    @ApiOperation("用户列表")
+    @ApiOperation("修改用户")
     @PostMapping("/update")
     public Result<?> update(@RequestBody SysUser sysUser) {
         int flag = sysUserService.updateUserById(sysUser);
@@ -69,6 +68,8 @@ public class UserController {
             return Result.success(ResultCode.E02);
         }
         return Result.failure(ResultCode.E03);
-
     }
+
+
+
 }

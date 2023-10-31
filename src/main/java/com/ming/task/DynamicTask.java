@@ -1,4 +1,4 @@
-package com.ming.service;
+package com.ming.task;
 
 import cn.hutool.core.convert.ConverterRegistry;
 import com.alibaba.fastjson.JSON;
@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +28,8 @@ import java.util.concurrent.ScheduledFuture;
  */
 @Slf4j
 @Component
+@Order(Integer.MAX_VALUE)
+@Lazy(value = false)
 public class DynamicTask {
     /**
      * 以下两个都是线程安全的集合类。
@@ -57,9 +61,9 @@ public class DynamicTask {
      */
     public Runnable getRunnable(InfoTask task) {
         return () -> {
-            //log.info("测试任务消息推送开始");
-            //System.out.println("此时时间==>" + LocalDateTime.now());
-            //log.info("测试任务消息推送完成:{}", JSON.toJSONString(task));
+            log.info("测试任务消息推送开始");
+            System.out.println("此时时间==>" + LocalDateTime.now());
+            log.info("测试任务消息推送完成:{}", JSON.toJSONString(task));
         };
     }
 
