@@ -61,9 +61,9 @@ public class DynamicTask {
      */
     public Runnable getRunnable(InfoTask task) {
         return () -> {
-            log.info("测试任务消息推送开始");
+            //log.info("测试任务消息推送开始");
             System.out.println("此时时间==>" + LocalDateTime.now());
-            log.info("测试任务消息推送完成:{}", JSON.toJSONString(task));
+            //log.info("测试任务消息推送完成:{}", JSON.toJSONString(task));
         };
     }
 

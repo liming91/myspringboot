@@ -91,12 +91,14 @@ public class DateTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        DateTime newDate2 = DateUtil.offsetDay(new Date(), -3);
-        System.out.println(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN));
-        boolean after = after(DateUtil.parse(DateUtil.format(newDate2, DatePattern.NORM_DATETIME_PATTERN)));
-        System.out.println(after);
-
-
+        Date date = new Date();
+        System.out.println(DateUtil.format(date, DatePattern.NORM_DATETIME_PATTERN));
+        DateTime newDate1 = DateUtil.offsetDay(new Date(), +1);
+        System.out.println(DateUtil.format(newDate1, DatePattern.NORM_DATETIME_PATTERN));
+        boolean before = newDate1.before(date);
+        System.out.println(before);
+        boolean a = newDate1.after(date);
+        System.out.println(a);
     }
 
 
