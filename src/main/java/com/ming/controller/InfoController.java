@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @AllArgsConstructor
@@ -25,6 +27,15 @@ public class InfoController {
 
     @NeedDecrypt()
     @ApiOperation("信息列表")
+    @GetMapping("/list")
+    public Result<?> list() {
+        List<Info> list = infoService.list();
+        return Result.success(list);
+    }
+
+
+    @NeedDecrypt()
+    @ApiOperation("信息列表分页")
     @GetMapping("/userPage")
     public Result<?> userPage(@RequestParam(defaultValue = "1") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize) {
         IPage<Info> list = infoService.infoPage(pageNo, pageSize);

@@ -6,6 +6,7 @@ import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ming.annotation.DecryptField;
 import com.ming.entities.Info;
+import com.ming.util.http.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -68,25 +69,44 @@ public class DecryptAop {
             for (Field declaredField : declaredFields) {
                 if (("data").equals(declaredField.getName())) {
                     declaredField.setAccessible(true);
-                    Page page = (Page) declaredField.get(obj);
-                    List list = page.getRecords();
-                    for (Object o : list) {
-                        Class<?> aClass = o.getClass();
-                        Field[] fields = aClass.getDeclaredFields();
-                        for (Field field : fields) {
-                            if( field.isAnnotationPresent(DecryptField.class)){
-                                field.setAccessible(true);
-                                String value = field.get(o).toString();
-                                //加密数据的解密处理
-                                value = this.decrpyt(value);
-                                //把解密后的字段属性值重新赋值
-                                field.set(o, value);
+                    if (declaredField.get(obj) instanceof Page) {
+                        Page page = (Page) declaredField.get(obj);
+                        List list = page.getRecords();
+                        for (Object o : list) {
+                            Class<?> entityClazz = o.getClass();
+                            Field[] fields = entityClazz.getDeclaredFields();
+                            for (Field field : fields) {
+                                if (field.isAnnotationPresent(DecryptField.class)) {
+                                    field.setAccessible(true);
+                                    //加密数据的解密处理
+                                    String value = this.decrpyt(field.get(o).toString());
+                                    //把解密后的字段属性值重新赋值
+                                    field.set(o, value);
+                                }
+                            }
+
+                        }
+                    }
+
+                    if (declaredField.get(obj) instanceof List) {
+                        List list = (List) declaredField.get(obj);
+                        for (Object o : list) {
+                            Class<?> resultClazz = o.getClass();
+                            Field[] fields = resultClazz.getDeclaredFields();
+                            for (Field field : fields) {
+                                if (field.isAnnotationPresent(DecryptField.class)) {
+                                    field.setAccessible(true);
+                                    //加密数据的解密处理
+                                    String value = this.decrpyt(field.get(o).toString());
+                                    //把解密后的字段属性值重新赋值
+                                    field.set(o, value);
+                                }
                             }
                         }
-
                     }
 
                 }
+
             }
         }
     }
