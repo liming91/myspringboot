@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.ming.annotation.DecryptField;
 import com.ming.annotation.EncryptField;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class Info implements Serializable {
      *
      */
     @EncryptField
+    @DecryptField
     @TableField(value = "tel")
     private String tel;
 

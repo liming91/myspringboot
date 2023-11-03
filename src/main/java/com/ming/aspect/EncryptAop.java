@@ -1,5 +1,8 @@
 package com.ming.aspect;
 
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
+import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import com.ming.annotation.EncryptField;
 import com.ming.util.RSAUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +17,6 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.security.KeyPair;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,13 +53,6 @@ public class EncryptAop {
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         log.info("===============加密环绕通知开始===============");
         try {
-            // 生成密钥对
-            KeyPair keyPair = RSAUtil.genKeyPair();
-            String privateKey = new String(Base64.encodeBase64(keyPair.getPrivate().getEncoded()));
-            String publicKey = new String(Base64.encodeBase64(keyPair.getPublic().getEncoded()));
-            map.put("privateKey", privateKey);
-            map.put("publicKey", publicKey);
-
             Object[] args = proceedingJoinPoint.getArgs();
             if (args.length > 0) {
                 for (Object arg : args) {
@@ -113,6 +107,11 @@ public class EncryptAop {
      * @throws Exception
      */
     public String encrypt(String arg) throws Exception {
-       return RSAUtil.encrypt(arg, (String) map.get("publicKey"));
+        //这里特别注意一下，对称加密是根据密钥进行加密和解密的，加密和解密的密钥是相同的，一旦泄漏，就无秘密可言，
+        //“my_aop_test”就是我自定义的密钥，这里仅作演示使用，实际业务中，这个密钥要以安全的方式存储；
+        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.DES.getValue(), "my_aop_test".getBytes()).getEncoded();
+        SymmetricCrypto aes = new SymmetricCrypto(SymmetricAlgorithm.DES, key);
+        String encryptValue = aes.encryptBase64(arg);
+        return encryptValue;
     }
 }
