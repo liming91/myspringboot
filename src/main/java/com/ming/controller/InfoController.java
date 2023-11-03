@@ -1,6 +1,7 @@
 package com.ming.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ming.annotation.NeedEncrypt;
 import com.ming.entities.Info;
 import com.ming.enums.ResultCode;
 import com.ming.service.InfoService;
@@ -36,6 +37,7 @@ public class InfoController {
 
     @ApiOperation("添加")
     @PostMapping("/save")
+    @NeedEncrypt
     public Result<?> save(@RequestBody Info info){
         boolean flag =  infoService.saveOrUpdateInfo(info);
         if(flag){
