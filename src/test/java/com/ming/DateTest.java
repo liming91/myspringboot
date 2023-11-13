@@ -4,11 +4,14 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author liming
@@ -91,14 +94,15 @@ public class DateTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Date date = new Date();
-        System.out.println(DateUtil.format(date, DatePattern.NORM_DATETIME_PATTERN));
-        DateTime newDate1 = DateUtil.offsetDay(new Date(), +1);
-        System.out.println(DateUtil.format(newDate1, DatePattern.NORM_DATETIME_PATTERN));
-        boolean before = newDate1.before(date);
-        System.out.println(before);
-        boolean a = newDate1.after(date);
-        System.out.println(a);
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i <3 ; i++) {
+            System.out.println(System.currentTimeMillis()+i);
+            Date date1 = new Date(System.currentTimeMillis()+i);
+           // String format1 = DateUtil.format(date1, "yyyy-MM-dd HH:mm")+":0"+i;
+            String format = DateUtil.format(date1, DatePattern.NORM_DATETIME_MS_PATTERN);
+            list.add(format);
+        }
+        System.out.println(list);
     }
 
 

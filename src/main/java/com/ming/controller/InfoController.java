@@ -1,5 +1,7 @@
 package com.ming.controller;
 
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ming.annotation.NeedDecrypt;
 import com.ming.annotation.NeedEncrypt;
@@ -13,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -54,6 +57,22 @@ public class InfoController {
     @NeedEncrypt
     public Result<?> save(@RequestBody Info info) {
         boolean flag = infoService.saveOrUpdateInfo(info);
+        if (flag) {
+            return Result.success(ResultCode.E02);
+        }
+        return Result.failure(ResultCode.E03);
+    }
+
+
+    @ApiOperation("批量添加")
+    @PostMapping("/batchSave")
+    @NeedEncrypt
+    public Result<?> batchSave(@RequestBody List<Info> info) {
+        for (int i = 0; i < info.size(); i++) {
+            //批量插入时间会一致，解决按时间排序问题
+            info.get(i).setTime(new Date(System.currentTimeMillis()+i));
+        }
+        boolean flag = infoService.saveOrUpdateBatch(info);
         if (flag) {
             return Result.success(ResultCode.E02);
         }
