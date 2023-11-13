@@ -70,7 +70,7 @@ public class InfoController {
     public Result<?> batchSave(@RequestBody List<Info> info) {
         for (int i = 0; i < info.size(); i++) {
             //批量插入时间会一致，解决按时间排序问题
-            info.get(i).setTime(new Date(System.currentTimeMillis()+i));
+            info.get(i).setTime(new Date(System.currentTimeMillis() + i));
         }
         boolean flag = infoService.saveOrUpdateBatch(info);
         if (flag) {
