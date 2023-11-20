@@ -41,6 +41,7 @@ public class UserController {
 
     @ApiOperation("添加用户")
     @PostMapping("/save")
+    @DateVersion(tableName = "sys_user", idName = "userId")
     public Result<?> save(@RequestBody SysUser sysUser) {
         boolean flag = sysUserService.save(sysUser);
         if (flag) {

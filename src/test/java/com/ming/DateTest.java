@@ -1,16 +1,10 @@
 package com.ming;
 
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUnit;
-import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.*;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -93,16 +87,18 @@ public class DateTest {
 
     }
 
+    @Test
+    public void test4(){
+        //6天22小时40分
+        String formatBetween = DateUtil.formatBetween(DateUtil.parse("2023-11-20 10:24:09"),DateUtil.parse("2023-11-13 11:43:23"), BetweenFormatter.Level.MINUTE);
+        System.out.println(formatBetween);
+    }
+
+
     public static void main(String[] args) throws InterruptedException {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i <3 ; i++) {
-            System.out.println(System.currentTimeMillis()+i);
-            Date date1 = new Date(System.currentTimeMillis()+i);
-           // String format1 = DateUtil.format(date1, "yyyy-MM-dd HH:mm")+":0"+i;
-            String format = DateUtil.format(date1, DatePattern.NORM_DATETIME_MS_PATTERN);
-            list.add(format);
-        }
-        System.out.println(list);
+        //6天22小时40分
+        String formatBetween = DateUtil.formatBetween(DateUtil.parse("2023-11-20 10:24:09"),DateUtil.parse("2023-11-13 11:43:23"), BetweenFormatter.Level.MINUTE);
+        System.out.println(formatBetween);
     }
 
 
