@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 防重复提交
  * @Description:
  * @Author: the_pure
  * @CreateDate: 2021/11/18 14:09
@@ -39,15 +40,15 @@ public class ForbidRepeatSubmitHandler {
      *
      * @return
      */
-    @Around("pointcut()&&@annotation(ForbidRepeatSubmit)")
-    public Result<?> around(ProceedingJoinPoint joinPoint, ForbidRepeatSubmit ForbidRepeatSubmit) {
+    @Around("pointcut()&&@annotation(forbidRepeatSubmit)")
+    public Result<?> around(ProceedingJoinPoint joinPoint, ForbidRepeatSubmit forbidRepeatSubmit) {
         Object obj = null;
         // 操作方法前判定是否提交过
         // 获取request请求
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
                 .getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        SubmitEnum type = ForbidRepeatSubmit.type();
+        SubmitEnum type = forbidRepeatSubmit.type();
         String key = "";
         if(SubmitEnum.IP.equals(type)){// IP
             // ForbidRepeatSubmit+地址+访问路径+访问方法类型
@@ -68,7 +69,7 @@ public class ForbidRepeatSubmitHandler {
                 obj = joinPoint.proceed();
                 System.err.println("操作成功！");
                 // 将该操作记录到redis
-                redisTemplate.opsForValue().set(key,0,ForbidRepeatSubmit.time(), TimeUnit.SECONDS);
+                redisTemplate.opsForValue().set(key,0,forbidRepeatSubmit.time(), TimeUnit.SECONDS);
             } catch (Throwable e) {
                 e.printStackTrace();
             }
