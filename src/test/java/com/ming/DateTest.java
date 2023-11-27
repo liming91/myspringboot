@@ -96,9 +96,11 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        //6天22小时40分
-        String formatBetween = DateUtil.formatBetween(DateUtil.parse("2023-11-20 10:24:09"),DateUtil.parse("2023-11-13 11:43:23"), BetweenFormatter.Level.MINUTE);
-        System.out.println(formatBetween);
+        String planDate ="2023-11-22 09:00:00";
+        DateTime parse = DateUtil.parse(planDate, DatePattern.NORM_DATETIME_PATTERN);
+        Date deviceOffset = DateUtil.offsetMonth(parse,1*12);
+        String f = DateUtil.format(deviceOffset, DatePattern.NORM_DATETIME_PATTERN);
+        System.out.println(f);
     }
 
 
