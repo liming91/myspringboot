@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.mapper.ProductMapper">
+
+    <resultMap id="BaseResultMap" type="com.ming.entities.Product">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="version" column="version" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,name,num,
+        vesrion
+    </sql>
+
+    <update id="updateByIdProduct" parameterType="com.ming.entities.Product">
+        update product
+        <set>
+            <if test="name != null and name !='' ">
+                name = #{name},
+            </if>
+            <if test="num != null ">
+                num = #{num},
+            </if>
+            <if test="version != null ">
+                version = version+1
+            </if>
+        </set>
+        <where>
+            id = #{id} <!--and version = #{version}-->
+        </where>
+    </update>
+
+    <select id="findByIdProduct" resultType="com.ming.entities.Product" parameterType="java.lang.String">
+        select * from product where id = #{id} <!-- 悲观锁加上for update -->
+    </select>
+
+</mapper>

@@ -28,12 +28,11 @@ public class Result<T> {
         this.msg = resultCode.getMessage();
     }
 
-    public Result(ResultCode resultCode,T data) {
+    public Result(ResultCode resultCode, T data) {
         this.code = resultCode.getCode();
         this.msg = resultCode.getMessage();
-        this.data =data;
+        this.data = data;
     }
-
 
 
     public static Result success() {
@@ -52,11 +51,26 @@ public class Result<T> {
         return result;
     }
 
-    public static Result success(boolean success,int code, String message) {
+    public static Result success(boolean success, int code, String message) {
         Result result = new Result();
         result.setSuccess(success);
         result.setCode(code);
         result.setMsg(message);
+        return result;
+    }
+
+
+    /**
+     * 返回成功数据（不带 data）
+     *
+     * @param resultCode
+     * @return
+     */
+    public static Result success(ResultCode resultCode) {
+        Result result = new Result();
+        result.setSuccess(true);
+        result.setCode(resultCode.getCode());
+        result.setMsg(resultCode.getMessage());
         return result;
     }
 
