@@ -36,7 +36,7 @@
     </update>
 
     <select id="findByIdProduct" resultType="com.ming.entities.Product" parameterType="java.lang.String">
-        select * from product where id = #{id} <!-- 悲观锁加上for update -->
+        select * from product where id = #{id} <!-- 悲观锁加上 -->for update
     </select>
 
 </mapper>

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
+
 /**
  * 悲观锁和乐观锁介绍以及相应测试
  *
@@ -31,6 +33,7 @@ public class PressureController {
      * @param product
      * @return
      */
+    @Transactional
     @ApiOperation("库存扣减")
     @PostMapping("/update")
     public Result<?> save(@RequestBody Product product) {

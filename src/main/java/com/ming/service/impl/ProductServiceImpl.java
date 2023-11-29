@@ -8,7 +8,8 @@ import com.ming.mapper.ProductMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.transaction.Transactional;
 
 /**
  * @author Y
@@ -35,10 +36,13 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product>
      * 但是乐观锁虽说效率高但是更新率很低，可以看到上面1000个并发执行的时候才更新成功198次，可以说这两种锁是各自弥补缺点，什么为什么不一起用？我只能说一起用效率是最低的，虽然各自弥补缺点，但并不是相辅相成。
      * 这就是为什么读为居多用乐观，写为居多用悲观了
      *
+     * 测试：
+     * 悲观锁测试加上刚刚的for update，加上事务注解
+     * 乐观锁测试删掉for updata和事务注解，加上version=#{param.version}版本判断
      * @param product
      * @return
      */
-    @Transactional(rollbackFor = ServiceException.class)
+
     @Override
     public int updateByIdProduct(Product product) {
         int rows = 0;
