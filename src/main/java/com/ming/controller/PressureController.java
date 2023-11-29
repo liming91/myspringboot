@@ -33,14 +33,11 @@ public class PressureController {
      * @param product
      * @return
      */
-    @Transactional
+
     @ApiOperation("库存扣减")
     @PostMapping("/update")
     public Result<?> save(@RequestBody Product product) {
-        //购买商品的时候，减去相应库存，注意这里减库存默认为-1
-        Product prod = productService.findByIdProduct(product.getId());
-        prod.setNum(prod.getNum() - 1);
-        int rows = productService.updateByIdProduct(prod);
+        int rows = productService.updateByIdProduct(product);
         if (rows > 0) {
             return Result.success(ResultCode.E05);
         }

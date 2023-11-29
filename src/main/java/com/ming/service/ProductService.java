@@ -10,7 +10,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ProductService extends IService<Product> {
 
-    Product findByIdProduct(String id);
 
     int updateByIdProduct(Product product);
 }
