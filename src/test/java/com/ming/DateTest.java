@@ -2,8 +2,10 @@ package com.ming;
 
 import cn.hutool.core.date.*;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -96,12 +98,18 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        String planDate ="2023-11-22 09:00:00";
-        DateTime parse = DateUtil.parse(planDate, DatePattern.NORM_DATETIME_PATTERN);
-        Date deviceOffset = DateUtil.offsetMonth(parse,1*12);
-        String f = DateUtil.format(deviceOffset, DatePattern.NORM_DATETIME_PATTERN);
-        System.out.println(f);
-    }
+        List<String> sevenDate = getSevenDate(7);
+        System.out.println(sevenDate);
 
+    }
+    public static List<String> getSevenDate(int day) {
+        List<String> dateList = new ArrayList<>();
+        for (int i = 0; i < day; i++) {
+            Date date = DateUtils.addDays(new Date(), -i);
+            dateList.add( DateUtil.format(date,DatePattern.NORM_DATE_PATTERN));
+        }
+        Collections.sort(dateList);
+        return dateList;
+    }
 
 }

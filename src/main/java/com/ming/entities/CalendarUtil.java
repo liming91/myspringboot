@@ -386,7 +386,7 @@ public class CalendarUtil {
 
 
     public static void main(String[] args) {
-        List<String> timeList = getTimeList("2023-01-01 21:00:00", "2023-01-01 21:00:00", 0);
+        List<String> timeList = getTimeList("2023-01-01 21:00:00", "2023-01-01 21:00:00", 1);
         System.out.println(timeList.size());
         System.out.println(JSON.toJSONString(timeList));
     }
