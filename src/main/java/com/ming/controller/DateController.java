@@ -1,5 +1,7 @@
 package com.ming.controller;
 
+import com.ming.bean.Test;
+import com.ming.entities.VO.WeekData;
 import com.ming.service.ITestService;
 import com.ming.util.http.Result;
 import io.swagger.annotations.Api;
@@ -48,5 +50,11 @@ public class DateController {
     public Result<?> fenTime(int dateType, String startTime, String endTime) {
         List<Map<String, Object>> map = iTestService.fenTime(dateType, startTime, endTime);
         return Result.success(map);
+    }
+
+    @GetMapping("/week")
+    public Result<?> week() {
+        List<WeekData> list = iTestService.week();
+        return Result.success(list);
     }
 }

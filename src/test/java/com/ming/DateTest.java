@@ -5,7 +5,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -98,8 +100,11 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        List<String> sevenDate = getSevenDate(7);
-        System.out.println(sevenDate);
+        String s ="2023-12-11 14:58:38";
+        DateTime dateTime1 = DateUtil.parse(s, DatePattern.NORM_DATE_PATTERN);
+
+        LocalDate dateTime = LocalDate.parse(DateUtil.format(dateTime1, DatePattern.NORM_DATE_PATTERN));
+        System.out.println(dateTime);
 
     }
     public static List<String> getSevenDate(int day) {

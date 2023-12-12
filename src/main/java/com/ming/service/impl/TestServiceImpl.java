@@ -1,8 +1,11 @@
 package com.ming.service.impl;
 
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.map.MapUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -10,6 +13,7 @@ import com.ming.bean.Test;
 import com.ming.entities.CalendarUtil;
 import com.ming.entities.VO.DataTrendListVo;
 import com.ming.entities.VO.DataTrendVO;
+import com.ming.entities.VO.WeekData;
 import com.ming.enums.DateTypeEnum;
 import com.ming.mapper.TestMapper;
 import com.ming.service.ITestService;
@@ -23,6 +27,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -232,4 +238,51 @@ public class TestServiceImpl implements ITestService {
     }
 
 
+    @Override
+    public List<WeekData> week() {
+        List<Test> list = testMapper.select();
+        List<WeekData> respList = new ArrayList<>();
+        Map<String, List<Test>> collect = list.stream().collect(Collectors.groupingBy(Test::getName));
+        for (Map.Entry<String, List<Test>> entry : collect.entrySet()) {
+            WeekData weekData = new WeekData();
+            weekData.setName(entry.getKey());
+            weekData.setData(getWeekCount(entry.getValue()));
+            respList.add(weekData);
+        }
+        return respList;
+    }
+
+    /**
+     * 按照周统计数量
+     * @param testList
+     * @return
+     */
+    public JSONObject getWeekCount(List<Test> testList){
+        // 获取本周一和本周日的日期
+        LocalDate today = LocalDate.now();
+        LocalDate monday = today.with(DayOfWeek.MONDAY);
+        LocalDate sunday = today.with(DayOfWeek.SUNDAY);
+
+        // 初始化每天的计数为0
+        int[] countPerDay = new int[7];
+
+        // 遍历列表中的每个事件
+        for (Test test : testList) {
+            DateTime dateTime1 = DateUtil.parse(test.getDateTime(), DatePattern.NORM_DATE_PATTERN);
+            LocalDate dateTime = LocalDate.parse(DateUtil.format(dateTime1, DatePattern.NORM_DATE_PATTERN));
+            // 如果事件日期在本周一到周日的范围内，则计数加1
+            if (!dateTime.isBefore(monday) && !dateTime.isAfter(sunday)) {
+                int dayOfWeek = dateTime.getDayOfWeek().getValue();
+                countPerDay[dayOfWeek - 1]++;
+            }
+        }
+
+        JSONObject jsonObject = new JSONObject();
+        // 输出每天的数量
+        for (int i = 0; i < 7; i++) {
+            DayOfWeek dayOfWeek = DayOfWeek.of(i + 1);
+            jsonObject.put(String.valueOf(dayOfWeek.getValue()),countPerDay[i]);
+        }
+        return jsonObject;
+    }
 }
