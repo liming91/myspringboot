@@ -140,7 +140,7 @@ public class ExcelServiceImpl implements ExcelService {
             File file = new File(fileName);
             String minIOPath = MinIoUtil.upload(folderName, file);
             log.info("数据文件生成成功,minIOPath路径：" + minIOPath);
-            minIoUploadUrl = minIoUrl + minIOPath;
+            minIoUploadUrl = minIOPath;
             //删除文件
             file.delete();
         } catch (Exception e) {

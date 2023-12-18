@@ -18,10 +18,11 @@ public class Test implements Serializable {
     @Excel(name = "序号",orderNum = "1")
     private String id;
 
-    @Excel(name = "姓名",orderNum = "2",groupName = "基本信息")
+    @Excel(name = "姓名")
     private String name;
 
-    @Excel(name = "生日", exportFormat = "yyyy-MM-dd", orderNum = "6",groupName = "其他信息")
+    @Excel(name = "图片")
+    private String image;
 
     private String groupTime;
 

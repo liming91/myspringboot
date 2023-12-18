@@ -1,6 +1,7 @@
 package com.ming;
 
 import cn.hutool.core.date.*;
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
@@ -98,20 +99,33 @@ public class DateTest {
         System.out.println(formatBetween);
     }
 
+    private static final double[] BEAUFORT_SCALE = {0.3, 1.6, 3.4, 5.5, 7.9, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7, 36.9};
+    private static final String[] DESCRIPTIONS = {"Calm", "Light air", "Light breeze", "Gentle breeze", "Moderate breeze", "Fresh breeze", "Strong breeze", "Near gale", "Gale", "Strong gale", "Storm", "Violent storm", "Hurricane"};
+
+    public static int calculateWindPower(double windSpeed) {
+        for (int i = 0; i < BEAUFORT_SCALE.length; i++) {
+            if (windSpeed <= BEAUFORT_SCALE[i]) {
+                return i;
+            }
+        }
+        return BEAUFORT_SCALE.length - 1;
+    }
+
+    public static String getWindPowerDescription(int windPower) {
+        return DESCRIPTIONS[windPower];
+    }
+
 
     public static void main(String[] args) throws InterruptedException {
-        String s ="2023-12-11 14:58:38";
-        DateTime dateTime1 = DateUtil.parse(s, DatePattern.NORM_DATE_PATTERN);
-
-        LocalDate dateTime = LocalDate.parse(DateUtil.format(dateTime1, DatePattern.NORM_DATE_PATTERN));
-        System.out.println(dateTime);
+        List<String> sevenDate = getSevenDate(7);
+        System.out.println(JSON.toJSONString(sevenDate));
 
     }
     public static List<String> getSevenDate(int day) {
         List<String> dateList = new ArrayList<>();
         for (int i = 0; i < day; i++) {
             Date date = DateUtils.addDays(new Date(), -i);
-            dateList.add( DateUtil.format(date,DatePattern.NORM_DATE_PATTERN));
+            dateList.add( DateUtil.format(date,"MM.dd"));
         }
         Collections.sort(dateList);
         return dateList;
