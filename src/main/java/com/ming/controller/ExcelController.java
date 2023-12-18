@@ -72,6 +72,7 @@ public class ExcelController {
                     File files = new File(test.getImage());
                     FileInputStream fileInputStream = new FileInputStream(files);
                     MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain", IOUtils.toByteArray(fileInputStream));
+                    //String imgUrl = uploadUtils.uploadFile(multipartFile);
                     String imgUrl = null;
                     test.setImage(imgUrl);
                 } catch (Exception e) {
