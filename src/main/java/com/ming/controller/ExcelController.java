@@ -60,32 +60,6 @@ public class ExcelController {
         }
     }
 
-    @PostMapping("/food/import")
-    @ApiOperation(value = "批量导入Excel")
-    public String save(@RequestParam("file") MultipartFile file) throws Exception {
-        ImportParams params = new ImportParams();
-        List<Test> result = ExcelImportUtil.importExcel(file.getInputStream(),Test.class, params);
-        //将图片上传到FastDFS并且将地址保存
-        result.forEach(test->{
-            if(StringUtils.isNotEmpty(test.getName())){
-                try {
-                    File files = new File(test.getImage());
-                    FileInputStream fileInputStream = new FileInputStream(files);
-                    MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain", IOUtils.toByteArray(fileInputStream));
-                    //String imgUrl = uploadUtils.uploadFile(multipartFile);
-                    String imgUrl = null;
-                    test.setImage(imgUrl);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        //业务层保存数据
-
-        return "success";
-    }
-
 
     @GetMapping("/export")
     public void export(HttpServletResponse response) {
@@ -96,6 +70,14 @@ public class ExcelController {
     @GetMapping("/exportSheet")
     public void exportSheet(HttpServletResponse response) {
         excelService.exportSheet(response);
+    }
+
+
+    @PostMapping("/import")
+    @ApiOperation(value = "导入")
+    public Result<?> importTest(@RequestParam("file") MultipartFile file) throws Exception {
+        String s = excelService.importTest(file);
+        return Result.success(s);
     }
 
     @GetMapping("/importTemplate")

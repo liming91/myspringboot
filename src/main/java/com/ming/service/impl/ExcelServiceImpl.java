@@ -1,23 +1,27 @@
 package com.ming.service.impl;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.ming.bean.Test;
 import com.ming.entities.DTO.MailDTO;
+import com.ming.exception.ServiceException;
 import com.ming.mapper.TestMapper;
 import com.ming.service.ExcelService;
-import com.ming.util.DateUtils;
-import com.ming.util.ExcelStyleUtil;
-import com.ming.util.ExcelUtil;
-import com.ming.util.MinIoUtil;
+import com.ming.util.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -100,6 +104,52 @@ public class ExcelServiceImpl implements ExcelService {
         makeExcel(workbook);
     }
 
+    @Override
+    public String importTest(MultipartFile file) throws Exception {
+        ImportParams params = new ImportParams();
+        //params.setNeedSave(true);
+        params.setTitleRows(1);
+        List<Test> result = ExcelImportUtil.importExcel(file.getInputStream(), Test.class, params);
+
+
+        if (StringUtils.isNull(result) || result.size() == 0) {
+            throw new ServiceException("导入用户数据不能为空！");
+        }
+        int successNum = 0;
+        int failureNum = 0;
+        StringBuilder successMsg = new StringBuilder();
+        StringBuilder failureMsg = new StringBuilder();
+        for (Test test : result) {
+            try {
+                // 验证是否存在这个用户
+                List<Test> tests = testMapper.selectList(new LambdaQueryWrapper<Test>().eq(Test::getName, test.getName()));
+                if (CollectionUtils.isEmpty(tests)) {
+                    test.setId(IdUtil.simpleUUID());
+
+                    testMapper.insert(test);
+                    successNum++;
+                    successMsg.append("<br/>" + successNum + "、账号 " + test.getName() + " 导入成功");
+                } else {
+                    failureNum++;
+                    failureMsg.append("<br/>" + failureNum + "、账号 " + test.getName() + " 已存在");
+                }
+            } catch (Exception e) {
+                failureNum++;
+                String msg = "<br/>" + failureNum + "、账号 " +test.getName() + " 导入失败：";
+                failureMsg.append(msg + e.getMessage());
+                log.error(msg, e);
+            }
+        }
+        if (failureNum > 0) {
+            failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据格式不正确，错误如下：");
+            throw new ServiceException(failureMsg.toString());
+        } else {
+            successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
+        }
+
+
+        return successMsg.toString();
+    }
 
     @Override
     public String importTemplate(HttpServletResponse response) {
