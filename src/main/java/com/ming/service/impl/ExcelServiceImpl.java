@@ -125,17 +125,16 @@ public class ExcelServiceImpl implements ExcelService {
                 List<Test> tests = testMapper.selectList(new LambdaQueryWrapper<Test>().eq(Test::getName, test.getName()));
                 if (CollectionUtils.isEmpty(tests)) {
                     test.setId(IdUtil.simpleUUID());
-
                     testMapper.insert(test);
                     successNum++;
-                    successMsg.append("<br/>" + successNum + "、账号 " + test.getName() + " 导入成功");
+                    successMsg.append(successNum).append("账号: ").append(test.getName()).append(" 导入成功");
                 } else {
                     failureNum++;
-                    failureMsg.append("<br/>" + failureNum + "、账号 " + test.getName() + " 已存在");
+                    failureMsg.append(failureNum + "账号: " + test.getName() + " 已存在");
                 }
             } catch (Exception e) {
                 failureNum++;
-                String msg = "<br/>" + failureNum + "、账号 " + test.getName() + " 导入失败：";
+                String msg = failureNum + "账号: " + test.getName() + " 导入失败：";
                 failureMsg.append(msg + e.getMessage());
                 log.error(msg, e);
             }
@@ -146,8 +145,6 @@ public class ExcelServiceImpl implements ExcelService {
         } else {
             successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
         }
-
-
         return successMsg.toString();
     }
 
