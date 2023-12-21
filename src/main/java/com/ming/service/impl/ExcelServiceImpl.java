@@ -111,8 +111,7 @@ public class ExcelServiceImpl implements ExcelService {
         params.setTitleRows(1);
         List<Test> result = ExcelImportUtil.importExcel(file.getInputStream(), Test.class, params);
 
-
-        if (StringUtils.isNull(result) || result.size() == 0) {
+        if (CollectionUtils.isEmpty(result)) {
             throw new ServiceException("导入用户数据不能为空！");
         }
         int successNum = 0;
