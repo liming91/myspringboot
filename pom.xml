@@ -269,6 +269,13 @@
             <version>3.6.3</version>
         </dependency>
 
+        <!-- io常用工具类 -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
@@ -276,6 +283,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <commons.io.version>2.11.0</commons.io.version>
         <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
         <thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
         <!--布局功能的支持程序 thymeleaf3主程序 layout2以上版本-->
