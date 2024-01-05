@@ -13,6 +13,9 @@ import com.ming.annotation.EncryptField;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * @TableName info
  */
@@ -25,6 +28,7 @@ public class Info implements Serializable {
     @TableId(value = "id", type = IdType.ASSIGN_UUID)
     private String id;
 
+    @NotEmpty(message="不能为空")
     @TableField(value = "name")
     private String name;
 

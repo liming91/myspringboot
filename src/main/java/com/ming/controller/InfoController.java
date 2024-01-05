@@ -13,6 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -55,7 +56,7 @@ public class InfoController {
     @ApiOperation("添加")
     @PostMapping("/save")
     @NeedEncrypt
-    public Result<?> save(@RequestBody Info info) {
+    public Result<?> save(@Validated @RequestBody Info info) {
         boolean flag = infoService.saveOrUpdateInfo(info);
         if (flag) {
             return Result.success(ResultCode.E02);

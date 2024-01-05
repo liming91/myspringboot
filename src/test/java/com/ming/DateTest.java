@@ -117,9 +117,13 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        List<String> sevenDate = getSevenDate(7);
-        System.out.println(JSON.toJSONString(sevenDate));
+        String pCycleunit = "0";
+        DateTime dateTime = DateUtil.parse("2023-12-31 21:10:00", DatePattern.NORM_DATETIME_PATTERN);
+        Date deviceOffset  = DateUtil.offsetHour(dateTime, 12);;
 
+
+        String format = DateUtil.format(deviceOffset, DatePattern.NORM_DATETIME_PATTERN);
+        System.out.println(format);
     }
     public static List<String> getSevenDate(int day) {
         List<String> dateList = new ArrayList<>();
