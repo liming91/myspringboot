@@ -35,13 +35,13 @@ public class ExcelServiceImpl implements ExcelService {
     @Autowired
     private TestMapper testMapper;
 
-    @Value("${mail.flag}")
+    @Value("${mail.flag:false}")
     private boolean mailFlag;
 
-    @Value("${mail.url}")
+    @Value("${mail.url:192.168.1.1}")
     private String mailUrl;
 
-    @Value("${mail.to}")
+    @Value("${mail.to:522724933@qq.com}")
     private String mailTo;
 
     @Value("${minio.url}")
