@@ -89,10 +89,25 @@ minio:
   minio_pass: minioadmin
   bucketName: tcyy
   #邮箱
-mail:
-  flag: true
-  url: http://192.168.1.253:7758/mail/sendTemplateMail
-  to: 522724933@qq.com
+  mail:
+    username: 522724933@qq.com
+    password: gpxveppqsnerbhic
+    from: 522724933@qq.com #与上面的username保持一致
+    from-name: 522724933@qq.com
+    host: smtp.qq.com
+    port: 465
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          port: ${spring.mail.port}
+          auth: true
+          starttls:
+            enable: true
+            required: true
 
 # 项目相关配置
 ruoyi:
