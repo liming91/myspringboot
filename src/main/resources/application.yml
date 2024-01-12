@@ -91,7 +91,7 @@ minio:
   #邮箱
   mail:
     username: 522724933@qq.com
-    password: gpxveppqsnerbhic
+    password: 111111111
     from: 522724933@qq.com #与上面的username保持一致
     from-name: 522724933@qq.com
     host: smtp.qq.com
