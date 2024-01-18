@@ -14,6 +14,6 @@ docker ps -a
 http://43.142.146.167:8088
 
 
-感谢JetBrains支持https://www.jetbrains.com
+感谢JetBrains支持：https://www.jetbrains.com
 
 
