@@ -57,4 +57,11 @@ public class DateController {
         List<WeekData> list = iTestService.week();
         return Result.success(list);
     }
+
+    @ApiOperation("7天趋势分析")
+    @GetMapping("/findSevenDate")
+    public Result<?> findSevenDate() {
+        Map<String, Object> map = iTestService.findSevenDate();
+        return Result.success(map);
+    }
 }

@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @Author liming
@@ -117,14 +119,31 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        String pCycleunit = "0";
-        DateTime dateTime = DateUtil.parse("2023-12-31 21:10:00", DatePattern.NORM_DATETIME_PATTERN);
-        Date deviceOffset  = DateUtil.offsetHour(dateTime, 12);;
+        String  s= "小于2km/h";
+        String s1 = StringUtils.substringBefore(s, "km/h");
+        System.out.println(s1);
 
+        String speedStr = "<3级"; // 假设这是你获取的速度字符串
 
-        String format = DateUtil.format(deviceOffset, DatePattern.NORM_DATETIME_PATTERN);
-        System.out.println(format);
+        double windSpeed = getWindSpeed(speedStr);
+        System.out.println(windSpeed);
     }
+
+    public static double getWindSpeed(String s) {
+        if (org.apache.commons.lang3.StringUtils.isEmpty(s)) {
+            return 0.0;
+        }
+        // 定义一个匹配数字的正则表达式
+        Pattern pattern = Pattern.compile("(\\d+(\\.\\d+)?)"); // 匹配浮点数或整数
+        Matcher matcher = pattern.matcher(s);
+        if (matcher.find()) {
+            return Double.parseDouble(matcher.group(1));
+        } else {
+            return 0.0;
+        }
+    }
+
+
     public static List<String> getSevenDate(int day) {
         List<String> dateList = new ArrayList<>();
         for (int i = 0; i < day; i++) {

@@ -67,4 +67,20 @@
     <select id="select" resultType="com.ming.bean.Test">
         select  * FROM test
     </select>
+
+    <select id="findSevenDate" resultType="com.ming.entities.VO.DataTrendVO">
+        SELECT
+        ROUND(AVG(money),2) as  dataValue,
+        DATE_FORMAT( t.time, '%m-%d' ) AS dateTime
+        FROM
+        test t
+        WHERE
+        DATE_SUB( CURDATE(), INTERVAL 7 DAY )  <![CDATA[ <= ]]>  date( t.time )
+        GROUP BY
+        DATE_FORMAT( t.time, '%m-%d' )
+        ORDER BY
+        DATE_FORMAT( t.time, '%m-%d' )
+    </select>
+
+
 </mapper>

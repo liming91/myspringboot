@@ -232,10 +232,6 @@ public class TestServiceImpl implements ITestService {
     }
 
 
-    public static void main(String[] args) {
-        long second = DateUtil.between(DateUtil.yesterday(), new Date(), DateUnit.DAY);
-        System.out.println(second);
-    }
 
 
     @Override
@@ -284,5 +280,60 @@ public class TestServiceImpl implements ITestService {
             jsonObject.put(String.valueOf(dayOfWeek.getValue()),countPerDay[i]);
         }
         return jsonObject;
+    }
+
+
+    @Override
+    public Map<String, Object> findSevenDate() {
+        Map<String, Object> resMap = new HashMap<>(2);
+        List<String> sevenDate = getSevenDate(7);
+        List<DataTrendVO> dataTrendVOList = testMapper.findSevenDate();
+        List<DataTrendVO> dataList = dataList(sevenDate, dataTrendVOList);
+        resMap.put("rainFall", dataList);
+        return resMap;
+    }
+
+    /**
+     * 对最近7天的数据进行处理
+     * @param sevenDate
+     * @param dataList
+     * @return
+     */
+    private static List<DataTrendVO> dataList(List<String> sevenDate, List<DataTrendVO> dataList) {
+        List<DataTrendVO> resList = new ArrayList<>();
+        for (String s : sevenDate) {
+            DataTrendVO dataTrendVO = new DataTrendVO();
+            dataTrendVO.setDateTime(s);
+            boolean b = false;
+            for (DataTrendVO data : dataList) {
+                if (s.equals(data.getDateTime())) {
+                    dataTrendVO.setDataValue(data.getDataValue());
+                    resList.add(dataTrendVO);
+                    b = true;
+                    break;
+                }
+            }
+            if (!b) {
+                dataTrendVO.setDataValue(0.0);
+                resList.add(dataTrendVO);
+            }
+        }
+        return resList;
+    }
+
+    /**
+     * 最近7天数据
+     *
+     * @param day
+     * @return
+     */
+    public static List<String> getSevenDate(int day) {
+        List<String> dateList = new ArrayList<>();
+        for (int i = 0; i < day; i++) {
+            Date date = org.apache.commons.lang3.time.DateUtils.addDays(new Date(), -i);
+            dateList.add(DateUtil.format(date, "MM-dd"));
+        }
+        Collections.sort(dateList);
+        return dateList;
     }
 }

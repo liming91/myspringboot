@@ -21,4 +21,5 @@ public interface TestMapper  extends BaseMapper<Test> {
 
     List<Test> getList(@Param("queryDate") String queryDate, @Param("resDate") String resDate, @Param("localDate") String localDate);
 
+    List<DataTrendVO> findSevenDate();
 }

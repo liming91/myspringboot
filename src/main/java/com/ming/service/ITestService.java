@@ -17,4 +17,6 @@ public interface ITestService {
     List<Map<String, Object>> fenTime(int dateType, String startTime, String endTime);
 
     List<WeekData> week();
+
+    Map<String, Object> findSevenDate();
 }
