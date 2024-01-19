@@ -68,6 +68,13 @@ public class TokenDemoUtil {
         }
         //判断token过期 或者过期时间在系统时间之后过期
         boolean after = nowDate.after(expRdiesDate);
+        //jwt中校验token过期 JWTVerifier->verifyClaims->assertValidDateClaim
+//        private void assertDateIsFuture(Date date, long leeway, Date today) {
+//            today.setTime(today.getTime() - leeway * 1000);
+//            if (date != null && today.after(date)) {
+//                throw new TokenExpiredException(String.format("The Token has expired on %s.", date));
+//            }
+//        }
 
         if (after) {
             System.out.println("缓存的key：token过期");
