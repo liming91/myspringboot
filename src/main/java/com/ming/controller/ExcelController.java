@@ -4,8 +4,11 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
+import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.ming.bean.Test;
 import com.ming.service.ExcelService;
+import com.ming.service.ITestService;
+import com.ming.util.ExcelStyleUtil;
 import com.ming.util.ExcelUtil;
 import com.ming.util.http.Result;
 import io.swagger.annotations.Api;
@@ -40,6 +43,10 @@ public class ExcelController {
     private ExcelService excelService;
 
 
+
+    @Autowired
+    private ITestService iTestService;
+
     @ApiOperation(value = "Excel模板下载")
     @GetMapping("/importDownload")
     public void importExcel(HttpServletResponse response) {
@@ -65,6 +72,30 @@ public class ExcelController {
     public void export(HttpServletResponse response) {
         excelService.export(response);
     }
+
+    @GetMapping("/exportList")
+    public void exportList(HttpServletResponse response,String startTime,String endTime) throws IOException {
+        List<Test> list = iTestService.getList();
+        String title = "测试导出.xls";
+        if(StringUtils.isNotBlank(startTime)){
+            title = startTime + "-" + endTime + title;
+        }
+        ExportParams exportParams = new ExportParams();
+        exportParams.setType(ExcelType.XSSF);
+        exportParams.setStyle(ExcelStyleUtil.class);
+        exportParams.setHeight((short) 15);
+
+        Workbook result = ExcelExportUtil.exportExcel(exportParams, Test.class, list);
+        //设置请求头,解决文件名中文乱码问题
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader("content-Type", "application/vnd.ms-excel");
+        response.setHeader("Content-disposition","attachment;fileName="+ URLEncoder.encode(title,"utf-8"));
+        result.write(response.getOutputStream());
+        // 清除response
+        response.flushBuffer();
+        result.close();
+    }
+
 
 
     @GetMapping("/exportSheet")

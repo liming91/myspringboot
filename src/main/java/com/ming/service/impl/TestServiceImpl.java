@@ -336,4 +336,10 @@ public class TestServiceImpl implements ITestService {
         Collections.sort(dateList);
         return dateList;
     }
+
+
+    @Override
+    public List<Test> getList() {
+        return testMapper.select();
+    }
 }

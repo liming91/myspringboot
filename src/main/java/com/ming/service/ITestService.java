@@ -19,4 +19,6 @@ public interface ITestService {
     List<WeekData> week();
 
     Map<String, Object> findSevenDate();
+
+    List<Test> getList();
 }

@@ -32,6 +32,7 @@ public class Test implements Serializable {
     private String dateTime;
 
     @TableField(exist = false)
+    @Excel(name = "金额", width = 20, replace = { "异常_0", "正常_1"}, orderNum = "2")
     private Double dataValue;
 
 }

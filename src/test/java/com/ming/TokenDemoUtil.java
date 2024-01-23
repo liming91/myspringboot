@@ -1,6 +1,7 @@
 package com.ming;
 
 
+import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import org.junit.Test;
@@ -11,6 +12,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -25,9 +29,19 @@ import java.util.concurrent.TimeUnit;
 public class TokenDemoUtil {
     //缓存时间3分钟
     private static final long expTime = 3 * 60 * 1000;//ms
+
+    public static final long EXPIRE = 24 * 2;
+
+
+
     @Autowired
     private RedisTemplate redisTemplate;
 
+
+    public static void main(String[] args) {
+        Date date = new Date(LocalDateTime.now().plusHours(EXPIRE).toInstant(ZoneOffset.of("+8")).toEpochMilli());
+        System.out.println(DateUtil.format(date, DatePattern.NORM_DATETIME_PATTERN));
+    }
     @Test
     public void test1() {
         System.out.println("==========主要是测试jwt token 过期时间===========");

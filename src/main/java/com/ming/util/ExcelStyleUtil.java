@@ -3,6 +3,7 @@ package com.ming.util;
 import cn.afterturn.easypoi.excel.entity.params.ExcelExportEntity;
 import cn.afterturn.easypoi.excel.entity.params.ExcelForEachParams;
 import cn.afterturn.easypoi.excel.export.styler.IExcelExportStyler;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 
 /**
@@ -11,67 +12,48 @@ import org.apache.poi.ss.usermodel.*;
  */
 
 public class ExcelStyleUtil implements IExcelExportStyler {
-    private static final short STRING_FORMAT = (short) BuiltinFormats.getBuiltinFormat("TEXT");
-    private static final short FONT_SIZE_TEN = 9;
-    private static final short FONT_SIZE_ELEVEN = 10;
-    private static final short FONT_SIZE_TWELVE = 10;
-    /**
-     * 大标题样式
-     */
-    private CellStyle headerStyle;
-    /**
-     * 每列标题样式
-     */
-    private CellStyle titleStyle;
-    /**
-     * 数据行样式
-     */
+    // 数据行类型
+    public static final String DATA_STYLES = "dataStyles";
+    // 标题类型
+    public static final String TITLE_STYLES = "titleStyles";
+
+    // 标题类型
+    public static final String HEADER_STYLES = "headerStyles";
+
+    // 备注类型
+    public static final String REMARK_STYLES = "remarkStyles";
+
+    //数据行样式
     private CellStyle styles;
+    // 标题样式
+    private CellStyle titleStyle;
+
+    private CellStyle headerStyle;
 
     public ExcelStyleUtil(Workbook workbook) {
         this.init(workbook);
     }
 
-    /**
-     * 初始化样式
-     *
-     * @param workbook
-     */
     private void init(Workbook workbook) {
-        this.headerStyle = initHeaderStyle(workbook);
-        this.titleStyle = initTitleStyle(workbook);
         this.styles = initStyles(workbook);
+        this.titleStyle = initTitleStyle(workbook);
+        this.headerStyle = initHeaderStyle(workbook);
     }
 
-    /**
-     * 大标题样式
-     *
-     * @param color
-     * @return
-     */
+
     @Override
-    public CellStyle getHeaderStyle(short color) {
+    public CellStyle getHeaderStyle(short i) {
         return headerStyle;
     }
 
     /**
-     * 每列标题样式
-     *
-     * @param color
-     * @return
+     * 标题样式
      */
     @Override
-    public CellStyle getTitleStyle(short color) {
+    public CellStyle getTitleStyle(short i) {
         return titleStyle;
     }
 
-    /**
-     * 数据行样式
-     *
-     * @param parity 可以用来表示奇偶行
-     * @param entity 数据内容
-     * @return 样式
-     */
     @Override
     public CellStyle getStyles(boolean parity, ExcelExportEntity entity) {
         return styles;
@@ -89,75 +71,90 @@ public class ExcelStyleUtil implements IExcelExportStyler {
         return getStyles(true, entity);
     }
 
-    /**
-     * 模板使用的样式设置
-     */
     @Override
     public CellStyle getTemplateStyles(boolean isSingle, ExcelForEachParams excelForEachParams) {
         return null;
     }
 
-    /**
-     * 初始化--大标题样式
-     *
-     * @param workbook
-     * @return
-     */
-    private CellStyle initHeaderStyle(Workbook workbook) {
-        CellStyle style = getBaseCellStyle(workbook);
-        style.setFont(getFont(workbook, FONT_SIZE_TWELVE, true));
-        return style;
-    }
 
     /**
-     * 初始化--每列标题样式
-     *
+     * 初始化--标题行样式
      * @param workbook
      * @return
      */
     private CellStyle initTitleStyle(Workbook workbook) {
-        CellStyle style = getBaseCellStyle(workbook);
-        style.setFont(getFont(workbook, FONT_SIZE_ELEVEN, false));
-        //背景色
-        style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
-        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        return style;
+        return buildCellStyle(workbook,TITLE_STYLES);
     }
 
     /**
      * 初始化--数据行样式
-     *
      * @param workbook
      * @return
      */
     private CellStyle initStyles(Workbook workbook) {
-        CellStyle style = getBaseCellStyle(workbook);
-        style.setFont(getFont(workbook, FONT_SIZE_TEN, false));
-        style.setDataFormat(STRING_FORMAT);
-        return style;
+        return buildCellStyle(workbook,DATA_STYLES);
+    }
+
+    private CellStyle initHeaderStyle(Workbook workbook) {
+        return buildCellStyle(workbook,HEADER_STYLES);
     }
 
     /**
-     * 基础样式
-     *
+     * 设置单元格样式
+     * @param workbook
+     * @param type 类型  用来区分是数据行样式还是标题样式
      * @return
      */
-    private CellStyle getBaseCellStyle(Workbook workbook) {
+    public CellStyle buildCellStyle(Workbook workbook, String type) {
         CellStyle style = workbook.createCellStyle();
-        //下边框
+        // 字体样式
+        Font font = workbook.createFont();
+        if(TITLE_STYLES.equals(type)){
+            font.setFontHeightInPoints((short)12);
+            font.setBold(true);
+            // 背景色
+            style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        }
+        if(DATA_STYLES.equals(type)){
+            font.setFontHeightInPoints((short)10);
+        }
+        if(HEADER_STYLES.equals(type)){
+            font.setFontHeightInPoints((short)12);
+            // 背景色
+            style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        }
+        if(REMARK_STYLES.equals(type)){
+            font.setFontHeightInPoints((short)12);
+            // 背景色
+            style.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
+            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        }
+        font.setFontName("Courier New");
+        style.setFont(font);
+        // 设置底边框
         style.setBorderBottom(BorderStyle.THIN);
-        //左边框
+        // 设置左边框
         style.setBorderLeft(BorderStyle.THIN);
-        //上边框
-        style.setBorderTop(BorderStyle.THIN);
-        //右边框
+        // 设置右边框;
         style.setBorderRight(BorderStyle.THIN);
-        //水平居中
+        // 设置顶边框;
+        style.setBorderTop(BorderStyle.THIN);
+        // 设置底边颜色
+        style.setBottomBorderColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex());
+        // 设置左边框颜色;
+        style.setLeftBorderColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex());
+        // 设置右边框颜色;
+        style.setRightBorderColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex());
+        // 设置顶边框颜色;
+        style.setTopBorderColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex());
+        // 设置自动换行;
+        style.setWrapText(false);
+        // 设置水平对齐的样式为居中对齐;
         style.setAlignment(HorizontalAlignment.CENTER);
-        //上下居中
+        // 设置垂直对齐的样式为居中对齐;
         style.setVerticalAlignment(VerticalAlignment.CENTER);
-        //设置自动换行
-        style.setWrapText(true);
         return style;
     }
 
@@ -170,11 +167,11 @@ public class ExcelStyleUtil implements IExcelExportStyler {
      */
     private Font getFont(Workbook workbook, short size, boolean isBold) {
         Font font = workbook.createFont();
-        //字体样式
-        font.setFontName("宋体");
-        //是否加粗
+        // 字体样式
+        font.setFontName("楷体");
+        // 是否加粗
         font.setBold(isBold);
-        //字体大小
+        // 字体大小
         font.setFontHeightInPoints(size);
         return font;
     }
