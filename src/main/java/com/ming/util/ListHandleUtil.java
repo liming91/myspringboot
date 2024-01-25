@@ -52,6 +52,18 @@ public class ListHandleUtil {
         Map<String, List<DataTrendVO>> resMap = Maps.newHashMap();
         // 根据日期分组
         Map<String, List<DataTrendListVo>> mapList = list.stream().collect(Collectors.groupingBy(DataTrendListVo::getGroupTime));
+        //根据名字合并
+//        Map<String, List<EnergyReportDTO>> map = waterCountEnergyList.stream().collect(Collectors.groupingBy(EnergyReportDTO::getBuildName));
+//        for (Map.Entry<String, List<EnergyReportDTO>> entry : map.entrySet()) {
+//            List<EnergyReportDTO> value = entry.getValue();
+//            value.stream().collect(Collectors.groupingBy(item -> (item.getDepartId() + item.getDepartName()), Collectors.toList())).forEach(
+//                    (id, transfer) -> {
+//                        transfer.stream().reduce((a, b) -> new EnergyReportDTO(a.getGardenName(), a.getBuildName(), a.getFloorName(),
+//                                a.getDepartId(), a.getDepartName(), a.getAddr(),
+//                                getFormatDouble(a.getEnergy() + b.getEnergy()), getFormatDouble(a.getCost() + b.getCost()), a.getSortNum())).ifPresent(newWaterCountEnergyList::add);
+//                    }
+//            );
+//        }
         // 数据求和处理
         mapList.forEach((k, v) -> {
             List<DataTrendVO> timeList = v.stream()
