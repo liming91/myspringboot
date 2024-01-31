@@ -71,7 +71,7 @@ public class ObjTest {
     @Test
     public void obj3() throws ParseException {
 
-        List<Order> list  = new ArrayList<>();
+        List<Order> list = new ArrayList<>();
         Order order = new Order();
         order.setAmount(0.0);
         Order order2 = new Order();
@@ -99,7 +99,7 @@ public class ObjTest {
 
     public static void main(String[] args) {
 
-        String fileTime ="2023-01";
+        String fileTime = "2023-01";
         //周
         String[] split = fileTime.split("\\-");
         int year = Integer.parseInt(split[0]);
