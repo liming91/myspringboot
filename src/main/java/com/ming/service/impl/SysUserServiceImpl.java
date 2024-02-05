@@ -15,10 +15,13 @@ import com.ming.manager.factory.AsyncFactory;
 import com.ming.mapper.SysUserMapper;
 import com.ming.service.IUserCache;
 import com.ming.service.SysUserService;
+import com.ming.util.RedisLockUtil;
 import com.ming.util.StringUtils;
 import com.ming.util.http.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -41,12 +44,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     private final RedisTemplate redisTemplate;
 
+    @Autowired
+    private RedisLockUtil redisLockUtil;
+
     @Value(value = "${user.password.maxRetryCount}")
     private int maxRetryCount;
 
     @Value(value = "${user.password.lockTime}")
     private int lockTime;
-
+    String redisLockKey = String.format("%s:lock:%s", "USER_", "LOCK_NAME");
 
     @Override
     public IPage<SysUser> userPage(Integer pageNo, Integer pageSize) {
@@ -87,12 +93,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     /**
      * 密码校验
+     *
      * @param user
      */
     private void passwordValidate(SysUser user) {
         Integer retryCount = (Integer) redisTemplate.boundValueOps(getCacheKey(user.getUserName())).get();
-        if(ObjectUtil.isEmpty(retryCount)){
-            retryCount=0;
+        if (ObjectUtil.isEmpty(retryCount)) {
+            retryCount = 0;
         }
 
         if (retryCount >= Integer.valueOf(maxRetryCount).intValue()) {
@@ -100,12 +107,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             throw new ServiceException("密码连续输入错误,错误5次以上");
         }
 
-        if(!user.getPassword().equals("123456")){
+        if (!user.getPassword().equals("123456")) {
             retryCount = retryCount + 1;
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(user.getUserName(), Constants.LOGIN_FAIL,
-                   "密码重试次数", retryCount));
-            redisTemplate.opsForValue().set(getCacheKey(user.getUserName()),retryCount,lockTime,TimeUnit.MINUTES);
-            throw new ServiceException("密码错误，错误次数:"+retryCount);
+                    "密码重试次数", retryCount));
+            redisTemplate.opsForValue().set(getCacheKey(user.getUserName()), retryCount, lockTime, TimeUnit.MINUTES);
+            throw new ServiceException("密码错误，错误次数:" + retryCount);
         }
     }
 
@@ -115,8 +122,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @param username 用户名
      * @return 缓存键key
      */
-    private String getCacheKey(String username)
-    {
+    private String getCacheKey(String username) {
         return Constants.PWD_ERR_CNT_KEY + username;
     }
 
@@ -132,11 +138,39 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, appletLoginQuery.getUserJobNo())
                 .eq(SysUser::getPassword, appletLoginQuery.getPwd());
         List<SysUser> sysUsers = this.baseMapper.selectList(queryWrapper);
-        if(CollectionUtil.isNotEmpty(sysUsers)){
+        if (CollectionUtil.isNotEmpty(sysUsers)) {
             return true;
         }
         return false;
     }
 
 
+    @Override
+    public boolean saveUser(SysUser sysUser) {
+        //1：加锁 2：查询有没有重复数据 3：更新
+        try {
+            if (redisLockUtil.tryLock(redisLockKey, sysUser.getUserName(), 30)) {
+                log.info("获取redis锁 [" + redisLockKey + "] 成功,执行以下业务逻辑!");
+                //查询重复数据
+                LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, sysUser.getUserName());
+                List<SysUser> sysUsers = this.baseMapper.selectList(queryWrapper);
+                if (CollectionUtils.isNotEmpty(sysUsers)) {
+                    return this.save(sysUser);
+                }
+            } else {
+                log.info("获取redis锁 [" + redisLockKey + "] 失败,锁占用!");
+                throw new ServiceException("重复操作!");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            boolean releaseLock = redisLockUtil.unLock(redisLockKey);
+            if (releaseLock) {
+                log.info("释放redis锁 [" + redisLockKey + "] 成功!");
+            } else {
+                log.info("释放redis锁 [" + redisLockKey + "] 成功!");
+            }
+        }
+        return false;
+    }
 }

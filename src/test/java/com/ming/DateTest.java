@@ -119,14 +119,8 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        String  s= "小于2km/h";
-        String s1 = StringUtils.substringBefore(s, "km/h");
-        System.out.println(s1);
+        DateTime dateTime = DateUtil.parse("2024-02-04", DatePattern.NORM_DATETIME_PATTERN);
 
-        String speedStr = "<3级"; // 假设这是你获取的速度字符串
-
-        double windSpeed = getWindSpeed(speedStr);
-        System.out.println(windSpeed);
     }
 
     public static double getWindSpeed(String s) {

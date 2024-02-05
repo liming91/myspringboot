@@ -30,9 +30,9 @@ public class RepeatSubmitController {
     private final SysUserService sysUserService;
 
     @PostMapping("/save")
-    @RepeatSubmit(interval = 30000, message = "3秒不允许重复操作")
+    //@RepeatSubmit(interval = 30000, message = "3秒不允许重复操作")
     public Result<?> save(@RequestBody SysUser sysUser) {
-        boolean flag = sysUserService.save(sysUser);
+        boolean flag = sysUserService.saveUser(sysUser);
         if (flag) {
             return Result.success(ResultCode.E02);
         }

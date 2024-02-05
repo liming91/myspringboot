@@ -28,4 +28,5 @@ public interface SysUserService extends IService<SysUser> {
      */
     boolean isItaVillage(AppletLoginQuery appletLoginQuery);
 
+    boolean saveUser(SysUser sysUser);
 }
