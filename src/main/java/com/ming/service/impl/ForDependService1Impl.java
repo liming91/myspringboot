@@ -15,14 +15,10 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class ForDependService1Impl implements IForDependService1 {
+public class ForDependService1Impl  {
 
     @Autowired
-    private  IForDependService2 iForDependService2;
+    private  ForDependService2Impl forDependService2Impl;
 
-    @Override
-    public void getDependService() {
-        log.info("ForDependService1Impl:{}","调用services2方法");
-        iForDependService2.getDepend2();
-    }
+
 }

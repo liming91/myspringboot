@@ -1,8 +1,6 @@
 package com.ming.service.impl;
 
-import com.ming.service.IForDependService1;
-import com.ming.service.IForDependService2;
-import lombok.AllArgsConstructor;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,14 +11,13 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-@AllArgsConstructor
-public class ForDependService2Impl implements IForDependService2 {
+public class ForDependService2Impl {
 
-    private final IForDependService1 iForDependService1;
 
-    @Override
-    public void getDepend2() {
-        log.info("ForDependService2Impl:{}","调用services1方法");
-        iForDependService1.getDependService();
+    private  ForDependService1Impl forDependService1;
+
+    @Autowired
+    public ForDependService2Impl(ForDependService1Impl forDependService1) {
+        this.forDependService1 = forDependService1;
     }
 }

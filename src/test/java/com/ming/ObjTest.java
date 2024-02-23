@@ -99,7 +99,7 @@ public class ObjTest {
 
     public static void main(String[] args) {
 
-        String fileTime = "2023-01";
+        String fileTime = "2024-02";
         //周
         String[] split = fileTime.split("\\-");
         int year = Integer.parseInt(split[0]);
@@ -122,7 +122,6 @@ public class ObjTest {
 //        String format = DateUtil.format(dateTime, "yyyy-iw");
 //        System.out.println(format);
 
-        //浅拷贝是进原有对象进行拷贝不会对类中的引用类型的对象进行拷贝
 
     }
 }
