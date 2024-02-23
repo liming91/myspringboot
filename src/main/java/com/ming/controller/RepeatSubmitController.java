@@ -51,9 +51,9 @@ public class RepeatSubmitController {
     }
 
 
-    @DeleteMapping
+    @DeleteMapping("/remove")
     @ForbidRepeatSubmit(type = SubmitEnum.TOKEN, time = 3 * 60)// TOKEN方式 三分钟内不能重复提交
-    public Result<?> remove(@RequestBody Long userId) {
+    public Result<?> remove(Long userId) {
 
         boolean flag = sysUserService.removeById(userId);
         if (flag) {
