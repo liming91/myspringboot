@@ -119,8 +119,8 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        DateTime dateTime = DateUtil.parse("2024-02-04", DatePattern.NORM_DATETIME_PATTERN);
-
+        int day = Integer.parseInt(com.ming.util.DateUtils.getLocalDateTimeDay(com.ming.util.DateUtils.getGoalDate(0, 0)));
+        System.out.println(day);
     }
 
     public static double getWindSpeed(String s) {

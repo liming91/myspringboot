@@ -30,6 +30,7 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 /**
@@ -97,30 +98,54 @@ public class ObjTest {
         System.out.println(flux);
     }
 
-    public static void main(String[] args) {
 
-        String fileTime = "2024-02";
-        //周
-        String[] split = fileTime.split("\\-");
-        int year = Integer.parseInt(split[0]);
-        int week = Integer.parseInt(split[1]);
+    static Integer count = 0;
+    private static ReentrantLock lock = new ReentrantLock();
+    public static void main(String[] args) throws InterruptedException {
 
-        //当前周的开始时间
-        String startTime = WeekToDayUtil.weekToDayFisrtFormate(year, week);
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                    try {
+                        lock.lock();
+                        for (int i = 0; i < 5000; i++) {
 
+                            count++;
 
-        //获取上周的开始时间
-        String lastStartTime = DateUtil.format(DateUtil.beginOfDay(DateUtil.offset(DateUtil.parse(startTime), DateField.WEEK_OF_YEAR, -1)), "yyyy-MM-dd");
-        int weekCount = DateUtil.weekOfYear(DateUtil.parse(lastStartTime));
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }finally {
+                        lock.unlock();
+                    }
+            }
+        });
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
 
+                try {
+                    lock.lock();
+                    for (int i = 0; i < 5000; i++) {
 
-        System.out.println(startTime);
-        System.out.println(lastStartTime);
-        System.out.println(weekCount);
+                        count--;
 
-//        DateTime dateTime = DateUtil.lastWeek();
-//        String format = DateUtil.format(dateTime, "yyyy-iw");
-//        System.out.println(format);
+                    }
+                }catch (Exception e){
+
+                }finally {
+                    lock.unlock();
+                }
+            }
+        });
+
+        t1.start();
+        t2.start();
+        // 主线程等待t1和t2执行完成，再执行下面的代码
+        t1.join();
+        t2.join();
+        System.out.println(count);
+
 
 
     }

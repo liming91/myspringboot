@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -192,6 +193,39 @@ public class DateUtils {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calendar.getTime());
+    }
+
+
+    /**
+     * 获取月份（格式化到天）
+     *
+     * @return
+     */
+    public static String getLocalDateTimeDay(LocalDate localDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd");
+        // 格式化时间
+        String localDateTimeStr = formatter.format(localDate);
+        return localDateTimeStr;
+    }
+
+
+    /**
+     * 获取指定日期
+     *
+     * @param num 偏移量
+     * @param dateType 日期类型 0-日 1-月 2-年
+     * @return
+     */
+    public static LocalDate getGoalDate(Integer num, Integer dateType) {
+        LocalDate localDate = null;
+        if (dateType == 0) {
+            localDate = LocalDate.now().plus(num, ChronoUnit.DAYS);
+        } else if (dateType == 1) {
+            localDate = LocalDate.now().plus(num, ChronoUnit.MONTHS);
+        } else if (dateType == 2) {
+            localDate = LocalDate.now().plus(num, ChronoUnit.YEARS);
+        }
+        return localDate;
     }
 
 }
