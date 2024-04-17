@@ -119,8 +119,20 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        int day = Integer.parseInt(com.ming.util.DateUtils.getLocalDateTimeDay(com.ming.util.DateUtils.getGoalDate(0, 0)));
-        System.out.println(day);
+//        int day = Integer.parseInt(com.ming.util.DateUtils.getLocalDateTimeDay(com.ming.util.DateUtils.getGoalDate(0, 0)));
+//        System.out.println(day);
+        String s1 = "2024-03-25";
+        String s2 = "2024-03-31";
+        DateTime dateTime = DateUtil.offsetMonth(DateUtil.parse(s1, DatePattern.NORM_DATE_PATTERN), -12);
+        System.out.println(DateUtil.format(dateTime, DatePattern.NORM_DATE_PATTERN));
+
+        String formatBetween = DateUtil.formatBetween(DateUtil.parse(s1), DateUtil.parse(s2), BetweenFormatter.Level.DAY);
+
+        long betweenDay = DateUtil.between(DateUtil.parse(s1), DateUtil.parse(s2), DateUnit.DAY);
+
+        System.out.println(betweenDay);
+
+
     }
 
     public static double getWindSpeed(String s) {
