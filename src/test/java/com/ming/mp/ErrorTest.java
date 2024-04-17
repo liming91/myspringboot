@@ -1,5 +1,6 @@
 package com.ming.mp;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,11 +16,15 @@ public class ErrorTest {
     public void concurrentModificationExceptionTest(){
         ArrayList<Integer> list = new ArrayList<Integer>();
         list.add(2);
+        list.add(3);
         Iterator<Integer> iterator = list.iterator();
         while (iterator.hasNext()) {
             Integer integer = iterator.next();
             if (integer == 2)
+                //iterator.remove();
                 list.remove(integer);
         }
+
+        System.out.println(JSON.toJSONString(list));
     }
 }
