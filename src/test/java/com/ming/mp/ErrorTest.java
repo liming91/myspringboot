@@ -16,7 +16,6 @@ public class ErrorTest {
     public void concurrentModificationExceptionTest(){
         ArrayList<Integer> list = new ArrayList<Integer>();
         list.add(2);
-        list.add(3);
         Iterator<Integer> iterator = list.iterator();
         while (iterator.hasNext()) {
             Integer integer = iterator.next();
