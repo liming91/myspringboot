@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrPool;
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.crypto.SecureUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -188,14 +189,24 @@ public class MyTest {
     }
 
     public static void main(String[] args) {
-        Date date = new Date();
-        int mm = Integer.valueOf(DateUtil.format(date, "mm"));
-        if (mm < 30) {
-            date = DateUtil.parse(DateUtil.format(date, "yyyy-MM-dd HH:00:00"));
-        } else {
-            date = DateUtil.parse(DateUtil.format(date, "yyyy-MM-dd HH:30:00"));
+        String s ="[\"WI202206241500002\",\"WI202206241500001\",\"WI202206241500003\",\"WI202206241500005\"]";
+        String replace = s.replace("[", "").replace("]", "");
+        System.out.println(replace.replace("\"", ""));
+
+        String a ="WI202206241500002,WI202206241500001,WI202206241500003,WI202206241500005";
+        String[] split = a.split(",");
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < split.length; i++) {
+            stringBuilder.append("'").append(split[i]).append("'");
+            if(i!= split.length-1){
+                stringBuilder.append(",");
+            }
         }
-        System.out.println(DateUtil.format(date, DatePattern.NORM_DATETIME_PATTERN));
+
+
+        List<String> lists = JSON.parseArray(s, String.class);
+        System.out.println(lists);
     }
 }
 

@@ -6,6 +6,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -91,7 +93,9 @@ public class DateTest {
 
         System.out.println("date1 is before date2: " + date1.before(date2));
         System.out.println("date2 is after date1: " + date2.after(date1));
-
+        Date date = new Date();
+        String a = "2029-12-31 12:22:00";
+        System.out.println(date.after(DateUtil.parse(a,DatePattern.NORM_DATETIME_PATTERN)));
     }
 
     @Test
@@ -119,18 +123,8 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-//        int day = Integer.parseInt(com.ming.util.DateUtils.getLocalDateTimeDay(com.ming.util.DateUtils.getGoalDate(0, 0)));
-//        System.out.println(day);
-        String s1 = "2024-03-25";
-        String s2 = "2024-03-31";
-        DateTime dateTime = DateUtil.offsetMonth(DateUtil.parse(s1, DatePattern.NORM_DATE_PATTERN), -12);
-        System.out.println(DateUtil.format(dateTime, DatePattern.NORM_DATE_PATTERN));
-
-        String formatBetween = DateUtil.formatBetween(DateUtil.parse(s1), DateUtil.parse(s2), BetweenFormatter.Level.DAY);
-
-        long betweenDay = DateUtil.between(DateUtil.parse(s1), DateUtil.parse(s2), DateUnit.DAY);
-
-        System.out.println(betweenDay);
+      String s = "轻微报价区间";
+        System.out.println(s.substring(0,s.indexOf("区间")));
 
 
     }
