@@ -46,6 +46,88 @@
         DATE_FORMAT( t.time, '${queryDate}')
         ASC
     </select>
+    <select id="dayMonthYearSql">
+        <!--SELECT
+            TO_CHAR( M.CREATE_TIME, 'HH24:mi' ) AS "dateTime",
+            M.TEMPERATURE AS "temperature",
+            M.HUMIDITY "humidity",
+            M.CO2 "co2",
+            M.PM "pm",
+            CASE
+
+                WHEN M."RANGE" = 1 THEN
+                    'outdoor'
+                WHEN M."RANGE" = 2 THEN
+                    'indoor'
+                END RANGE
+        FROM
+            YB_HQ_MILIEU_MONITOR M
+        WHERE
+            M.EQU_CODE = 'ENV_F04_052'
+          AND TO_CHAR( M.CREATE_TIME, 'yyyy-MM-dd' ) = '2024-06-10'
+        GROUP BY
+            TO_CHAR( M.CREATE_TIME, 'HH24:mi' ),
+            M."RANGE",
+            M.TEMPERATURE,
+            M.HUMIDITY,
+            M.CO2,
+            M.PM
+        ORDER BY
+            TO_CHAR( M.CREATE_TIME, 'HH24:mi' );
+
+
+        SELECT
+            TO_CHAR( M.CREATE_TIME, 'yyyy-MM' ) AS "dateTime",
+            NVL( round( avg( M.temperature ), 2 ), '0' ) AS "temperature",
+            NVL( round( avg( M.HUMIDITY ), 2 ), '0' ) AS "humidity",
+            NVL( round( avg( M.CO2 ), 2 ), '0' ) AS "co2",
+            NVL( round( avg( M.PM ), 2 ), '0' ) AS "pm",
+            CASE
+
+                WHEN M."RANGE" = 1 THEN
+                    'outdoor'
+                WHEN M."RANGE" = 2 THEN
+                    'indoor'
+                END RANGE
+        FROM
+            YB_HQ_MILIEU_MONITOR M
+        WHERE
+            M.EQU_CODE = 'ENV_F04_052'
+          AND TO_CHAR( M.CREATE_TIME, 'yyyy' ) = '2024'
+        GROUP BY
+            TO_CHAR( M.CREATE_TIME, 'yyyy-MM' ),
+            M."RANGE"
+        ORDER BY
+            TO_CHAR( M.CREATE_TIME, 'yyyy-MM' );
+
+
+
+
+
+        SELECT
+            TO_CHAR( M.CREATE_TIME, 'MM-dd' ) AS "dateTime",
+            NVL( round( avg( M.temperature ), 2 ), '0' ) AS "temperature",
+            NVL( round( avg( M.HUMIDITY ), 2 ), '0' ) AS "humidity",
+            NVL( round( avg( M.CO2 ), 2 ), '0' ) AS "co2",
+            NVL( round( avg( M.PM ), 2 ), '0' ) AS "pm",
+            CASE
+
+                WHEN M."RANGE" = 1 THEN
+                    'outdoor'
+                WHEN M."RANGE" = 2 THEN
+                    'indoor'
+                END RANGE
+        FROM
+            YB_HQ_MILIEU_MONITOR M
+        WHERE
+            M.EQU_CODE = 'ENV_F04_052'
+          AND TO_CHAR( M.CREATE_TIME, 'yyyy-MM' ) = '2024-06'
+        GROUP BY
+            TO_CHAR( M.CREATE_TIME, 'MM-dd' ),
+            M."RANGE"
+        ORDER BY
+            TO_CHAR( M.CREATE_TIME, 'MM-dd' );-->
+    </select>
 
     <select id="getFenTime" resultType="com.ming.bean.Test">
         SELECT
