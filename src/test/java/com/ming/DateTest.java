@@ -123,10 +123,10 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-      String s = "轻微报价区间";
-        System.out.println(s.substring(0,s.indexOf("区间")));
-
-
+        String s = DateUtil.formatDateTime(DateUtil.endOfYear(DateUtil.parse("2024","yyyy")));
+        String s1 = DateUtil.formatDateTime(DateUtil.endOfMonth(DateUtil.parse("2024-05","yyyy-MM")));
+        System.out.println(s);
+        System.out.println(s1);
     }
 
     public static double getWindSpeed(String s) {
