@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import com.ming.entities.Info;
+import com.ming.entities.TestAddr;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -20,7 +21,7 @@ public class TestAddrVO implements Serializable {
 
     private Long id;
 
-    private JSONObject addr;
+    private TestAddr addr;
 
     private String name;
 

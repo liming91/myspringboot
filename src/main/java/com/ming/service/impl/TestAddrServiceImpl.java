@@ -21,6 +21,10 @@ public class TestAddrServiceImpl extends ServiceImpl<TestAddrMapper, TestAddr>
     @Override
     public List<TestAddrVO> infoList() {
         List<TestAddrVO> list = this.baseMapper.infoList();
+        list.forEach(x->{
+            TestAddr addr = this.getById(x.getId());
+            x.setAddr(addr);
+        });
         return list;
     }
 }
