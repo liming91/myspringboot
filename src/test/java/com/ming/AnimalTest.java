@@ -19,6 +19,7 @@ public class AnimalTest {
     public static void main(String[] args) {
         //多态
         AnimalTest animalTest = new AnimalTest();
+        System.out.println(animalTest.getClass().getSuperclass());
         animalTest.fun(new Dog());
         animalTest.fun(new Cat());
 
