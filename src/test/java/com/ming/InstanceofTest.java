@@ -2,6 +2,8 @@ package com.ming;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.ming.bean.User;
+import com.ming.entities.Animal;
+import com.ming.entities.Cat;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,22 +20,20 @@ public class InstanceofTest {
         //obj是class的实例对象
         //obj是class的直接子类或者间接子类
         //obj是class接口的实现类
-        ArrayList arrayList = new ArrayList();
 
-        User user = new User();
-        if (user instanceof User) {
-            System.out.println(true);
+        Animal animal = new Cat();
+        //obj instance class obj是引用对象 class是类或者接口
+        if(animal instanceof Animal){
+            System.out.println("obj是class的实例对象");
         }
-        JSONArray jsonArray = new JSONArray();
-        if (jsonArray instanceof ArrayList) {
-            System.out.println(true);
+        //Dog dog = (Dog) animal;
+        if(animal instanceof Cat){
+            Cat cat = (Cat) animal;
+            System.out.println("obj是class的直接子类或者间接子类");
         }
-        Double d = 0.3;
-        if (d instanceof Double) {
-            System.out.println(true);
-        }
+        ArrayList arrayList = new ArrayList();
         if (arrayList instanceof List) {
-            System.out.println(true);
+            System.out.println("obj是class接口的实现类");
         }
     }
 }

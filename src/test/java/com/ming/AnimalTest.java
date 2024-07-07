@@ -5,6 +5,8 @@ import com.ming.entities.Cat;
 import com.ming.entities.Dog;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 多态测试
@@ -21,6 +23,21 @@ public class AnimalTest {
         animalTest.fun(new Cat());
 
         animalTest.method(new Cat());
+
+        Animal animal = new Cat();
+        //obj instance class obj是引用对象 class是类或者接口
+        if(animal instanceof Animal){
+            System.out.println("obj是class的实例对象");
+        }
+        //Dog dog = (Dog) animal;
+        if(animal instanceof Cat){
+            Cat cat = (Cat) animal;
+            System.out.println("obj是class的直接子类或者间接子类");
+        }
+        ArrayList arrayList = new ArrayList();
+        if (arrayList instanceof List) {
+            System.out.println("obj是class接口的实现类");
+        }
     }
 
     //多态
