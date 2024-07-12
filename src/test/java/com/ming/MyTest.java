@@ -189,24 +189,22 @@ public class MyTest {
     }
 
     public static void main(String[] args) {
-        String s ="[\"WI202206241500002\",\"WI202206241500001\",\"WI202206241500003\",\"WI202206241500005\"]";
-        String replace = s.replace("[", "").replace("]", "");
-        System.out.println(replace.replace("\"", ""));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        //补两位,因为一年最多三位数
+        String monthFormat = String.format("%1$02d", month + 1);
+        //补两位，因为日最多两位数
+        String dayFormat = String.format("%1$02d", day);
+        String orderIdPrefix = year + monthFormat + dayFormat;
 
-        String a ="WI202206241500002,WI202206241500001,WI202206241500003,WI202206241500005";
-        String[] split = a.split(",");
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for (int i = 0; i < split.length; i++) {
-            stringBuilder.append("'").append(split[i]).append("'");
-            if(i!= split.length-1){
-                stringBuilder.append(",");
-            }
-        }
-
-
-        List<String> lists = JSON.parseArray(s, String.class);
-        System.out.println(lists);
+        System.out.println(day);
+        System.out.println(dayFormat);
+        String maxID = "ID2024071200004";
+        String[] s = maxID.split("20240712");
+        System.out.println(JSON.toJSONString(s));
     }
 }
 

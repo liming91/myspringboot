@@ -19,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Y
@@ -91,6 +93,12 @@ public class InfoServiceImpl extends ServiceImpl<InfoMapper, Info>
             throw new ServiceException("信息名称重复" + e.getMessage());
         }
         return flag;
+    }
+
+
+    @Override
+    public List<Map<String, Object>> infoList() {
+        return this.baseMapper.getInfoMap();
     }
 }
 

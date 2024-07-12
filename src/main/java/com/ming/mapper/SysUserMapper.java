@@ -8,6 +8,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 用户
  * @Author liming
@@ -19,4 +22,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     IPage<SysUser> userPage(Page<SysUser> page,String keywords);
 
     int updateUserById(@Param("sysUser") SysUser sysUser);
+
+    List<Map<String, Object>> getUserMap();
 }

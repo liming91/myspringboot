@@ -4,4 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ming.mapper.InfoMapper">
 
+    <select id="getInfoMap" resultType="java.util.Map">
+        select * from info
+    </select>
 </mapper>

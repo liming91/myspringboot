@@ -15,5 +15,8 @@
             OR instr(phonenumber,#{keywords}) > 0
         </if>
     </select>
+    <select id="getUserMap" resultType="java.util.Map">
+        select * from sys_user
+    </select>
 
 </mapper>
