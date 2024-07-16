@@ -15,6 +15,7 @@ public class DateUtils {
     private static final long nh = 1000 * 60 * 60;
     private static final long nm = 1000 * 60;
     public static String DEFAULT_FORMAT = "yyyy-MM-dd";
+
     /**
      * 获取某季度的开始日期 季度一年四季， 第一季度：2月-4月， 第二季度：5月-7月， 第三季度：8月-10月， 第四季度：11月-1月
      *
@@ -47,35 +48,36 @@ public class DateUtils {
         String quarterStr = year + "-" + quarter;
         return quarterStr;
     }
+
     public static String getLastDayOfMonth(int month) {
         Calendar calendar = Calendar.getInstance();
         // 设置月份
         calendar.set(Calendar.MONTH, month - 1);
         // 获取某月最大天数
-        int lastDay=0;
+        int lastDay = 0;
         //2月的平年瑞年天数
-        if(month==2) {
+        if (month == 2) {
             // 这个api在计算2020年2月的过程中有问题
             lastDay = calendar.getLeastMaximum(Calendar.DAY_OF_MONTH);
-        }else {
+        } else {
             lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         }
         // 设置日历中月份的最大天数
         calendar.set(Calendar.DAY_OF_MONTH, lastDay);
         // 格式化日期
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String lastDays = sdf.format(calendar.getTime())+" 23:59:59";
+        String lastDays = sdf.format(calendar.getTime()) + " 23:59:59";
         return lastDays;
     }
 
 
-
     /**
      * 格式化日期
+     *
      * @param date 日期对象
      * @return String 日期字符串
      */
-    public static String formatDate(Date date){
+    public static String formatDate(Date date) {
         SimpleDateFormat f = new SimpleDateFormat(DEFAULT_FORMAT);
         String sDate = f.format(date);
         return sDate;
@@ -83,9 +85,10 @@ public class DateUtils {
 
     /**
      * 获取去年的第一天和最后一天
+     *
      * @return Date
      */
-    public static Date getLastYearFirst(){
+    public static Date getLastYearFirst() {
         DateTimeFormatter dailyFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Year years = Year.now().minusYears(1);//当前年去掉minusYears(1)
         String start = years.atDay(1).format(dailyFormatter);
@@ -126,6 +129,41 @@ public class DateUtils {
         return str;
     }
 
+    public static  String minTime(long minute){
+        String str =null;
+        long days = minute / 1440;
+        long hours = minute % 1440 / 60;
+        long minutes = minute % 60;
+
+        if (days == 0) {
+            str = hours + "小时" + minutes + "分钟";
+        } else if (hours == 0) {
+            str = minutes + "分钟";
+        } else {
+            str = days + "天" + hours + "小时" + minutes + "分钟";
+        }
+        return str;
+    }
+
+
+    public static long computationTime2(String startTime, String endTime) {
+        long hour = 0;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date endDate = sdf.parse(endTime);
+            Date strDate = sdf.parse(startTime);
+            long diff = endDate.getTime() - strDate.getTime();
+            long day = diff / nd;
+             hour = diff % nd / nh;
+            long min = diff % nd % nh / nm;
+            long sec = diff % nd % nh % nm / 1000;//秒
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return hour;
+    }
+
     /**
      * 获取系统日期
      *
@@ -141,18 +179,18 @@ public class DateUtils {
 
     /**
      * 获取昨天的日期
+     *
      * @param format
      * @return
      */
-    public static String getYesterday(String format){
-        Calendar cal=Calendar.getInstance();
-        cal.add(Calendar.DATE,-1);
-        Date d=cal.getTime();
-        SimpleDateFormat sp=new SimpleDateFormat(format);
-        String yesterday=sp.format(d);
+    public static String getYesterday(String format) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        Date d = cal.getTime();
+        SimpleDateFormat sp = new SimpleDateFormat(format);
+        String yesterday = sp.format(d);
         return yesterday;
     }
-
 
 
     /**
@@ -182,6 +220,7 @@ public class DateUtils {
 
     /**
      * 返回时间格式如：2020-02-17 00:00:00
+     *
      * @param time
      * @return
      */
@@ -212,7 +251,7 @@ public class DateUtils {
     /**
      * 获取指定日期
      *
-     * @param num 偏移量
+     * @param num      偏移量
      * @param dateType 日期类型 0-日 1-月 2-年
      * @return
      */
