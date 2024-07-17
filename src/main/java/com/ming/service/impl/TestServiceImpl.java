@@ -48,7 +48,7 @@ public class TestServiceImpl implements ITestService {
         String startTime = DateUtils.getNowDate("yyyy-MM-dd");
         String endTime = DateUtils.getNowDate("yyyy-MM-dd");
         List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType),
-                DateTypeEnum.getDateByType(dateType),DateTypeEnum.getDateByType(dateType));
+                DateTypeEnum.getDateByType(dateType), DateTypeEnum.getDateByType(dateType));
         List<DataTrendVO> dataList = new ArrayList<>();
         list.forEach(x -> {
             DataTrendVO dataTrendVO = new DataTrendVO();
@@ -136,7 +136,7 @@ public class TestServiceImpl implements ITestService {
             timeList = CalendarUtil.getTimeList(DateUtil.formatDateTime(DateUtil.beginOfYear(new Date())), DateUtil.formatDateTime(DateUtil.endOfYear(new Date())), dateType);
         }
         //已存在的时间
-        List<String> times = list.stream().map(m -> m.getDateTime()).collect(Collectors.toList());
+        List<String> times = list.stream().map(Test::getDateTime).collect(Collectors.toList());
         List<String> finalTimeList = new ArrayList<>(timeList);
         timeList.removeAll(times);
         //时间补全
@@ -148,7 +148,7 @@ public class TestServiceImpl implements ITestService {
         });
         List<Test> collect1 = list.stream().filter(f -> !finalTimeList.contains(f.getDateTime())).collect(Collectors.toList());
         list.removeAll(collect1);
-        list.sort(Comparator.comparing(m -> m.getDateTime()));
+        list.sort(Comparator.comparing(Test::getDateTime));
         resMap.put("data", list);
         return resMap;
     }
@@ -166,7 +166,7 @@ public class TestServiceImpl implements ITestService {
         }
 
         List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType),
-                startTime,endTime);
+                startTime, endTime);
         Map<String, List<Test>> dataMap = list.stream().collect(Collectors.groupingBy(Test::getGroupTime));
         Map<String, List<DataTrendVO>> resMap = Maps.newHashMap();
         for (Map.Entry<String, List<Test>> entry : dataMap.entrySet()) {
@@ -234,8 +234,6 @@ public class TestServiceImpl implements ITestService {
     }
 
 
-
-
     @Override
     public List<WeekData> week() {
         List<Test> list = testMapper.select();
@@ -252,10 +250,11 @@ public class TestServiceImpl implements ITestService {
 
     /**
      * 按照周统计数量
+     *
      * @param testList
      * @return
      */
-    public JSONObject getWeekCount(List<Test> testList){
+    public JSONObject getWeekCount(List<Test> testList) {
         // 获取本周一和本周日的日期
         LocalDate today = LocalDate.now();
         LocalDate monday = today.with(DayOfWeek.MONDAY);
@@ -279,7 +278,7 @@ public class TestServiceImpl implements ITestService {
         // 输出每天的数量
         for (int i = 0; i < 7; i++) {
             DayOfWeek dayOfWeek = DayOfWeek.of(i + 1);
-            jsonObject.put(String.valueOf(dayOfWeek.getValue()),countPerDay[i]);
+            jsonObject.put(String.valueOf(dayOfWeek.getValue()), countPerDay[i]);
         }
         return jsonObject;
     }
@@ -297,6 +296,7 @@ public class TestServiceImpl implements ITestService {
 
     /**
      * 对最近7天的数据进行处理
+     *
      * @param sevenDate
      * @param dataList
      * @return
