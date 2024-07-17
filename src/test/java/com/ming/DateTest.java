@@ -33,7 +33,7 @@ public class DateTest {
     public void date1() {
 
         String day = "2023-01-12";
-        String format = DateUtil.format(DateUtil.offsetDay(DateUtil.parse(day), -1), DatePattern.NORM_DATE_PATTERN);
+        String format = DateUtil.format(DateUtil.offsetDay(new Date(), -6), DatePattern.NORM_DATE_PATTERN);
         System.out.println(format);
 
         String format1 = DateUtil.format(DateUtil.offsetMonth(DateUtil.parse(day), 0), DatePattern.NORM_MONTH_PATTERN);
