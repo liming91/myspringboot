@@ -235,7 +235,7 @@ public class MyTest {
         // 今年第一天
         LocalDate beginTime = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
         // 今年最后一天
-        LocalDate endTiime = LocalDate.now().with(TemporalAdjusters.lastDayOfYear());
+        LocalDate endTime = LocalDate.now().with(TemporalAdjusters.lastDayOfYear());
 
         //获取前一天日期
         LocalDate yesterday2 = LocalDate.now().minusDays(1);
