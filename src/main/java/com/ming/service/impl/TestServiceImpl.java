@@ -47,7 +47,8 @@ public class TestServiceImpl implements ITestService {
         Map<String, Object> resMap = new HashMap<>();
         String startTime = DateUtils.getNowDate("yyyy-MM-dd");
         String endTime = DateUtils.getNowDate("yyyy-MM-dd");
-        List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType), DateTypeEnum.getDateByType(dateType));
+        List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType),
+                DateTypeEnum.getDateByType(dateType),DateTypeEnum.getDateByType(dateType));
         List<DataTrendVO> dataList = new ArrayList<>();
         list.forEach(x -> {
             DataTrendVO dataTrendVO = new DataTrendVO();
@@ -164,7 +165,8 @@ public class TestServiceImpl implements ITestService {
             e.printStackTrace();
         }
 
-        List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType), DateTypeEnum.getDateByType(dateType));
+        List<Test> list = testMapper.getDateByTime(DateTypeEnum.getQueryDateFormatterEnum(dateType), DateTypeEnum.getResDateFormatterEnum(dateType),
+                startTime,endTime);
         Map<String, List<Test>> dataMap = list.stream().collect(Collectors.groupingBy(Test::getGroupTime));
         Map<String, List<DataTrendVO>> resMap = Maps.newHashMap();
         for (Map.Entry<String, List<Test>> entry : dataMap.entrySet()) {

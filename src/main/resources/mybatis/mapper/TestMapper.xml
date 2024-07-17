@@ -18,8 +18,12 @@
         round(money , 2 ) AS dataValue
         FROM
         test
-        WHERE
-        DATE_FORMAT( time, '${queryDate}' )<![CDATA[ <= ]]>   #{localDate}
+        <where>
+            <if test="startTime !=null and startTime != '' and endTime !=null and endTime != ''">
+                DATE_FORMAT( time, '${queryDate}' )<![CDATA[ >= ]]>   #{startTime}
+                AND  DATE_FORMAT( time, '${queryDate}' ) <![CDATA[ <= ]]> #{endTime}
+            </if>
+        </where>
         GROUP BY
         dataValue,
         DATE_FORMAT( time, '${queryDate}'  ),

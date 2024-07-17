@@ -12,10 +12,11 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface TestMapper  extends BaseMapper<Test> {
-    public int addTest(@Param("list") List<Test> testList);
+public interface TestMapper extends BaseMapper<Test> {
+    int addTest(@Param("list") List<Test> testList);
 
-    List<Test> getDateByTime(@Param("queryDate") String queryDate, @Param("resDate") String resDate, @Param("localDate") String localDate);
+    List<Test> getDateByTime(@Param("queryDate") String queryDate, @Param("resDate") String resDate,
+                             @Param("startTime") String startTime, @Param("endTime") String endTime);
 
     List<Test> select();
 
