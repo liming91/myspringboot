@@ -32,6 +32,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.stream.Collectors;
 
+import static com.ming.util.DateUtils.getNowYear;
+
 public class MyTest {
     Logger log = LoggerFactory.getLogger(MyTest.class);
 
@@ -248,6 +250,40 @@ public class MyTest {
         System.out.println("本月开始时间 = " + firstDayOfMonthStart.format(pattern));
         System.out.println("本月结束时间 = " + firstDayOfMonthEnd.format(pattern));
 
+        System.out.println(  DateUtil.lastMonth());
+        List<String> yearStr = getYearStr2();
+        System.out.println(DateUtil.year(new Date()));
+
+
+        System.out.println(DateUtil.format( DateUtil.beginOfYear(new Date()),DatePattern.NORM_DATE_PATTERN));
+        System.out.println(DateUtil.format( DateUtil.endOfYear(new Date()),DatePattern.NORM_DATE_PATTERN));
+    }
+
+
+
+
+    /**
+     * 12月数据
+     * @return
+     */
+    public static List<String> getYearStr() {
+        List<String> dateList = CalendarUtil.queryData("2024-01-01", "2024-12-31", 2);
+        Collections.sort(dateList);
+        return dateList;
+    }
+
+    /**
+     * 最近12月数据
+     * @return
+     */
+    public static List<String> getYearStr2() {
+        List<String> dateList = new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            Date date = org.apache.commons.lang3.time.DateUtils.addMonths(new Date(), i);
+            dateList.add(DateUtil.format(date, "yyyy-MM"));
+        }
+        Collections.sort(dateList);
+        return dateList;
     }
 }
 
