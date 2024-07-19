@@ -281,6 +281,28 @@
             <version>2.3.7.RELEASE</version>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version> <!-- Replace with the latest version -->
+        </dependency>
+
+
+        <!-- collections工具类 -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons.collections.version}</version>
+        </dependency>
+
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
@@ -301,7 +323,7 @@
         <!--阿里镜像仓库-->
         <docker.serverId>docker-aliyun</docker.serverId>
         <docker.registry>registry.cn-hangzhou.aliyuncs.com/lm_repo</docker.registry>
-
+        <commons.collections.version>3.2.2</commons.collections.version>
 
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
