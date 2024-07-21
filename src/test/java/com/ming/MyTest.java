@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.ming.bean.User;
 import com.ming.entities.*;
 import lombok.Builder;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -20,12 +21,18 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.stream.Collectors;
+
+import static com.ming.util.DateUtils.getNowYear;
 
 public class MyTest {
     Logger log = LoggerFactory.getLogger(MyTest.class);
@@ -189,24 +196,94 @@ public class MyTest {
     }
 
     public static void main(String[] args) {
-        String s ="[\"WI202206241500002\",\"WI202206241500001\",\"WI202206241500003\",\"WI202206241500005\"]";
-        String replace = s.replace("[", "").replace("]", "");
-        System.out.println(replace.replace("\"", ""));
+        Calendar calendar = Calendar.getInstance();
+        // 获取一周的开始日期
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        Date startDate = calendar.getTime();
+        System.out.println("一周的开始日期：" + DateUtil.format(startDate,DatePattern.NORM_DATE_PATTERN));
+        // 获取一周的结束日期
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+        Date endDate = calendar.getTime();
+        System.out.println("一周的结束日期：" + DateUtil.format(endDate,DatePattern.NORM_DATE_PATTERN));
 
-        String a ="WI202206241500002,WI202206241500001,WI202206241500003,WI202206241500005";
-        String[] split = a.split(",");
-        StringBuilder stringBuilder = new StringBuilder();
+        // 获取当天日期
+        LocalDate now = LocalDate.now();
 
-        for (int i = 0; i < split.length; i++) {
-            stringBuilder.append("'").append(split[i]).append("'");
-            if(i!= split.length-1){
-                stringBuilder.append(",");
-            }
+        // 当天开始时间
+        LocalDateTime todayStart = now.atStartOfDay();
+        // 当天结束时间
+        LocalDateTime todayEnd = LocalDateTime.of(now, LocalTime.MAX);
+
+        // 周一
+        LocalDate monday = now.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        // 周日
+        LocalDate sunday = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+
+        // 本周开始时间
+        LocalDateTime weekStart = monday.atStartOfDay();
+        // 本周结束时间
+        LocalDateTime weekEnd = LocalDateTime.of(sunday, LocalTime.MAX);
+
+        // 本月1号
+        LocalDate firstDayOfMonth = now.with(TemporalAdjusters.firstDayOfMonth());
+        // 本月最后一天
+        LocalDate lastDayOfMonth = now.with(TemporalAdjusters.lastDayOfMonth());
+
+        // 本月1号的开始时间
+        LocalDateTime firstDayOfMonthStart = firstDayOfMonth.atStartOfDay();
+        // 本月最后一天的最后时间
+        LocalDateTime firstDayOfMonthEnd = LocalDateTime.of(lastDayOfMonth, LocalTime.MAX);
+
+        // 今年第一天
+        LocalDate beginTime = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
+        // 今年最后一天
+        LocalDate endTime = LocalDate.now().with(TemporalAdjusters.lastDayOfYear());
+
+        //获取前一天日期
+        LocalDate yesterday2 = LocalDate.now().minusDays(1);
+
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        System.out.println("当天开始时间 = " + todayStart.format(pattern));
+        System.out.println("当天结束时间 = " + todayEnd.format(pattern));
+        System.out.println("本周开始时间 = " + weekStart.format(pattern));
+        System.out.println("本周结束时间 = " + weekEnd.format(pattern));
+        System.out.println("本月开始时间 = " + firstDayOfMonthStart.format(pattern));
+        System.out.println("本月结束时间 = " + firstDayOfMonthEnd.format(pattern));
+
+        System.out.println(  DateUtil.lastMonth());
+        List<String> yearStr = getYearStr2();
+        System.out.println(DateUtil.year(new Date()));
+
+
+        System.out.println(DateUtil.format( DateUtil.beginOfYear(new Date()),DatePattern.NORM_DATE_PATTERN));
+        System.out.println(DateUtil.format( DateUtil.endOfYear(new Date()),DatePattern.NORM_DATE_PATTERN));
+    }
+
+
+
+
+    /**
+     * 12月数据
+     * @return
+     */
+    public static List<String> getYearStr() {
+        List<String> dateList = CalendarUtil.queryData("2024-01-01", "2024-12-31", 2);
+        Collections.sort(dateList);
+        return dateList;
+    }
+
+    /**
+     * 最近12月数据
+     * @return
+     */
+    public static List<String> getYearStr2() {
+        List<String> dateList = new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            Date date = org.apache.commons.lang3.time.DateUtils.addMonths(new Date(), i);
+            dateList.add(DateUtil.format(date, "yyyy-MM"));
         }
-
-
-        List<String> lists = JSON.parseArray(s, String.class);
-        System.out.println(lists);
+        Collections.sort(dateList);
+        return dateList;
     }
 }
 

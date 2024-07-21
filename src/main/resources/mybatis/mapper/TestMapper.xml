@@ -13,38 +13,40 @@
     </insert>
     <select id="getDateByTime" resultType="com.ming.bean.Test">
         SELECT
-        DATE_FORMAT( time,'${queryDate}'  ) AS groupTime,
-        DATE_FORMAT( time, '${resDate}' ) AS dateTime,
+        DATE_FORMAT(time, #{queryDate}) AS groupTime,
+        DATE_FORMAT(time, #{resDate}) AS dateTime,
         round(money , 2 ) AS dataValue
         FROM
         test
-        WHERE
-        DATE_FORMAT( time, '${queryDate}' )<![CDATA[ <= ]]>   #{localDate}
+        <where>
+            <if test="startTime !=null and startTime != '' and endTime !=null and endTime != ''">
+                DATE_FORMAT( time, #{queryDate} )<![CDATA[ >= ]]>   #{startTime}
+                AND DATE_FORMAT( time, #{queryDate}) <![CDATA[ <= ]]> #{endTime}
+            </if>
+            <if test="startTime == null">
+                and DATE_FORMAT(time,'yyyy-MM-dd hh24:mi') BETWEEN #{startTime} AND #{endTime}
+            </if>
+        </where>
         GROUP BY
         dataValue,
-        DATE_FORMAT( time, '${queryDate}'  ),
-        DATE_FORMAT( time, '${resDate}' )
+        DATE_FORMAT(time, #{queryDate}),
+        DATE_FORMAT(time, #{resDate})
         ORDER BY
-        DATE_FORMAT( time, '${queryDate}'  ),
-        DATE_FORMAT( time, '${resDate}' );
+        DATE_FORMAT(time, #{queryDate}),
+        DATE_FORMAT(time, #{resDate});
     </select>
 
     <select id="getList" resultType="com.ming.bean.Test">
-        SELECT
-        SUM( t.money ) AS dataValue,
-        DATE_FORMAT( t.time, '${resDate}' ) AS dateTime,
-        DATE_FORMAT( t.time, '${queryDate}' ) AS groupTime
-        FROM
-        test t
-        WHERE
-        DATE_FORMAT( t.time, '${queryDate}' ) = '2023-04-20'
-        GROUP BY
-        DATE_FORMAT( t.time, '${resDate}' ),
-        DATE_FORMAT( t.time,'${queryDate}' )
-        ORDER BY
-        DATE_FORMAT( t.time, '${resDate}' ),
-        DATE_FORMAT( t.time, '${queryDate}')
-        ASC
+        SELECT SUM(t.money)                        AS dataValue,
+               DATE_FORMAT(t.time, #{resDate})   AS dateTime,
+               DATE_FORMAT(t.time, #{queryDate}) AS groupTime
+        FROM test t
+        WHERE DATE_FORMAT(t.time, #{queryDate}) = #{localDate}
+        GROUP BY DATE_FORMAT(t.time, #{resDate}),
+                 DATE_FORMAT(t.time, #{queryDate})
+        ORDER BY DATE_FORMAT(t.time, #{resDate}),
+                 DATE_FORMAT(t.time, #{queryDate})
+                ASC
     </select>
     <select id="dayMonthYearSql">
         <!--SELECT
@@ -130,38 +132,31 @@
     </select>
 
     <select id="getFenTime" resultType="com.ming.bean.Test">
-        SELECT
-        SUM( t.money ) AS dataValue,
-        DATE_FORMAT( t.time, '%H:%i' ) AS dateTime,
-        DATE_FORMAT( t.time, '%Y-%m-%d' ) AS groupTime
-        FROM
-        test t
-        WHERE
-        DATE_FORMAT( t.time, '%Y-%m-%d' ) = '2023-04-20'
-        GROUP BY
-        DATE_FORMAT( t.time, '%H:%i' ),
-        DATE_FORMAT( t.time, '%Y-%m-%d' )
-        ORDER BY
-        DATE_FORMAT( t.time, '%H:%i' ),
-        DATE_FORMAT( t.time, '%Y-%m-%d' )
+        SELECT SUM(t.money)                    AS dataValue,
+               DATE_FORMAT(t.time, '%H:%i')    AS dateTime,
+               DATE_FORMAT(t.time, '%Y-%m-%d') AS groupTime
+        FROM test t
+        WHERE DATE_FORMAT(t.time, '%Y-%m-%d') = '2023-04-20'
+        GROUP BY DATE_FORMAT(t.time, '%H:%i'),
+                 DATE_FORMAT(t.time, '%Y-%m-%d')
+        ORDER BY DATE_FORMAT(t.time, '%H:%i'),
+                 DATE_FORMAT(t.time, '%Y-%m-%d')
     </select>
 
     <select id="select" resultType="com.ming.bean.Test">
-        select  * FROM test
+        select *
+        FROM test
     </select>
 
     <select id="findSevenDate" resultType="com.ming.entities.VO.DataTrendVO">
-        SELECT
-        ROUND(AVG(money),2) as  dataValue,
-        DATE_FORMAT( t.time, '%m-%d' ) AS dateTime
-        FROM
-        test t
-        WHERE
-        DATE_SUB( CURDATE(), INTERVAL 7 DAY )  <![CDATA[ <= ]]>  date( t.time )
+        SELECT ROUND(AVG(money), 2)         as dataValue,
+               DATE_FORMAT(t.time, '%m-%d') AS dateTime
+        FROM test t
+        WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY)  <![CDATA[ <= ]]>  date ( t.time )
         GROUP BY
-        DATE_FORMAT( t.time, '%m-%d' )
+            DATE_FORMAT ( t.time, '%m-%d' )
         ORDER BY
-        DATE_FORMAT( t.time, '%m-%d' )
+            DATE_FORMAT ( t.time, '%m-%d' )
     </select>
 
 

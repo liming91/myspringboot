@@ -1,33 +1,73 @@
 package com.ming.controller;
 
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.DateUtil;
+
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ming.annotation.NeedDecrypt;
 import com.ming.annotation.NeedEncrypt;
+import com.ming.config.CustomIdGenerator;
 import com.ming.entities.Info;
 import com.ming.enums.ResultCode;
 import com.ming.service.InfoService;
+import com.ming.util.IdUtil;
 import com.ming.util.http.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 
+
+
 @Slf4j
 @RestController
-@AllArgsConstructor
+
 @RequestMapping("/info")
 @Api(tags = "信息")
 public class InfoController {
 
-    private final InfoService infoService;
+    @Autowired
+    private InfoService infoService;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+
+    @ApiOperation("id测试")
+    @GetMapping("/getId")
+    public Result<?> getId() {
+        IdUtil idUtil = new IdUtil(jdbcTemplate,redisTemplate);
+        String id =  "ID" + idUtil.orderIdIncrea("info");
+
+        return Result.success(id);
+    }
+
+    @ApiOperation("id测试")
+    @GetMapping("/getWoId")
+    public Result<?> getWoId() {
+        IdUtil idUtil = new IdUtil(jdbcTemplate,redisTemplate);
+        String id =  "W0" + idUtil.orderIdNum("info");
+        return Result.success(id);
+    }
+
+
+
+    @ApiOperation("id测试")
+    @GetMapping("/getIdtwo")
+    public Result<?> getIdtwo() {
+        CustomIdGenerator customIdGenerator = new CustomIdGenerator();
+
+        String s = customIdGenerator.nextUUID("info");
+        return Result.success(s);
+    }
 
     @NeedDecrypt()
     @ApiOperation("信息列表")

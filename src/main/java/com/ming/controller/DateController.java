@@ -23,7 +23,10 @@ public class DateController {
     @Autowired
     private ITestService iTestService;
 
-    @ApiOperation("测试数据")
+    @ApiOperation("折线图-根据日期类型查询")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "dateType", value = "时间类型0：24小时 1：月 2：年 3:季", required = true, dataType = "string", paramType = "query")
+    })
     @GetMapping("/test")
     public Result<?> test(int dateType) {
         Map<String, Object> map = iTestService.getList(dateType);
@@ -39,19 +42,25 @@ public class DateController {
         Map<String, Object> map = iTestService.list(dateType);
         return Result.success(map);
     }
-
+    @ApiOperation("按多个日期间隔统计折线图")
     @GetMapping("/listTime")
     public Result<?> listTime(int dateType,String startTime, String endTime ) {
         List<Map<String, Object>> map = iTestService.listTime(dateType,startTime,endTime);
         return Result.success(map);
     }
 
+    @ApiOperation("折线图-根据时间查询数据")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "dateType", value = "时间类型0：24小时 1：月 2：年 3：分钟(15分钟统计一次96条数据)",
+                    required = true, dataType = "string", paramType = "query")
+    })
     @GetMapping("/fenTime")
     public Result<?> fenTime(int dateType, String startTime, String endTime) {
         List<Map<String, Object>> map = iTestService.fenTime(dateType, startTime, endTime);
         return Result.success(map);
     }
 
+    @ApiOperation("按周统计数量")
     @GetMapping("/week")
     public Result<?> week() {
         List<WeekData> list = iTestService.week();

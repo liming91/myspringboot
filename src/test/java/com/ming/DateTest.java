@@ -1,11 +1,16 @@
 package com.ming;
 
 import cn.hutool.core.date.*;
+import cn.hutool.core.text.StrPool;
 import com.alibaba.fastjson.JSON;
-import org.apache.commons.lang.StringUtils;
+import com.ming.annotation.Log;
+import com.ming.entities.VO.SendEleWarningVo;
+import com.ming.spring.SpringUtils;
 import org.apache.commons.lang.time.DateUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import javax.swing.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DateFormat;
@@ -15,6 +20,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @Author liming
@@ -27,7 +33,7 @@ public class DateTest {
     public void date1() {
 
         String day = "2023-01-12";
-        String format = DateUtil.format(DateUtil.offsetDay(DateUtil.parse(day), -1), DatePattern.NORM_DATE_PATTERN);
+        String format = DateUtil.format(DateUtil.offsetDay(new Date(), -6), DatePattern.NORM_DATE_PATTERN);
         System.out.println(format);
 
         String format1 = DateUtil.format(DateUtil.offsetMonth(DateUtil.parse(day), 0), DatePattern.NORM_MONTH_PATTERN);
@@ -60,7 +66,7 @@ public class DateTest {
 
     /**
      * 判断format(2023-09-01 10:59:41)是否在系统时间之后
-     *  返回true表示是format在系统时间(2023-09-04 10:59:41)之后
+     * 返回true表示是format在系统时间(2023-09-04 10:59:41)之后
      *
      * @param format
      * @return
@@ -95,13 +101,13 @@ public class DateTest {
         System.out.println("date2 is after date1: " + date2.after(date1));
         Date date = new Date();
         String a = "2029-12-31 12:22:00";
-        System.out.println(date.after(DateUtil.parse(a,DatePattern.NORM_DATETIME_PATTERN)));
+        System.out.println(date.after(DateUtil.parse(a, DatePattern.NORM_DATETIME_PATTERN)));
     }
 
     @Test
-    public void test4(){
+    public void test4() {
         //6天22小时40分
-        String formatBetween = DateUtil.formatBetween(DateUtil.parse("2023-11-20 10:24:09"),DateUtil.parse("2023-11-13 11:43:23"), BetweenFormatter.Level.MINUTE);
+        String formatBetween = DateUtil.formatBetween(DateUtil.parse("2023-11-20 10:24:09"), DateUtil.parse("2023-11-13 11:43:23"), BetweenFormatter.Level.MINUTE);
         System.out.println(formatBetween);
     }
 
@@ -123,10 +129,86 @@ public class DateTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        String s = DateUtil.formatDateTime(DateUtil.endOfYear(DateUtil.parse("2024","yyyy")));
-        String s1 = DateUtil.formatDateTime(DateUtil.endOfMonth(DateUtil.parse("2024-05","yyyy-MM")));
-        System.out.println(s);
-        System.out.println(s1);
+//        2024-07-15 17:30:00	2024-07-15 18:45:00  1小时15分钟
+//        2024-07-15 20:30:00	2024-07-15 21:45:00  1小时15分钟
+//        2024-07-15 22:30:00	2024-07-16 01:00:00  2小时30分钟
+//        2024-07-16 05:30:00	2024-07-16 07:15:00  1小时45分钟
+//        2024-07-16 12:45:00	2024-07-16 14:52:49  2小时7分钟
+        String starStr = "2024-07-16 12:45:00";
+        String endStr = "2024-07-16 14:52:49";
+        List<SendEleWarningVo> list = new ArrayList<>();
+        SendEleWarningVo sendEleWarningVo1 = new SendEleWarningVo();
+        sendEleWarningVo1.setEnterCode("7106");
+        sendEleWarningVo1.setLevels("3");
+        sendEleWarningVo1.setAreaName("王益区");
+        sendEleWarningVo1.setEnterName("陕西铜川长兴支撑剂有限责任公司");
+        sendEleWarningVo1.setStartTime("2024-07-15 17:30:00");
+        sendEleWarningVo1.setEndTime("2024-07-15 18:45:00");
+        sendEleWarningVo1.setStatus("2");
+        sendEleWarningVo1.setContent("平台报警治污设备除尘风机01停运");
+        list.add(sendEleWarningVo1);
+        SendEleWarningVo sendEleWarningVo2 = new SendEleWarningVo();
+        sendEleWarningVo2.setEnterCode("7106");
+        sendEleWarningVo2.setLevels("3");
+        sendEleWarningVo2.setAreaName("王益区");
+        sendEleWarningVo2.setEnterName("陕西铜川长兴支撑剂有限责任公司");
+        sendEleWarningVo2.setStartTime("2024-07-15 20:30:00");
+        sendEleWarningVo2.setEndTime("2024-07-15 21:45:00");
+        sendEleWarningVo2.setStatus("2");
+        sendEleWarningVo2.setContent("平台报警治污设备除尘风机01停运");
+        list.add(sendEleWarningVo1);
+        SendEleWarningVo sendEleWarningVo3 = new SendEleWarningVo();
+        sendEleWarningVo3.setEnterCode("7106");
+        sendEleWarningVo3.setLevels("2");
+        sendEleWarningVo3.setAreaName("王益区");
+        sendEleWarningVo3.setEnterName("陕西铜川长兴支撑剂有限责任公司");
+        sendEleWarningVo3.setStartTime("2024-07-15 22:30:00");
+        sendEleWarningVo3.setEndTime("2024-07-16 01:00:00");
+        sendEleWarningVo3.setStatus("2");
+        sendEleWarningVo3.setContent("平台报警治污设备除尘风机01停运");
+        list.add(sendEleWarningVo3);
+
+        SendEleWarningVo sendEleWarningVo4 = new SendEleWarningVo();
+        sendEleWarningVo4.setEnterCode("7106");
+        sendEleWarningVo4.setLevels("3");
+        sendEleWarningVo4.setAreaName("王益区");
+        sendEleWarningVo4.setEnterName("陕西铜川长兴支撑剂有限责任公司");
+        sendEleWarningVo4.setStartTime("2024-07-16 05:30:00");
+        sendEleWarningVo4.setEndTime("2024-07-16 07:15:00");
+        sendEleWarningVo4.setStatus("2");
+        sendEleWarningVo4.setContent("平台报警治污设备除尘风机01停运");
+        list.add(sendEleWarningVo4);
+
+
+        SendEleWarningVo sendEleWarningVo5 = new SendEleWarningVo();
+        sendEleWarningVo5.setEnterCode("7141");
+        sendEleWarningVo5.setLevels("3");
+        sendEleWarningVo5.setAreaName("铜川新区");
+        sendEleWarningVo5.setEnterName("陕西大唐合力电缆有限公司");
+        sendEleWarningVo5.setStartTime("2024-07-16 12:45:00");
+        sendEleWarningVo5.setEndTime("2024-07-16 14:45:00");
+        sendEleWarningVo5.setStatus("3");
+        sendEleWarningVo5.setContent("平台报警治污设备电缆产线治理01停运");
+        list.add(sendEleWarningVo5);
+
+        //耀州区孙塬镇  铜川市耀州区鑫辕建材有限公司 破碎房 平台报警治污设备收尘风机03停运 报警开始时间2024-03-29 01:15:00 持续时间1小时
+        Map<String, List<SendEleWarningVo>> collect = list.stream().collect(Collectors.groupingBy(SendEleWarningVo::getEnterName));
+        for (Map.Entry<String, List<SendEleWarningVo>> entry : collect.entrySet()) {
+            String key = entry.getKey();
+            long fen = 0;
+            List<SendEleWarningVo> value = entry.getValue();
+            for (SendEleWarningVo sendEleWarningVo : value) {
+                if (sendEleWarningVo.getEnterName().equals(key)) {
+                    fen += DateUtil.between(DateUtil.parse(sendEleWarningVo.getEndTime()), DateUtil.parse(sendEleWarningVo.getStartTime()), DateUnit.MINUTE);
+                }
+            }
+            String content = value.stream().map(SendEleWarningVo::getContent).findFirst().orElse(null);
+            String areaName = value.stream().map(SendEleWarningVo::getAreaName).findFirst().orElse(null);
+            String StartTime = value.stream().map(SendEleWarningVo::getStartTime).findFirst().orElse(null);
+            System.out.println(areaName + StrPool.C_SPACE + key + StringUtils.SPACE + content + StringUtils.SPACE + "报警开始时间：" + StartTime + StringUtils.SPACE + "持续时间" + com.ming.util.DateUtils.minTime(fen));
+        }
+
+
     }
 
     public static double getWindSpeed(String s) {
@@ -148,7 +230,7 @@ public class DateTest {
         List<String> dateList = new ArrayList<>();
         for (int i = 0; i < day; i++) {
             Date date = DateUtils.addDays(new Date(), -i);
-            dateList.add( DateUtil.format(date,"MM.dd"));
+            dateList.add(DateUtil.format(date, "MM.dd"));
         }
         Collections.sort(dateList);
         return dateList;
