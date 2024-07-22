@@ -31,7 +31,8 @@ public class OkHttpUtil {
 
 
     /**
-     *  整理请求头信息
+     * 整理请求头信息
+     *
      * @param headersParams
      * @return
      */
@@ -54,11 +55,11 @@ public class OkHttpUtil {
     /**
      * 发送post请求通过JSON参数
      *
-     * @param reqUrl 请求url
-     * @param param  请求参数
-     * @param headMap  请求头
+     * @param reqUrl  请求url
+     * @param param   请求参数
+     * @param headMap 请求头
      */
-    public static JsonObject sendPostByJsonAndHeader(String reqUrl, Object param, Map<String,String> headMap) {
+    public static JsonObject sendPostByJsonAndHeader(String reqUrl, Object param, Map<String, String> headMap) {
         JsonObject jsonObject = null;
         try {
             String paramStr = JSON.toJSONString(param);
@@ -89,11 +90,12 @@ public class OkHttpUtil {
 
     /**
      * 发送get请求多个请求头
-     * @param url   http请求地址
-     * @param headMap  http请求头
+     *
+     * @param url     http请求地址
+     * @param headMap http请求头
      * @return
      */
-    public JsonObject sendGetByHeader(String url, Map<String,String> headMap) {
+    public JsonObject sendGetByHeader(String url, Map<String, String> headMap) {
         // 设置HTTP请求参数
         JsonObject jsonObject = null;
         try {
@@ -117,7 +119,8 @@ public class OkHttpUtil {
     }
 
     /**
-     *	发送get请求
+     * 发送get请求
+     *
      * @param url
      * @return
      */
@@ -179,6 +182,7 @@ public class OkHttpUtil {
 
     /**
      * get请求带头部参数
+     *
      * @param url
      * @param params
      * @param headMap
