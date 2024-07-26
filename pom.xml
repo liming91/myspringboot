@@ -303,6 +303,13 @@
             <version>${commons.collections.version}</version>
         </dependency>
 
+        <!-- 验证码 -->
+        <dependency>
+            <groupId>pro.fessional</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptcha.version}</version>
+        </dependency>
+
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
@@ -324,7 +331,7 @@
         <docker.serverId>docker-aliyun</docker.serverId>
         <docker.registry>registry.cn-hangzhou.aliyuncs.com/lm_repo</docker.registry>
         <commons.collections.version>3.2.2</commons.collections.version>
-
+        <kaptcha.version>2.3.3</kaptcha.version>
     </properties>
     <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
 

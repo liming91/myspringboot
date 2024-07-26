@@ -1,9 +1,11 @@
 package com.ming.bean;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Dog  {
+    @Column
     private String id;
     private String name;
     private  Integer age;

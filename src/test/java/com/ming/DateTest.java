@@ -2,6 +2,7 @@ package com.ming;
 
 import cn.hutool.core.date.*;
 import cn.hutool.core.text.StrPool;
+import cn.hutool.crypto.digest.DigestUtil;
 import com.alibaba.fastjson.JSON;
 import com.ming.annotation.Log;
 import com.ming.entities.VO.SendEleWarningVo;
@@ -88,6 +89,15 @@ public class DateTest {
         long between = DateUtil.between(dateStr, dateEnd, DateUnit.MINUTE);
         System.out.println(between);
     }
+
+
+    @Test
+    public void test7() {
+        String format = DateUtil.format(DateUtil.offsetMonth(DateUtil.yesterday(), -12),
+                DatePattern.NORM_DATE_PATTERN);
+        System.out.println(format);
+    }
+
 
     @Test
     public void test3() {

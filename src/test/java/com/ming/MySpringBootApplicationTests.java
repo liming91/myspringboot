@@ -1,5 +1,7 @@
 package com.ming;
 
+import com.alibaba.fastjson.JSON;
+import com.google.code.kaptcha.Producer;
 import com.ming.service.IAsyncService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,9 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 
 @RunWith(SpringRunner.class)
@@ -32,12 +36,21 @@ public class MySpringBootApplicationTests {
     @Autowired
     private IAsyncService iAsyncService;
 
+    @Resource(name = "captchaProducerMath")
+    private Producer captchaProducerMath;
 
-
+    @Test
+    public void test1() {
+        String capText = captchaProducerMath.createText();
+        logger.info("验证码===：{}",capText);
+    }
     @Test
     public void helloService() {
         System.out.println(ioc.containsBean("helloService"));
     }
+
+
+
 
     @Test
     public void logTest() {
