@@ -26,7 +26,7 @@ public class SingletonTest {
     }
 
     //3、提供一个静态方法
-    public SingletonTest getInstance() {
+    public static SingletonTest getInstance() {
         return singletonTest;
     }*/
 
