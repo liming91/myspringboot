@@ -1,27 +1,21 @@
 package com.ming;
 
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
-import com.ming.bean.Order;
-import com.ming.bean.Person;
-import com.ming.bean.User;
 import com.ming.entities.*;
 import com.ming.entities.VO.DataTrendVO;
 import com.ming.entities.VO.EleWaterVO;
-import com.ming.util.PercentUtil;
+import com.ming.util.ArithmeticUtil;
 import com.ming.util.StringUtils;
 import org.assertj.core.util.Lists;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
 
-import java.math.BigDecimal;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
 import java.util.stream.Collectors;
 
 
@@ -1734,8 +1728,12 @@ public class TestPro {
         }
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        String startTime = DateUtil.format(DateUtil.offsetDay(new Date(), 1), DatePattern.NORM_DATE_PATTERN);
+       String endTime = DateUtil.format(new Date(), DatePattern.NORM_DATE_PATTERN);
+        System.out.println(startTime);
+        System.out.println(endTime);
+        ArithmeticUtil.add(1.0,2.0);
     }
 
 }

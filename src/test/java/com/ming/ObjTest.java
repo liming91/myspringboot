@@ -74,9 +74,9 @@ public class ObjTest {
 
         List<Order> list = new ArrayList<>();
         Order order = new Order();
-        order.setAmount(0.0);
+        order.setAmount(1.0);
         Order order2 = new Order();
-        order2.setAmount(0.0);
+        order2.setAmount(2.0);
         list.add(order);
         list.add(order2);
         Double reduce = list.stream().map(Order::getAmount).reduce(0.0, (a, b) -> a + b);
