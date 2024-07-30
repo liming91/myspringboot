@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ import java.util.Map;
 
 
 
-public class Person {
+public class Person implements Serializable {
 
 
     //属性或成员变量
@@ -33,7 +34,7 @@ public class Person {
 
     //构造器
     public Person() {
-
+super();
     }
 
     public Person(String name) {
@@ -41,8 +42,9 @@ public class Person {
     }
 
     //方法或者函数
-    public void run() {
+    public String run() {
         System.out.println("跑步");
+        return "run....";
     }
 
     //代码块
