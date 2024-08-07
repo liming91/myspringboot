@@ -10,10 +10,13 @@ import com.ming.entities.VO.DataTrendVO;
 import com.ming.entities.VO.EleWaterVO;
 import com.ming.util.ArithmeticUtil;
 import com.ming.util.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.assertj.core.util.Lists;
 import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
@@ -1727,13 +1730,34 @@ public class TestPro {
             }
         }
     }
+    public static List<String> getSevenDate(int day) {
+        List<String> dateList = new ArrayList<>();
+        for (int i = 0; i < day; i++) {
+            Date date = DateUtils.addDays(new Date(), -i);
+            dateList.add(DateUtil.format(date, "MM-dd"));
+        }
+        Collections.sort(dateList);
+        return dateList;
+    }
 
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        String startTime = DateUtil.format(DateUtil.offsetDay(new Date(), 1), DatePattern.NORM_DATE_PATTERN);
-       String endTime = DateUtil.format(new Date(), DatePattern.NORM_DATE_PATTERN);
-        System.out.println(startTime);
-        System.out.println(endTime);
-        ArithmeticUtil.add(1.0,2.0);
+    public static String getTime(int type) {
+        String time = null;
+        if (type == 0) {
+            time = DateUtil.format(DateUtil.offsetDay(new Date(), -6), DatePattern.NORM_DATE_PATTERN);
+        }
+        if (type == 1) {
+            time = DateUtil.format(DateUtil.offsetDay(new Date(), -29), DatePattern.NORM_DATE_PATTERN);
+        }
+        if (type == 3) {
+            time = DateUtil.format(new Date(), "yyyy");
+        }
+        return time;
+    }
+    public static void main(String[] args) {
+
+
+        String format = DateUtil.format(DateUtil.yesterday(), DatePattern.NORM_DATE_PATTERN);
+        System.out.println(format);
     }
 
 }

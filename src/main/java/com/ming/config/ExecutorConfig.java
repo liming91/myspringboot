@@ -43,6 +43,7 @@ public class ExecutorConfig {
         // 这里给线程设置名字，主要是为了在项目能够更快速的定位错误。
         syncScheduler.setThreadGroupName("syncTg");
         syncScheduler.setThreadNamePrefix("syncThread-");
+        System.out.println("processNum===:"+processNum);
         syncScheduler.initialize();
         return syncScheduler;
     }
