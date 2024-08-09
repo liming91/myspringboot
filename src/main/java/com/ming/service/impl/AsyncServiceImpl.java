@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 
@@ -24,9 +25,9 @@ public class AsyncServiceImpl implements IAsyncService {
     @Autowired
     private TestMapper testMapper;
 
-    @Qualifier("threadPoolTaskScheduler")
+
     @Autowired
-    private Executor executor;
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
 
 
@@ -88,7 +89,7 @@ public class AsyncServiceImpl implements IAsyncService {
     public int test2(List<Test> testList) {
         //TODO 耗时不准确
         long startTime = System.currentTimeMillis();
-        executor.execute(()->{
+        threadPoolTaskExecutor.execute(()->{
             testMapper.addTest(testList);
         });
         long endTime = System.currentTimeMillis();
@@ -102,7 +103,7 @@ public class AsyncServiceImpl implements IAsyncService {
         long startTime = System.currentTimeMillis();
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             testMapper.addTest(testList);
-        }, executor);
+        }, threadPoolTaskExecutor);
         long endTime = System.currentTimeMillis();
         long time = endTime - startTime;
         logger.info("耗时：" + time);

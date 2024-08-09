@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorCompletionService;
 
 @Service
@@ -29,9 +28,8 @@ public class HbBaseEnterUserServiceImpl implements IHbBaseEnterUserService {
     @Autowired
     private BatchInsertUserMapper hbBaseEnterUserMapper;
 
-    @Qualifier("threadPoolTaskScheduler")
     @Autowired
-    private Executor threadPoolTaskExecutor;
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
 
     @Override

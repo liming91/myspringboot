@@ -21,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableTransactionManagement
 @SpringBootApplication
 @EnableScheduling
+@EnableAsync
 public class MySpringbootApplication {
 
     public static void main(String[] args) {
