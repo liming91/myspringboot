@@ -101,7 +101,8 @@ public class BatchExportController {
         ExportParams params = new ExportParams("大数据测试", "测试");
         Workbook workbook = ExcelExportUtil.exportBigExcel(params, TestExcel.class, exportBigExcel, new Object());
         MyExcelExportUtil.exportExcel(workbook, String.valueOf(System.currentTimeMillis()), response);
-        log.info("bigDataExport:" + (new Date().getTime() - start.getTime()));//10000-bigDataExport:2278 100000-bigDataExport:19083 1000000-bigDataExport:693672
+        log.info("bigDataExport:" + (new Date().getTime() - start.getTime()));
+        //10000-bigDataExport:2278 100000-bigDataExport:19083 1000000-bigDataExport:693672
     }
 
     /**
