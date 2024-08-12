@@ -26,11 +26,11 @@ public class IExcelExportServerImpl implements IExcelExportServer {
         List<Object> list = new ArrayList<>();
         for (int i = 0; i < 100000; i++) {  //测试数据
             TestExcel testExcel = new TestExcel();
-            testExcel.setId("1"+i);
-            testExcel.setName("子龙"+i);
+            testExcel.setId("1" + i);
+            testExcel.setName("子龙" + i);
             testExcel.setBirthday(new Date());
-            testExcel.setPhone("1320000"+i);
-            testExcel.setRemark("备注"+i);
+            testExcel.setPhone("1320000" + i);
+            testExcel.setRemark("备注" + i);
             list.add(testExcel);
         }
         List partList = new ArrayList();
