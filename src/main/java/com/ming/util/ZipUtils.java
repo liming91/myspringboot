@@ -17,8 +17,8 @@ public class ZipUtils {
     private static final int BUFFER_SIZE = 2 * 1024;
 
     /**
-     * 压缩成ZIP 方法     * @param srcDir 压缩文件夹路径
-     *
+     * 压缩成ZIP 方法
+     * @param srcDir 压缩文件夹路径
      * @param out              压缩文件输出流
      * @param KeepDirStructure 是否保留原来的目录结构,true:保留目录结构;
      *                         false:所有文件跑到压缩包根目录下(注意：不保留目录结构可能会出现同名文件,会压缩失败)
@@ -165,11 +165,15 @@ public class ZipUtils {
             ex.printStackTrace();
         } finally {
             try {
-                if (fis != null) { fis.close(); }
-                if (outputStream != null) { outputStream.close(); }
+                if (fis != null) {
+                    fis.close();
+                }
+                if (outputStream != null) {
+                    outputStream.close();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }}
-
+        }
+    }
 }

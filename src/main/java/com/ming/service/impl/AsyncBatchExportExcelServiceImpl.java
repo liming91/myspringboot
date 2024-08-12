@@ -77,7 +77,7 @@ public class AsyncBatchExportExcelServiceImpl implements IAsyncBatchExportExcelS
         filePath.append("线程").append(Thread.currentThread().getName()).append("-")
                 .append("页码").append(map.get("page")).append(".xlsx");
         // 调用导出的文件方法
-        Workbook workbook = myExcelExportUtil.getWorkbook("test", "test", TestExcel.class, subList, ExcelType.XSSF);
+        Workbook workbook = myExcelExportUtil.getWorkbook("测试数据", "test", TestExcel.class, subList, ExcelType.XSSF);
         File file = new File(filePath.toString());
         MyExcelExportUtil.exportExcel2(workbook, file);
         long end = System.currentTimeMillis();

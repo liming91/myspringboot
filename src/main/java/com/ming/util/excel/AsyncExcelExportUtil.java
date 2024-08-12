@@ -30,7 +30,7 @@ import static com.ming.service.impl.AsyncBatchExportExcelServiceImpl.DATA_TOTAL_
 public class AsyncExcelExportUtil {
 
     // 定义导出的excel文件保存的路径
-    private String filePath = "C:\\Desktop\\export\\";
+    private String filePath = "F:\\excel\\upload\\";
     @Resource
     private IAsyncBatchExportExcelService asynExportExcelService;
     /**
