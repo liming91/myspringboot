@@ -41,7 +41,7 @@ import java.util.concurrent.CountDownLatch;
 public class BatchExportController {
 
     @Resource
-    private  IExcelExportServer exportBigExcel;
+    private IExcelExportServer exportBigExcel;
 
     private final MyExcelExportUtil myExcelExportUtil;
 
@@ -68,11 +68,11 @@ public class BatchExportController {
         List<Object> list = new ArrayList<>();
         for (int i = 0; i < 100000; i++) {  //测试数据
             TestExcel testExcel = new TestExcel();
-            testExcel.setId("1"+i);
-            testExcel.setName("子龙"+i);
+            testExcel.setId("1" + i);
+            testExcel.setName("子龙" + i);
             testExcel.setBirthday(new Date());
-            testExcel.setPhone("1320000"+i);
-            testExcel.setRemark("备注"+i);
+            testExcel.setPhone("1320000" + i);
+            testExcel.setRemark("备注" + i);
             list.add(testExcel);
         }
         try {
@@ -115,11 +115,11 @@ public class BatchExportController {
         List<Object> list = new ArrayList<>();
         for (int i = 0; i < 1000000; i++) {  //一百万数据量
             TestExcel testExcel = new TestExcel();
-            testExcel.setId("1"+i);
-            testExcel.setName("子龙"+i);
+            testExcel.setId("1" + i);
+            testExcel.setName("子龙" + i);
             testExcel.setBirthday(new Date());
-            testExcel.setPhone("1320000"+i);
-            testExcel.setRemark("备注"+i);
+            testExcel.setPhone("1320000" + i);
+            testExcel.setRemark("备注" + i);
             list.add(testExcel);
         }
         try {
