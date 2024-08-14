@@ -78,7 +78,7 @@ public class BatchExportController {
         try {
             long start = System.currentTimeMillis();
             Workbook workbook = myExcelExportUtil.getWorkbook("测试", "test", TestExcel.class, list, ExcelType.XSSF);
-            String filePath = "F:\\excel\\upload";
+            String filePath = "F:\\excel\\upload.xlsx";
             File file = new File(filePath);
             MyExcelExportUtil.exportExcel2(workbook, file);
             long end = System.currentTimeMillis();
