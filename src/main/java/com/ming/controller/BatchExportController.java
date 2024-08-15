@@ -78,13 +78,15 @@ public class BatchExportController {
         try {
             long start = System.currentTimeMillis();
             Workbook workbook = myExcelExportUtil.getWorkbook("测试", "test", TestExcel.class, list, ExcelType.XSSF);
-            String filePath = "F:\\excel\\upload.xlsx";
+            //String filePath = "F:\\excel\\upload.xlsx";
+            String filePath = "/home/excel/upload.xlsx";
             File file = new File(filePath);
             MyExcelExportUtil.exportExcel2(workbook, file);
             long end = System.currentTimeMillis();
             log.info("任务执行完毕共消耗：  " + (end - start) + "ms");
             //1000000-69407ms  100000-3518ms 10000-1310ms
         } catch (Exception e) {
+            e.printStackTrace();
             log.error("普通数据量导出异常！", e);
         }
     }
@@ -98,8 +100,10 @@ public class BatchExportController {
     @GetMapping(value = "/bigDataExport")
     public void bigDataExport(HttpServletResponse response) throws IOException {
         Date start = new Date();
-        ExportParams params = new ExportParams("大数据测试", "测试");
+        ExportParams params = new ExportParams("大数据测试", "测试11111");
         Workbook workbook = ExcelExportUtil.exportBigExcel(params, TestExcel.class, exportBigExcel, new Object());
+        log.info("workbook================"+workbook);
+        log.info("workbook================"+workbook.getSheetName(0));
         MyExcelExportUtil.exportExcel(workbook, String.valueOf(System.currentTimeMillis()), response);
         log.info("bigDataExport:" + (new Date().getTime() - start.getTime()));
         //10000-bigDataExport:2278 100000-bigDataExport:19083 1000000-bigDataExport:693672

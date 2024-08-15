@@ -17,7 +17,7 @@ import java.util.Date;
  */
 @Data
 @TableName(value = "test_excel")
-@ExcelTarget("testExcel")
+@ExcelTarget(value = "testExcel")
 public class TestExcel {
 
     @Excel(name = "序号")
