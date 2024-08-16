@@ -26,8 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
+import org.springframework.beans.factory.annotation.Value;
 /**
  * excel批量导出测试
  *
@@ -49,6 +48,8 @@ public class BatchExportController {
 
     private final AsyncExcelExportUtil asyncExcelExportUtil;
 
+    @Value("${file.upload-dir}")
+    private String uploadDir;
 
     @ApiImplicitParams({
             @ApiImplicitParam(name = "startTime", value = "开始时间", dataType = "String", paramType = "query"),
@@ -80,9 +81,10 @@ public class BatchExportController {
         try {
             long start = System.currentTimeMillis();
             Workbook workbook = myExcelExportUtil.getWorkbook("测试", "test", TestExcel.class, list, ExcelType.XSSF);
-            //String filePath = "F:\\excel\\upload.xlsx";
-            String filePath = "/home/excel/upload.xlsx";
-            File file = new File(filePath);
+            String filePath = "F:\\excel\\upload.xlsx";
+
+            //String filePath = "/home/excel/upload.xlsx";
+            File file = new File(uploadDir+"/upload.xlsx");
             MyExcelExportUtil.exportExcel2(workbook, file);
             long end = System.currentTimeMillis();
             log.info("任务执行完毕共消耗：  " + (end - start) + "ms");

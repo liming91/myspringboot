@@ -19,4 +19,7 @@ http://43.142.146.167:8088
 ## api接口地址
 http://127.0.0.1:8088/swagger-ui.html
 
+## 上传路径
+1.确保在 Docker 容器中目标目录 /home/excel 存在。你可以在 Dockerfile 中创建这个目录：RUN mkdir -p /home/excel && chmod 777 /home/excel
+2.使用 Docker 卷挂载：docker run --init -d --name myspringboot -p 8088:8088 -v /home/excel:/home/excel  myspringboot:1.0.0
 

@@ -108,7 +108,9 @@ minio:
           starttls:
             enable: true
             required: true
-
+#上传路径
+file:
+ upload-dir: /home/excel
 # 项目相关配置
 ruoyi:
   # 名称
