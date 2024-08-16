@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -66,7 +68,7 @@ public class BatchExportController {
     @GetMapping(value = "/export2")
     public void test2() {
         List<Object> list = new ArrayList<>();
-        for (int i = 0; i < 100000; i++) {  //测试数据
+        for (int i = 0; i < 1000; i++) {  //测试数据
             TestExcel testExcel = new TestExcel();
             testExcel.setId("1" + i);
             testExcel.setName("子龙" + i);
@@ -99,11 +101,11 @@ public class BatchExportController {
      */
     @GetMapping(value = "/bigDataExport")
     public void bigDataExport(HttpServletResponse response) throws IOException {
+        String[] names = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+        log.info("字体检查"+"Found " + names.length + " fonts:");
         Date start = new Date();
-        ExportParams params = new ExportParams("大数据测试", "测试11111");
+        ExportParams params = new ExportParams("大数据量导出大数据测试", "测试大数据量导出");
         Workbook workbook = ExcelExportUtil.exportBigExcel(params, TestExcel.class, exportBigExcel, new Object());
-        log.info("workbook================"+workbook);
-        log.info("workbook================"+workbook.getSheetName(0));
         MyExcelExportUtil.exportExcel(workbook, String.valueOf(System.currentTimeMillis()), response);
         log.info("bigDataExport:" + (new Date().getTime() - start.getTime()));
         //10000-bigDataExport:2278 100000-bigDataExport:19083 1000000-bigDataExport:693672
@@ -117,7 +119,8 @@ public class BatchExportController {
     @GetMapping(value = "/ordinaryExport")
     public void ordinaryExport(HttpServletResponse response) {
         List<Object> list = new ArrayList<>();
-        for (int i = 0; i < 1000000; i++) {  //一百万数据量
+        for (int i = 0; i < 1000; i++) {
+            //TODO 一百万数据量 因为云服务器内存2G改为1000条数据
             TestExcel testExcel = new TestExcel();
             testExcel.setId("1" + i);
             testExcel.setName("子龙" + i);
@@ -128,11 +131,12 @@ public class BatchExportController {
         }
         try {
             Date start = new Date();
-            Workbook workbook = myExcelExportUtil.getWorkbook("大数据测试", "测试", TestExcel.class, list, ExcelType.XSSF);
+            Workbook workbook = myExcelExportUtil.getWorkbook("普通大数据量导出大数据测试", "测试普通大数据量导出", TestExcel.class, list, ExcelType.XSSF);
             MyExcelExportUtil.exportExcel(workbook, String.valueOf(System.currentTimeMillis()), response);
             log.info("export:" + (new Date().getTime() - start.getTime()));
             //10000-export:1208 100000-export:4516 1000000-export:329188
         } catch (Exception e) {
+            e.printStackTrace();
             log.error("普通数据量导出异常！", e);
         }
     }
