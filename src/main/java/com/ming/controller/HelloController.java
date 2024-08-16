@@ -48,9 +48,9 @@ public class HelloController {
             Asserts.fail("错误账户");
         }
         Map<String, Object> map = new HashMap<>();
-        String staticPath = this.getClass().getClassLoader().getResource("image").getFile();
+        String staticPath = this.getClass().getClassLoader().getResource("images").getFile();
         log.info("staticPath:{}", staticPath);
-        File file = new File("src/main/resources/image/log.jpg");
+        File file = new File("src/main/resources/images/logo.jpg");
         String canonicalPath = file.getCanonicalPath();
         map.put("hello", canonicalPath);
         return Result.success(map);

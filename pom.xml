@@ -310,6 +310,20 @@
             <version>${kaptcha.version}</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+
+        <!--二维码生成-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
@@ -357,7 +371,7 @@
                 <version>1.0.0</version>
                 <!--服务器推送-->
                 <!--                <configuration>-->
-                <!--                    <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>-->
+                <!--                    <imageName>${docker.images.prefix}/${project.artifactId}:${project.version}</imageName>-->
                 <!--                    <dockerDirectory>src/main/docker</dockerDirectory>-->
                 <!--                    &lt;!&ndash;CA证书地址&ndash;&gt;-->
                 <!--                    <dockerCertPath>D:\ca</dockerCertPath>-->

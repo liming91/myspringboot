@@ -34,7 +34,7 @@ public class RedisLockTest {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
     private final static String KEY = "key1:";
-    String redisLockKey = String.format("%s:docker-image:%s", "LM_", "LOCK_IMAGE");
+    String redisLockKey = String.format("%s:docker-images:%s", "LM_", "LOCK_IMAGE");
     String redisLockValue = UUID.randomUUID().toString();
 
 

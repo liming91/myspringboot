@@ -31,4 +31,12 @@
         create_time,update_by,update_time,
         remark
     </sql>
+    <select id="findMenuName" resultType="java.lang.String">
+        SELECT
+            Concat( Concat( ( SELECT menu_name FROM sys_menu WHERE menu_id = men.parent_id ), '-' ), men.menu_name ) menu_name
+        FROM
+            sys_menu men
+        WHERE
+            menu_id = #{menuId}
+    </select>
 </mapper>

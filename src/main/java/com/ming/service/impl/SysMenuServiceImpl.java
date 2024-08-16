@@ -8,6 +8,7 @@ import com.ming.entities.SysMenu;
 import com.ming.service.SysMenuService;
 import com.ming.mapper.SysMenuMapper;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -43,6 +44,15 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         }
         return resultList;
     }
+
+    @Override
+    public String findMenuName(String menuId) {
+        if (StringUtils.isEmpty(menuId)) {
+            menuId = "100";
+        }
+        return this.baseMapper.findMenuName(menuId);
+    }
+
 }
 
 

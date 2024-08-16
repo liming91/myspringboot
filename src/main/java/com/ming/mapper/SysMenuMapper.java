@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
+    String findMenuName(String menuId);
 }
 
 
