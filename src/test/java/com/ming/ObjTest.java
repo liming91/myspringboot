@@ -1,6 +1,7 @@
 package com.ming;
 
 import cn.hutool.core.date.*;
+import cn.hutool.core.lang.func.VoidFunc0;
 import com.alibaba.fastjson.JSON;
 import com.ming.bean.Dog;
 import com.ming.bean.Order;
@@ -30,6 +31,7 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
@@ -101,51 +103,48 @@ public class ObjTest {
 
     static Integer count = 0;
     private static ReentrantLock lock = new ReentrantLock();
+
+    /**
+     * 模拟超时
+     * @return
+     * @throws InterruptedException
+     */
+    private static String executeLongRunningOperation() throws InterruptedException {
+        // 在这里执行你的数据库或SVN操作
+        Thread.sleep(10000);
+        return "Success";
+    }
+
+
+    @Test
+    public void interfaceTimeOut(){
+        final ExecutorService exec = Executors.newFixedThreadPool(1);
+        Callable<String> task = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                executeLongRunningOperation();
+                return "线程执行完成";
+            }
+        };
+
+
+        try {
+            Future<String> future = exec.submit(task);
+            String obj = future.get(5, TimeUnit.SECONDS); //任务处理超时时间设为 1 秒
+            System.out.println("任务成功返回:" + obj);
+        }catch (TimeoutException e) {
+            System.out.println("处理超时啦....");
+        } catch (Exception e) {
+            System.out.println("处理失败....");
+            throw new RuntimeException(e);
+        } finally {
+            // 关闭线程池
+            exec.shutdown();
+        }
+
+    }
+
     public static void main(String[] args) throws InterruptedException {
-
-        Thread t1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                    try {
-                        lock.lock();
-                        for (int i = 0; i < 5000; i++) {
-
-                            count++;
-
-                        }
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }finally {
-                        lock.unlock();
-                    }
-            }
-        });
-        Thread t2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                try {
-                    lock.lock();
-                    for (int i = 0; i < 5000; i++) {
-
-                        count--;
-
-                    }
-                }catch (Exception e){
-
-                }finally {
-                    lock.unlock();
-                }
-            }
-        });
-
-        t1.start();
-        t2.start();
-        // 主线程等待t1和t2执行完成，再执行下面的代码
-        t1.join();
-        t2.join();
-        System.out.println(count);
-
 
 
     }
