@@ -32,6 +32,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
@@ -123,7 +124,7 @@ public class ObjTest {
             @Override
             public String call() throws Exception {
                 executeLongRunningOperation();
-                return "线程执行完成";
+                return "任务执行完成";
             }
         };
 
@@ -145,7 +146,8 @@ public class ObjTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-
-
+        AtomicReference<Float> oMoney = new AtomicReference<>(1f);
+        oMoney.updateAndGet(v1 -> v1 + Float.parseFloat("1.0"));
+        System.out.println(oMoney.get());
     }
 }
