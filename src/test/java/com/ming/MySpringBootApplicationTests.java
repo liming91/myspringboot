@@ -43,6 +43,14 @@ public class MySpringBootApplicationTests {
     public void test1() {
         String capText = captchaProducerMath.createText();
         logger.info("验证码===：{}",capText);
+        int count =0;
+        for (int i = 0; i < 4; i++) {
+            if(i==2){
+                count+=i;
+                break;
+            }
+        }
+        System.out.println("==================:"+count);
     }
     @Test
     public void helloService() {

@@ -18,6 +18,7 @@ import com.ming.service.SysUserService;
 import com.ming.util.RedisLockUtil;
 import com.ming.util.StringUtils;
 import com.ming.util.http.Result;
+import com.ming.util.redis.RedisCache;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -26,6 +27,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -48,12 +51,22 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Autowired
     private RedisLockUtil redisLockUtil;
 
+    @Autowired
+    private RedisCache redisCache;
+
     @Value(value = "${user.password.maxRetryCount}")
     private int maxRetryCount;
 
     @Value(value = "${user.password.lockTime}")
     private int lockTime;
     String redisLockKey = String.format("%s:lock:%s", "USER_", "LOCK_NAME");
+
+    /**
+     * 3*24*60*60
+     * 3天提醒
+     */
+    private long passwordExpireTip = 1 * 60;
+
 
     @Override
     public IPage<SysUser> userPage(Integer pageNo, Integer pageSize) {
@@ -73,6 +86,31 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return page;
     }
 
+    private void passwordExpire(String username, String password) {
+        List<Object> cacheList = redisCache.getCacheList("password:list:" + username);
+        if (StringUtils.isEmpty(cacheList)) {
+            redisCache.setCacheObject("password:expire:" + username, password, 3, TimeUnit.MINUTES);
+            List<String> list = new LinkedList<String>();
+            list.add(password);
+            redisCache.setCacheList("password:list:" + username, list);
+        }
+    }
+
+
+    public void pwdReminder(String username) {
+        Map<String, Object> resMap = new HashMap<>();
+        boolean isRestPwd = false;
+        Long expire = redisTemplate.getExpire("password:expire:" + username);
+        if (expire < passwordExpireTip) {
+            long days = TimeUnit.SECONDS.toDays(expire);
+            long hours = TimeUnit.SECONDS.toHours(expire) - TimeUnit.DAYS.toHours(days);
+            isRestPwd = true;
+            resMap.put("timeTip", "密码还有" + days + "天" + hours + "小时到期，点击确定修改密码！");
+            log.info(expire + "秒到期，点击确定修改密码！");
+        }
+        resMap.put("isRestPwd", isRestPwd);
+
+    }
 
     @Override
     public void login(String username, String password) {
@@ -81,10 +119,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             throw new ServiceException(String.format("登录用户：%s不存在", username));
 
         }
+        passwordExpire(username, password);
+        String redisPassword = redisCache.getCacheObject("password:expire:" + username);
+        if (StringUtils.isEmpty(redisPassword)) {
+            throw new ServiceException("密码已过期，请联系管理员修改！");
+        }
+
+
         SysUser sysUser = new SysUser();
         sysUser.setUserName(username);
         sysUser.setPassword(password);
         validate(sysUser);
+
+        pwdReminder(username);
     }
 
     public void validate(SysUser user) {
