@@ -44,9 +44,24 @@
 		},
 		tapClick: function () {
 			//这个是微信提供的接口，调用成功之后会返回一个临时登录凭证
+			// wx.login({
+			// 	success: function (res) {
+			// 		console.log(res.code);
+			// 	}
+			// })
 			wx.login({
-				success: function (res) {
-					console.log(res.code);
+				success (res) {
+					if (res.code) {
+						//发起网络请求
+						wx.request({
+							url: 'https://example.com/onLogin',
+							data: {
+								code: res.code
+							}
+						})
+					} else {
+						console.log('登录失败！' + res.errMsg)
+					}
 				}
 			})
 		},
