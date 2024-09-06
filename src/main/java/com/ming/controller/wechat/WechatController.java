@@ -34,7 +34,6 @@ public class WechatController {
     /**
      * 通过APPID、APPSECRET获取小程序token
      * 有效期7200秒
-     *
      * @return
      */
     @ApiOperation("获取AccessToken")
@@ -45,10 +44,9 @@ public class WechatController {
     }
 
 
+
     /**
-     * 小程序登录
      * 通过微信code获取登录信息
-     * https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/user-login/code2Session.html
      *
      * @param appletLoginQuery
      * @return
@@ -57,10 +55,9 @@ public class WechatController {
     @PostMapping(value = "/codeGetUser")
     public Result codeGetUser(@RequestBody AppletLoginQuery appletLoginQuery) {
         // 判断用户名密码是否合法
-        if (sysUserService.isItaVillage(appletLoginQuery)) {
-            return Result.failure(2, "用户名密码错误");
-        }
-
+        if(sysUserService.isItaVillage(appletLoginQuery)){
+            return Result.failure(2,"用户名密码错误");
+        };
         return iWechatService.codeGetUser(appletLoginQuery);
     }
 
