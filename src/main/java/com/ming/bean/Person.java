@@ -47,10 +47,10 @@ super();
         return "run....";
     }
 
-    //代码块
-    {
-        pName = "周杰伦";
-    }
+                //代码块
+                {
+                    pName = "周杰伦";
+                }
 
     //内部类
     class Dog{
