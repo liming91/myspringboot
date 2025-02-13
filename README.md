@@ -17,8 +17,6 @@ docker ps -a
 http://43.142.146.167:8088
 
 
-感谢JetBrains支持：https://www.jetbrains.com
-
 ## api接口地址
 http://127.0.0.1:8088/swagger-ui.html
 
