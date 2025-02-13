@@ -42,7 +42,7 @@ public class AsyncExcelExportUtil {
     private static ThreadLocal<Queue<Map<String, Object>>> queueThreadLocal = new ThreadLocal<>();
 
     /**
-     * 多线程批量导出 excel
+     * 测试多线程批量导出 excel
      *
      * @param response 用于浏览器下载
      * @throws InterruptedException
