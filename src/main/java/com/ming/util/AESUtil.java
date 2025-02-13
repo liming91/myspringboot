@@ -8,6 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  * 对称加密AES算法
+ *
  * @Author liming
  * @Date 2024/2/18 16:33
  */
@@ -39,14 +40,12 @@ public class AESUtil {
             log.error("AES加密错误{}", e.getMessage());
         }
         String str = new Base64().encodeToString(encrypted);
-        str = str.replace("/","xiegang");
-        str = str.replace("+","jiahao");
+        str = str.replace("/", "xiegang");
+        str = str.replace("+", "jiahao");
         return str;
     }
 
     /**
-     *
-     *
      * <summary>
      * 解密
      * </summary>
@@ -55,8 +54,8 @@ public class AESUtil {
      * <returns></returns>
      */
     public static String Decrypt(String sSrc) {
-        sSrc = sSrc.replace("xiegang","/");
-        sSrc = sSrc.replace("jiahao","+");
+        sSrc = sSrc.replace("xiegang", "/");
+        sSrc = sSrc.replace("jiahao", "+");
         try {
             byte[] raw = SKEY.getBytes("UTF-8");
             SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
