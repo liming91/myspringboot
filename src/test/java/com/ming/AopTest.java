@@ -31,6 +31,13 @@ import java.lang.reflect.Proxy;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class AopTest {
+
+    /**
+     *
+     *
+     *  AOP 代理使用
+     * @param args
+     */
     public static void main(String[] args) {
         // 目标对象
         JdkService realService = new Real();
