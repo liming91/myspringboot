@@ -36,6 +36,13 @@ public class AopTest {
      *
      *
      *  AOP 代理使用
+     *  1、创建目标对象JdkService 包括他的实现类
+     *
+     *  2、创建InvocationHandler并传入目标对象
+     *
+     *  3、创建代理对象
+     *
+     *  4、使用代理对象执行方法
      * @param args
      */
     public static void main(String[] args) {
