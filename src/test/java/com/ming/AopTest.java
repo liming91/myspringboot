@@ -18,11 +18,11 @@ import java.lang.reflect.Proxy;
  * 	JDK 动态代理是对接口进行的代理:代理类实现了接口,并继承了Proxy类:目标对象与代理对象没有什么直接关系,只是它们都实现了接口
  * 	并且代理对象执行方法时候,内部最终是委托目标对象执行具体的方法的。
  *
- * 	①JDK动态代理只提供接口的代理，不支持类的代理。他的核心是InvocationHandler接口和Proxy类，InvocationHandler 通过invoke()
+ * 	①JDK动态代理只提供接口的代理，不支持类的代理。他的核心是InvocationHandler接口和Proxy类，InvocationHandler 通过invoke()
  * 	方法调用目标类中的代码.接着，Proxy利用 InvocationHandler动态创建一个符合接口的的实例,生成目标类的代理对象。
- * 	invoke(Object  proxy,Method  method,Object[] args)：
- * 	proxy是最终生成的代理实例; 
- * 	method 是被代理目标实例调用的方法; 
+ * 	invoke(Object proxy,Method method,Object[] args)：
+ * 	proxy是最终生成的代理实例;
+ * 	method 是被代理目标实例调用的方法;
  * 	args 是被代理目标实例某个方法的方法的参数列表, 在方法反射调用时使用。
  * 	2. Proxy类是真正创建代理实例的类，其中主要是使用 Proxy.newProxyInstance来创建。
  * @Author liming
