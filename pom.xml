@@ -324,6 +324,12 @@
             <version>3.4.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
