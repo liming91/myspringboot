@@ -6,6 +6,12 @@ import org.junit.Test;
 import java.sql.*;
 
 /**
+ * 1、定义驱动
+ * 2、加载驱动
+ * 3、通过驱动获取数据库连接
+ * 4、定义sql
+ * 5、步骤五:创建一个PreparedStatement对象(可以用来执行sql,来操作数据库)
+ * 6、执行数据库,得到结果集
  * @Author liming
  * @Date 2023/8/10 15:03
  */
