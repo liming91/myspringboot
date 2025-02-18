@@ -64,6 +64,22 @@ public class DateTest {
         return DateUtil.format(dateTime, "yyyy");
     }
 
+    /**
+     * Date、long、Calendar之间的相互转换
+     */
+    public static String getStr() {
+        //当前时间
+        Date date = DateUtil.date();
+        //当前时间
+        Date date2 = DateUtil.date(Calendar.getInstance());
+        //当前时间
+        Date date3 = DateUtil.date(System.currentTimeMillis());
+        //当前时间字符串，格式：yyyy-MM-dd HH:mm:ss
+        String now = DateUtil.now();
+        //当前日期字符串，格式：yyyy-MM-dd
+        return DateUtil.today();
+    }
+
 
     /**
      * 判断format(2023-09-01 10:59:41)是否在系统时间之后
