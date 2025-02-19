@@ -76,8 +76,9 @@ public class MySpringBootApplicationTests {
     }
 
 
-
-
+    /**
+     * 日志的级别
+     */
     @Test
     public void logTest() {
         //日志的级别由低到高trace<debug<info<warn<error
