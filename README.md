@@ -13,6 +13,7 @@ docker ps -a
 6.  prometheus + grafana搭建监控
 7.  多线程批量导出 excel
 8.  对称加密AES算法
+9.  redisLockUtil
 ## 在线地址
 http://43.142.146.167:8088
 
