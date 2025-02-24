@@ -1,11 +1,7 @@
 package com.ming;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.code.kaptcha.Producer;
-import com.ming.bean.Person;
-import com.ming.bean.User;
-import com.ming.entities.Animal;
 import com.ming.entities.Info;
 import com.ming.service.IAsyncService;
 import com.ming.util.JsonUtils;
@@ -16,8 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.event.EventListener;
-import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -29,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
@@ -60,16 +53,17 @@ public class MySpringBootApplicationTests {
     @Test
     public void test1() {
         String capText = captchaProducerMath.createText();
-        logger.info("验证码===：{}",capText);
-        int count =0;
+        logger.info("验证码===：{}", capText);
+        int count = 0;
         for (int i = 0; i < 4; i++) {
-            if(i==2){
-                count+=i;
+            if (i == 2) {
+                count += i;
                 break;
             }
         }
-        System.out.println("==================:"+count);
+        System.out.println("==================:" + count);
     }
+
     @Test
     public void helloService() {
         System.out.println(ioc.containsBean("helloService"));
@@ -102,7 +96,7 @@ public class MySpringBootApplicationTests {
 
 
     @Test
-    public void test3(){
+    public void test3() {
 //        List<String> list = new ArrayList<>();
 //        list.add("11");
 //        list.add("22");
