@@ -5,7 +5,7 @@ import com.ming.enums.ResultCode;
 /**
  * 自定义异常
  */
-public class ServiceException extends RuntimeException  {
+public class ServiceException extends RuntimeException {
     /**
      * 错误码
      */
@@ -14,6 +14,7 @@ public class ServiceException extends RuntimeException  {
      * 错误信息
      */
     protected String errorMsg;
+
     public ServiceException() {
         super("用户不存在");
     }
