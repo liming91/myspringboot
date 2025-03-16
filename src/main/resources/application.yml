@@ -82,7 +82,7 @@ logging:
   config: classpath:logback-spring.xml
 
 minio:
-  url: http://43.142.146.167:9010
+  url: http://43.142.146.155:9010
   accessKey: minioadmin
   secretKey: minioadmin
   minio_name: minioadmin
