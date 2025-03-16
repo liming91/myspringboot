@@ -20,13 +20,13 @@ public class ServiceInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 在目标方法执行前加入日志或其它操作
-        System.out.println("Before method " + method.getName());
+        System.out.println("jdkAop Before method " + method.getName());
 
         // 执行目标对象的方法
         Object result = method.invoke(target, args);
 
         // 在目标方法执行后加入日志或其它操作
-        System.out.println("After method " + method.getName());
+        System.out.println("jdkAop After method " + method.getName());
 
         return result;
     }
