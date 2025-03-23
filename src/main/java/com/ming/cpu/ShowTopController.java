@@ -21,42 +21,44 @@ public class ShowTopController {
 
     /**
      * 死循环
+     *
      * @return
      */
     @RequestMapping("loop")
-    public String loop(){
+    public String loop() {
         logger.info("死循环产生");
         System.out.println("死循环产生");
-        while (true){
+        while (true) {
         }
     }
 
     /**
      * 死锁
+     *
      * @return
      */
     @RequestMapping("deadLock")
-    public  String deadLock(){
-        new Thread(()->{
+    public String deadLock() {
+        new Thread(() -> {
             synchronized (lock1) {
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    synchronized (lock2){
+                    synchronized (lock2) {
                         System.out.println("thread1 over");
                     }
                 }
             }
         }).start();
 
-        new Thread(()->{
+        new Thread(() -> {
             synchronized (lock2) {
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    synchronized (lock1){
+                    synchronized (lock1) {
                         System.out.println("thread2 over");
                     }
                 }
