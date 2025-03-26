@@ -4,11 +4,24 @@ import com.google.gson.JsonObject;
 import com.ming.util.http.OkHttpUtil;
 import com.ming.xf.AuthUtil;
 import com.ming.xf.XfConstant;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 科大讯飞
@@ -66,4 +79,86 @@ public class XFTest {
         System.out.println(jsonObject);
     }
 
+
+    /**
+     * 基于 selenium webdrivermanager
+     *         <dependency>
+     *             <groupId>org.seleniumhq.selenium</groupId>
+     *             <artifactId>selenium-java</artifactId>
+     *             <version>3.141.59</version>
+     *         </dependency>
+     *
+     *         <!-- ChromeDriver 自动管理 -->
+     *         <dependency>
+     *             <groupId>io.github.bonigarcia</groupId>
+     *             <artifactId>webdrivermanager</artifactId>
+     *             <version>5.6.3</version>
+     *         </dependency>
+     *
+     *         <dependency>
+     *             <groupId>org.apache.httpcomponents.client5</groupId>
+     *             <artifactId>httpclient5</artifactId>
+     *             <version>5.2</version> <!-- 使用最新稳定版本 -->
+     *         </dependency>
+     *
+     * 1、设置 ChromeDriver: 下载与浏览器版本匹配的 ChromeDriver，并将其路径添加到系统环境变量或代码中。
+     * 2、打开目标页面: 使用 Selenium 打开目标用户的 GitHub 主页。
+     * 3、等待页面加载: 使用显式等待（WebDriverWait）确保 "Repositories" 部分加载完成。
+     * 4、提取项目名称: 定位所有项目名称所在的元素，并提取其文本内容。
+     * @param args
+     */
+    public static void main(String[] args) {
+        // 自动下载并配置 ChromeDriver
+        WebDriverManager.chromedriver().setup();
+
+        // 配置浏览器选项（可选）
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");                // 无头模式（不显示浏览器界面）
+        options.addArguments("--disable-gpu");            // 禁用GPU加速
+        options.addArguments("--disable-images");         // 禁用图片加载（提升速度）
+
+        // 初始化 WebDriver
+        WebDriver driver = new ChromeDriver(options);
+        WebDriverWait wait = new WebDriverWait(driver, 20); // 显式等待
+
+        try {
+            // 1. 打开目标网页
+            String url = "https://github.com/liming91";
+            driver.get(url);
+
+            // 2. 等待列表容器加载完成
+            By listContainerSelector = By.id("367036522");
+            WebElement repositoriesSection = wait.until(ExpectedConditions.presenceOfElementLocated(listContainerSelector));
+
+            List<WebElement> repoSpans = repositoriesSection.findElements(By.cssSelector("a.min-width-0 span.repo"));
+            // 提取并打印项目名称
+            System.out.println("用户 liming91 的项目列表：");
+            for (WebElement span : repoSpans) {
+                System.out.println(span.getText().trim());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 关闭浏览器
+            driver.quit();
+        }
+    }
+
+    // 数据模型类
+    static class ItemData {
+        String title;
+        String price;
+        String link;
+
+        public ItemData(String title, String price, String link) {
+            this.title = title;
+            this.price = price;
+            this.link = link;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("标题：%s | 价格：%s | 链接：%s", title, price, link);
+        }
+    }
 }
