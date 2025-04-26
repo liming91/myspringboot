@@ -5,7 +5,10 @@ import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
+import com.alibaba.excel.EasyExcel;
+import com.google.common.collect.Lists;
 import com.ming.bean.Test;
+import com.ming.exception.ServiceException;
 import com.ming.service.ExcelService;
 import com.ming.service.ITestService;
 import com.ming.util.ExcelStyleUtil;
@@ -67,6 +70,16 @@ public class ExcelController {
             workbook.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @PostMapping("/easyExcelExcedownload")
+    public void easypoiDownload(HttpServletResponse response) {
+        try {
+            // 如果这里需要后台指定文件名，则可以把文件名定义在请求头里。注意：这里的文件名如果是中文，需要对名称encode
+            EasyExcel.write(response.getOutputStream(), Test.class).sheet().doWrite(Lists.newArrayList());
+        } catch (Exception e) {
+            throw new ServiceException("下载easyExcel导入模板失败");
         }
     }
 
