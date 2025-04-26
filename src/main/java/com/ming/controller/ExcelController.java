@@ -76,6 +76,11 @@ public class ExcelController {
     @PostMapping("/easyExcelExcedownload")
     public void easypoiDownload(HttpServletResponse response) {
         try {
+            response.setContentType("application/vnd.ms-excel");
+            String fileName = URLEncoder.encode("文件名.xlsx", "UTF-8");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ";" + "filename*=utf-8''" + fileName);
+            // 服务端要在header设置Access-Control-Expose-Headers, 前端才能正常获取到
+            response.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
             // 如果这里需要后台指定文件名，则可以把文件名定义在请求头里。注意：这里的文件名如果是中文，需要对名称encode
             EasyExcel.write(response.getOutputStream(), Test.class).sheet().doWrite(Lists.newArrayList());
         } catch (Exception e) {
