@@ -7,13 +7,18 @@ import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapp
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ming.entities.Info;
+import com.ming.entities.SysUser;
 import com.ming.enums.ResultCode;
 import com.ming.exception.Asserts;
 import com.ming.exception.ServiceException;
+import com.ming.mapper.SysUserMapper;
+import com.ming.mapper.UserMapper;
 import com.ming.service.InfoService;
 import com.ming.mapper.InfoMapper;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -31,6 +36,10 @@ import java.util.Map;
 @AllArgsConstructor
 public class InfoServiceImpl extends ServiceImpl<InfoMapper, Info>
         implements InfoService {
+
+    private static final Logger logger = LoggerFactory.getLogger(InfoServiceImpl.class);
+
+    private final SysUserMapper sysUserMapper;
 
     @Override
     public IPage<Info> infoPage(Integer pageNo, Integer pageSize) {
@@ -99,6 +108,28 @@ public class InfoServiceImpl extends ServiceImpl<InfoMapper, Info>
     @Override
     public List<Map<String, Object>> infoList() {
         return this.baseMapper.getInfoMap();
+    }
+
+    @Transactional
+    @Override
+    public void changeInfo() {
+        logger.info("changeInfo  start 为了验证锁等待 和死锁 +++++++++++++++++++++++++++++++++");
+        Info info = this.getById(1);
+        logger.info("changeInfo:{}", info);
+
+        LambdaUpdateWrapper<SysUser> updateWrapper = new LambdaUpdateWrapper<SysUser>().set(SysUser::getPhonenumber, "13200002222")
+                .eq(SysUser::getUserId, "1");
+        sysUserMapper.update(null, updateWrapper);
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            logger.error(e.getMessage());
+        }
+
+        //删除info加了锁
+        this.removeById("1");
+        logger.info("changeInfo  end +++++++++++++++++++++++++++++++++++");
     }
 }
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ming.annotation.DateVersion;
 import com.ming.entities.SysUser;
 import com.ming.enums.ResultCode;
+import com.ming.service.IUserService;
 import com.ming.service.SysUserService;
 import com.ming.util.RedisLockUtil;
 import com.ming.util.http.Result;
@@ -22,6 +23,8 @@ public class UserController {
     private final RedisLockUtil redisLockUtil;
 
     private final SysUserService sysUserService;
+
+    private final IUserService iUserService;
 
     private final static String KEY = "user:" + System.currentTimeMillis();
 
@@ -71,6 +74,15 @@ public class UserController {
         return Result.failure(ResultCode.E03);
     }
 
+
+    /**
+     * 更新user造成死锁
+     */
+    @ApiOperation("更新")
+    @GetMapping ("/lockUser")
+    public void lockUser() {
+        iUserService.lockUser();
+    }
 
 
 }

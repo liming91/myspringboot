@@ -134,4 +134,14 @@ public class InfoController {
         return Result.success(resultCode);
     }
 
+
+    /**
+     * 更新info造成死锁
+     */
+    @ApiOperation("更新")
+    @GetMapping ("/changeInfo")
+    public void lockCar() {
+         infoService.changeInfo();
+    }
+
 }

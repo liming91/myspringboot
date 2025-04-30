@@ -23,4 +23,6 @@ public interface InfoService extends IService<Info>,IPolymorphicService {
     boolean saveOrUpdateInfo(Info info);
 
     List<Map<String, Object>> infoList();
+
+    void changeInfo();
 }

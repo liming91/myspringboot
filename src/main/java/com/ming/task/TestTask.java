@@ -25,15 +25,24 @@ public class TestTask {
     public void test1() {
         System.out.println("scheduler1 执行: " + Thread.currentThread() + "-" + DateTime.now());
         List<Info> info = infoMapper.selectList(null);
+        if (info.size() < 50000) {
+            for (int i = 0; i < 50000; i++) {
+                Info info1 = new Info();
+                info1.setId(DateUtil.today() + i);
+                info1.setName(DateUtil.today() + i);
+                info1.setTime(new Date());
+                infoMapper.insert(info1);
+            }
+        }
         log.info("数据：{}", JSON.toJSONString(info));
-        info.forEach(x->{
+        info.forEach(x -> {
             //数据库计划时间5分钟前抽发
             System.out.println(DateUtil.format(x.getTime(), DatePattern.NORM_DATETIME_PATTERN));
             DateTime dateTime = DateUtil.offsetMinute(x.getTime(), -5);
             String time = DateUtil.format(dateTime, DatePattern.NORM_DATETIME_MINUTE_PATTERN);
             String nowTime = DateUtil.format(new Date(), DatePattern.NORM_DATETIME_MINUTE_PATTERN);
-            if(time.equals(nowTime)){
-                log.info("计划时间：{},计划5分钟前时间：{}",x.getTime(),time);
+            if (time.equals(nowTime)) {
+                log.info("计划时间：{},计划5分钟前时间：{}", x.getTime(), time);
             }
         });
     }
