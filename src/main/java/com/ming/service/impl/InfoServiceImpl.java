@@ -113,10 +113,15 @@ public class InfoServiceImpl extends ServiceImpl<InfoMapper, Info>
     @Transactional
     @Override
     public void changeInfo() {
+
+        //解决死锁  两边保持一致info和user业务层 都是 先删除info后更新user 如果要测试 放开删除info加了锁的注释
         logger.info("changeInfo  start 为了验证锁等待 和死锁 +++++++++++++++++++++++++++++++++");
         Info info = this.getById(1);
         logger.info("changeInfo:{}", info);
+        //先删除info 后更新user
+        this.removeById("1");
 
+        //后更新user
         LambdaUpdateWrapper<SysUser> updateWrapper = new LambdaUpdateWrapper<SysUser>().set(SysUser::getPhonenumber, "13200002222")
                 .eq(SysUser::getUserId, "1");
         sysUserMapper.update(null, updateWrapper);
@@ -128,7 +133,7 @@ public class InfoServiceImpl extends ServiceImpl<InfoMapper, Info>
         }
 
         //删除info加了锁
-        this.removeById("1");
+        //this.removeById("1");
         logger.info("changeInfo  end +++++++++++++++++++++++++++++++++++");
     }
 }

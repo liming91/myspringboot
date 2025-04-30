@@ -44,6 +44,8 @@ public class UserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impleme
      * 互相等待，用于等不到释放，直至系统超时
      *
      *
+     * 查找问题：代码日志 和数据库SHOW ENGINE INNODB STATUS  DEADLOCK 死锁位置
+     * 解决方案：两边保持一直 先删除info 再更新user
      *
      */
     @Transactional
