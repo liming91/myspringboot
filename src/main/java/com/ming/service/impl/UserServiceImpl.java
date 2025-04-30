@@ -56,13 +56,13 @@ public class UserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impleme
         infoMapper.deleteById("1");
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             logger.error(e.getMessage());
         }
 
         //更新user加了锁
-        this.lambdaUpdate().set(SysUser::getPhonenumber,"13200001111").set(SysUser::getUserId,"1").update();
+        this.lambdaUpdate().set(SysUser::getPhonenumber,"13200001111").eq(SysUser::getUserId,"1").update();
 
         logger.info("lockUser  end +++++++++++++++++++++++++++++++++++");
 

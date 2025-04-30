@@ -122,7 +122,7 @@ public class InfoServiceImpl extends ServiceImpl<InfoMapper, Info>
         sysUserMapper.update(null, updateWrapper);
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             logger.error(e.getMessage());
         }
