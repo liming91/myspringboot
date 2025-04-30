@@ -25,8 +25,9 @@ public class UserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impleme
     private InfoMapper infoMapper;
 
     /**
-     * bug: 删除info加了锁 更新user加了锁 造成死锁
-     *
+     * bug: 跨表多张表导致死锁问题 多个线程进入一个代码块不会导致死锁，这是多个线程进入不同的代码块 导致锁的执行顺序不一致造成的死锁
+     * 删除info加了锁 更新user加了锁 造成死锁
+     * <p>
      * 死锁 必要条件 多线程的情况下 持有对方的
      * <p>
      * 锁等待
@@ -42,11 +43,10 @@ public class UserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impleme
      * 锁等待和死锁不能混淆了，这里只能叫锁等待，其他线程等待持有锁的线程释放锁，正常
      * 情况下代码执行毫秒级就能执行完就能释放锁，其他线程就能获得锁继续执行。死锁，是
      * 互相等待，用于等不到释放，直至系统超时
-     *
-     *
+     * <p>
+     * <p>
      * 查找问题：代码日志 和数据库SHOW ENGINE INNODB STATUS  DEADLOCK 死锁位置
      * 解决方案：两边保持一直 先删除info 再更新user
-     *
      */
     @Transactional
     @Override
@@ -64,7 +64,7 @@ public class UserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impleme
         }
 
         //更新user加了锁
-        this.lambdaUpdate().set(SysUser::getPhonenumber,"13200001111").eq(SysUser::getUserId,"1").update();
+        this.lambdaUpdate().set(SysUser::getPhonenumber, "13200001111").eq(SysUser::getUserId, "1").update();
 
         logger.info("lockUser  end +++++++++++++++++++++++++++++++++++");
 
