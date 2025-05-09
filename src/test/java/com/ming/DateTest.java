@@ -109,7 +109,7 @@ public class DateTest {
 
     @Test
     public void test7() {
-        String format = DateUtil.format(DateUtil.offsetMonth(DateUtil.yesterday(), -12),
+        String format = DateUtil.format(DateUtil.offsetMonth(DateUtil.yesterday(), 6),
                 DatePattern.NORM_DATE_PATTERN);
         System.out.println(format);
     }
@@ -128,6 +128,9 @@ public class DateTest {
         Date date = new Date();
         String a = "2029-12-31 12:22:00";
         System.out.println(date.after(DateUtil.parse(a, DatePattern.NORM_DATETIME_PATTERN)));
+
+
+
     }
 
     @Test
