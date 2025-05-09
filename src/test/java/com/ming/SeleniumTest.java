@@ -1,5 +1,6 @@
 package com.ming;
 
+import com.ming.util.seleniums.GoogleDriverUtil;
 import com.ming.util.seleniums.WebDriverUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
@@ -98,6 +99,14 @@ public class SeleniumTest {
 //        ChromeDriver driver = new ChromeDriver();
 //        WebDriverWait wait = new WebDriverWait(driver, 20); // 显式等待
 
+
+        WebDriver chromeDriver = GoogleDriverUtil.getChromeDriver("E:\\liming\\javacode\\liming\\myspringboot\\drivers");
+        // 5. 执行测试操作
+        chromeDriver.get("https://www.baidu.com");
+        System.out.println("页面标题: " + chromeDriver.getTitle());
+
+        // 6. 关闭浏览器
+        GoogleDriverUtil.quitDriver(chromeDriver);
 
     }
 
