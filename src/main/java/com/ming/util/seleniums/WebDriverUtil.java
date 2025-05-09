@@ -23,6 +23,10 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 
 
 public class WebDriverUtil {
+    //http://chromedriver.storage.googleapis.com/index.html
+    //https://googlechromelabs.github.io/chrome-for-testing/#stable
+    //https://chromedriver.storage.googleapis.com/index.html
+    //chrome://version/
     private static final String CHROME_DRIVER_BASE_URL = "https://chromedriver.storage.googleapis.com/";
     private static final String CHROME_BASE_URL = "https://dl.google.com/linux/direct/google-chrome-stable_current_";
     private static final String DRIVER_DIR = "drivers";
