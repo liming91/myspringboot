@@ -5,6 +5,8 @@ import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import com.alibaba.excel.EasyExcel;
 import com.google.common.collect.Lists;
 import com.ming.bean.Test;
@@ -13,6 +15,7 @@ import com.ming.service.ExcelService;
 import com.ming.service.ITestService;
 import com.ming.util.ExcelStyleUtil;
 import com.ming.util.ExcelUtil;
+import com.ming.util.excel.CustomExcelExportUtil;
 import com.ming.util.http.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,6 +38,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -92,6 +96,29 @@ public class ExcelController {
     @GetMapping("/export")
     public void export(HttpServletResponse response) {
         excelService.export(response);
+    }
+
+    @GetMapping("/easyPoiExportList")
+    public void easyPoiExportList(HttpServletResponse response, String startTime, String endTime) throws IOException {
+        try {
+            List<Test> list = iTestService.getList();
+            ExportParams params = new ExportParams("标题", "sheet111");
+            params.setType(ExcelType.XSSF);
+            params.setStyle(ExcelStyleUtil.class);
+            params.setHeight((short) 15);
+
+            Workbook workbook = CustomExcelExportUtil.exportExcelWithMerge(params, Test.class, list);
+
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode(DateUtil.format(new Date(), DatePattern.PURE_DATETIME_PATTERN)+"日工作安排.xls", "UTF-8"));
+            workbook.write(response.getOutputStream());
+            // 清除response
+            response.flushBuffer();
+            workbook.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @GetMapping("/exportList")

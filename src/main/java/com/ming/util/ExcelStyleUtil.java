@@ -8,6 +8,7 @@ import org.apache.poi.ss.usermodel.*;
 
 /**
  * excel样式
+ *
  * @Author liming
  * @Date 2023/7/18 15:37
  */
@@ -80,54 +81,66 @@ public class ExcelStyleUtil implements IExcelExportStyler {
 
     /**
      * 初始化--标题行样式
+     *
      * @param workbook
      * @return
      */
     private CellStyle initTitleStyle(Workbook workbook) {
-        return buildCellStyle(workbook,TITLE_STYLES);
+        return buildCellStyle(workbook, TITLE_STYLES);
     }
 
     /**
      * 初始化--数据行样式
+     *
      * @param workbook
      * @return
      */
     private CellStyle initStyles(Workbook workbook) {
-        return buildCellStyle(workbook,DATA_STYLES);
+        return buildCellStyle(workbook, DATA_STYLES);
     }
 
     private CellStyle initHeaderStyle(Workbook workbook) {
-        return buildCellStyle(workbook,HEADER_STYLES);
+        return buildCellStyle(workbook, HEADER_STYLES);
     }
 
     /**
      * 设置单元格样式
+     *
      * @param workbook
-     * @param type 类型  用来区分是数据行样式还是标题样式
+     * @param type     类型  用来区分是数据行样式还是标题样式
      * @return
      */
     public CellStyle buildCellStyle(Workbook workbook, String type) {
         CellStyle style = workbook.createCellStyle();
         // 字体样式
         Font font = workbook.createFont();
-        if(TITLE_STYLES.equals(type)){
-            font.setFontHeightInPoints((short)12);
+        if (TITLE_STYLES.equals(type)) {
+            font.setFontHeightInPoints((short) 12);
             font.setBold(true);
-            // 背景色
+            font.setFontName("Courier New");
+            style.setFont(font);
+
             style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
             style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         }
-        if(DATA_STYLES.equals(type)){
-            font.setFontHeightInPoints((short)10);
+
+        if (DATA_STYLES.equals(type)) {
+            font.setFontHeightInPoints((short) 10);
+            font.setFontName("Courier New");
+            style.setFont(font);
         }
-        if(HEADER_STYLES.equals(type)){
-            font.setFontHeightInPoints((short)12);
-            // 背景色
+
+        if (HEADER_STYLES.equals(type)) {
+            font.setFontHeightInPoints((short) 12);
+            font.setBold(true);
+            font.setFontName("Courier New");
+            style.setFont(font);
+
             style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
             style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         }
-        if(REMARK_STYLES.equals(type)){
-            font.setFontHeightInPoints((short)12);
+        if (REMARK_STYLES.equals(type)) {
+            font.setFontHeightInPoints((short) 12);
             // 背景色
             style.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
             style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
