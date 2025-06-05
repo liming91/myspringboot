@@ -1753,6 +1753,25 @@ public class TestPro {
         }
         return time;
     }
+
+    @Test
+    public void timePerson(){
+        List<Map<String,String>> resList = new ArrayList<>();
+        List<String> list = Arrays.asList("张三", "王五", "李四");
+        for (int i = 1; i <= 30; i++) {
+            System.out.println(i);
+            Map<String, String> map = new HashMap<>();
+            map.put("time",String.valueOf(i));
+
+            // 每个i对应list中的第 (i-1) % list.size() 个姓名
+            System.out.println("==:"+(i - 1) % list.size());
+            map.put("person", list.get((i - 1) % list.size()));
+            resList.add(map);
+        }
+
+        System.out.println(JSON.toJSONString(resList));
+    }
+
     public static void main(String[] args) {
 
 
