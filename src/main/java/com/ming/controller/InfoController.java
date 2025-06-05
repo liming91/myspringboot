@@ -95,7 +95,7 @@ public class InfoController {
 
     @ApiOperation("添加")
     @PostMapping("/save")
-    @NeedEncrypt
+    //@NeedEncrypt
     public Result<?> save(@Validated @RequestBody Info info) {
         boolean flag = infoService.saveOrUpdateInfo(info);
         if (flag) {

@@ -54,27 +54,27 @@ public class DruidConfig {
     }
 
     //2.配置一个web监控的filter、WebStatFilter用于配置Web和Druid数据源之间的管理关联监控统计
-    @Bean
-    public FilterRegistrationBean webStatFilter(){
-        FilterRegistrationBean bean = new FilterRegistrationBean();
-        bean.setFilter(new WebStatFilter());
-
-        Map<String,String> initParams = new HashMap<>();
-//        初始化参数
-//        public final static String PARAM_NAME_PROFILE_ENABLE         = "profileEnable";
-//        public final static String PARAM_NAME_SESSION_STAT_ENABLE    = "sessionStatEnable";
-//        public final static String PARAM_NAME_SESSION_STAT_MAX_COUNT = "sessionStatMaxCount";
-//        public static final String PARAM_NAME_EXCLUSIONS             = "exclusions";
-//        public static final String PARAM_NAME_PRINCIPAL_SESSION_NAME = "principalSessionName";
-//        public static final String PARAM_NAME_PRINCIPAL_COOKIE_NAME  = "principalCookieName";
-//        public static final String PARAM_NAME_REAL_IP_HEADER         = "realIpHeader";
-        initParams.put("exclusions","*.js,*.css,/druid/*");//不拦截这些请求
-
-        bean.setInitParameters(initParams);
-
-        bean.setUrlPatterns(Arrays.asList("/*"));//拦截所有的请求
-        return  bean;
-    }
+//    @Bean
+//    public FilterRegistrationBean webStatFilter(){
+//        FilterRegistrationBean bean = new FilterRegistrationBean();
+//        bean.setFilter(new WebStatFilter());
+//
+//        Map<String,String> initParams = new HashMap<>();
+////        初始化参数
+////        public final static String PARAM_NAME_PROFILE_ENABLE         = "profileEnable";
+////        public final static String PARAM_NAME_SESSION_STAT_ENABLE    = "sessionStatEnable";
+////        public final static String PARAM_NAME_SESSION_STAT_MAX_COUNT = "sessionStatMaxCount";
+////        public static final String PARAM_NAME_EXCLUSIONS             = "exclusions";
+////        public static final String PARAM_NAME_PRINCIPAL_SESSION_NAME = "principalSessionName";
+////        public static final String PARAM_NAME_PRINCIPAL_COOKIE_NAME  = "principalCookieName";
+////        public static final String PARAM_NAME_REAL_IP_HEADER         = "realIpHeader";
+//        initParams.put("exclusions","*.js,*.css,/druid/*");//不拦截这些请求
+//
+//        bean.setInitParameters(initParams);
+//
+//        bean.setUrlPatterns(Arrays.asList("/*"));//拦截所有的请求
+//        return  bean;
+//    }
     /**
      * 开始事务
      * @param dataSource

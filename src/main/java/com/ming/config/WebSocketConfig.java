@@ -7,10 +7,10 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 /**
  * 开启websocket支持
  */
-@Configuration
+//@Configuration
 public class WebSocketConfig {
 
-    @Bean
+    //@Bean
     public ServerEndpointExporter serverEndpointExporter() {
         return new ServerEndpointExporter();
     }
